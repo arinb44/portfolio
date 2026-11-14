@@ -1,0 +1,22 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Picture } from 'astro:assets';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+const { id, data } = Astro.props.project;
+const hero = data.layers[0].images[0];
+---
+<section class="main-panel" aria-labelledby="featured-title">
+  <Picture src={hero.src} alt={hero.alt} formats={['avif', 'webp']} widths={[480, 800, 1200]} sizes="(min-width: 48rem) 50vw, 100vw" loading="eager" />
+  <p class="eyebrow">Featured project</p>
+  <h2 id="featured-title">{data.title}</h2>
+  <p>{data.oneLine}</p>
+  <p class="stack">{data.stack.join(' · ')}</p>
+  <p class="actions">
+    <a class="button" href={`/projects/${id}/`}>Open project</a>
+    {data.demo.url && <a href={data.demo.url}>Live site<span aria-hidden="true"> ↗</span></a>}
+    <a href={data.repo}>Code<span aria-hidden="true"> ↗</span></a>
+  </p>
+</section>

@@ -29,8 +29,18 @@
 
 - 2026-11-14: Added `@types/node` (#5): `astro check` 0 errors, unit 6/6. `git init -b main`, local only (#6).
 
+- 2026-11-14: **M1 committed** as `062a6f4` (no AI markers).
+- 2026-11-14: M2 static skeleton built:
+  - Base layout, Header, Footer, home altarpiece (open), predella, Index table, 7 project pages, About, 404, placeholder CV.
+  - `npm test`: check 0/0, 11 pages built, unit 6/6, Playwright 28/28.
+  - Fixes found by the tests and screenshots: the 320 px overflow from the visually hidden "(featured)" text; the predella below the fold on desktop.
+
 ## Next step
-Waiting for approval of the M1 commit: all files listed by `git status`, message "Set up Astro project and project content model". After the commit, check `git log -1 --format=%B` has no AI markers. Then start M2 (static skeleton) and ask D3 (name, tagline, email, About text).
+Waiting on the user for:
+- approval of the M2 commit ("Build static site skeleton with Index, project pages and browser tests");
+- the first Lighthouse mobile run (plan M2: run it with `npx lighthouse`, which needs network, or wait until M9).
+
+Then M3 (visual system): ask D4 (CC0 downloads) and D5 (M5 hover preview). D3 (name, tagline, email, About) can arrive any time.
 
 ## Open questions
 - **Repository:** local only, branch `main`. Ask before any push.

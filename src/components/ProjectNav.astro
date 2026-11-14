@@ -1,0 +1,20 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+type Project = CollectionEntry<'projects'>;
+interface Props {
+  prev: Project;
+  next: Project;
+}
+const { prev, next } = Astro.props;
+const href = (p: Project) => `/projects/${p.id}/`;
+---
+<!-- After the content in the DOM (spec 8.1); the edge wings are fixed to the sides on wide screens. -->
+<nav class="project-nav" aria-label="Previous and next project">
+  <a class="edge edge-prev" rel="prev" href={href(prev)}><span aria-hidden="true">◂ </span><span class="visually-hidden">Previous: </span>{prev.data.title}</a>
+  <a class="edge edge-next" rel="next" href={href(next)}><span class="visually-hidden">Next: </span>{next.data.title}<span aria-hidden="true"> ▸</span></a>
+  <p class="project-nav-bar">
+    <a rel="prev" href={href(prev)}><span aria-hidden="true">◂ </span><span class="visually-hidden">Previous: </span>{prev.data.title}</a>
+    <a rel="next" href={href(next)}>Next: {next.data.title}<span aria-hidden="true"> ▸</span></a>
+  </p>
+</nav>

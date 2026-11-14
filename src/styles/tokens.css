@@ -1,0 +1,19 @@
+:root {
+  /* Palette: pigments from the Merode triptych (spec 6.1, decision #19). */
+  --gesso: #EEE9DF;
+  --stone-200: #CFC8BA;
+  --stone-500: #857F75; /* large text only */
+  --stone-700: #4A4740;
+  --ink: #1F1D1A;
+  --ultramarine: #24407A;
+  --vermilion: #B03F2C;
+  --verdigris: #2F6A53;
+  --umber: #5A3E2B;
+  --ochre: #C29545;
+  --gold: #C8A24A; /* decoration only on light backgrounds */
+
+  /* Layout */
+  --header-h: 4rem;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --edge-w: 3rem; /* prev/next edge wings, >= 44 px (spec 8.4) */
+}

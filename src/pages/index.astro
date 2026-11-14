@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro';
+import Altarpiece from '../components/Altarpiece.astro';
+import Predella from '../components/Predella.astro';
+import { getProjects } from '../lib/projects';
+
+const projects = await getProjects();
+const featured = projects.find((p) => p.data.featured)!; // sortProjects guarantees exactly one
+---
+<Base>
+  <Altarpiece featured={featured} />
+  <Predella projects={projects} />
+</Base>

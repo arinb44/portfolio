@@ -1,0 +1,58 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { Picture } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import ProjectLayers from '../../components/ProjectLayers.astro';
+import ProjectNav from '../../components/ProjectNav.astro';
+import { getProjects } from '../../lib/projects';
+import { neighbours } from '../../lib/order.ts';
+
+export const getStaticPaths = (async () => {
+  const projects = await getProjects();
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project, ...neighbours(projects, project.id) },
+  }));
+}) satisfies GetStaticPaths;
+
+const { project, prev, next } = Astro.props;
+const { data } = project;
+const varnish = data.layers[0];
+const hero = varnish.images[0];
+const coldStart = data.demo.url && (data.demo.coldStartSeconds ?? 0) > 10 ? data.demo.coldStartSeconds : undefined;
+---
+<Base title={data.title} description={data.oneLine} edges>
+  <article class="project">
+    <!-- Result first (spec 2.1): everything a reviewer needs is in this block. -->
+    <header class="project-hero">
+      <div class="project-summary">
+        <h1>{data.title}</h1>
+        <p class="one-line">{data.oneLine}</p>
+        {data.metric && (
+          <p class="metric">
+            <strong>{data.metric.value}</strong> {data.metric.label}
+            <span class="metric-context">{data.metric.baseline && `vs ${data.metric.baseline} · `}{data.metric.context}</span>
+          </p>
+        )}
+        <p><span class="label">Role</span> {data.role}</p>
+        <ul class="chips" aria-label="Stack">
+          {data.stack.map((s) => <li>{s}</li>)}
+        </ul>
+        <p class="actions">
+          {data.demo.url && <a class="button" href={data.demo.url}>Live demo<span aria-hidden="true"> ↗</span></a>}
+          <a class="button button-secondary" href={data.repo}>Code<span aria-hidden="true"> ↗</span></a>
+        </p>
+        {coldStart && (
+          <p class="note">The demo's server sleeps when idle, so its first load can take up to {coldStart} seconds.</p>
+        )}
+      </div>
+      <figure class="project-varnish">
+        <Picture src={hero.src} alt={hero.alt} formats={['avif', 'webp']} widths={[480, 800, 1200, 1600]} sizes="(min-width: 60rem) 55vw, 100vw" loading="eager" fetchpriority="high" />
+        <figcaption><span class="layer-label">Layer 1 of 4 · Varnish ({varnish.status === 'finished' ? 'finished' : 'in progress'})</span> {hero.caption}</figcaption>
+      </figure>
+      <p class="varnish-text">{varnish.text}</p>
+    </header>
+    <ProjectLayers layers={data.layers} />
+  </article>
+  <ProjectNav prev={prev} next={next} />
+</Base>

@@ -1,0 +1,12 @@
+---
+interface Props {
+  side: 'left' | 'right';
+  title: string;
+}
+const { side, title } = Astro.props;
+const id = `wing-${side}-title`;
+---
+<section class={`wing wing-${side}`} aria-labelledby={id}>
+  <h2 id={id}>{title}</h2>
+  <slot />
+</section>

@@ -1,0 +1,25 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Wing from './Wing.astro';
+import MainPanel from './MainPanel.astro';
+import { SITE } from '../site';
+
+interface Props {
+  featured: CollectionEntry<'projects'>;
+}
+---
+<!-- The open altarpiece is the HTML default; the arrival (Milestone 4) only animates towards it. -->
+<div class="altarpiece">
+  <Wing side="left" title="About">
+    <p>{SITE.tagline}</p>
+    <p><a href="/about/">Read more<span class="visually-hidden"> about me</span><span aria-hidden="true"> →</span></a></p>
+  </Wing>
+  <MainPanel project={Astro.props.featured} />
+  <Wing side="right" title="Contact">
+    <ul class="link-list">
+      <li><a href={`mailto:${SITE.email}`}>Email</a></li>
+      <li><a href={SITE.github}>GitHub<span aria-hidden="true"> ↗</span></a></li>
+      <li><a href="/cv.pdf">CV (PDF)</a></li>
+    </ul>
+  </Wing>
+</div>

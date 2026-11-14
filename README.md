@@ -13,6 +13,11 @@ A static Astro site. The design spec is `output/renaissance-portfolio-concepts/h
 | `npm run placeholders` | Create labelled placeholder images for any project image that doesn't exist yet (never overwrites) |
 | `npm test` | Type check, build, unit tests, browser tests |
 | `npm run test:unit` | Unit tests only (Node's built-in runner) |
+| `npm run test:e2e` | Browser tests only (Playwright + axe, against the last build) |
+
+## Your details
+
+Your name, tagline, email and GitHub link live in `src/site.ts`. The About text is in `src/pages/about.astro`, and the CV is `public/cv.pdf`. All three are placeholders until you replace them.
 
 ## Adding or editing a project
 

@@ -1,0 +1,23 @@
+---
+import { SITE } from '../site';
+
+const path = Astro.url.pathname.replace(/\/?$/, '/');
+const isHome = path === '/';
+const links = [
+  { href: '/projects/', label: 'Index' },
+  { href: '/about/', label: 'About' },
+];
+---
+<header class="site-header">
+  {isHome
+    ? <h1 class="site-name"><a href="/">{SITE.name}</a></h1>
+    : <a class="site-name" href="/">{SITE.name}</a>}
+  <nav aria-label="Site">
+    <ul>
+      {links.map(({ href, label }) => (
+        <li><a href={href} aria-current={path === href ? 'page' : undefined}>{label}</a></li>
+      ))}
+      <li><a href={SITE.github}>GitHub<span aria-hidden="true"> ↗</span></a></li>
+    </ul>
+  </nav>
+</header>

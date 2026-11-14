@@ -1,0 +1,40 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getProjects } from '../../lib/projects';
+
+const projects = await getProjects();
+// Featured first, then predella order (wireframe 05).
+const rows = [...projects.filter((p) => p.data.featured), ...projects.filter((p) => !p.data.featured)];
+---
+<Base title="Index" description="Every project in one plain table.">
+  <h1>Index</h1>
+  <div class="table-scroll" role="region" aria-labelledby="index-caption" tabindex="0">
+    <table class="index-table">
+      <caption id="index-caption">All projects</caption>
+      <thead>
+        <tr><th scope="col">Project</th><th scope="col">What it is</th><th scope="col">Stack</th><th scope="col">Links</th></tr>
+      </thead>
+      <tbody>
+        {rows.map(({ id, data }) => (
+          <tr>
+            <th scope="row"><a href={`/projects/${id}/`}>{data.title}</a></th>
+            <td>{data.oneLine}</td>
+            <td>{data.stack.join(' · ')}</td>
+            <td>
+              <ul class="link-list">
+                {data.demo.url && (
+                  <li>
+                    <a href={data.demo.url}>Demo<span aria-hidden="true"> ↗</span></a>
+                    {(data.demo.coldStartSeconds ?? 0) > 10 && ' (slow start)'}
+                  </li>
+                )}
+                {data.demo.kind === 'video' && <li>Video on its page</li>}
+                <li><a href={data.repo}>Code<span aria-hidden="true"> ↗</span></a></li>
+              </ul>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</Base>

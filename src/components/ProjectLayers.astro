@@ -1,0 +1,28 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Picture } from 'astro:assets';
+
+interface Props {
+  /** All four layers; the varnish (layer 1) is shown in the page hero, so this renders layers 2–4. */
+  layers: CollectionEntry<'projects'>['data']['layers'];
+}
+const HEADING: Record<string, string> = {
+  paint: 'Paint: key features and results',
+  underpainting: 'Underpainting: architecture',
+  underdrawing: 'Underdrawing: origins',
+};
+const STATUS = { finished: 'Finished', 'in-progress': 'In progress' };
+---
+{Astro.props.layers.slice(1).map((layer, i) => (
+  <section class="layer" aria-labelledby={`layer-${layer.name}`}>
+    <h2 id={`layer-${layer.name}`}><span class="layer-label">Layer {i + 2} ·</span> {HEADING[layer.name]}</h2>
+    <p class={`tag tag-${layer.status}`}>{STATUS[layer.status]}</p>
+    <p>{layer.text}</p>
+    {layer.images.map((img) => (
+      <figure>
+        <Picture src={img.src} alt={img.alt} formats={['avif', 'webp']} widths={[480, 800, 1200]} sizes="(min-width: 60rem) 48rem, 100vw" />
+        <figcaption>{img.caption}</figcaption>
+      </figure>
+    ))}
+  </section>
+))}
