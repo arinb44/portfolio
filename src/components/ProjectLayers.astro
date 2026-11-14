@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { Picture } from 'astro:assets';
+import SfumatoPicture from './SfumatoPicture.astro';
 
 interface Props {
   /** All four layers; the varnish (layer 1) is shown in the page hero, so this renders layers 2–4. */
@@ -20,7 +20,7 @@ const STATUS = { finished: 'Finished', 'in-progress': 'In progress' };
     <p>{layer.text}</p>
     {layer.images.map((img) => (
       <figure>
-        <Picture src={img.src} alt={img.alt} formats={['avif', 'webp']} widths={[480, 800, 1200]} sizes="(min-width: 60rem) 48rem, 100vw" />
+        <SfumatoPicture src={img.src} alt={img.alt} widths={[480, 800, 1200]} sizes="(min-width: 60rem) 48rem, 100vw" />
         <figcaption>{img.caption}</figcaption>
       </figure>
     ))}

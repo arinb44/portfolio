@@ -1,14 +1,34 @@
 ---
+import { Picture } from 'astro:assets';
 import Base from '../layouts/Base.astro';
+import grisailleLeft from '../assets/art/cellier-left.jpg';
+import grisailleRight from '../assets/art/cellier-right.jpg';
+
+const CREDITS = [
+  { maker: 'Jean Bellegambe', title: 'The Cellier Altarpiece', date: '1511–12', collection: 'The Friedsam Collection, Bequest of Michael Friedsam, 1931', url: 'https://www.metmuseum.org/art/collection/search/435638', use: 'the grisaille wings' },
+  { maker: 'Workshop of Lippo Memmi', title: 'Madonna and Child', date: 'c. 1340', collection: 'Robert Lehman Collection, 1975', url: 'https://www.metmuseum.org/art/collection/search/459134', use: 'the gold-leaf frames' },
+  { maker: 'Workshop of Robert Campin', title: 'Annunciation Triptych (Merode Altarpiece)', date: 'c. 1427–32', collection: 'The Cloisters Collection, 1956', url: 'https://www.metmuseum.org/art/collection/search/470304', use: "Joseph's workshop on the Contact wing" },
+];
 ---
 <Base title="About">
-  <article class="prose">
-    <h1>About</h1>
-    <!-- TODO (decision D3): your own words. -->
-    <p>[Two or three short paragraphs: who you are, what you build, and what you want to do next.]</p>
-    <h2>Education</h2>
-    <p>[School, programme, expected graduation.]</p>
-    <h2 id="credits">Credits</h2>
-    <p>[Every museum painting used on this site will be credited here: title, maker, date and collection.]</p>
-  </article>
+  <!-- The closed altarpiece's grisaille exterior frames the page (spec 3.1). The wings are decoration, so alt="". -->
+  <div class="about">
+    <Picture class="about-wing" src={grisailleLeft} alt="" formats={['avif', 'webp']} widths={[240, 480]} sizes="14rem" loading="eager" />
+    <article class="prose">
+      <h1>About</h1>
+      <!-- TODO (decision D3): your own words. -->
+      <p>[Two or three short paragraphs: who you are, what you build, and what you want to do next.]</p>
+      <h2>Education</h2>
+      <p>[School, programme, expected graduation.]</p>
+      <h2 id="credits">Credits</h2>
+      <p>The paintings are public-domain images from The Metropolitan Museum of Art's Open Access collection.</p>
+      <ul>
+        {CREDITS.map((c) => (
+          <li>{c.maker}, <a href={c.url}><cite>{c.title}</cite></a>, {c.date}. The Met, {c.collection}. Used for {c.use}.</li>
+        ))}
+      </ul>
+      <p>Typefaces: EB Garamond and Cormorant Garamond, under the SIL Open Font License.</p>
+    </article>
+    <Picture class="about-wing" src={grisailleRight} alt="" formats={['avif', 'webp']} widths={[240, 480]} sizes="14rem" loading="eager" />
+  </div>
 </Base>

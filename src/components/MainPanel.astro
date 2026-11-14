@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { Picture } from 'astro:assets';
+import SfumatoPicture from './SfumatoPicture.astro';
 
 interface Props {
   project: CollectionEntry<'projects'>;
@@ -9,7 +9,7 @@ const { id, data } = Astro.props.project;
 const hero = data.layers[0].images[0];
 ---
 <section class="main-panel" aria-labelledby="featured-title">
-  <Picture src={hero.src} alt={hero.alt} formats={['avif', 'webp']} widths={[480, 800, 1200]} sizes="(min-width: 48rem) 50vw, 100vw" loading="eager" />
+  <SfumatoPicture class="crackle" src={hero.src} alt={hero.alt} widths={[480, 800, 1200]} sizes="(min-width: 48rem) 50vw, 100vw" loading="eager" />
   <p class="eyebrow">Featured project</p>
   <h2 id="featured-title">{data.title}</h2>
   <p>{data.oneLine}</p>

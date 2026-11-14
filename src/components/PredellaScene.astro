@@ -8,8 +8,10 @@ interface Props {
 const { id, data } = Astro.props.project;
 ---
 <a class="scene" href={`/projects/${id}/`}>
-  <!-- alt="": the link text already names the project (spec 8.1). -->
-  <Picture src={data.predella.image} alt="" formats={['avif', 'webp']} widths={[160, 320]} sizes="160px" />
-  <span>{data.title}</span>
+  <span class="scene-art crackle">
+    <!-- alt="": the link text already names the project (spec 8.1). -->
+    <Picture src={data.predella.image} alt="" formats={['avif', 'webp']} widths={[160, 320]} sizes="160px" />
+  </span>
+  <span class="scene-title">{data.title}</span>
   {data.featured && <><span aria-hidden="true"> ★</span><span class="visually-hidden"> (featured)</span></>}
 </a>

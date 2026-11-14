@@ -1,5 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { Picture } from 'astro:assets';
+import joseph from '../assets/art/merode-joseph.jpg';
 import Wing from './Wing.astro';
 import MainPanel from './MainPanel.astro';
 import { SITE } from '../site';
@@ -21,5 +23,7 @@ interface Props {
       <li><a href={SITE.github}>GitHub<span aria-hidden="true"> ↗</span></a></li>
       <li><a href="/cv.pdf">CV (PDF)</a></li>
     </ul>
+    <!-- A maker's emblem (spec 7.1). -->
+    <Picture class="emblem" src={joseph} alt="Detail of Joseph in his workshop, from the Merode Altarpiece (Workshop of Robert Campin, c. 1427–32)." formats={['avif', 'webp']} widths={[240, 480]} sizes="12rem" />
   </Wing>
 </div>

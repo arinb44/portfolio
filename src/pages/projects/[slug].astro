@@ -1,7 +1,7 @@
 ---
 import type { GetStaticPaths } from 'astro';
-import { Picture } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
+import SfumatoPicture from '../../components/SfumatoPicture.astro';
 import ProjectLayers from '../../components/ProjectLayers.astro';
 import ProjectNav from '../../components/ProjectNav.astro';
 import { getProjects } from '../../lib/projects';
@@ -47,7 +47,7 @@ const coldStart = data.demo.url && (data.demo.coldStartSeconds ?? 0) > 10 ? data
         )}
       </div>
       <figure class="project-varnish">
-        <Picture src={hero.src} alt={hero.alt} formats={['avif', 'webp']} widths={[480, 800, 1200, 1600]} sizes="(min-width: 60rem) 55vw, 100vw" loading="eager" fetchpriority="high" />
+        <SfumatoPicture src={hero.src} alt={hero.alt} widths={[480, 800, 1200, 1600]} sizes="(min-width: 60rem) 55vw, 100vw" loading="eager" fetchpriority="high" />
         <figcaption><span class="layer-label">Layer 1 of 4 · Varnish ({varnish.status === 'finished' ? 'finished' : 'in progress'})</span> {hero.caption}</figcaption>
       </figure>
       <p class="varnish-text">{varnish.text}</p>

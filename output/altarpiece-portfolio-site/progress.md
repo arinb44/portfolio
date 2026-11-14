@@ -35,12 +35,27 @@
   - `npm test`: check 0/0, 11 pages built, unit 6/6, Playwright 28/28.
   - Fixes found by the tests and screenshots: the 320 px overflow from the visually hidden "(featured)" text; the predella below the fold on desktop.
 
-## Next step
-Waiting on the user for:
-- approval of the M2 commit ("Build static site skeleton with Index, project pages and browser tests");
-- the first Lighthouse mobile run (plan M2: run it with `npx lighthouse`, which needs network, or wait until M9).
+- 2026-11-14: **M2 committed** as `68bfb80` (no AI markers).
+- 2026-11-14: First Lighthouse mobile run (`npx lighthouse`, Playwright's Chromium, local preview):
+  - `/`: score 100, LCP 1.2 s, CLS 0, TBT 30 ms, 41 KiB, 0 KiB JS.
+  - `/projects/nba-predictor/`: score 100, LCP 0.8 s, CLS 0, 49 KiB.
+  - Placeholder images, no fonts yet; re-measure in M3 and M9.
+- Uncommitted: `.gitattributes` (`*.pdf binary`, so autocrlf can't alter the PDF). Goes into the next commit.
 
-Then M3 (visual system): ask D4 (CC0 downloads) and D5 (M5 hover preview). D3 (name, tagline, email, About) can arrive any time.
+- 2026-11-14: D4 download / D5 skip / GitHub later (decision #8).
+  - Downloaded 20 Met previews (scratchpad only) and 3 originals (8.2 MB, git-ignored `art-src/`): DT11783, LC-1975_1_010_001, DP-46759-013.
+  - `scripts/art.mjs` crops them into `src/assets/art/` (~270 KiB in total).
+- 2026-11-14: M3 visual system built:
+  - Fontsource EB/Cormorant (Latin, EB Regular preloaded), motion tokens, gold-leaf frame, craquelure SVG, M4 glint, M13 `SfumatoPicture`.
+  - Joseph on the Contact wing; grisaille wings and credits on About.
+  - Contrast unit test reads `tokens.css`.
+  - `npm test`: check 0/0, 11 pages built, unit 17/17, Playwright 32/32. `contrast_check.py`: 12 PASS, 0 FAIL.
+  - Bug found by a test and fixed: image `load` events don't reach `window`; the listener moved to `document`.
+  - Lighthouse mobile: home 99 (LCP 2.1 s, 192 KiB), NBA 100 (LCP 1.7 s), About 100 (LCP 0.8 s); CLS 0 and 0 KiB JS everywhere.
+  - Home LCP element = the altarpiece's gold CSS background. Re-check in M4; preload it if it's still the LCP.
+
+## Next step
+Waiting for approval of the M3 commit ("Add visual system: fonts, gold frame, museum textures, glint and sfumato loading"; also includes `.gitattributes`). Then M4, the arrival (M1–M3): CSS 3D wings, glazes, inline script with the 30-day rule, Skip intro, reduced-motion fade, phone `rotateX`. D3 (name, tagline, email, About) can arrive any time.
 
 ## Open questions
 - **Repository:** local only, branch `main`. Ask before any push.

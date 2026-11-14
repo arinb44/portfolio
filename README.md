@@ -10,6 +10,7 @@ A static Astro site. The design spec is `output/renaissance-portfolio-concepts/h
 | `npm run dev` | Local dev server |
 | `npm run build` | Build the static site into `dist/` (fails on invalid project content) |
 | `npm run preview` | Serve the built site |
+| `node scripts/art.mjs` | Re-crop the museum images from the originals in `art-src/` (git-ignored; download URLs are in the script) |
 | `npm run placeholders` | Create labelled placeholder images for any project image that doesn't exist yet (never overwrites) |
 | `npm test` | Type check, build, unit tests, browser tests |
 | `npm run test:unit` | Unit tests only (Node's built-in runner) |

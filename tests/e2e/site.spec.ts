@@ -86,8 +86,42 @@ test('project page tab order: result first, prev/next after the content', async 
   ]);
 });
 
+test('fonts: EB Garamond is preloaded and in use', async ({ page }) => {
+  await page.goto('/');
+  const preload = await page.locator('link[rel=preload][as=font]').getAttribute('href');
+  expect((await page.request.get(preload!)).status()).toBe(200);
+  expect(await page.evaluate(async () => (await document.fonts.ready, document.fonts.check('1rem "EB Garamond"')))).toBe(true);
+});
+
+test('M13 sfumato: the project hero ends fully opaque once loaded', async ({ page }) => {
+  await page.goto('/projects/nba-predictor/');
+  const hero = page.locator('.project-varnish img');
+  await expect(hero).toHaveClass(/loaded/);
+  await expect(hero).toHaveCSS('opacity', '1');
+});
+
+test('M4 glint: a scene lifts 4 px; under reduced motion only the sheen shows', async ({ page }) => {
+  await page.goto('/');
+  const scene = page.locator('.scene').first();
+  const sheen = () => scene.locator('.scene-art').evaluate((el) => getComputedStyle(el, '::before').opacity);
+  await scene.hover();
+  await expect(scene).toHaveCSS('translate', '0px -4px');
+  await expect.poll(sheen).toBe('1');
+
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.mouse.move(0, 0);
+  await scene.hover();
+  await expect(scene).toHaveCSS('translate', 'none');
+  await expect.poll(sheen).toBe('1');
+});
+
 test.describe('with JavaScript off', () => {
   test.use({ javaScriptEnabled: false });
+
+  test('large images show at once (no fade waiting on JS)', async ({ page }) => {
+    await page.goto('/projects/nba-predictor/');
+    await expect(page.locator('.project-varnish img')).toHaveCSS('opacity', '1');
+  });
 
   test('home → project → next project → Index all work', async ({ page }) => {
     await page.goto('/');
