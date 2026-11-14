@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900" role="img" aria-labelledby="t d">
+  <title id="t">Wireframe 05: Arrival timeline, reduced-motion version, and the plain Index page</title>
+  <desc id="d">Top row: four frames of the arrival at 0, 450, 900 and 1600 milliseconds. Middle row: the reduced-motion arrival as a 150 millisecond cross-fade. Bottom: the Index page, a plain list of all seven projects.</desc>
+  <style>
+    .bg{fill:#f4f1ea}.dark{fill:#2a2826}.wing{fill:#6e6a63;stroke:#cfc8ba;stroke-width:1.2}.col{fill:#bdb6a8;stroke:#666}
+    .h{font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:bold;fill:#1f1d1a}.s{font-family:Arial,Helvetica,sans-serif;fill:#4a4740;font-size:12px}
+    .t{font-family:Georgia,'EB Garamond',serif;fill:#1f1d1a}.m{font-family:'Courier New',monospace;fill:#4a4740;font-size:12px}
+    .n{font-family:Arial,Helvetica,sans-serif;font-size:13px;fill:#b03f2c}.row{stroke:#cfc8ba}
+  </style>
+  <rect class="bg" width="1440" height="900"/>
+  <text class="h" x="40" y="36">Arrival (standard): once per 30 days · skippable · name readable from 0 ms</text>
+  <!-- frame 0 -->
+  <rect class="dark" x="40" y="54" width="300" height="190"/><rect class="wing" x="120" y="70" width="70" height="158"/><rect class="wing" x="190" y="70" width="70" height="158"/>
+  <text class="s" x="40" y="264">0 ms · closed grisaille, name visible</text>
+  <!-- frame 450 -->
+  <rect class="dark" x="380" y="54" width="300" height="190"/><rect class="col" x="490" y="70" width="80" height="158"/>
+  <path class="wing" d="M490 70 L440 84 L440 214 L490 228 Z"/><path class="wing" d="M570 70 L620 84 L620 214 L570 228 Z"/>
+  <text class="s" x="380" y="264">≈450 ms · wings mid-swing, glaze 1 (umber)</text>
+  <!-- frame 900 -->
+  <rect class="dark" x="720" y="54" width="300" height="190"/><rect class="col" x="790" y="70" width="160" height="120"/>
+  <rect class="col" x="742" y="70" width="44" height="120"/><rect class="col" x="954" y="70" width="44" height="120"/>
+  <rect class="col" x="742" y="196" width="256" height="34"/>
+  <text class="s" x="720" y="264">900 ms · open, glaze 2 (reds, greens)</text>
+  <!-- frame 1600 -->
+  <rect x="1060" y="54" width="300" height="190" fill="#e9e5dc"/><rect x="1130" y="70" width="160" height="120" fill="#9b8f78" stroke="#666"/>
+  <rect x="1082" y="70" width="44" height="120" fill="#a99f8a" stroke="#666"/><rect x="1294" y="70" width="44" height="120" fill="#a99f8a" stroke="#666"/>
+  <rect x="1082" y="196" width="256" height="34" fill="#a99f8a" stroke="#666"/>
+  <text class="s" x="1060" y="264">≈1600 ms · glaze 3 (gold, highlights), interactive</text>
+  <text class="n" x="40" y="292">Glazes = 3 stacked colour layers fading in 250 ms each, overlapping (transform/opacity only). Input during any frame jumps to 1600 ms.</text>
+  <!-- reduced motion -->
+  <text class="h" x="40" y="340">Arrival (prefers-reduced-motion): no movement</text>
+  <rect class="dark" x="40" y="358" width="300" height="160"/><rect class="wing" x="120" y="372" width="70" height="132"/><rect class="wing" x="190" y="372" width="70" height="132"/>
+  <text class="s" x="350" y="440">→ 150 ms opacity cross-fade →</text>
+  <rect x="560" y="358" width="300" height="160" fill="#e9e5dc"/><rect x="630" y="372" width="160" height="100" fill="#9b8f78" stroke="#666"/>
+  <rect x="582" y="372" width="44" height="100" fill="#a99f8a" stroke="#666"/><rect x="794" y="372" width="44" height="100" fill="#a99f8a" stroke="#666"/>
+  <rect x="582" y="478" width="256" height="30" fill="#a99f8a" stroke="#666"/>
+  <text class="n" x="900" y="400">Opacity changes are not "motion animation" under WCAG 2.3.3.</text>
+  <text class="n" x="900" y="418">Astro's ClientRouter already disables view-transition animations here;</text>
+  <text class="n" x="900" y="436">the site adds its own 150 ms fade. Lens follows instantly (no lag);</text>
+  <text class="n" x="900" y="454">WebGL renders one still frame (no idle loop).</text>
+  <!-- index page -->
+  <text class="h" x="40" y="566">Index page (/projects/): the plain route, reachable from every page</text>
+  <rect x="40" y="580" width="1360" height="290" fill="#fff" stroke="#8f897f"/>
+  <text class="t" x="70" y="620" font-size="26">All projects</text>
+  <text class="m" x="70" y="652">PROJECT</text><text class="m" x="330" y="652">WHAT IT IS</text><text class="m" x="830" y="652">STACK</text><text class="m" x="1080" y="652">LINKS</text>
+  <line class="row" x1="70" y1="662" x2="1370" y2="662"/>
+  <text class="s" x="70" y="684">Falling Constellations</text><text class="s" x="330" y="684">Star-atlas constellations falling over a turning galaxy</text><text class="s" x="830" y="684">JS · WebGL2 · Canvas</text><text class="s" x="1080" y="684">Page · Live ↗ · Code ↗</text>
+  <text class="s" x="70" y="710">NBA Game Predictor</text><text class="s" x="330" y="710">67.5% winner accuracy vs 55.2% baseline (2025-26)</text><text class="s" x="830" y="710">Python · scikit-learn</text><text class="s" x="1080" y="710">Page · Demo ↗ · Code ↗</text>
+  <text class="s" x="70" y="736">NFL Game Predictor</text><text class="s" x="330" y="736">Win probabilities with the reasons behind each pick</text><text class="s" x="830" y="736">Python · pandas · sklearn</text><text class="s" x="1080" y="736">Page · Dashboard ↗ · Code ↗</text>
+  <text class="s" x="70" y="762">MLB Game Predictor</text><text class="s" x="330" y="762">Calibrated probabilities; honest ~55–58% ceiling</text><text class="s" x="830" y="762">Python · PyTorch</text><text class="s" x="1080" y="762">Page · Demo (slow start) ↗ · Code ↗</text>
+  <text class="s" x="70" y="788">Hearth</text><text class="s" x="330" y="788">Multiplayer low-poly building game (MHacks)</text><text class="s" x="830" y="788">TypeScript · SpacetimeDB</text><text class="s" x="1080" y="788">Page · Play ↗ · Code ↗</text>
+  <text class="s" x="70" y="814">Juno</text><text class="s" x="330" y="814">AI that gets a friend group together over iMessage</text><text class="s" x="830" y="814">TypeScript · Bun · Claude</text><text class="s" x="1080" y="814">Page · Video · Code ↗</text>
+  <text class="s" x="70" y="840">Nightfall</text><text class="s" x="330" y="840">3D game built in Godot (earliest project, 2024)</text><text class="s" x="830" y="840">Godot · GDScript</text><text class="s" x="1080" y="840">Page · Video · Code ↗</text>
+  <text class="n" x="40" y="892">A real &lt;table&gt; with a caption; no animation; works with JS off. Also a printable / SlideRoom-friendly summary.</text>
+</svg>

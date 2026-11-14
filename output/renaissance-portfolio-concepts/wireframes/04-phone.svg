@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 960" width="1440" height="960" role="img" aria-labelledby="t d">
+  <title id="t">Wireframe 04: Phone layouts (390 × 844)</title>
+  <desc id="d">Three phone screens: closed altarpiece with wings stacked top and bottom; open home with main panel and a horizontally scrolling predella; project page with the layer slider replacing the lens and a bottom bar for previous and next.</desc>
+  <style>
+    .bg{fill:#e9e5dc}.ph{fill:#f4f1ea;stroke:#1f1d1a;stroke-width:3}.dark{fill:#2a2826}.wing{fill:#6e6a63;stroke:#cfc8ba;stroke-width:1.5}
+    .art{fill:#bdb6a8;stroke:#666;stroke-width:1.2}.pre{fill:#cfc8ba;stroke:#666;stroke-width:1.2}
+    .t{font-family:Georgia,'EB Garamond',serif;fill:#1f1d1a}.tl{font-family:Georgia,'EB Garamond',serif;fill:#eee9df}
+    .s{font-family:Arial,Helvetica,sans-serif;fill:#4a4740;font-size:12px}.sl{font-family:Arial,Helvetica,sans-serif;fill:#eee9df;font-size:12px}
+    .m{font-family:'Courier New',monospace;fill:#4a4740;font-size:11px}.btn{fill:#24407a}.bt{font-family:Arial,Helvetica,sans-serif;fill:#eee9df;font-size:13px}
+    .n{font-family:Arial,Helvetica,sans-serif;font-size:13px;fill:#b03f2c}.h{font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:bold;fill:#1f1d1a}
+  </style>
+  <rect class="bg" width="1440" height="960"/>
+  <!-- phone 1: closed -->
+  <text class="h" x="80" y="40">A · Closed (arrival)</text>
+  <rect class="ph dark" x="80" y="60" width="390" height="844" rx="36"/>
+  <text class="sl" x="400" y="100">Index</text>
+  <rect class="wing" x="120" y="140" width="310" height="300"/>
+  <text class="tl" x="275" y="300" font-size="30" text-anchor="middle">[Your Name]</text>
+  <rect class="wing" x="120" y="444" width="310" height="300"/>
+  <text class="tl" x="275" y="590" font-size="15" text-anchor="middle" font-style="italic">[One line: what you build]</text>
+  <text class="sl" x="275" y="800" text-anchor="middle">Tap to open ▾   ·   Skip</text>
+  <text class="n" x="80" y="930">Wings hinge top/bottom (rotateX), same 900 ms.</text>
+  <!-- phone 2: open -->
+  <text class="h" x="525" y="40">B · Open home</text>
+  <rect class="ph" x="525" y="60" width="390" height="844" rx="36"/>
+  <text class="s" x="555" y="100">[monogram]</text><text class="s" x="840" y="100">Index</text>
+  <rect class="art" x="555" y="125" width="330" height="250"/>
+  <text class="s" x="720" y="255" text-anchor="middle">[featured project]</text>
+  <text class="t" x="555" y="410" font-size="22">Falling Constellations</text>
+  <text class="s" x="555" y="432">[one line] · WebGL2 · art</text>
+  <rect class="btn" x="555" y="448" width="140" height="40" rx="4"/><text class="bt" x="625" y="473" text-anchor="middle">Open project</text>
+  <text class="m" x="555" y="525">PROJECTS (swipe →)</text>
+  <rect class="pre" x="555" y="538" width="120" height="120"/><rect class="pre" x="685" y="538" width="120" height="120"/><rect class="pre" x="815" y="538" width="100" height="120"/>
+  <text class="s" x="615" y="676" text-anchor="middle">NFL</text><text class="s" x="745" y="676" text-anchor="middle">NBA</text><text class="s" x="860" y="676" text-anchor="middle">MLB</text>
+  <text class="t" x="555" y="730" font-size="18">About</text><text class="s" x="555" y="752">[2–3 lines]</text>
+  <text class="t" x="555" y="800" font-size="18">Contact</text><text class="s" x="555" y="822">Email · GitHub ↗ · CV</text>
+  <text class="n" x="525" y="930">Predella = horizontal scroll-snap strip, still a &lt;ul&gt; of links.</text>
+  <!-- phone 3: project -->
+  <text class="h" x="970" y="40">C · Project page</text>
+  <rect class="ph" x="970" y="60" width="390" height="844" rx="36"/>
+  <text class="s" x="1000" y="100">← Altarpiece</text><text class="s" x="1285" y="100">Index</text>
+  <rect class="art" x="1000" y="120" width="330" height="200"/>
+  <text class="s" x="1165" y="225" text-anchor="middle">[Layer view, set by slider]</text>
+  <text class="t" x="1000" y="355" font-size="22">NBA Game Predictor</text>
+  <text class="t" x="1000" y="385" font-size="17">67.5% vs 55.2% baseline</text>
+  <text class="s" x="1000" y="408">Solo · Python · scikit-learn · Docker</text>
+  <rect class="btn" x="1000" y="424" width="150" height="40" rx="4"/><text class="bt" x="1075" y="449" text-anchor="middle">Live demo ↗</text>
+  <rect class="btn" x="1160" y="424" width="100" height="40" rx="4"/><text class="bt" x="1210" y="449" text-anchor="middle">Code ↗</text>
+  <rect x="1000" y="484" width="330" height="64" fill="#fff" stroke="#1f1d1a" rx="6"/>
+  <text class="m" x="1012" y="504">LAYER 1 OF 4 · VARNISH</text>
+  <line x1="1012" y1="528" x2="1300" y2="528" stroke="#8f897f" stroke-width="4"/><circle cx="1012" cy="528" r="9" fill="#24407a"/>
+  <text class="m" x="1000" y="580">LAYER 2 · PAINT ...</text><rect class="art" x="1000" y="590" width="330" height="140"/>
+  <rect x="970" y="830" width="390" height="74" fill="#cfc8ba" stroke="#1f1d1a" stroke-width="1.5"/>
+  <text class="s" x="1000" y="872">◂ NFL</text><text class="s" x="1285" y="872">MLB ▸</text>
+  <text class="n" x="970" y="930">No lens on touch: slider (tap track to jump) + scroll.</text>
+</svg>

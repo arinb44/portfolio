@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900" role="img" aria-labelledby="t d">
+  <title id="t">Wireframe 01: Home, closed altarpiece (desktop, first frame)</title>
+  <desc id="d">Closed grisaille altarpiece with name and one line as HTML text, Index link, open hint and skip control. Red numbered notes explain behaviour.</desc>
+  <style>
+    .bg{fill:#2a2826}.wing{fill:#6e6a63;stroke:#cfc8ba;stroke-width:2}.niche{fill:#5b5852;stroke:#8f897f;stroke-width:1.5}
+    .frame{fill:none;stroke:#b8b0a1;stroke-width:10}.t{font-family:Georgia,'EB Garamond',serif;fill:#eee9df}
+    .ui{font-family:Arial,Helvetica,sans-serif;fill:#eee9df;font-size:15px}.n{font-family:Arial,Helvetica,sans-serif;font-size:13px;fill:#ff8a73}
+    .c{fill:#b03f2c}.cn{font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;fill:#fff;text-anchor:middle}
+    .ln{stroke:#ff8a73;stroke-width:1.2;stroke-dasharray:4 3}
+  </style>
+  <rect class="bg" width="1440" height="900"/>
+  <!-- header -->
+  <text class="ui" x="40" y="44">[monogram]</text>
+  <text class="ui" x="1330" y="44" text-decoration="underline">Index</text>
+  <!-- closed altarpiece -->
+  <rect class="frame" x="430" y="110" width="580" height="640"/>
+  <rect class="wing" x="440" y="120" width="279" height="620"/>
+  <rect class="wing" x="721" y="120" width="279" height="620"/>
+  <rect class="niche" x="480" y="170" width="200" height="380" rx="100" ry="100"/>
+  <rect class="niche" x="761" y="170" width="200" height="380" rx="100" ry="100"/>
+  <text class="t" x="580" y="370" font-size="34" text-anchor="middle">[Your</text>
+  <text class="t" x="580" y="412" font-size="34" text-anchor="middle">Name]</text>
+  <text class="t" x="861" y="350" font-size="17" text-anchor="middle" font-style="italic">[One line: what</text>
+  <text class="t" x="861" y="374" font-size="17" text-anchor="middle" font-style="italic">you build, e.g.</text>
+  <text class="t" x="861" y="398" font-size="17" text-anchor="middle" font-style="italic">models, games,</text>
+  <text class="t" x="861" y="422" font-size="17" text-anchor="middle" font-style="italic">generative art]</text>
+  <text class="t" x="580" y="640" font-size="13" text-anchor="middle" letter-spacing="3">GRISAILLE · STONE</text>
+  <text class="t" x="861" y="640" font-size="13" text-anchor="middle" letter-spacing="3">GRISAILLE · STONE</text>
+  <!-- hint + skip -->
+  <text class="ui" x="720" y="800" text-anchor="middle">Open ▸   (click · scroll · any key)</text>
+  <text class="ui" x="1330" y="860" text-decoration="underline">Skip intro</text>
+  <!-- callouts -->
+  <circle class="c" cx="410" cy="390" r="12"/><text class="cn" x="410" y="395">1</text>
+  <text class="n" x="40" y="370">1  Name + line are real HTML text, readable</text>
+  <text class="n" x="58" y="388">at 0 ms. This text is the LCP element.</text>
+  <text class="n" x="58" y="406">Gesso on ink = 13.9:1 contrast.</text>
+  <circle class="c" cx="1030" cy="200" r="12"/><text class="cn" x="1030" y="205">2</text>
+  <text class="n" x="1050" y="196">2  Arrival plays once per 30 days:</text>
+  <text class="n" x="1068" y="214">wings open 900 ms (emphasized-decelerate),</text>
+  <text class="n" x="1068" y="232">colour glazes in 3 × 250 ms overlapping.</text>
+  <text class="n" x="1068" y="250">Total ≈ 1.6 s. Any input skips to the end.</text>
+  <text class="n" x="1068" y="268">Auto-opens after 600 ms if idle.</text>
+  <circle class="c" cx="1310" cy="40" r="12"/><text class="cn" x="1310" y="45">3</text>
+  <text class="n" x="1090" y="80">3  Index link is always visible (never a hamburger</text>
+  <text class="n" x="1108" y="98">on desktop): one click to a plain project list.</text>
+  <circle class="c" cx="1030" cy="560" r="12"/><text class="cn" x="1030" y="565">4</text>
+  <text class="n" x="1050" y="556">4  Reduced motion: no swing. The wings</text>
+  <text class="n" x="1068" y="574">cross-fade to the open state in 150 ms.</text>
+  <circle class="c" cx="1310" cy="855" r="12"/><text class="cn" x="1310" y="860">5</text>
+  <text class="n" x="1040" y="830">5  Skip is a real button (keyboard focusable).</text>
+</svg>
