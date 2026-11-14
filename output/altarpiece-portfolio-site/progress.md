@@ -67,7 +67,7 @@
   - Throttled first-visit CLS: 0.
   - `npm test`: check 0/0, unit 27/27, Playwright 44/44; arrival 60/60 over 5 repeats.
   - Lighthouse: home 98 (LCP 2.28 s, CLS 0, TBT 0, 228 KiB); NBA 100 (LCP 1.59 s).
-- 2026-11-14: **M4 committed** (see `git log`).
+- 2026-11-14: **M4 committed** as `0b670f0` (no AI markers). It unintentionally included `.claude/launch.json` (the desktop app's preview config); the user chose to untrack and ignore it (follow-up commit). The file stays on disk.
 
 ## Next step
 Ask the user to start M5, page transitions: `<ClientRouter />`, M6 morph, M7 fold. Check that the head inline scripts (arrival, image-load listener) still work after client-side navigation. D3 (name, tagline, email, About) can arrive any time.
