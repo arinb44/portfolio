@@ -54,8 +54,23 @@
   - Lighthouse mobile: home 99 (LCP 2.1 s, 192 KiB), NBA 100 (LCP 1.7 s), About 100 (LCP 0.8 s); CLS 0 and 0 KiB JS everywhere.
   - Home LCP element = the altarpiece's gold CSS background. Re-check in M4; preload it if it's still the LCP.
 
+- 2026-11-14: **M3 committed** as `c2c82e0`.
+- 2026-11-14: M4 arrival built:
+  - `src/scripts/arrival.js` (inlined on `/` only, unit-tested from the same file), `src/styles/arrival.css`.
+  - Wing front/back faces, exterior inscription + Skip intro, glaze veil; reduced motion = 150 ms fade; phone `rotateX`.
+  - `npm test`: check 0/0, 11 pages built, unit 27/27, Playwright 44/44; `arrival.spec.ts` stable over 5 repeats (60/60).
+  - Lighthouse home (first visit, arrival playing): LCP 2.0–2.3 s, CLS 0, 228 KiB, 0 KiB external JS. TBT 0 ms in one run, 560 ms in another (machine noise?).
+  - NBA page: LCP 1.7 s.
+  - Implementation notes: decision #9.
+
+- 2026-11-14: Fonts finalised (decisions #10, #11): all 4 faces `optional`, EB Regular and Cormorant 600 preloaded.
+  - Throttled first-visit CLS: 0.
+  - `npm test`: check 0/0, unit 27/27, Playwright 44/44; arrival 60/60 over 5 repeats.
+  - Lighthouse: home 98 (LCP 2.28 s, CLS 0, TBT 0, 228 KiB); NBA 100 (LCP 1.59 s).
+- 2026-11-14: **M4 committed** (see `git log`).
+
 ## Next step
-Waiting for approval of the M3 commit ("Add visual system: fonts, gold frame, museum textures, glint and sfumato loading"; also includes `.gitattributes`). Then M4, the arrival (M1–M3): CSS 3D wings, glazes, inline script with the 30-day rule, Skip intro, reduced-motion fade, phone `rotateX`. D3 (name, tagline, email, About) can arrive any time.
+Ask the user to start M5, page transitions: `<ClientRouter />`, M6 morph, M7 fold. Check that the head inline scripts (arrival, image-load listener) still work after client-side navigation. D3 (name, tagline, email, About) can arrive any time.
 
 ## Open questions
 - **Repository:** local only, branch `main`. Ask before any push.

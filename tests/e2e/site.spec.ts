@@ -5,6 +5,11 @@ const GITHUB = 'https://github.com/arinb44';
 const SLUGS = ['nfl-predictor', 'nba-predictor', 'mlb-predictor', 'hearth', 'juno', 'nightfall', 'falling-constellations']; // spec 3.2
 const PAGES = ['/', '/projects/', '/about/', ...SLUGS.map((s) => `/projects/${s}/`)];
 
+// These tests check the open site, so mark the arrival as already seen; arrival.spec.ts covers the arrival.
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('arrivedAt', String(Date.now())));
+});
+
 /** hrefs of the elements focused by pressing Tab `count` times from the top of the page. */
 async function tabOrder(page: Page, count: number) {
   const hrefs: string[] = [];
@@ -86,11 +91,15 @@ test('project page tab order: result first, prev/next after the content', async 
   ]);
 });
 
-test('fonts: EB Garamond is preloaded and in use', async ({ page }) => {
-  await page.goto('/');
-  const preload = await page.locator('link[rel=preload][as=font]').getAttribute('href');
-  expect((await page.request.get(preload!)).status()).toBe(200);
-  expect(await page.evaluate(async () => (await document.fonts.ready, document.fonts.check('1rem "EB Garamond"')))).toBe(true);
+test('fonts: EB Garamond and Cormorant Garamond are preloaded and in use', async ({ page }) => {
+  await page.goto('/about/'); // its h1 is set in Cormorant
+  const preloads = await page.locator('link[rel=preload][as=font]').evaluateAll((ls) => ls.map((l) => l.getAttribute('href')!));
+  expect(preloads).toHaveLength(2);
+  for (const href of preloads) expect((await page.request.get(href)).status()).toBe(200);
+  expect(await page.evaluate(async () => {
+    await document.fonts.ready;
+    return [document.fonts.check('1rem "EB Garamond"'), document.fonts.check('600 3rem "Cormorant Garamond"')];
+  })).toEqual([true, true]);
 });
 
 test('M13 sfumato: the project hero ends fully opaque once loaded', async ({ page }) => {

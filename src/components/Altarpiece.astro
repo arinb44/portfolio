@@ -5,6 +5,7 @@ import joseph from '../assets/art/merode-joseph.jpg';
 import Wing from './Wing.astro';
 import MainPanel from './MainPanel.astro';
 import { SITE } from '../site';
+import '../styles/arrival.css';
 
 interface Props {
   featured: CollectionEntry<'projects'>;
@@ -12,6 +13,15 @@ interface Props {
 ---
 <!-- The open altarpiece is the HTML default; the arrival (Milestone 4) only animates towards it. -->
 <div class="altarpiece">
+  <!-- Closed exterior, shown only while the arrival plays. The name repeats the header's h1, so it is hidden from screen readers. -->
+  <div class="exterior">
+    <p class="inscription" aria-hidden="true">
+      <span class="inscription-name">{SITE.name}</span>
+      <span class="inscription-line">{SITE.tagline}</span>
+      <span class="inscription-hint">Open ▸ (click · scroll · any key)</span>
+    </p>
+    <button type="button" class="skip-intro">Skip intro</button>
+  </div>
   <Wing side="left" title="About">
     <p>{SITE.tagline}</p>
     <p><a href="/about/">Read more<span class="visually-hidden"> about me</span><span aria-hidden="true"> →</span></a></p>

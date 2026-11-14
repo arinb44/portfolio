@@ -3,11 +3,14 @@ import Base from '../layouts/Base.astro';
 import Altarpiece from '../components/Altarpiece.astro';
 import Predella from '../components/Predella.astro';
 import { getProjects } from '../lib/projects';
+import goldGround from '../assets/art/gold-ground.jpg?url';
 
 const projects = await getProjects();
 const featured = projects.find((p) => p.data.featured)!; // sortProjects guarantees exactly one
 ---
-<Base>
+<Base arrival>
+  <!-- The altarpiece's gold background is the LCP image on phones; CSS alone would find it late. -->
+  <link slot="head" rel="preload" as="image" href={goldGround} fetchpriority="high" />
   <Altarpiece featured={featured} />
   <Predella projects={projects} />
 </Base>

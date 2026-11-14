@@ -9,6 +9,7 @@ export const PAIRS: [fg: string, bg: string, use: string, min: number][] = [
   ['gesso', 'verdigris', '"Finished" tag', 4.5],
   ['gesso', 'vermilion', '"In progress" tag', 4.5],
   ['ink', 'stone-200', 'prev/next edge wing text', 4.5],
-  ['gesso', 'ink', 'skip link text', 4.5],
+  ['gesso', 'ink', 'skip link text; arrival inscription', 4.5],
+  ['ochre', 'ink', 'arrival "Open ▸" hint text', 4.5],
   ['ochre', 'ink', 'focus ring on dark (non-text)', 3],
 ];
