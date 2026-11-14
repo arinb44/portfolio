@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[Your Name]: The Creation, direction B (Fresco Plaster)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;1,400&family=Alegreya+Sans:wght@400;500&family=Marcellus&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/base.css">
+<style>
+  /* B, Fresco Plaster: the painting settles like pigment dust onto wet plaster. Pigment palette: gesso ground,
+     ink text, vermilion accent, ultramarine focus. Plaster grain is an SVG noise tile. */
+  :root {
+    --bg: #EEE9DF; --text: #1F1D1A; --muted: #4A4740; --accent: #B03F2C; --focus: #24407A;
+    --spark: rgb(176 63 44 / .45); --spark-core: rgb(255 238 224 / .95);
+    --font-display: 'Marcellus', 'Times New Roman', serif;
+    --font-body: 'Alegreya', Georgia, serif;
+    --font-label: 'Alegreya Sans', system-ui, sans-serif;
+  }
+  html {
+    background: var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .29 0 0 0 0 .28 0 0 0 0 .25 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .site h1 { font-size: 1.75rem; text-transform: uppercase; letter-spacing: .12em; }
+  .site nav ul, .card .count, .card .meta, .skip, .hint .caption { letter-spacing: .04em; }
+  .card h3 { letter-spacing: .01em; }
+</style>
+</head>
+<body>
+<a class="skip" href="#projects">Skip to the projects</a>
+<div class="computer-only"><p><strong>This site needs a computer.</strong>It's built around a mouse or trackpad. Please open it on a laptop or desktop.</p></div>
+<canvas id="scene" aria-hidden="true"></canvas>
+<img class="still" src="../../data/whole-group.webp" alt="God reaching out his finger, from Michelangelo's Creation of Adam">
+<header class="site">
+  <div><h1>[Your Name]</h1><p class="tagline">[One line: what you build, e.g. models, games, generative art]</p></div>
+  <nav aria-label="Site"><ul>
+    <li><a href="#projects">Projects</a></li><li><a href="#">About</a></li><li><a href="#">CV</a></li><li><a href="mailto:you@example.com">Email</a></li>
+  </ul></nav>
+</header>
+<div class="hint" aria-hidden="true"><span class="ring"></span><span class="caption">Bring your cursor to the circle</span></div>
+<div class="spark" aria-hidden="true"></div>
+<main id="projects" tabindex="-1"><h2 class="visually-hidden">Projects</h2></main>
+<script type="module">
+  import { startPage } from '../shared/page.js';
+  startPage({ look: { glow: 0, twinkle: 0 } });
+</script>
+</body>
+</html>

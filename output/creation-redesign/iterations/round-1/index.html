@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" class="type-1">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[Your Name]: The Creation, round 1 (Night Sky)</title>
+<script>
+  // Round 1 compares four type pairings: ?type=1 (current) | 2 Atlas | 3 Engraved | 4 Inscription
+  const t = new URLSearchParams(location.search).get('type');
+  if (/^[1-4]$/.test(t)) document.documentElement.className = 'type-' + t;
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono&family=Instrument+Serif:ital@0;1&family=Gloock&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Hanken+Grotesk:wght@400;500&family=Martian+Mono:wght@400&family=Cinzel:wght@400;500&family=Spectral:ital,wght@0,400;1,400&family=Spline+Sans+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/base.css">
+<style>
+  /* A, Night Sky: the painting gathers out of a starfield. Pigment palette: ink ground, gesso text, gold accent. */
+  :root { --bg: #1F1D1A; --text: #EEE9DF; --muted: #CFC8BA; --accent: #C8A24A; --focus: #C29545; }
+  .type-1 { --font-display: 'Instrument Serif', Georgia, serif; --font-body: 'Geist', system-ui, sans-serif; --font-label: 'Geist Mono', ui-monospace, monospace; }
+  .type-2 { --font-display: 'Gloock', Georgia, serif; --font-body: 'Newsreader', Georgia, serif; --font-label: 'IBM Plex Mono', ui-monospace, monospace; }
+  .type-3 { --font-display: 'Bodoni Moda', Didot, serif; --font-body: 'Hanken Grotesk', system-ui, sans-serif; --font-label: 'Martian Mono', ui-monospace, monospace; }
+  .type-4 { --font-display: 'Cinzel', 'Trajan Pro', serif; --font-body: 'Spectral', Georgia, serif; --font-label: 'Spline Sans Mono', ui-monospace, monospace; }
+
+  .site h1 { font-size: 2.25rem; letter-spacing: -.01em; }
+  .type-1 .card h3, .type-3 .card h3, .type-3 .site h1 { font-style: italic; }
+  .type-2 .site h1 { font-size: 2rem; }
+  .type-3 .site nav ul, .type-3 .card .meta, .type-3 .card .links a, .type-3 .skip, .type-3 .hint .caption { font-size: .8125rem; }
+  .type-4 .site h1 { font-size: 1.625rem; text-transform: uppercase; letter-spacing: .1em; }
+  .type-4 .card h3 { font-size: clamp(2rem, 3.2vw, 3rem); line-height: 1.15; letter-spacing: .02em; }
+</style>
+</head>
+<body>
+<a class="skip" href="#projects">Skip to the projects</a>
+<div class="computer-only"><p><strong>This site needs a computer.</strong>It's built around a mouse or trackpad. Please open it on a laptop or desktop.</p></div>
+<canvas id="scene" aria-hidden="true"></canvas>
+<img class="still" src="../../data/whole-group.webp" alt="God reaching out his finger, from Michelangelo's Creation of Adam">
+<header class="site">
+  <div><h1>[Your Name]</h1><p class="tagline">[One line: what you build, e.g. models, games, generative art]</p></div>
+  <nav aria-label="Site"><ul>
+    <li><a href="#projects">Projects</a></li><li><a href="#">About</a></li><li><a href="#">CV</a></li><li><a href="mailto:you@example.com">Email</a></li>
+  </ul></nav>
+</header>
+<div class="hint" aria-hidden="true"><span class="ring"></span><span class="caption">Bring your cursor to the circle</span></div>
+<main id="projects" tabindex="-1"><h2 class="visually-hidden">Projects</h2></main>
+<script type="module">
+  import { startPage } from './shared/page.js';
+  startPage({ look: { glow: 1, twinkle: 1, spark: [.784, .635, .29] } });   // spark: gold #C8A24A
+</script>
+</body>
+</html>

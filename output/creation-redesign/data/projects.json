@@ -1,0 +1,13 @@
+{
+  "note": "Copied from src/content/projects/*.md on 2026-11-14 (all draft: true). Shown featured first, then by order.",
+  "site": { "name": "[Your Name]", "tagline": "[One line: what you build, e.g. models, games, generative art]", "email": "you@example.com", "github": "https://github.com/arinb44" },
+  "projects": [
+    { "slug": "falling-constellations", "title": "Falling Constellations", "oneLine": "Antique star-atlas constellations fall over a slowly turning spiral galaxy.", "stack": ["JavaScript", "Canvas 2D", "WebGL2", "Bun"], "year": 2026, "order": 7, "featured": true, "demo": "https://arinb44.github.io/Falling-Constellations/", "repo": "https://github.com/arinb44/Falling-Constellations" },
+    { "slug": "nfl-predictor", "title": "NFL Game Predictor", "oneLine": "Predicts each NFL team's win probability and explains which factors drove each pick.", "stack": ["Python", "pandas", "scikit-learn", "Streamlit"], "year": 2026, "order": 1, "demo": "https://arinb44.github.io/NFLGamePredictorModel/", "repo": "https://github.com/arinb44/NFLGamePredictorModel" },
+    { "slug": "nba-predictor", "title": "NBA Game Predictor", "oneLine": "Predicts NBA winners, margins and calibrated win probabilities.", "stack": ["Python", "scikit-learn", "Docker", "Streamlit"], "year": 2026, "order": 2, "demo": "https://machinelearningnba-p3cxa6nsk6hgcuclcwssdx.streamlit.app", "repo": "https://github.com/arinb44/MachineLearningNBA" },
+    { "slug": "mlb-predictor", "title": "MLB Game Predictor", "oneLine": "Calibrated MLB home-win probabilities, honest about the ~55–58% accuracy ceiling.", "stack": ["Python", "PyTorch", "XGBoost", "LightGBM", "pybaseball"], "year": 2026, "order": 3, "demo": "https://mlb-game-predictor-sdt8.onrender.com", "repo": "https://github.com/arinb44/MLB-predictive-model" },
+    { "slug": "hearth", "title": "Hearth", "oneLine": "Low-poly 3D multiplayer building game for up to 10 players, built at MHacks.", "stack": ["TypeScript", "SpacetimeDB"], "year": 2026, "order": 4, "demo": "https://arinb44.github.io/Hearth/", "repo": "https://github.com/arinb44/Hearth" },
+    { "slug": "juno", "title": "Juno", "oneLine": "An AI that coordinates a friend group's plans over iMessage.", "stack": ["TypeScript", "Bun", "Claude", "Photon Spectrum"], "year": 2026, "order": 5, "demo": null, "repo": "https://github.com/arinb44/iMessageAgents" },
+    { "slug": "nightfall", "title": "Nightfall", "oneLine": "A 3D Godot game built around a flashlight, a campfire and a creature.", "stack": ["Godot", "GDScript"], "year": 2024, "order": 6, "demo": null, "repo": "https://github.com/arinb44/Nightfall" }
+  ]
+}

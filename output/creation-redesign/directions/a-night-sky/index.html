@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[Your Name]: The Creation, direction A (Night Sky)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/base.css">
+<style>
+  /* A, Night Sky: the painting gathers out of a starfield. Pigment palette: ink ground, gesso text, gold accent. */
+  :root {
+    --bg: #1F1D1A; --text: #EEE9DF; --muted: #CFC8BA; --accent: #C8A24A; --focus: #C29545;
+    --spark: rgb(200 162 74 / .55); --spark-core: rgb(255 244 214 / .95);
+    --font-display: 'Instrument Serif', Georgia, serif;
+    --font-body: 'Geist', system-ui, sans-serif;
+    --font-label: 'Geist Mono', ui-monospace, monospace;
+  }
+  .site h1 { font-size: 2.25rem; letter-spacing: -.01em; }
+  .card h3 { font-style: italic; }
+  .spark { mix-blend-mode: screen; }
+</style>
+</head>
+<body>
+<a class="skip" href="#projects">Skip to the projects</a>
+<div class="computer-only"><p><strong>This site needs a computer.</strong>It's built around a mouse or trackpad. Please open it on a laptop or desktop.</p></div>
+<canvas id="scene" aria-hidden="true"></canvas>
+<img class="still" src="../../data/whole-group.webp" alt="God reaching out his finger, from Michelangelo's Creation of Adam">
+<header class="site">
+  <div><h1>[Your Name]</h1><p class="tagline">[One line: what you build, e.g. models, games, generative art]</p></div>
+  <nav aria-label="Site"><ul>
+    <li><a href="#projects">Projects</a></li><li><a href="#">About</a></li><li><a href="#">CV</a></li><li><a href="mailto:you@example.com">Email</a></li>
+  </ul></nav>
+</header>
+<div class="hint" aria-hidden="true"><span class="ring"></span><span class="caption">Bring your cursor to the circle</span></div>
+<div class="spark" aria-hidden="true"></div>
+<main id="projects" tabindex="-1"><h2 class="visually-hidden">Projects</h2></main>
+<script type="module">
+  import { startPage } from '../shared/page.js';
+  startPage({ look: { glow: 1, twinkle: 1 } });
+</script>
+</body>
+</html>

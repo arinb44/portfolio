@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[Your Name]: The Creation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/base.css">
+<style>
+  /* A, Night Sky with the Atlas type (decisions #24, #25): the painting gathers out of a starfield.
+     Pigment palette: ink ground, gesso text, gold accent. Gloock / Newsreader / IBM Plex Mono, like an old star atlas. */
+  :root {
+    --bg: #1F1D1A; --text: #EEE9DF; --muted: #CFC8BA; --accent: #C8A24A; --focus: #C29545;
+    --font-display: 'Gloock', Georgia, serif;
+    --font-body: 'Newsreader', Georgia, serif;
+    --font-label: 'IBM Plex Mono', ui-monospace, monospace;
+  }
+  .site h1 { font-size: 2rem; }
+  .site .tagline { font-size: 1rem; }
+  .card .line { font-size: 1.1875rem; }
+</style>
+</head>
+<body>
+<a class="skip" href="#projects">Skip to the projects</a>
+<div class="computer-only"><p><strong>This site needs a computer.</strong>It's built around a mouse or trackpad. Please open it on a laptop or desktop.</p></div>
+<canvas id="scene" aria-hidden="true"></canvas>
+<img class="still" src="../../data/whole-group.webp" alt="God reaching out his finger, from Michelangelo's Creation of Adam">
+<header class="site">
+  <div><h1>[Your Name]</h1><p class="tagline">[One line: what you build, e.g. models, games, generative art]</p></div>
+  <nav aria-label="Site"><ul>
+    <li><a href="#projects">Projects</a></li><li><a href="#">About</a></li><li><a href="#">CV</a></li><li><a href="mailto:you@example.com">Email</a></li>
+  </ul></nav>
+</header>
+<div class="hint" aria-hidden="true"><span class="ring"></span><span class="caption">Bring your cursor to the circle</span></div>
+<main id="projects" tabindex="-1"><h2 class="visually-hidden">Projects</h2><div class="stops"></div></main>
+<script type="module">
+  import { startPage } from './shared/page.js';
+  startPage({ look: { glow: 1, twinkle: 1, spark: [.784, .635, .29] } });   // spark: gold #C8A24A
+</script>
+</body>
+</html>
