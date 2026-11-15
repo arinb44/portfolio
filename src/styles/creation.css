@@ -7,6 +7,9 @@ a { color: inherit; }
 :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
 
 #scene { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; }
+/* A project's live piece behind the painting while its stop is current (home.js). Decoration: never takes clicks. */
+.backdrop { position: fixed; left: 0; top: 0; width: 100vw; height: 100vh; border: 0; pointer-events: none; opacity: 0; transition: opacity .8s ease-out; }
+html.backdrop-on .backdrop { opacity: .5; }
 .still { display: none; }
 html.static .still { display: block; position: fixed; right: 2vw; top: 50%; width: 62vw; max-height: 90vh; object-fit: contain; transform: translateY(-50%); }
 

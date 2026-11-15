@@ -7,6 +7,9 @@ import '../styles/creation.css';
 // Featured first, then `order` (design decision #3).
 const sorted = await getProjects();
 const projects = [...sorted.filter((p) => p.data.featured), ...sorted.filter((p) => !p.data.featured)];
+// The live piece plays behind its own stop (home.js turns it on).
+const BACKDROP = 'falling-constellations';
+const backdrop = projects.find((p) => p.id === BACKDROP)?.data.demo.url;
 const two = (n: number) => String(n).padStart(2, '0');
 ---
 <!doctype html>
@@ -19,6 +22,7 @@ const two = (n: number) => String(n).padStart(2, '0');
   <body>
     <a class="skip" href="#projects">Skip to the projects</a>
     <div class="computer-only"><p><strong>This site needs a computer.</strong>It's built around a mouse or trackpad. Please open it on a laptop or desktop.</p></div>
+    {backdrop && <iframe class="backdrop" data-for={BACKDROP} data-src={backdrop} title="Falling Constellations, playing in the background" aria-hidden="true" tabindex="-1"></iframe>}
     <canvas id="scene" aria-hidden="true"></canvas>
     <img class="still" src="/creation/whole-group-aa.webp" width="2185" height="1357" alt="God reaching out his finger, from Michelangelo's Creation of Adam" />
     <header class="site">

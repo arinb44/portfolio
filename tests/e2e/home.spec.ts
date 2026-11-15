@@ -47,6 +47,7 @@ test('keyboard: the first Tab stop skips to the projects and focuses the feature
   await expect(page.locator(html)).toHaveClass(/revealed/, REVEAL);
   await expect(page.locator(':focus')).toHaveAttribute('href', '/projects/falling-constellations/');
   await expect(page.locator('.stops')).toBeVisible();
+  await expect(page.locator('.stops')).toHaveCSS('opacity', '1'); // the fade-in has finished, so axe measures the real colours
   expect(await axe(page)).toEqual([]);
 });
 
@@ -56,11 +57,34 @@ test('the nav\'s Projects link reveals too', async ({ page }) => {
   await expect(page.locator(html)).toHaveClass(/revealed/, REVEAL);
 });
 
+test('Falling Constellations plays behind its own stop at 50%, and only there', async ({ page }) => {
+  await page.goto('/');
+  const frame = page.locator('iframe.backdrop');
+  await expect(frame).not.toHaveAttribute('src', /.+/); // not loaded during the assembly
+  await page.getByRole('link', { name: 'Skip to the projects' }).click();
+  await expect(page.locator(html)).toHaveClass(/backdrop-on/, REVEAL);
+  await expect(frame).toHaveAttribute('src', 'https://arinb44.github.io/Falling-Constellations/');
+  await expect(frame).toHaveCSS('opacity', '0.5');
+  await expect(frame).toHaveCSS('pointer-events', 'none');
+  // The frame is centred on God's fingertip (left of centre, mid-height) and still covers the whole screen.
+  const box = (await frame.boundingBox())!, { width, height } = page.viewportSize()!;
+  expect(box.x).toBeLessThanOrEqual(0); expect(box.y).toBeLessThanOrEqual(0);
+  expect(box.x + box.width).toBeGreaterThanOrEqual(width); expect(box.y + box.height).toBeGreaterThanOrEqual(height);
+  const cx = (box.x + box.width / 2) / width, cy = (box.y + box.height / 2) / height;
+  expect(cx).toBeGreaterThan(0.3); expect(cx).toBeLessThan(0.45);
+  expect(cy).toBeGreaterThan(0.4); expect(cy).toBeLessThan(0.6);
+  await page.locator('#nfl-predictor').scrollIntoViewIfNeeded();
+  await expect(page.locator(html)).not.toHaveClass(/backdrop-on/);
+  await expect(frame).toHaveCSS('opacity', '0');
+  expect(await axe(page)).toEqual([]);
+});
+
 test('reduced motion: revealed at load', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
   await expect(page.locator(html)).toHaveClass(/revealed/, REVEAL);
   await expect(page.getByRole('heading', { level: 3, name: 'Falling Constellations' })).toBeVisible();
+  await expect(page.locator(html)).not.toHaveClass(/backdrop-on/); // the live piece is motion: left off
 });
 
 test('no WebGL2: the still painting with the revealed layout', async ({ page }) => {

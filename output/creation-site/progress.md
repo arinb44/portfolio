@@ -35,8 +35,14 @@
 
 - 2026-11-14: GitHub's `main` (Initial commit: LICENSE, README) merged into the work branch with unrelated histories allowed, keeping the project README (`16b20fc`, decision #13). Tests on the merged tree: check 0 errors, unit 12/12, Playwright 36/36. Pushed as a fast-forward to `origin/main` and to the work branch (approved; no force-push).
 
+- 2026-11-14: Local `main` (the `Portfolio/` folder) fast-forwarded to `origin/main`; work continues there, not in the worktree.
+- 2026-11-14: Revisions asked by the user after delivery (built, tested, committed on `main` and pushed with approval):
+  - Falling Constellations plays live behind its home page stop at 50% opacity (an `<iframe>` of the demo, loaded after the reveal, off under reduced motion), with the galaxy's centre on God's fingertip (`S.rest` added to `creation.js`).
+  - `scripts/painting.py` rebuilds the painting: the notch in the index finger is closed and the outer edge is feathered (3 px on the arm, up to 55 px elsewhere).
+  - `npm test`: check 0 errors, unit 12/12, Playwright 37/37 (3 repeats: 111/111).
+
 ## Next step
-Ask the user for revisions. Open follow-ups are in `summary.md` section 8 (placeholders; schema names).
+Ask the user for further revisions. Open follow-ups are in `summary.md` section 8.
 
 ## Open questions
 - **Repository:** `https://github.com/arinb44/portfolio` (decision #12). It already has a `main` (f86fe95) that is not in the local history. Remote not added yet; ask before adding and before each push.

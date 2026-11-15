@@ -141,7 +141,7 @@ function compile(gl, vs, fs) {
 
 /**
  * look: { glow: 0|1, twinkle: 0|1, spark: [r, g, b] 0..1 }
- * onFrame(state): state = { progress, reveal, revealed, tip: [x, y], anchor: [x, y], cursorDistance, fps, count }
+ * onFrame(state): state = { progress, reveal, revealed, tip: [x, y], rest: [x, y], anchor: [x, y], cursorDistance, fps, count }
  * Returns { revealNow(), spark(), state } or null when WebGL2 is missing (the page shows its still image instead).
  */
 export async function createCreation(canvas, { look, data = '/creation/', onFrame }) {
@@ -198,13 +198,13 @@ export async function createCreation(canvas, { look, data = '/creation/', onFram
   addEventListener('pointermove', e => { if (e.pointerType === 'mouse' || e.pointerType === 'pen') S.pointer = [e.clientX, e.clientY]; });
   document.documentElement.addEventListener('mouseleave', () => { S.pointer = null; });
 
-  function camera(vw, vh) {
+  function camera(vw, vh, r = ease(S.reveal)) {
     // Following: the landing front sits at the screen centre.
     const [fx, fy] = pointAt(Math.min(Math.max((S.progress - .12) / .8, 0), 1)), zIn = Math.min(ZOOM_IN, vw / 520);
     // Revealed: the whole painting fits the right of the screen, leaving the left for the project.
     const narrow = vw < 900;   // M4: zoomed in or a narrow window: painting on top, the card below
     const rx0 = vw * (narrow ? .04 : .36), rx1 = vw * (narrow ? .96 : .98), ry0 = vh * (narrow ? .14 : .05), ry1 = vh * (narrow ? .52 : .95);
-    const zOut = Math.min((rx1 - rx0) / w, (ry1 - ry0) / h), r = ease(S.reveal);
+    const zOut = Math.min((rx1 - rx0) / w, (ry1 - ry0) / h);
     return { cx: fx + (w / 2 - fx) * r, cy: fy + (h / 2 - fy) * r,
              ax: vw / 2 + ((rx0 + rx1) / 2 - vw / 2) * r, ay: vh / 2 + ((ry0 + ry1) / 2 - vh / 2) * r,
              z: Math.exp(Math.log(zIn) + (Math.log(zOut) - Math.log(zIn)) * r) };
@@ -228,6 +228,8 @@ export async function createCreation(canvas, { look, data = '/creation/', onFram
 
     const cam = camera(vw, vh), view = [2 * cam.z / vw, -2 * cam.z / vh, 2 * (cam.ax - cam.cx * cam.z) / vw - 1, 1 - 2 * (cam.ay - cam.cy * cam.z) / vh];
     S.tip = [(meta.fingertip[0] - cam.cx) * cam.z + cam.ax, (meta.fingertip[1] - cam.cy) * cam.z + cam.ay];
+    const rest = camera(vw, vh, 1);   // where the fingertip sits once fully revealed (the home page centres a project's backdrop on it)
+    S.rest = [(meta.fingertip[0] - rest.cx) * rest.z + rest.ax, (meta.fingertip[1] - rest.cy) * rest.z + rest.ay];
     gl.viewport(0, 0, canvas.width, canvas.height);
     gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
 

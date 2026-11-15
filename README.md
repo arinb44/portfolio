@@ -11,6 +11,7 @@ A static Astro site. The home page rebuilds God's group from Michelangelo's *The
 | `npm run build` | Build the static site into `dist/` (fails on invalid project content) |
 | `npm run preview` | Serve the built site |
 | `npm run placeholders` | Create labelled placeholder images for any project image that doesn't exist yet (never overwrites) |
+| `python -I scripts/painting.py` | Rebuild `public/creation/whole-group-aa.webp` from the design agent's image: closes the notch in the index finger and feathers the outer edge (needs numpy, Pillow, scipy; the feather widths are at the top of the script) |
 | `npm test` | Type check, build, unit tests, browser tests |
 | `npm run test:unit` | Unit tests only (Node's built-in runner) |
 | `npm run test:e2e` | Browser tests only (Playwright + axe, against the last build) |
