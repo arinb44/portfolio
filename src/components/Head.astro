@@ -1,0 +1,19 @@
+---
+import { SITE } from '../site';
+import gloock from '@fontsource/gloock/files/gloock-latin-400-normal.woff2?url';
+import newsreader from '@fontsource-variable/newsreader/files/newsreader-latin-opsz-normal.woff2?url';
+import '../styles/tokens.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title, description = SITE.tagline } = Astro.props;
+---
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title ? `${title} · ${SITE.name}` : SITE.name}</title>
+<meta name="description" content={description} />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preload" href={gloock} as="font" type="font/woff2" crossorigin />
+<link rel="preload" href={newsreader} as="font" type="font/woff2" crossorigin />

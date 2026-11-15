@@ -1,16 +1,60 @@
 ---
-import Base from '../layouts/Base.astro';
-import Altarpiece from '../components/Altarpiece.astro';
-import Predella from '../components/Predella.astro';
+import Head from '../components/Head.astro';
 import { getProjects } from '../lib/projects';
-import goldGround from '../assets/art/gold-ground.jpg?url';
+import { SITE } from '../site';
+import '../styles/creation.css';
 
-const projects = await getProjects();
-const featured = projects.find((p) => p.data.featured)!; // sortProjects guarantees exactly one
+// Featured first, then `order` (design decision #3).
+const sorted = await getProjects();
+const projects = [...sorted.filter((p) => p.data.featured), ...sorted.filter((p) => !p.data.featured)];
+const two = (n: number) => String(n).padStart(2, '0');
 ---
-<Base arrival>
-  <!-- The altarpiece's gold background is the LCP image on phones; CSS alone would find it late. -->
-  <link slot="head" rel="preload" as="image" href={goldGround} fetchpriority="high" />
-  <Altarpiece featured={featured} />
-  <Predella projects={projects} />
-</Base>
+<!doctype html>
+<!-- Without JavaScript the page stays in its finished state: the still painting and all 7 projects. -->
+<html lang="en" class="static revealed">
+  <head>
+    <Head />
+    <script is:inline>document.documentElement.classList.remove('static', 'revealed');</script>
+  </head>
+  <body>
+    <a class="skip" href="#projects">Skip to the projects</a>
+    <div class="computer-only"><p><strong>This site needs a computer.</strong>It's built around a mouse or trackpad. Please open it on a laptop or desktop.</p></div>
+    <canvas id="scene" aria-hidden="true"></canvas>
+    <img class="still" src="/creation/whole-group-aa.webp" width="2185" height="1357" alt="God reaching out his finger, from Michelangelo's Creation of Adam" />
+    <header class="site">
+      <div><h1>{SITE.name}</h1><p class="tagline">{SITE.tagline}</p></div>
+      <nav aria-label="Site"><ul>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href={SITE.cv}>CV</a></li>
+        <li><a href={`mailto:${SITE.email}`}>Email</a></li>
+      </ul></nav>
+    </header>
+    <div class="hint" aria-hidden="true"><span class="ring"></span><span class="caption">Bring your cursor to the circle</span></div>
+    <main id="projects" tabindex="-1">
+      <h2 class="visually-hidden">Projects</h2>
+      <div class="stops">
+        {projects.map(({ id, data }, i) => (
+          <section class="stop" id={id} aria-labelledby={`t-${id}`}>
+            <article class="card">
+              <p class="count">{two(i + 1)} / {two(projects.length)}{data.featured && ' · Featured'}</p>
+              <h3 id={`t-${id}`}>{data.title}</h3>
+              <p class="line">{data.oneLine}</p>
+              <p class="meta">{data.year} · {data.stack.join(', ')}</p>
+              <p class="links">
+                <a class="primary" href={`/projects/${id}/`}>View project<span class="visually-hidden">: {data.title}</span></a>
+                {data.demo.url && <a href={data.demo.url} target="_blank" rel="noopener">Live demo<span aria-hidden="true"> ↗</span></a>}
+                <a href={data.repo} target="_blank" rel="noopener">Code<span aria-hidden="true"> ↗</span></a>
+              </p>
+              {i < projects.length - 1 && <p class="next" aria-hidden="true">Scroll for the next project</p>}
+            </article>
+          </section>
+        ))}
+      </div>
+    </main>
+    <script>
+      import { startPage } from '../scripts/home.js';
+      startPage({ look: { glow: 1, twinkle: 1, spark: [0.784, 0.635, 0.29] } }); // spark: gold #C8A24A
+    </script>
+  </body>
+</html>

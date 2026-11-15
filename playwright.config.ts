@@ -11,6 +11,11 @@ export default defineConfig({
     url: `http://localhost:${PORT}`,
     reuseExistingServer: false,
   },
-  use: { baseURL: `http://localhost:${PORT}` },
+  use: {
+    baseURL: `http://localhost:${PORT}`,
+    // The home scene draws ~690k particles: use the real GPU (new headless mode + ANGLE on D3D11), not software GL.
+    channel: 'chromium',
+    launchOptions: { args: ['--use-angle=d3d11', '--ignore-gpu-blocklist'] },
+  },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
 });

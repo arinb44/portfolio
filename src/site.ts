@@ -4,4 +4,5 @@ export const SITE = {
   tagline: '[One line: what you build, e.g. models, games, generative art]',
   email: 'you@example.com',
   github: 'https://github.com/arinb44',
+  cv: '/cv.pdf',
 };

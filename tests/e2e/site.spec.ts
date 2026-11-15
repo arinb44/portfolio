@@ -5,11 +5,6 @@ const GITHUB = 'https://github.com/arinb44';
 const SLUGS = ['nfl-predictor', 'nba-predictor', 'mlb-predictor', 'hearth', 'juno', 'nightfall', 'falling-constellations']; // spec 3.2
 const PAGES = ['/', '/projects/', '/about/', ...SLUGS.map((s) => `/projects/${s}/`)];
 
-// These tests check the open site, so mark the arrival as already seen; arrival.spec.ts covers the arrival.
-test.beforeEach(async ({ page }) => {
-  await page.addInitScript(() => localStorage.setItem('arrivedAt', String(Date.now())));
-});
-
 /** hrefs of the elements focused by pressing Tab `count` times from the top of the page. */
 async function tabOrder(page: Page, count: number) {
   const hrefs: string[] = [];
@@ -44,40 +39,12 @@ test('every internal link resolves', async ({ page, request }) => {
   for (const href of hrefs) expect((await request.get(href)).status(), href).toBe(200);
 });
 
-test('predella lists all 7 projects in order, the series grouped, the featured one marked', async ({ page }) => {
-  await page.goto('/');
-  const predella = page.getByRole('navigation', { name: 'Projects' });
-  expect(await predella.locator('a').evaluateAll((as) => as.map((a) => a.getAttribute('href')))).toEqual(SLUGS.map((s) => `/projects/${s}/`));
-  await expect(predella.getByRole('list', { name: 'Prediction series' }).getByRole('link')).toHaveCount(3);
-  await expect(predella.getByRole('link', { name: 'Falling Constellations (featured)' })).toBeVisible();
-});
-
-test('desktop first screen shows all 7 project titles (spec 2.1 step 3, 2.2 step 2)', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto('/');
-  for (const link of await page.getByRole('navigation', { name: 'Projects' }).getByRole('link').all()) {
-    await expect(link).toBeInViewport({ ratio: 1 });
-  }
-});
-
 test('prev/next follow the spec order and wrap', async ({ page }) => {
   await page.goto('/projects/nba-predictor/');
   await expect(page.locator('a[rel=prev]').first()).toHaveAttribute('href', '/projects/nfl-predictor/');
   await expect(page.locator('a[rel=next]').first()).toHaveAttribute('href', '/projects/mlb-predictor/');
   await page.goto('/projects/falling-constellations/');
   await expect(page.locator('a[rel=next]').first()).toHaveAttribute('href', '/projects/nfl-predictor/');
-});
-
-test('home tab order matches spec 8.1', async ({ page }) => {
-  await page.goto('/');
-  const fc = 'https://github.com/arinb44/Falling-Constellations';
-  expect(await tabOrder(page, 19)).toEqual([
-    '#main', '/', '/projects/', '/about/', GITHUB, // skip link, header
-    '/about/', // About: Read more
-    '/projects/falling-constellations/', 'https://arinb44.github.io/Falling-Constellations/', fc, // featured
-    'mailto:you@example.com', GITHUB, '/cv.pdf', // contact
-    ...SLUGS.map((s) => `/projects/${s}/`), // predella
-  ]);
 });
 
 test('project page tab order: result first, prev/next after the content', async ({ page }) => {
@@ -91,15 +58,15 @@ test('project page tab order: result first, prev/next after the content', async 
   ]);
 });
 
-test('fonts: EB Garamond and Cormorant Garamond are preloaded and in use', async ({ page }) => {
-  await page.goto('/about/'); // its h1 is set in Cormorant
+test('fonts: Gloock and Newsreader are preloaded; all three Atlas faces are in use', async ({ page }) => {
+  await page.goto('/about/');
   const preloads = await page.locator('link[rel=preload][as=font]').evaluateAll((ls) => ls.map((l) => l.getAttribute('href')!));
   expect(preloads).toHaveLength(2);
   for (const href of preloads) expect((await page.request.get(href)).status()).toBe(200);
   expect(await page.evaluate(async () => {
-    await document.fonts.ready;
-    return [document.fonts.check('1rem "EB Garamond"'), document.fonts.check('600 3rem "Cormorant Garamond"')];
-  })).toEqual([true, true]);
+    await Promise.all(['3rem Gloock', '1rem Newsreader', '1rem "IBM Plex Mono"'].map((f) => document.fonts.load(f)));
+    return [document.fonts.check('3rem Gloock'), document.fonts.check('1rem Newsreader'), document.fonts.check('1rem "IBM Plex Mono"')];
+  })).toEqual([true, true, true]);
 });
 
 test('M13 sfumato: the project hero ends fully opaque once loaded', async ({ page }) => {
@@ -107,21 +74,6 @@ test('M13 sfumato: the project hero ends fully opaque once loaded', async ({ pag
   const hero = page.locator('.project-varnish img');
   await expect(hero).toHaveClass(/loaded/);
   await expect(hero).toHaveCSS('opacity', '1');
-});
-
-test('M4 glint: a scene lifts 4 px; under reduced motion only the sheen shows', async ({ page }) => {
-  await page.goto('/');
-  const scene = page.locator('.scene').first();
-  const sheen = () => scene.locator('.scene-art').evaluate((el) => getComputedStyle(el, '::before').opacity);
-  await scene.hover();
-  await expect(scene).toHaveCSS('translate', '0px -4px');
-  await expect.poll(sheen).toBe('1');
-
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.mouse.move(0, 0);
-  await scene.hover();
-  await expect(scene).toHaveCSS('translate', 'none');
-  await expect.poll(sheen).toBe('1');
 });
 
 test.describe('with JavaScript off', () => {
@@ -134,7 +86,7 @@ test.describe('with JavaScript off', () => {
 
   test('home → project → next project → Index all work', async ({ page }) => {
     await page.goto('/');
-    await page.getByRole('link', { name: 'NBA Game Predictor' }).click();
+    await page.getByRole('link', { name: /View project.*NBA Game Predictor/ }).click();
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('NBA Game Predictor');
     await page.getByRole('link', { name: 'Next: MLB Game Predictor' }).last().click();
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('MLB Game Predictor');
