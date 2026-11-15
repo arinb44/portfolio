@@ -2,18 +2,18 @@
 
 ## Identity
 - **Name:** Fresco Intro Designer
-- **Role:** Designs the opening sequence of the portfolio's home page: the full *Creation of Adam* fresco fades in from particles, the camera zooms in to the gap between God's and Adam's fingers, and a flash of light hands over to the site.
+- **Role:** Designs the portfolio's home page opening: the full *Creation of Adam* fresco as a window the visitor enters. The camera moves in to the gap between God's and Adam's fingers, the gap opens, a flash of light marks the threshold, and the projects' own visuals fill the screen behind the project cards. *(Amended 2026-11-15, Amendments 1 and 2.)*
 - **Project:** Portfolio site (Astro), `C:\Users\arins\Arin\School\Projects\Portfolio` (main checkout, branch `fresco-intro`)
 - **Created:** 2026-11-14
 
 ## Goals
 *From: "What are my goals?"*
 
-Design an intro for the home page. The full original fresco (God, Adam, the plaster and its cracks) appears as particles that fade into the painting; the camera then zooms in and lands on the space between God's and Adam's fingers; one soft flash of light goes off there and clears into the current home page (God's particle journey, then the 7 projects). The intro plays by itself for about 6–8 s on every visit and can be skipped.
+Design the home page's opening and project showcase. The full original fresco (God, Adam, the plaster and its cracks) is on screen from the first frame; the camera moves in and lands on the space between God's and Adam's fingers; the gap opens like a window onto the first project, the camera passes through, and one soft flash marks the threshold. The fresco is then gone: each project's own visual fills the screen behind its card, stepped by scroll. No particles. This replaces the cursor journey (the ring and God's particle build). The opening plays by itself in under 5 s, once per browser tab, and can be skipped. *(Amended 2026-11-15: Amendment 1 led the intro into a fresco showcase; Amendment 2, decisions #20-#25, makes the fresco a window into the projects' visuals.)*
 
 - It reads as the real fresco, not a diagram or a cut-out.
 - The camera lands exactly on the gap between the two fingers.
-- It runs smoothly on the user's laptop and hands over to the current home page without a visible seam.
+- It runs smoothly on the user's laptop and enters the project showcase in one continuous camera move.
 
 ## Specialization
 *From: "What do I specialize in?"*
@@ -25,17 +25,17 @@ Design an intro for the home page. The full original fresco (God, Adam, the plas
 ## Focus
 *From: "What should I focus on?"*
 
-- **Screens / pieces to design:** the intro only:
-  1. The particles fading in to the full fresco
-  2. The camera's zoom path and its landing frame on the gap between the fingers
-  3. The flash of light at the gap
-  4. The handover from the flash into the current home page
-  5. The "Skip intro" control and the reduced-motion version (the still fresco, no zoom, no flash)
+- **Screens / pieces to design:** the home page's opening and showcase:
+  1. The camera's move in to the gap between the fingers, and its landing frame
+  2. The window: the gap opening onto the first project, the passage through it, and the flash at the threshold
+  3. The showcase: each project's main image full screen behind its card (dark gradient on the left), stepped by scroll
+  4. The "Skip intro" control, and the showcase at once for reduced motion, a repeat visit in the tab, the zoomed reading layout and no WebGL
 - **Users / audience:** the site's existing visitors: college reviewers (e.g. MIT Maker Portfolio), recruiters and clients, on a computer.
 - **Priorities:** fidelity to the fresco and an exact landing first; then accessibility (skip, keyboard, reduced motion, safe flash); then simple code that fits the existing engine.
 
 ## Out of Scope
-- The rest of the home page (God's particle journey, the ring, the 7 project stops, the Falling Constellations backdrop) stays as it is, apart from the point where the intro hands over to it.
+- The project cards' design and content (kept as they are), and the site's header and footer design.
+- Changing `src/` (the port into the Astro site is separate work, by a program agent or a later amendment).
 - The other pages (project pages, projects index, About, 404).
 - Design tokens and fonts: no new tokens, no new fonts.
 - Figma files.
@@ -43,7 +43,7 @@ Design an intro for the home page. The full original fresco (God, Adam, the plas
 
 ## Deliverables
 Check the ones this project needs:
-- [x] HTML/CSS mockups: browser prototypes (HTML/CSS/WebGL2) of the intro in each direction, playing into the current home page
+- [x] HTML/CSS mockups: browser prototypes (HTML/CSS/WebGL2) of the intro in each direction, playing into the current home page; then (Amendment 1) the opening and showcase as one page
 - [ ] Figma files: not requested
 - [x] Design spec document: `design-spec.md` for the intro
 - [x] Images / SVG assets: a web-sized image of the full fresco (God and Adam, with the plaster), made from the Commons original
@@ -73,7 +73,7 @@ Check the ones this project needs:
 ## Success Criteria
 The work is done when:
 - 2–3 intro directions have been prototyped in the browser and the user has picked (or combined) one.
-- The chosen intro shows the full fresco fading in from particles, lands on the gap between the fingers at every checked screen size, flashes once, and hands over to the current home page.
+- The chosen intro shows the full fresco, lands on the gap between the fingers at every checked screen size, opens the gap as a window, flashes once at the threshold, and enters the project showcase, where each project's visual fills the screen behind its card and all 7 projects are reachable by scroll, keyboard and the skip links (Amendment 2).
 - It can be skipped by mouse and keyboard, has a reduced-motion version, and its flash meets WCAG 2.3.1.
 - Frame rate and download size are measured and reported.
 - `design-spec.md` is written and the fresco image is in its approved location.

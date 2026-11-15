@@ -93,3 +93,96 @@ The prototypes run from a static server at the project root (a `fresco-prototype
 3. **Into the site:** this plan ends with a tested prototype, the image in `public/creation/` and the spec. Wiring the intro into `src/` is a program agent's job, or a later amendment to this plan if you want it done here.
 
 **Status:** Approved on 2026-11-15
+
+---
+
+## Amendment 1 (2026-11-15): the intro leads straight into the project showcase
+
+**Asked by the user:** the project showcase should have the intro instead of what it had (the ring and the cursor building God), and the painting should form while the camera zooms in, at the same time (decisions #17, #18).
+
+**New flow (about 5.5 s, then the projects):**
+
+| Time (s) | What happens |
+|---|---|
+| 0 – 0.2 | Night sky and stars; header visible |
+| 0.2 – 4.0 | Particles form the full fresco **while** the camera zooms from the whole painting to the gap (the gap forms last, as the camera arrives) |
+| 3.9 – 4.2 – 4.9 | The gold bloom at the gap |
+| 4.5 – 5.8 | The camera pulls back; the full fresco settles on the right of the screen |
+| ~5.3 | The first project card appears on the left; scrolling steps through the 7 projects |
+
+**Changed requirements**
+- **R5, the handover:** instead of dissolving into the night sky and the ring, the camera pulls back into the showcase. The ring, the caption and the cursor journey (God's cut-out particle build, `creation.js`) are no longer on the home page.
+- **R6, timing:** about 5.5 s before the projects appear; formation and zoom run together.
+- **R7, Skip:** Skip intro and Esc jump to the showcase. "Skip to the projects" also focuses the first project. A visitor who has already seen the intro in this tab, or who is in the zoomed reading layout, gets the showcase at once.
+- **R8, reduced motion:** the showcase at load, with the full fresco still. There is no intro, so nothing covers the projects.
+- **R9, fallbacks:** without WebGL2 or JavaScript, the still full fresco (`fresco.webp`) and all 7 projects, replacing the cut-out still.
+- **New, the showcase:**
+  - The full fresco framed on the right with the project card on the left, using today's card design.
+  - A small gold bloom at the gap each time a new project comes to rest (replacing the spark at God's fingertip).
+  - Falling Constellations plays behind its own stop, centred on the gap.
+  - The reading layout puts the fresco on top and the cards below.
+
+**Scope:** the home page's showcase is now in scope (layout around the full fresco, the per-project light, the backdrop position). Out of scope: the cards' design and content, the header and footer design, the other pages, and `src/` (the port stays separate).
+
+**Deliverables:**
+- `iterations/round-2/`: the opening and showcase as one page, built on the round 1 engine.
+- After approval: `final/prototype/` updated and `design-spec.md` revised.
+- Directions, round 1 and the first final prototype stay as the record (in git at `ae6f301`).
+
+**Decision points:**
+- **D7 (round 2):** how the wide fresco (2.2 : 1) sits beside the cards. It will be shown, with alternatives if it looks too small.
+- **D8 (round 2):** keep the per-project bloom or drop it.
+
+**Risks:**
+- The full fresco is much wider than God's group, so on the right ~60% of a 1440 × 900 screen it is only ~400 px tall. The layout may need a different framing (D7).
+- Removing the cursor journey removes creation-redesign's central interaction (the user's choice).
+- The God cut-out files (`whole-group-aa.webp`, `particles.json`, `creation.js`) would become unused on the home page once ported.
+
+**Status:** Amendment 1 approved on 2026-11-15
+
+---
+
+## Amendment 2 (2026-11-15): the fresco is a window into the projects
+
+**Asked by the user:**
+- After the flash the fresco is gone, and the projects' own visuals show.
+- No particles: the fresco acts as a window the viewer enters.
+
+The answers (decisions #20-#25): each project's main image, full screen behind its card; the gap opens into a window; the fresco is on screen from the first frame.
+
+**New flow (about 4.7 s, then the projects):**
+
+| Time (s) | What happens |
+|---|---|
+| 0 | The full fresco, fitted on the night sky; header visible |
+| 0 – 3.0 | The camera moves in and lands on the gap between the fingers (zoom 2, gap at the screen centre); the header fades as the painting rises behind it |
+| 3.0 – 3.3 | A short beat on the gap; the window starts to open there |
+| 3.3 – 4.1 | The camera enters: the zoom accelerates through the gap while the soft-edged opening grows until it fills the screen. Through it: the first project's image |
+| ~3.9 | The flash at the threshold (one soft gold bloom) |
+| 4.2 – 4.7 | The fresco is gone; the first project's image fills the screen; its card and the left gradient fade in; header back |
+
+**Changed requirements**
+- **R1, R2 (particles):** removed. The painting texture is drawn directly.
+- **R5, the handover:** the window into the showcase, replacing the pull-back. The fresco does not appear in the showcase.
+- **R6, timing:** under 5 s.
+- **R7–R9:** reduced motion, a repeat visit in the same tab, the zoomed reading layout, and no WebGL2 or JavaScript all get the showcase at once, with no fresco.
+- **Showcase:**
+  - Each project's main image (`src/assets/projects/<id>/varnish.png`, 1600 × 1000; placeholders today) covers the screen behind its card.
+  - A dark gradient on the left and a light one along the top keep the card and header readable.
+  - Moving to the next project cross-fades the images (0.6 s).
+
+**Follows from the answers (proposed here; say if you want otherwise):**
+- **The Falling Constellations live backdrop is removed,** because the visuals are main images only (#22).
+- **The per-project bloom at the gap (D8) is removed,** because there is no gap in the showcase. The cross-fade marks the change.
+- **The fresco still image is no longer used on the home page,** because the fallbacks show the showcase. `public/creation/fresco.webp` stays for the intro.
+
+**Deliverables:**
+- `iterations/round-3/`: the window version.
+- After approval: `final/prototype/` updated and `design-spec.md` revised.
+- Round 2 stays as the record.
+
+**Risks:**
+- **Contrast over images:** the card and header now sit over images, so contrast depends on each image. I'll measure with the placeholders, but real screenshots must be re-checked when they are added (a stronger gradient is the fix if one fails).
+- **Placeholder images:** the showcase will look like placeholders until real screenshots exist.
+
+**Status:** Amendment 2 approved on 2026-11-15

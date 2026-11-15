@@ -1,0 +1,187 @@
+{
+ "header": [
+  [
+   0.6,
+   1
+  ],
+  [
+   1.5,
+   0
+  ],
+  [
+   2.5,
+   0
+  ],
+  [
+   3.3,
+   0
+  ],
+  [
+   4,
+   0
+  ],
+  [
+   4.2,
+   0
+  ],
+  [
+   4.8,
+   0
+  ],
+  [
+   5.3,
+   1
+  ],
+  [
+   5.8,
+   1
+  ]
+ ],
+ "axe": {
+  "T1": [],
+  "T4": [],
+  "showcase": []
+ },
+ "shotErrors": [],
+ "run": {
+  "startMs": 304,
+  "playMs": 5807,
+  "avgFps": 142.3,
+  "p95ms": 7.1,
+  "worstMs": 34.7,
+  "worstAfterStartMs": 27.8
+ },
+ "showcase": {
+  "cls": "revealed backdrop-on",
+  "gapAtRest": [
+   857,
+   432
+  ],
+  "firstCard": {
+   "x": 72,
+   "y": 304.046875,
+   "width": 432,
+   "height": 120.9375,
+   "top": 304.046875,
+   "right": 504,
+   "bottom": 424.984375,
+   "left": 72
+  },
+  "backdrop": {
+   "src": "https://arinb44.github.io/Falling-Constellations/",
+   "opacity": "0.5"
+  }
+ },
+ "afterScroll": {
+  "y": 1800,
+  "visible": 3
+ },
+ "runErrors": [],
+ "tabOrder": [
+  "Skip intro",
+  "Skip to the projects",
+  "Projects",
+  "About",
+  "CV",
+  "Email"
+ ],
+ "skipClick": {
+  "cls": "revealed backdrop-on",
+  "T": 5.8
+ },
+ "skipToProjects": {
+  "cls": "revealed backdrop-on",
+  "focus": "View project: Falling Constellations"
+ },
+ "reload": {
+  "atOnce": true,
+  "cls": "revealed backdrop-on",
+  "T": 5.8
+ },
+ "reduced": {
+  "atOnce": true,
+  "cls": "revealed",
+  "T": 5.8,
+  "axe": [],
+  "errors": []
+ },
+ "zoom": {
+  "200%": {
+   "atOnce": true,
+   "cls": "revealed backdrop-on",
+   "axe": [],
+   "errors": []
+  },
+  "400%": {
+   "atOnce": true,
+   "cls": "revealed",
+   "axe": [],
+   "errors": []
+  }
+ },
+ "sizes": {
+  "1280x800": {
+   "4": {
+    "gap": [
+     640,
+     400
+    ],
+    "z": 2,
+    "header": 0
+   },
+   "5.8": {
+    "gap": [
+     761,
+     384
+    ],
+    "z": 0.225,
+    "header": 1
+   },
+   "landingOff": 0
+  },
+  "1440x900": {
+   "4": {
+    "gap": [
+     720,
+     450
+    ],
+    "z": 2,
+    "header": 0
+   },
+   "5.8": {
+    "gap": [
+     857,
+     432
+    ],
+    "z": 0.253,
+    "header": 1
+   },
+   "landingOff": 0
+  },
+  "1920x1080": {
+   "4": {
+    "gap": [
+     960,
+     540
+    ],
+    "z": 2,
+    "header": 0
+   },
+   "5.8": {
+    "gap": [
+     1142,
+     516
+    ],
+    "z": 0.338,
+    "header": 1
+   },
+   "landingOff": 0
+  }
+ },
+ "noWebGL": {
+  "cls": "static revealed",
+  "still": "block",
+  "done": true,
+  "errors": []
+ }
+}

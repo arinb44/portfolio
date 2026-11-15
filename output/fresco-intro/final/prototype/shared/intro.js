@@ -1,16 +1,19 @@
-// Fresco intro, final prototype (round 1 approved, #12). Direction A, Starlight (decision #8): stars drift together into the full Creation of Adam,
-// the camera pushes straight in to the gap between the fingers (zoom 2, #9; 3524 px image, #10), a gold bloom there
-// shrinks into the home page's ring, and the fresco dissolves into the night sky. The header fades out while the painting
-// fills the screen (#11). It plays once per browser tab (#13) and not in the zoomed reading layout (#14). Particles are generated on the GPU from the painting texture (gl_VertexID -> cell -> texelFetch).
-// Review only: ?review (replay / scrub / speed), ?t=5.9 (freeze at a time); both always play.
+// Fresco intro, round 3 (Amendment 2). The full Creation of Adam is a window the visitor enters (#21): it is on screen from
+// the first frame (#25); the camera moves in and lands on the gap between the fingers (zoom 2, #9; 3524 px image, #10);
+// the gap opens onto the first project (#24), the camera passes through, one gold flash marks the threshold, and the
+// projects' own images take over behind their cards (#20, #22, #23). The header fades while the painting fills the screen
+// (#11). Once per tab (#13); reduced motion, the reading layout (#14), a repeat visit and no WebGL get the showcase at once.
+// Review only: ?review (replay / scrub / speed), ?t=3.6 (freeze at a time).
 
 const GAP = [1335, 728];   // between the fingertips in the 3524 px image (Adam's 1331,733; God's 1339,723), measured on a 10x crop
 const ZOOM = 2;            // screen px per image px at the landing
-const STRIDE = 3;          // one particle per 3 x 3 cell: 625,742 particles
-const GOLD = [.784, .635, .29];
-const TL = { build: [.2, 3.6], push: [2.4, 5.7], flash: [5.5, 5.85, 6.6], fade: [6.0, 7.0], hand: 6.15, caption: 6.6, end: 7.0 };   // seconds; caption waits until the plaster has mostly gone
-const SRC = '../../data/fresco-3524.webp';
-const SEEN = 'fresco-intro-seen';   // sessionStorage: once per tab
+const THROUGH = 16;        // the zoom the camera reaches as it passes through the window
+const INK = [31 / 255, 29 / 255, 26 / 255], GOLD = [.784, .635, .29];
+// seconds: push = move in and land; open = the window grows from the gap until it fills the screen; enter = the camera
+// accelerates through it; flash = rise, peak, gone; reveal = cards and header; end = the showcase is live.
+const TL = { push: [0, 3.0], open: [3.0, 4.05], enter: [3.3, 4.1], flash: [3.65, 3.9, 4.5], reveal: 4.2, end: 4.7 };
+const SRC = '/public/creation/fresco.webp';   // the site serves it as /creation/fresco.webp
+const SEEN = 'fresco-intro-seen';             // sessionStorage: once per tab
 
 const q = new URLSearchParams(location.search);
 const clamp01 = x => Math.min(Math.max(x, 0), 1);
@@ -18,65 +21,23 @@ const ss = (a, b, x) => { const t = clamp01((x - a) / (b - a)); return t * t * (
 const ease = t => t < .5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
 const lerp = (a, b, t) => a + (b - a) * t;
 
-const COMMON = `
-uniform vec2 uSize, uGap; uniform float uStride;
-float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
-float vnoise(vec2 p) { vec2 i = floor(p), f = fract(p); f = f * f * (3. - 2. * f);
-  return mix(mix(hash(i), hash(i + vec2(1, 0)), f.x), mix(hash(i + vec2(0, 1)), hash(i + vec2(1, 1)), f.x), f.y); }
-// When this spot lands, 0..1: from the edges in, the gap last, in drifting patches.
-float order(vec2 w) { return clamp(.65 * (1. - distance(w, uGap) / (length(uSize) * .62)) + .35 * vnoise(w / (uSize.x * .06)), 0., 1.); }
-float landing(float p, float t, float jitter) { float l = clamp((p - t * .8 - jitter * .05) / .15, 0., 1.); return 1. - pow(1. - l, 3.); }`;
-
-// Particles: 1 in 10 waits as a twinkling star anywhere; the rest set off from near home. They roll in and vanish on landing.
-const PARTICLE_VS = `#version 300 es
-uniform sampler2D uTex; uniform mat3 uH; uniform int uCols; uniform float uP, uT, uZ, uDpr, uFade; uniform vec2 uMin, uMax;
-out vec4 vColor; out float vE, vA, vAng;
-${COMMON}
-void main() {
-  vec2 cell = vec2(gl_VertexID % uCols, gl_VertexID / uCols), home = (cell + .5) * uStride;
-  float r1 = hash(cell), r2 = hash(cell + 17.3), r3 = hash(cell + 41.9), r4 = hash(cell + 7.1), t = order(home);
-  float l = clamp((uP - t * .8 - r1 * .05) / .15, 0., 1.), e = landing(uP, t, r1);
-  bool star = r4 < .1;
-  vec2 start = star ? mix(uMin, uMax, vec2(r2, r3)) : home + vec2(cos(r2 * 6.2832), sin(r2 * 6.2832)) * mix(60., 360., r3);
-  start += vec2(sin(uT * .3 + r1 * 6.28), cos(uT * .27 + r2 * 6.28)) * 6.;
-  vec2 d = home - start; float ang = (1. - e) * 12. + r2 * 6.2832;
-  vec2 pos = mix(start, home, e) + vec2(-d.y, d.x) * (r1 < .5 ? -1. : 1.) * .18 * sin(3.1416 * e) + vec2(cos(ang), sin(ang)) * (1. - e) * 18.;
-  vec3 h = uH * vec3(pos, 1.);
-  gl_Position = vec4(h.xy, 0., h.z);
-  float settled = uStride * uZ * uDpr + .6, gone = smoothstep(.97, 1., e);
-  gl_PointSize = gone >= 1. ? 0. : mix(1.6 * uDpr, settled, e) + sin(3.1416 * e) * max(settled * .6, 1.5);
-  vColor = texelFetch(uTex, ivec2(home), 0); vE = e; vAng = ang;
-  vA = mix(star ? .55 * mix(1., .55 + .45 * sin(uT * 1.7 + r1 * 40.), 1. - e) : 0., 1., smoothstep(0., .3, l)) * (1. - gone) * uFade;
-}`;
-const PARTICLE_FS = `#version 300 es
-precision mediump float;
-in vec4 vColor; in float vE, vA, vAng; out vec4 o;
-void main() {
-  vec2 pc = gl_PointCoord * 2. - 1.; float r2 = dot(pc, pc);
-  if (r2 > 1.) discard;
-  vec3 n = vec3(pc, sqrt(1. - r2)), L = normalize(vec3(cos(vAng), sin(vAng), 1.2));
-  float diff = max(dot(n, L), 0.), spec = pow(max(reflect(-L, n).z, 0.), 24.);
-  o = vec4(mix(vColor.rgb * (.45 + .75 * diff) + spec * .35, vec3(1., .93, .78), .3 * (1. - vE)), vA * smoothstep(1., .35, r2));
-}`;
-
-// The painting itself, shown wherever its particles have landed (smooth when zoomed in), with a soft edge.
+// The fresco, with a soft 1.5% edge against the night sky.
 const PAINT_VS = `#version 300 es
 in vec2 aPos; uniform mat3 uH; uniform vec2 uSize; out vec2 vUV;
 void main() { vUV = aPos; vec3 h = uH * vec3(aPos * uSize, 1.); gl_Position = vec4(h.xy, 0., h.z); }`;
 const PAINT_FS = `#version 300 es
 precision highp float;
-in vec2 vUV; uniform sampler2D uTex; uniform float uP, uFade; out vec4 o;
-${COMMON}
-void main() {
-  vec2 cell = floor(vUV * uSize / uStride);
-  float show = smoothstep(.85, 1., landing(uP, order((cell + .5) * uStride), hash(cell)));
-  vec2 m = min(vUV, 1. - vUV) * uSize / uSize.y;
-  o = vec4(texture(uTex, vUV).rgb, 1.) * show * smoothstep(0., .015, min(m.x, m.y)) * uFade;
-}`;
+in vec2 vUV; uniform sampler2D uTex; uniform vec2 uSize; out vec4 o;
+void main() { vec2 m = min(vUV, 1. - vUV) * uSize / uSize.y; o = vec4(texture(uTex, vUV).rgb, 1.) * smoothstep(0., .015, min(m.x, m.y)); }`;
 
-// The flash: a gold bloom with a warm core at the gap, additive, in device pixels.
-const LIGHT_VS = `#version 300 es
+const FULL_VS = `#version 300 es
 void main() { gl_Position = vec4(gl_VertexID == 1 ? 3. : -1., gl_VertexID == 2 ? 3. : -1., 0., 1.); }`;
+// The window: everything drawn so far is kept only outside a soft circle around the gap (blend ZERO, SRC_ALPHA).
+const HOLE_FS = `#version 300 es
+precision highp float;
+uniform vec2 uC; uniform float uR, uF; out vec4 o;
+void main() { o = vec4(0., 0., 0., smoothstep(uR - uF, uR, distance(gl_FragCoord.xy, uC))); }`;
+// The flash: a gold bloom with a warm core at the gap, additive, in device pixels.
 const LIGHT_FS = `#version 300 es
 precision highp float;
 uniform vec2 uC; uniform float uR, uI, uDpr; uniform vec3 uColor; out vec4 o;
@@ -101,53 +62,41 @@ function compile(gl, vs, fs) {
   return { p, U };
 }
 
-/** Plays the intro. Returns { done } (a promise) straight away; the home page waits on it. */
+/** Plays the opening into the showcase. Returns at once: { done (promise: the showcase is live), toShowcase() }. */
 export function playIntro() {
   let resolve; const done = new Promise(r => { resolve = r; });
   const html = document.documentElement, canvas = document.querySelector('#intro'), site = document.querySelector('.site');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches, review = q.has('review');
-  let finished = false, skipping = false;
-  const finish = () => {
-    if (finished) return; finished = true;
-    html.classList.remove('intro', 'intro-caption'); canvas.style.display = 'none'; document.querySelector('.intro-still')?.remove();
-    site.style.opacity = site.style.transition = ''; site.classList.remove('faded');
+  let seen = false; try { seen = !!sessionStorage.getItem(SEEN); } catch {}
+  const atOnce = reduced || matchMedia('(max-width: 900px), (max-height: 560px)').matches || (seen && !review && !q.has('t'));
+  let T = q.has('t') ? +q.get('t') : atOnce ? TL.end : 0, paused = q.has('t'), speed = 1, fading = false, ended = false;
+  window.__intro = { startAt: null, doneAt: null, atOnce, frames: [], Ts: [] };
+  const end = () => {                       // the showcase is live
+    if (ended) return; ended = true;
+    site.style.opacity = ''; site.classList.remove('faded');
     try { sessionStorage.setItem(SEEN, '1'); } catch {}   // storage blocked: it plays again next time, nothing breaks
     window.__intro.doneAt = performance.now(); resolve();
   };
-  window.__intro = { startAt: null, doneAt: null, frames: [], Ts: [] };
-  let seen = false; try { seen = !!sessionStorage.getItem(SEEN); } catch {}
-  if (matchMedia('(hover: none), (pointer: coarse)').matches                       // computer only (creation-redesign #21)
-      || matchMedia('(max-width: 900px), (max-height: 560px)').matches                // the zoomed reading layout (#14)
-      || (seen && !review && !q.has('t'))) { window.__intro.skipped = true; finish(); return { done }; }   // already played in this tab (#13)
-  html.classList.add('intro', 'intro-caption');
+  const showcase = () => { html.classList.remove('intro', 'window'); html.classList.add('revealed'); canvas.style.display = 'none'; end(); };
+  const api = { done, toShowcase() { T = Math.max(T, TL.end); } };   // "Skip to the projects": straight there
+  if (atOnce && !q.has('t')) { showcase(); return api; }
+  html.classList.add('intro');
 
-  // Skip intro / Esc: fade out over 300 ms, then the home page. "Skip to the projects" ends it at once.
+  // Skip intro / Esc: a quick dip to the night sky, then the showcase.
   const skip = () => {
-    if (finished || skipping) return; skipping = true;
-    for (const el of [canvas, document.querySelector('.intro-still')]) if (el) { el.style.transition = 'opacity .3s'; el.style.opacity = 0; }
-    Object.assign(site.style, { transition: 'opacity .3s', opacity: 1 }); site.classList.remove('faded');
-    html.classList.remove('intro', 'intro-caption'); setTimeout(finish, 300);
+    if (T >= TL.reveal || fading) return; fading = true;
+    canvas.style.transition = 'opacity .25s'; canvas.style.opacity = 0;
+    setTimeout(() => { T = TL.end; fading = false; }, 250);
   };
   document.querySelector('.skip-intro').addEventListener('click', skip);
   addEventListener('keydown', e => { if (e.key === 'Escape') skip(); });
-  for (const a of document.querySelectorAll('a[href="#projects"]')) a.addEventListener('click', finish);
-
-  if (reduced) {   // the still fresco, then a cross-fade into the page
-    document.querySelector('#projects').addEventListener('focusin', skip);   // the projects are already shown under the still: never hide a focused link (WCAG 2.4.11)
-    const img = Object.assign(new Image(), { src: SRC, alt: '', className: 'intro-still' });
-    img.decode().then(() => {
-      canvas.after(img); window.__intro.startAt = performance.now();
-      setTimeout(() => { if (skipping) return; img.style.transition = 'opacity .4s'; img.style.opacity = 0; html.classList.remove('intro'); setTimeout(finish, 400); }, 2000);
-    }, finish);
-    return { done };
-  }
 
   const gl = canvas.getContext('webgl2', { antialias: false, premultipliedAlpha: true });
-  if (!gl) { finish(); return { done }; }   // no WebGL2: the page as it is today
+  if (!gl) { showcase(); return api; }   // no WebGL2
   (async () => {
     const bmp = await createImageBitmap(await (await fetch(SRC)).blob());
-    const W = bmp.width, H = bmp.height, cols = Math.floor(W / STRIDE), rows = Math.floor(H / STRIDE);
-    const particle = compile(gl, PARTICLE_VS, PARTICLE_FS), paint = compile(gl, PAINT_VS, PAINT_FS), light = compile(gl, LIGHT_VS, LIGHT_FS);
+    const W = bmp.width, H = bmp.height;
+    const paint = compile(gl, PAINT_VS, PAINT_FS), hole = compile(gl, FULL_VS, HOLE_FS), light = compile(gl, FULL_VS, LIGHT_FS);
     gl.bindTexture(gl.TEXTURE_2D, gl.createTexture());
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, bmp);
     gl.generateMipmap(gl.TEXTURE_2D);
@@ -162,73 +111,68 @@ export function playIntro() {
     gl.enableVertexAttribArray(aPos); gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
     gl.enable(gl.BLEND);
 
-    // The push: zoom in log space toward the gap so it slides straight to the screen centre.
+    // The camera as the gap's place on screen and the zoom: in to the centre at ZOOM (zoom in log space, the gap on a
+    // straight line), a beat, then an accelerating push through the window.
     function camera(T, vw, vh) {
-      const z0 = Math.min(vw * .9 / W, vh * .78 / H), e = ease(clamp01((T - TL.push[0]) / (TL.push[1] - TL.push[0])));
-      const z = Math.exp(lerp(Math.log(z0), Math.log(ZOOM), e)), k = z0 * (1 - e) / z;
-      return { cx: GAP[0] + (W / 2 - GAP[0]) * k, cy: GAP[1] + (H / 2 - GAP[1]) * k, z };
+      const fit = Math.min(vw * .9 / W, vh * .78 / H), e = ease(clamp01((T - TL.push[0]) / (TL.push[1] - TL.push[0])));
+      const from = [(GAP[0] - W / 2) * fit + vw / 2, (GAP[1] - H / 2) * fit + vh / 2];
+      const through = clamp01((T - TL.enter[0]) / (TL.enter[1] - TL.enter[0])) ** 3;
+      return { gap: [lerp(from[0], vw / 2, e), lerp(from[1], vh / 2, e)],
+               z: Math.exp(lerp(Math.log(fit), Math.log(ZOOM), e) + Math.log(THROUGH / ZOOM) * through) };
     }
-    // D4: the header is readable over the night sky; it fades as the painting's top edge rises behind its text, and
-    // comes back while the fresco dissolves. Kept (on a solid band, intro.css) while it holds keyboard focus.
-    let textBottom = 0;
+    let textBottom = 0;   // the header fades as the painting's top edge rises behind its text (D4)
     const measure = () => { textBottom = Math.max(...[...site.children].map(c => c.getBoundingClientRect().bottom)); };
     measure(); addEventListener('resize', measure);
-    function header(top, fade) {
-      if (skipping) return;
-      const op = site.matches(':focus-within') ? 1 : Math.max(ss(textBottom - 8, textBottom + 48, top), ss(.5, 1, 1 - fade));
-      site.style.opacity = op.toFixed(3); site.classList.toggle('faded', op < .01);   // faded: no clicks, but still in the tab order
-    }
 
-    let T = q.has('t') ? +q.get('t') : 0, speed = 1, paused = q.has('t'), last = performance.now();
-    Object.assign(window.__intro, { seek: t => { T = t; }, pause: () => { paused = true; }, play: () => { paused = false; }, count: cols * rows });
     if (review) buildReviewBar(TL.end, () => T, t => { T = t; }, () => (paused = !paused), s => { speed = s; });
-    window.__intro.startAt = performance.now();
+    Object.assign(window.__intro, { seek: t => { T = t; }, pause: () => { paused = true; }, play: () => { paused = false; }, startAt: performance.now() });
+    let last = performance.now();
 
     function frame(now) {
-      if (finished) return;
       const dt = Math.min((now - last) / 1000, .1); last = now;
-      if (!paused) T += dt * speed;
-      window.__intro.frames.push(now); window.__intro.Ts.push(T);
-      if (!skipping) { html.classList.toggle('intro', T < TL.hand); html.classList.toggle('intro-caption', T < TL.caption); }
-      if (T >= TL.end && !review) { finish(); return; }
+      if (!paused) T = Math.min(T + dt * speed, TL.end);
+      if (!ended) { window.__intro.frames.push(now); window.__intro.Ts.push(T); }
+      html.classList.toggle('intro', T < TL.reveal);
+      html.classList.toggle('window', T >= TL.open[0] && T < TL.reveal);   // the project images may show through the window
+      html.classList.toggle('revealed', T >= TL.reveal);
       const vw = innerWidth, vh = innerHeight, dpr = Math.min(devicePixelRatio || 1, 2);
       if (canvas.width !== Math.round(vw * dpr) || canvas.height !== Math.round(vh * dpr)) { canvas.width = Math.round(vw * dpr); canvas.height = Math.round(vh * dpr); }
-      const cam = camera(T, vw, vh), P = ss(...TL.build, T), fade = 1 - ss(...TL.fade, T);
-      const M = [2 * cam.z / vw, 0, 0, 0, -2 * cam.z / vh, 0, -2 * cam.z * cam.cx / vw, 2 * cam.z * cam.cy / vh, 1];   // image px -> clip
-      const gap = [(GAP[0] - cam.cx) * cam.z + vw / 2, (GAP[1] - cam.cy) * cam.z + vh / 2];
-      header((0 - cam.cy) * cam.z + vh / 2, fade);
-      window.__intro.state = { T, cam, gap, P, header: +site.style.opacity };
+      const { gap, z } = camera(T, vw, vh);
+      const cx = GAP[0] - (gap[0] - vw / 2) / z, cy = GAP[1] - (gap[1] - vh / 2) / z;            // the image point at the screen centre
+      const M = [2 * z / vw, 0, 0, 0, -2 * z / vh, 0, -2 * z * cx / vw, 2 * z * cy / vh, 1];       // image px -> clip
+      const R = 1.2 * Math.hypot(vw, vh) / 2 * clamp01((T - TL.open[0]) / (TL.open[1] - TL.open[0])) ** 2.2;   // the window's radius, CSS px
+      if (T < TL.end) {
+        const top = (0 - cy) * z + vh / 2;
+        const op = site.matches(':focus-within') ? 1 : Math.max(ss(textBottom - 8, textBottom + 48, top), ss(TL.reveal, TL.end, T));
+        site.style.opacity = op.toFixed(3); site.classList.toggle('faded', op < .01);   // faded: no clicks, but still in the tab order
+      } else end();
+      window.__intro.state = { T, z, gap, R, header: site.style.opacity === '' ? 1 : +site.style.opacity };
 
       gl.viewport(0, 0, canvas.width, canvas.height);
-      gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
-      const common = prog => {
-        gl.useProgram(prog.p); gl.uniformMatrix3fv(prog.U.uH, false, M);
-        gl.uniform2f(prog.U.uSize, W, H); gl.uniform2f(prog.U.uGap, ...GAP); gl.uniform1f(prog.U.uStride, STRIDE);
-        gl.uniform1f(prog.U.uP, P); gl.uniform1f(prog.U.uFade, fade); gl.uniform1i(prog.U.uTex, 0);
-      };
-      common(paint); gl.bindVertexArray(quad);                       // 1. the landed painting
-      gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
-      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-      if (P < .999 && fade > 0) {                                     // 2. particles still waiting or in flight
-        common(particle); gl.bindVertexArray(empty);
-        gl.uniform1i(particle.U.uCols, cols); gl.uniform1f(particle.U.uT, now / 1000); gl.uniform1f(particle.U.uZ, cam.z); gl.uniform1f(particle.U.uDpr, dpr);
-        gl.uniform2f(particle.U.uMin, -W * .1, -H * .3); gl.uniform2f(particle.U.uMax, W * 1.1, H * 1.3);
-        gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
-        gl.drawArrays(gl.POINTS, 0, cols * rows);
-      }
-      const [a, peak, b] = TL.flash, I = (T < peak ? ss(a, peak, T) : 1 - ss(peak, b, T)) * .7;   // 3. the flash
-      if (I > .001) {
-        const m = Math.min(vw, vh), R = T < peak ? lerp(30, m * .2, ss(a, peak, T)) : lerp(m * .2, 22, ss(peak, b, T));   // shrinks into the 44 px ring
+      const [fa, peak, fb] = TL.flash, I = (T < peak ? ss(fa, peak, T) : 1 - ss(peak, fb, T)) * .7;
+      const C = [gap[0] * dpr, (vh - gap[1]) * dpr];
+      if (T < TL.open[1]) {                                                      // 1. night sky + fresco, cut by the window
+        gl.clearColor(...INK, 1); gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.useProgram(paint.p); gl.bindVertexArray(quad); gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+        gl.uniformMatrix3fv(paint.U.uH, false, M); gl.uniform2f(paint.U.uSize, W, H); gl.uniform1i(paint.U.uTex, 0);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        if (R > 0) {
+          gl.useProgram(hole.p); gl.bindVertexArray(empty); gl.blendFunc(gl.ZERO, gl.SRC_ALPHA);
+          gl.uniform2f(hole.U.uC, ...C); gl.uniform1f(hole.U.uR, R * dpr); gl.uniform1f(hole.U.uF, (6 + R * .45) * dpr);
+          gl.drawArrays(gl.TRIANGLES, 0, 3);
+        }
+      } else { gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT); }
+      if (I > .001) {                                                            // 2. the flash at the threshold
         gl.useProgram(light.p); gl.bindVertexArray(empty); gl.blendFunc(gl.ONE, gl.ONE);
-        gl.uniform2f(light.U.uC, gap[0] * dpr, (vh - gap[1]) * dpr); gl.uniform1f(light.U.uR, R * dpr); gl.uniform1f(light.U.uI, I);
+        gl.uniform2f(light.U.uC, ...C); gl.uniform1f(light.U.uR, Math.min(vw, vh) * .3 * dpr); gl.uniform1f(light.U.uI, I);
         gl.uniform1f(light.U.uDpr, dpr); gl.uniform3f(light.U.uColor, ...GOLD);
         gl.drawArrays(gl.TRIANGLES, 0, 3);
       }
-      requestAnimationFrame(frame);
+      if (T < TL.end || review) requestAnimationFrame(frame); else canvas.style.display = 'none';
     }
     requestAnimationFrame(frame);
-  })().catch(e => { console.error(e); finish(); });   // the painting failed to load: the page as it is today
-  return { done };
+  })().catch(e => { console.error(e); showcase(); });   // the painting failed to load
+  return api;
 }
 
 // ?review: replay, scrub and slow down the timeline (design review only; not part of the design).

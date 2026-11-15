@@ -1,125 +1,139 @@
-# The Fresco Intro: Design Specification
+# The Fresco Window: Design Specification
 
 **Prepared by:** Fresco Intro Designer
-**Date:** 2026-11-15
+**Date:** 2026-11-15 (revised for Amendment 2; the first version, the Starlight intro, is in git at `ae6f301`)
 **Status:** Final
 
 ## 1. Overview
-An opening sequence for the portfolio's home page. Starting on the night sky, stars drift together and condense into the full *Creation of Adam*: God, Adam, the plaster and its cracks. The camera then pushes straight in to the gap between God's and Adam's fingers, at the centre of the screen. A gold bloom flares there and shrinks into the home page's ring, and the fresco dissolves back into the night sky, leaving the home page exactly as it starts today. It plays by itself in 7.0 s, once per browser tab, and can always be skipped. The chosen direction is **A, Starlight** (decision #8).
+The portfolio's home page opens on Michelangelo's full *Creation of Adam* (God, Adam, the plaster and its cracks), framed on the night sky. The camera moves in and lands on the gap between God's and Adam's fingers. The gap then opens like a window onto the first project, the camera passes through it, and one soft gold flash marks the threshold. After that the fresco is gone: each project's own image fills the screen behind its card, and scrolling steps through the seven projects. The opening runs by itself in 4.7 s, once per browser tab, and can always be skipped. It replaces the previous home page's cursor journey (the ring and God's particle build).
 
 ## 2. Design Rationale
-- **Starlight over Pigment on plaster and Looking up.** Its stars belong to the site's Night Sky look, and its light ends as the ring the visitor reaches for next. That makes the handover seamless: the gap the camera lands on, the flash and the ring are all the same point on screen.
-- **The full original fresco** (requirement 1), rather than the cut-out figure group the home page uses. Particles fill it in from the edges towards the fingers, so the gap completes last, just as the camera starts to head there.
-- **A straight push** (zoom in log space toward the gap, so the gap slides in a straight line to the centre) reads as one calm move and lands exactly on the gap at any screen size (0 px off-centre at 1280 × 800, 1440 × 900 and 1920 × 1080).
-- **Zoom 2** (#9) frames both hands and wrists at the same sharpness as the home page. The source photo has only ~13 px across the gap, so zoom 3 looked soft.
-- **One soft bloom**, not a white-out: it brightens 13–14% of the screen, and there is exactly one flash.
-- **Header** (#11): readable over the night sky at the start, gone while the painting fills the screen (where its text failed contrast at 1.6–3.5:1), and back as the fresco dissolves.
+- **The fresco as a window** (#21, #24). The moment of creation becomes the way in. Instead of explaining the painting, the visitor enters through the gap the whole fresco points to.
+- **No particles** (#21). The painting is shown as itself from the first frame (#25), so the visit starts on a recognisable masterpiece rather than on effects.
+- **Land, pause, enter.** The camera lands on the gap at zoom 2 (#9) and pauses for a short beat, so the "space between the fingers" the user asked for is seen clearly. Only then does the opening grow and the camera accelerate through it.
+- **The projects' own visuals after the flash** (#20, #22, #23). The fresco is the threshold, not the backdrop. Each project's main image fills the screen behind its card, so the work itself is the world you arrive in.
+- **One gold flash, at the threshold.** It hides the moment the window covers the screen and gives the passage a single beat of light. There is exactly one flash.
+- **The header** (#11): readable over the night sky, faded while the painting fills the screen, and back with the cards.
 
 ## 3. Visual Foundations
 - **Colour** (unchanged; `src/styles/tokens.css`):
 
-  | Name | Hex | Use in the intro | Contrast |
+  | Name | Hex | Use | Contrast (worst case, over the 7 placeholder images) |
   |---|---|---|---|
-  | ink | `#1F1D1A` | background, the Skip pills (88%), the header band when focused | – |
-  | gesso | `#EEE9DF` | name, Skip intro text | name ≥ 12.16:1 wherever the header shows |
-  | stone-200 | `#CFC8BA` | tagline, nav, Skip to the projects | tagline ≥ 6.45:1, nav ≥ 8.73:1; skip link ≥ 7.71:1 on its pill over the plaster |
-  | gold | `#C8A24A` | the bloom (`[.784, .635, .29]`), the ring | decoration |
-  | ochre | `#C29545` | focus ring (2 px) | – |
-  | Skip intro | gesso on 88% ink | – | ≥ 9.79:1 over the zoomed plaster |
-- **Typography** (unchanged, Atlas #25): Gloock 2rem name; Newsreader 1rem tagline; IBM Plex Mono .875rem for nav, Skip intro, Skip to the projects and caption.
-- **Layout:** the painting starts fitted to 90% of the width or 78% of the height (whichever is smaller), centred, with a soft 1.5% edge. Skip intro sits bottom-right (1.5rem / 1.25rem) and Skip to the projects bottom-left, both as pills during the intro.
-- **Imagery:** Michelangelo, *The Creation of Adam*. Wikimedia Commons, *Michelangelo - Creation of Adam (cropped).jpg*, 3524 × 1599, marked public domain. Web copy: 3524 px WebP, q80, 820 KiB (#10). Landing point: Adam's fingertip (1331, 733), God's (1339, 723), gap (1335, 728), in 3524 px image coordinates.
+  | ink | `#1F1D1A` | night sky behind the fresco; the gradients (94% / 55% on the left, 80% at the top); Skip pills | – |
+  | gesso | `#EEE9DF` | name, card title and line, Skip intro | name 13.32:1, title 9.82:1, line 9.93:1 |
+  | stone-200 | `#CFC8BA` | tagline, nav, card meta, "Scroll for the next project", skip link | tagline 9.43:1, **nav 4.98:1**, meta 7.14:1, next 7.67:1 |
+  | gold | `#C8A24A` | the flash (`[.784, .635, .29]`), card count | count 5.32:1 |
+  | ochre | `#C29545` | 2 px focus ring | – |
+
+  Card links: 11.84:1. Skip intro (gesso on its 88% ink pill): ≥ 9.79:1 over the plaster.
+- **Typography** (unchanged, Atlas #25): Gloock (name 2rem, card title clamp 2.5–3.75rem); Newsreader (tagline 1rem, card line 1.1875rem); IBM Plex Mono (.8125–.9375rem labels).
+- **Layout:**
+  - The fresco starts fitted to 90% of the width or 78% of the height (whichever is smaller), centred, with a soft 1.5% edge.
+  - The window is a soft circle centred on the gap. Its radius grows to 1.2 × half the screen diagonal, and its edge is 6 px + 45% of the radius wide.
+  - In the showcase, the project image covers the screen (`object-fit: cover`). The card sits at 5vw with a width of min(30vw, 30rem), over a left gradient (ink 94% to 32%, 55% at 46%, clear by 64%) and a top gradient (ink 80% fading out over 9rem).
+- **Imagery:**
+  - The fresco: Wikimedia Commons, *Michelangelo - Creation of Adam (cropped).jpg*, 3524 × 1599, marked public domain. Web copy: `public/creation/fresco.webp` (q80, 820 KiB). The gap is at (1335, 728) in image pixels (Adam's fingertip (1331, 733), God's (1339, 723)).
+  - Project images: `src/assets/projects/<id>/varnish.png`, 1600 × 1000. These are placeholders today.
 
 ## 4. Screens / Pieces
-Preview: `fresco-prototypes` in `.claude/launch.json`, then http://localhost:4410/output/fresco-intro/final/prototype/ (add `?review` for replay / scrub / slow motion, or `?t=5.85` to freeze a moment). Key moments: `final/shots/sheet-final.png`.
+Preview: `fresco-prototypes` in `.claude/launch.json` (python http.server, port 4410, project root), then http://localhost:4410/output/fresco-intro/final/prototype/. Add `?review` for replay, scrub and slow motion, or `?t=3.6` to freeze a moment. Key moments: `final/shots/sheet-final.png`.
 
 | Time (s) | What happens |
 |---|---|
-| 0 – 0.2 | Night sky; 1 in 10 particles wait as twinkling stars; header visible |
-| 0.2 – 3.6 | Particles drift in and land, from the edges towards the gap; the painting shows wherever they have landed |
-| 2.4 – 5.7 | The push: from the fitted painting to zoom 2 on the gap (ease in-out) |
-| 3.2 – 3.6 | The header fades as the painting's top edge passes behind its text (exact timing depends on screen size) |
-| 5.5 – 5.85 – 6.6 | The bloom rises to 20% of the short screen side, then shrinks to the 44 px ring (peak intensity .7, gold with a warm core) |
-| 6.0 – 7.0 | The fresco dissolves into the night sky; the header returns in the second half |
-| 6.15 | The ring fades in (0.5 s) where the bloom shrinks; Skip intro disappears |
-| 6.6 | The caption "Bring your cursor to the circle" fades in |
-| 7.0 | The home page is live (God's particle journey can start) |
+| 0 | The full fresco, fitted on the night sky; header and both skip controls visible |
+| 0 – 3.0 | The camera moves in and lands with the gap at the screen centre (zoom in log space, the gap on a straight line, ease in-out); the header fades as the painting's top edge rises behind it |
+| 3.0 – 3.3 | A beat on the gap; the window starts to open there |
+| 3.0 – 4.05 | The window grows (radius ∝ progress^2.2) until it covers the screen; through it, the first project's image |
+| 3.3 – 4.1 | The camera accelerates through (zoom 2 → 16, cubic ease-in) |
+| 3.65 – 3.9 – 4.5 | The flash: a gold bloom (radius 30% of the short screen side, peak intensity .7) at the gap |
+| 4.2 | The cards and the gradients fade in (0.6 s / 0.5 s); Skip intro disappears |
+| 4.2 – 4.7 | The header comes back; at 4.7 s the showcase is live and the intro canvas is removed |
 
 **States**
-- **Skip intro / Esc:** the intro fades out over 300 ms, then the home page starts.
-- **Skip to the projects** (and the nav's Projects link) during the intro: the intro ends at once, the projects are revealed, and Falling Constellations gets focus.
-- **Once per tab** (#13): reloading or coming back in the same tab goes straight to the home page; a new tab plays it again. If storage is blocked it plays each time.
-- **Reduced motion:** the still fresco (fitted, on ink) for 2 s, then a 0.4 s cross-fade into the page, which is already revealed. Tabbing into the projects ends the still at once.
-- **Reading layout** (≤ 900 px wide or ≤ 560 px tall, i.e. 200–400% zoom; #14): no intro.
-- **Phones and tablets:** no intro (the existing "computer required" notice).
-- **No WebGL2, or the image fails to load:** no intro; the page behaves as today.
-- **Loading:** until the image is ready (0.4–0.6 s locally, ~1.4–1.9 s on a cold first load) the night sky and header show and Skip intro already works.
+- **Showcase:** scroll snaps one project per screen. The current project's image cross-fades in (0.6 s).
+- **Skip intro / Esc:** a 0.25 s dip to the night sky, then the showcase.
+- **Skip to the projects** (and the nav's Projects link): the showcase at once, with focus on the first project's "View project".
+- **Showcase at once, no fresco:** reduced motion, a repeat visit in the same tab (#13), the reading layout at 200–400% zoom or ≤ 900 px wide or ≤ 560 px tall (#14), and no WebGL2 or a failed image load.
+- **No JavaScript:** the showcase with the first project's image.
+- **Phones and tablets:** the existing "This site needs a computer" notice.
+- **Loading:** until the fresco has loaded (0.2–0.5 s locally), the night sky and header show and Skip intro already works.
 
 ## 5. Components & Tokens
-- `final/prototype/shared/intro.js`, `playIntro()`, which returns `{ done }` (a promise). The engine is raw WebGL2 with three passes:
-  1. the painting quad, shown per 3 × 3 cell once that cell's particle has landed
-  2. 625,742 particles generated on the GPU from the texture (`gl_VertexID` → cell → `texelFetch`), with no CPU data
-  3. an additive full-screen bloom
+- `final/prototype/shared/intro.js`, `playIntro()`, which returns `{ done, toShowcase() }`. It is raw WebGL2 with three passes:
+  1. ink background + fresco quad (mipmapped texture)
+  2. the window: a full-screen pass with `blendFunc(ZERO, SRC_ALPHA)` that keeps only what lies outside the soft circle
+  3. the additive flash
 
-  Constants: `GAP`, `ZOOM = 2`, `STRIDE = 3`, timeline `TL`.
-- `final/prototype/shared/intro.css`: the intro canvas, the reduced-motion still, Skip intro, the pills, the header band when focused, and `.faded`.
-- Page markup added to the home page: `<button class="skip-intro">Skip intro</button>` as the first element in `<body>`, and `<canvas id="intro" aria-hidden="true">` just before the header.
-- Home page hooks (prototype copies in `final/prototype/shared/home/`):
-  - `createCreation` gains `S.hold`, so the cursor can't build God while the intro plays.
-  - `startPage({ look, data, hold })` takes the intro's `done` promise.
+  Constants: `GAP`, `ZOOM = 2`, `THROUGH = 16`, timeline `TL`.
+- `final/prototype/shared/page.js`, `startPage()`: the skip links, plus an IntersectionObserver that shows the current project's image.
+- `final/prototype/shared/intro.css`: the `.visuals` layer and its gradients, the intro canvas, Skip intro, the pills, the header band when focused, and `.faded`.
+- **Markup on the home page:**
+  - `<button class="skip-intro">Skip intro</button>` first in `<body>`.
+  - `<div class="visuals" aria-hidden="true">` with one `<img alt="" data-for="<id>">` per project, in stop order (decorative: each card carries the project's name and text).
+  - `<canvas id="intro" aria-hidden="true">` after it.
+  - The `.hint` ring, the Falling Constellations `<iframe class="backdrop">` and the cut-out `.still` are removed.
 - No new design tokens.
 - **Source tree:** `public/creation/fresco.webp` (#15). Nothing in `src/` has changed.
 
 ## 6. Accessibility & Responsiveness
-- **axe** (WCAG 2.0–2.2 A/AA tags): 0 violations during the intro (1 s), zoomed with the header faded (5 s), after the intro, and during the reduced-motion still.
-- **Keyboard:** Tab order during the intro is Skip intro → Skip to the projects → Projects → About → CV → Email. Esc skips. The faded header stays in the tab order; when it holds focus it shows on a solid ink band (nav 10.11:1).
-- **Contrast** (worst case wherever the header is at least half visible, at 1280 / 1440 / 1920): name 12.16:1, tagline 6.45:1, nav 8.73:1. Skip controls ≥ 7.71:1. All pass AA (4.5:1).
-- **Flash** (WCAG 2.3.1 / 2.3.2): one flash; luminance rises over 0.35 s and falls over 0.75 s; 13.9% of a 1440 × 900 screen (12.7% at 1920 × 1080) brightens by 0.10 or more.
-- **Reduced motion, reading layout, no WebGL:** see section 4.
-- **Screen sizes:** checked at 1280 × 800, 1440 × 900 and 1920 × 1080 (landing 0 px off-centre at all three), and at 200% / 400% zoom (no intro).
-- **Frame rate** (Chromium, RTX 4070 laptop GPU, 1440 × 900):
-  - 143.4–143.6 fps over three runs at pixel ratio 1.5 (display cap 144); 142.9–143.4 fps at ratios 1 and 2.
-  - p95 frame 7.1 ms; after the first 0.3 s, no frame over 7.4 ms in the final runs (one 35 ms frame in one round 1 run).
-  - The first frame takes 28–370 ms (shaders and texture upload) before anything moves.
+- **axe** (WCAG 2.0–2.2 A/AA): 0 violations at 1 s, at 3.6 s (the window opening), in the showcase, with reduced motion, and at 200% and 400% zoom.
+- **Keyboard:**
+  - Tab order during the opening: Skip intro → Skip to the projects → Projects → About → CV → Email.
+  - Esc skips.
+  - The faded header stays in the tab order and shows on a solid ink band when it holds focus.
+- **Contrast:** all text passes AA over all seven placeholder images (table in section 3). The nav has the thinnest margin (4.98:1), so re-check when real screenshots are added.
+- **Flash (WCAG 2.3.1 / 2.3.2):** one flash, rising over 0.25 s and falling over 0.6 s.
+- **Motion:** reduced motion skips the opening entirely. The image cross-fades have no transition under reduced motion.
+- **Screen sizes:** landing 0 px off-centre at 1280 × 800, 1440 × 900 and 1920 × 1080. At 200% / 400% zoom the reading layout shows the showcase with no opening.
+- **Frame rate** (Chromium, RTX 4070 laptop GPU, 1440 × 900, pixel ratio 1.5):
+  - 143.4–143.6 fps (display cap 144); p95 frame 7.1 ms.
+  - No frame over 7.4 ms after the first 0.3 s; the first frame takes ≤ 28 ms.
+  - Without particles, the opening costs far less than the Starlight version.
 - **Colour mode:** dark only (Night Sky).
 
 ## 7. Files & Links
-- **Project documents:** `output/fresco-intro/` — `designAgent.md`, `plan.md` (approved 2026-11-15), `progress.md`, `decisions.md`, `design-spec.md`.
-- **Tools** (`python -I`, from the project root):
-  - `tools/make_fresco.py`: the web images, from the git-ignored `art-src/creation-of-adam-3524.jpg`.
-  - `tools/make_directions.py`: the direction pages, from the built `dist/index.html`.
+- **Project documents:** `output/fresco-intro/` — `designAgent.md` (amended), `plan.md` (approved, Amendments 1 and 2 approved), `progress.md`, `decisions.md` (#1–#27), `design-spec.md`.
+- **Tools:** `tools/make_fresco.py`, `tools/make_directions.py`.
 - **Data:** `data/fresco-3524.webp`, `data/fresco-2560.webp`.
-- **Directions:** `directions/{a-starlight,b-pigment,c-looking-up}/`, `directions/shared/` (three-direction engine, home copies), `directions/shots/`.
-- **Round 1:** `iterations/round-1/` (index.html, `shared/`, `shots/`).
-- **Final:** `final/prototype/` (index.html, `shared/`), `final/fresco.webp`, `final/shots/` (`sheet-final.png`, size-*, flash-*, zoom-*, reduced-still, no-webgl, report-m3.json).
-- **Source tree:** `public/creation/fresco.webp` (new). `src/` is unchanged.
-- **Local config (git-ignored):** `.claude/launch.json` gains `fresco-prototypes`; `art-src/creation-of-adam-3524.jpg` copied from the worktree.
-- **Figma:** none (not requested).
+- **Record:**
+  - `directions/` (A Starlight, B Pigment on plaster, C Looking up)
+  - `iterations/round-1/` (Starlight, approved then superseded)
+  - `iterations/round-2/` (opening into a fresco showcase, Amendment 1)
+  - `iterations/round-3/` (the window, approved)
+  - `final/shots/round-1-final/` (checks of the first final)
+- **Final:** `final/prototype/` (round 3), `final/fresco.webp`, `final/shots/` (`sheet-final.png`, `final-*.png`, `bg-r3-stop*.png`, `report-final.json`).
+- **Source tree:** `public/creation/fresco.webp`.
+- **Local and git-ignored:** `.claude/launch.json` (`fresco-prototypes`), `art-src/creation-of-adam-3524.jpg`.
+- **Repository:** `https://github.com/arinb44/portfolio`, branch `fresco-intro` (#16).
+- **Figma:** none.
 
 ## 8. Decision Log
-1. #1–#7: project root, a new project, setup answers, deliverables, the `fresco-intro` slug and branch, agent file and plan approved.
-2. #8 D1: Starlight.
-3. #9 D2: zoom 2.
-4. #10 D3: the 3524 px image.
-5. #11 D4: the header fades while the painting fills the screen.
-6. #12: round 1 approved as final.
-7. #13: once per tab.
-8. #14 D5: no intro in the reading layout.
-9. #15 D6: `public/creation/fresco.webp`.
-
-Full table: `decisions.md`.
+1. **Setup, #1–#7:** project root, a new project, setup answers, deliverables, the `fresco-intro` slug and branch, agent file and plan approved.
+2. **First version, #8–#16:** Starlight, zoom 2, the 3524 px image, the header fade, round 1 approved, once per tab, no opening in the reading layout, `public/creation/fresco.webp`, repository `arinb44/portfolio`.
+3. **Amendment 1, #17–#19:** the intro leads straight to the projects, with formation and zoom together (built as round 2).
+4. **Amendment 2, #20–#26:**
+   - after the flash the fresco is gone and the projects' visuals show
+   - no particles; the fresco is a window
+   - each project's main image, full screen behind its card
+   - the gap opens into a window
+   - the fresco is on screen from the first frame
+5. **#27:** round 3 approved as final.
 
 ## 9. Known Issues & Next Steps
-- **Not wired into the site yet** (plan Open Question 3). Porting needs:
-  - `intro.js` / `intro.css` in `src/`, with the image path changed to `/creation/fresco.webp`
-  - the two small hooks in `src/scripts/creation.js` and `home.js`
-  - the Skip intro button and intro canvas in `src/pages/index.astro`
+- **Placeholder images.** All seven project images are placeholders. The window effect reads best once real screenshots replace them. Then re-check:
+  - contrast (nav 4.98:1 today; strengthen the top gradient if one fails)
+  - file sizes (each image loads at page start; use Astro's `<Picture>` in the port)
+- **Not wired into the site.** Porting needs:
+  - `intro.js`, `page.js` and `intro.css` in `src/`, with the image path `/creation/fresco.webp` and the project images through Astro's image pipeline
+  - the new markup in `src/pages/index.astro`
+  - deleting what the home page no longer uses: `src/scripts/creation.js`, `src/scripts/home.js`, `public/creation/whole-group-aa.webp`, `particles.json`, the ring CSS
   - tests
 
-  This is a program agent's job, or an amendment to this plan.
-- **Download:** the intro adds 820 KiB, and it starts only once the image has loaded. That was measured on a local server only, so a slow connection will wait longer (the night sky and header show meanwhile, and Skip works).
-- **Sharpness at the landing:** with ~13 source px across the gap, zoom 2 on a pixel-ratio-2 screen is 4 device px per source px, so it is slightly soft up close. A larger scan would need a new download.
+  This is a program agent's job, or another amendment.
+- **Features removed by this design (the user's choices, listed so nothing is lost by surprise):**
+  - the cursor-as-Adam journey
+  - the per-project spark
+  - Falling Constellations playing live behind its stop
+- **Download:** 820 KiB for the fresco plus the project images. Measured on a local server only.
 - **Testing:** Chromium on one GPU only. Firefox, Safari and integrated GPUs are not tested.
-- **First frame:** one slow frame at the very start (shader compile and texture upload), before anything moves.
-- **Placeholders:** the header still shows them. The header fade measures the real text, so it adapts when they are filled in.
-- **Repository:** nothing is committed yet. Ask which GitHub repository before the first commit on `fresco-intro`.

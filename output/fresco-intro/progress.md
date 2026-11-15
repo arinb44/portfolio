@@ -1,7 +1,7 @@
 # Progress: Fresco Intro
 
-- **Current phase:** Phase 5 (final delivery)
-- **Status:** complete; waiting for the repository choice (before the first commit) and any revision requests
+- **Current phase:** Phase 5 (final delivery, after Amendment 2)
+- **Status:** complete; committed and pushed on `fresco-intro` (see below); waiting for any revision requests
 
 ## Completed milestones
 - 2026-11-14: Project root confirmed (`C:\Users\arins\Arin\School\Projects\Portfolio`); new project chosen over resuming `creation-redesign` (decisions #1, #2).
@@ -43,8 +43,27 @@
   - Scripts (session scratchpad): `m3.cjs`, `sizes-contrast.cjs`, `reduced-focus.cjs`.
 - 2026-11-15: M4: `final/fresco.webp`; copied to `public/creation/fresco.webp` (#15, identical, nothing overwritten); `final/shots/sheet-final.png`; `design-spec.md` written.
 
+- 2026-11-15: Repository `https://github.com/arinb44/portfolio` (#16). **Committed** as `ae6f301` on `fresco-intro` (121 files; no AI markers). The raw measurement captures (`bg-*`, `land-*`, 42 MB) stay on disk, untracked. This progress note is not in that commit.
+- 2026-11-15: Pushed `fresco-intro` to `origin` (approved; new branch, tracks `origin/fresco-intro`; `main` untouched).
+
+- 2026-11-15: User asked to change the showcase: the intro leads straight to the projects beside the full fresco, and formation + zoom run together (decisions #17, #18). `designAgent.md` amended; Amendment 1 appended to `plan.md` (not yet approved).
+
+- 2026-11-15: Amendment 1 approved (#19). Round 2 built in `iterations/round-2/` (opening into a fresco showcase; `shared/intro.js` + `page.js`; ring and God engine removed): 142.3 fps, landing 0 px off-centre at 3 sizes, axe 0, all skip paths, reload/reduced/200%/400% go straight to the showcase, no-WebGL still. Shots `iterations/round-2/shots/sheet-r2.png`.
+- 2026-11-15: User reviewed round 2: after the flash the fresco should be gone and the projects' visuals show; no particles; the fresco is a window (decisions #20-#25). `designAgent.md` amended; Amendment 2 appended to `plan.md` (not yet approved).
+
+- 2026-11-15: Amendment 2 approved (#26). Round 3 built in `iterations/round-3/`:
+  - `shared/intro.js`: no particles; ink + fresco drawn, cut by a soft circular window at the gap (blend ZERO, SRC_ALPHA), additive flash. Timeline: push 0-3.0 s to zoom 2, window opens 3.0-4.05 s, enter 3.3-4.1 s (zoom 2 -> 16, cubic), flash peak 3.9 s, cards 4.2 s, live 4.7 s.
+  - `shared/page.js`: skip links, the current project's image (`.visuals img.on`) follows the stop in view. `index.html`: `.visuals` layer with the 7 `varnish.png` images (alt="", aria-hidden; the cards carry the text); no backdrop iframe, no fresco still.
+  - `shared/intro.css`: images full screen (object-fit: cover), left + top gradients that come in with the cards, 0.6 s cross-fade.
+  - Tests (scratchpad `r3.cjs`): 143.6 fps at pixel ratio 1.5, no frame over 7.3 ms after the start; landing 0 px off-centre at 3 sizes; axe 0 (1 s, 3.6 s, showcase, reduced, 200%, 400%); Tab order unchanged; Skip intro, Esc, Skip to the projects, reload, reduced motion, 200%/400% zoom and no WebGL all reach the showcase; scrolling 2 steps shows the NBA image. Contrast over the 7 placeholder images (worst): name 13.32, tagline 9.43, nav 4.98 (thin margin), count 5.32, title 9.82, line 9.93, meta 7.14, links 11.84, next 7.67.
+  - Shots: `iterations/round-3/shots/sheet-r3.png`.
+
+- 2026-11-15: Round 3 approved as final (#27). `final/prototype/` replaced by round 3 (the first final is in git at `ae6f301`; its shots moved to `final/shots/round-1-final/`). Checks re-run on the final (scratchpad `r3.cjs`): 143.4 fps, landing 0 px off-centre at 3 sizes, axe 0 everywhere, all skip / fallback paths reach the showcase, contrast as round 3 (nav 4.98:1 thinnest). `final/shots/sheet-final.png`, `report-final.json`. `design-spec.md` rewritten for the window design.
+
+- 2026-11-15: Committed rounds 2-3, the new final, the revised spec and notes on `fresco-intro` (approved; raw `bg-*` / `land-*` captures left out) and pushed to `origin` (approved).
+
 ## Next step
-Ask which GitHub repository the commits on branch `fresco-intro` go to (remote `origin` = `https://github.com/arinb44/portfolio.git`), record it in `designAgent.md` (Version Control) and here, then commit (no AI markers; check `git log -1 --format=%B`) and ask before pushing. Then ask for revisions. Follow-up: wiring the intro into `src/` (design-spec section 9).
+Ask for revisions. Follow-ups (design-spec section 9): real screenshots for the 7 projects, then re-check contrast (nav 4.98:1 thinnest); port into `src/` (program agent or an amendment).
 
 ## Open questions
 - **Repository:** `https://github.com/arinb44/portfolio` (decision #16), branch `fresco-intro`. Ask before every push.

@@ -1,0 +1,844 @@
+{
+ "header": [
+  [
+   0,
+   1
+  ],
+  [
+   1.5,
+   0
+  ],
+  [
+   3,
+   0
+  ],
+  [
+   3.3,
+   0
+  ],
+  [
+   3.55,
+   0
+  ],
+  [
+   3.75,
+   0
+  ],
+  [
+   3.9,
+   0
+  ],
+  [
+   4.1,
+   0
+  ],
+  [
+   4.3,
+   0.1
+  ],
+  [
+   4.7,
+   1
+  ]
+ ],
+ "axe": {
+  "T1": [],
+  "T3.6": [],
+  "showcase": []
+ },
+ "shotErrors": [],
+ "run": {
+  "startMs": 163,
+  "playMs": 4704,
+  "avgFps": 143.6,
+  "p95ms": 7.1,
+  "worstMs": 20.8,
+  "worstAfterStartMs": 7.3
+ },
+ "showcase": {
+  "cls": "revealed",
+  "on": "falling-constellations",
+  "introCanvas": "none"
+ },
+ "afterScroll": {
+  "on": "nba-predictor",
+  "y": 1800,
+  "visible": 3
+ },
+ "runErrors": [],
+ "tabOrder": [
+  "Skip intro",
+  "Skip to the projects",
+  "Projects",
+  "About",
+  "CV",
+  "Email"
+ ],
+ "skipClick": {
+  "cls": "revealed",
+  "T": 4.7
+ },
+ "skipToProjects": {
+  "cls": "revealed",
+  "focus": "View project: Falling Constellations"
+ },
+ "reload": {
+  "atOnce": true,
+  "cls": "revealed"
+ },
+ "reduced": {
+  "atOnce": true,
+  "cls": "revealed",
+  "axe": [],
+  "errors": []
+ },
+ "zoom": {
+  "200%": {
+   "atOnce": true,
+   "cls": "revealed",
+   "axe": [],
+   "errors": []
+  },
+  "400%": {
+   "atOnce": true,
+   "cls": "revealed",
+   "axe": [],
+   "errors": []
+  }
+ },
+ "sizes": {
+  "1280x800": {
+   "3": {
+    "gap": [
+     640,
+     400
+    ],
+    "z": 2,
+    "R": 0,
+    "header": 0
+   },
+   "3.55": {
+    "gap": [
+     640,
+     400
+    ],
+    "z": 2.131,
+    "R": 218,
+    "header": 0
+   },
+   "landingOff": 0
+  },
+  "1440x900": {
+   "3": {
+    "gap": [
+     720,
+     450
+    ],
+    "z": 2,
+    "R": 0,
+    "header": 0
+   },
+   "3.55": {
+    "gap": [
+     720,
+     450
+    ],
+    "z": 2.131,
+    "R": 246,
+    "header": 0
+   },
+   "landingOff": 0
+  },
+  "1920x1080": {
+   "3": {
+    "gap": [
+     960,
+     540
+    ],
+    "z": 2,
+    "R": 0,
+    "header": 0
+   },
+   "3.55": {
+    "gap": [
+     960,
+     540
+    ],
+    "z": 2.131,
+    "R": 319,
+    "header": 0
+   },
+   "landingOff": 0
+  }
+ },
+ "cardBg": [
+  {
+   "k": 1,
+   "file": "C:/Users/arins/Arin/School/Projects/Portfolio/output/fresco-intro/iterations/round-3/shots/bg-r3-stop1.png",
+   "items": [
+    {
+     "label": "name",
+     "box": [
+      40,
+      28,
+      445,
+      65
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "tagline",
+     "box": [
+      40,
+      69,
+      445,
+      94
+     ],
+     "color": "rgb(207, 200, 186)"
+    },
+    {
+     "label": "nav",
+     "box": [
+      1148,
+      43,
+      1400,
+      64
+     ],
+     "color": "rgb(207, 200, 186)"
+    },
+    {
+     "label": "count",
+     "box": [
+      72,
+      273,
+      504,
+      292
+     ],
+     "color": "rgb(200, 162, 74)"
+    },
+    {
+     "label": "title",
+     "box": [
+      72,
+      304,
+      504,
+      425
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "line",
+     "box": [
+      72,
+      437,
+      504,
+      496
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "meta",
+     "box": [
+      72,
+      512,
+      504,
+      534
+     ],
+     "color": "rgb(207, 200, 186)"
+    },
+    {
+     "label": "links",
+     "box": [
+      239,
+      567,
+      331,
+      591
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "next",
+     "box": [
+      72,
+      640,
+      504,
+      659
+     ],
+     "color": "rgb(207, 200, 186)"
+    }
+   ]
+  },
+  {
+   "k": 2,
+   "file": "C:/Users/arins/Arin/School/Projects/Portfolio/output/fresco-intro/iterations/round-3/shots/bg-r3-stop2.png",
+   "items": [
+    {
+     "label": "name",
+     "box": [
+      40,
+      28,
+      445,
+      65
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "tagline",
+     "box": [
+      40,
+      69,
+      445,
+      94
+     ],
+     "color": "rgb(207, 200, 186)"
+    },
+    {
+     "label": "nav",
+     "box": [
+      1148,
+      43,
+      1400,
+      64
+     ],
+     "color": "rgb(207, 200, 186)"
+    },
+    {
+     "label": "count",
+     "box": [
+      72,
+      273,
+      504,
+      292
+     ],
+     "color": "rgb(200, 162, 74)"
+    },
+    {
+     "label": "title",
+     "box": [
+      72,
+      304,
+      504,
+      425
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "line",
+     "box": [
+      72,
+      437,
+      504,
+      496
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "meta",
+     "box": [
+      72,
+      512,
+      504,
+      534
+     ],
+     "color": "rgb(207, 200, 186)"
+    },
+    {
+     "label": "links",
+     "box": [
+      239,
+      567,
+      331,
+      591
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "next",
+     "box": [
+      72,
+      640,
+      504,
+      659
+     ],
+     "color": "rgb(207, 200, 186)"
+    }
+   ]
+  },
+  {
+   "k": 3,
+   "file": "C:/Users/arins/Arin/School/Projects/Portfolio/output/fresco-intro/iterations/round-3/shots/bg-r3-stop3.png",
+   "items": [
+    {
+     "label": "name",
+     "box": [
+      40,
+      28,
+      445,
+      65
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "tagline",
+     "box": [
+      40,
+      69,
+      445,
+      94
+     ],
+     "color": "rgb(207, 200, 186)"
+    },
+    {
+     "label": "nav",
+     "box": [
+      1148,
+      43,
+      1400,
+      64
+     ],
+     "color": "rgb(207, 200, 186)"
+    },
+    {
+     "label": "count",
+     "box": [
+      72,
+      273,
+      504,
+      292
+     ],
+     "color": "rgb(200, 162, 74)"
+    },
+    {
+     "label": "title",
+     "box": [
+      72,
+      304,
+      504,
+      425
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "line",
+     "box": [
+      72,
+      437,
+      504,
+      496
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "meta",
+     "box": [
+      72,
+      512,
+      504,
+      534
+     ],
+     "color": "rgb(207, 200, 186)"
+    },
+    {
+     "label": "links",
+     "box": [
+      239,
+      567,
+      331,
+      591
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "next",
+     "box": [
+      72,
+      640,
+      504,
+      659
+     ],
+     "color": "rgb(207, 200, 186)"
+    }
+   ]
+  },
+  {
+   "k": 4,
+   "file": "C:/Users/arins/Arin/School/Projects/Portfolio/output/fresco-intro/iterations/round-3/shots/bg-r3-stop4.png",
+   "items": [
+    {
+     "label": "name",
+     "box": [
+      40,
+      28,
+      445,
+      65
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "tagline",
+     "box": [
+      40,
+      69,
+      445,
+      94
+     ],
+     "color": "rgb(207, 200, 186)"
+    },
+    {
+     "label": "nav",
+     "box": [
+      1148,
+      43,
+      1400,
+      64
+     ],
+     "color": "rgb(207, 200, 186)"
+    },
+    {
+     "label": "count",
+     "box": [
+      72,
+      261,
+      504,
+      281
+     ],
+     "color": "rgb(200, 162, 74)"
+    },
+    {
+     "label": "title",
+     "box": [
+      72,
+      293,
+      504,
+      414
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "line",
+     "box": [
+      72,
+      426,
+      504,
+      485
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "meta",
+     "box": [
+      72,
+      501,
+      504,
+      545
+     ],
+     "color": "rgb(207, 200, 186)"
+    },
+    {
+     "label": "links",
+     "box": [
+      239,
+      578,
+      331,
+      602
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "next",
+     "box": [
+      72,
+      651,
+      504,
+      671
+     ],
+     "color": "rgb(207, 200, 186)"
+    }
+   ]
+  },
+  {
+   "k": 5,
+   "file": "C:/Users/arins/Arin/School/Projects/Portfolio/output/fresco-intro/iterations/round-3/shots/bg-r3-stop5.png",
+   "items": [
+    {
+     "label": "name",
+     "box": [
+      40,
+      28,
+      445,
+      65
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "tagline",
+     "box": [
+      40,
+      69,
+      445,
+      94
+     ],
+     "color": "rgb(207, 200, 186)"
+    },
+    {
+     "label": "nav",
+     "box": [
+      1148,
+      43,
+      1400,
+      64
+     ],
+     "color": "rgb(207, 200, 186)"
+    },
+    {
+     "label": "count",
+     "box": [
+      72,
+      303,
+      504,
+      322
+     ],
+     "color": "rgb(200, 162, 74)"
+    },
+    {
+     "label": "title",
+     "box": [
+      72,
+      334,
+      504,
+      395
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "line",
+     "box": [
+      72,
+      407,
+      504,
+      466
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "meta",
+     "box": [
+      72,
+      482,
+      504,
+      504
+     ],
+     "color": "rgb(207, 200, 186)"
+    },
+    {
+     "label": "links",
+     "box": [
+      239,
+      537,
+      331,
+      561
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "next",
+     "box": [
+      72,
+      610,
+      504,
+      629
+     ],
+     "color": "rgb(207, 200, 186)"
+    }
+   ]
+  },
+  {
+   "k": 6,
+   "file": "C:/Users/arins/Arin/School/Projects/Portfolio/output/fresco-intro/iterations/round-3/shots/bg-r3-stop6.png",
+   "items": [
+    {
+     "label": "name",
+     "box": [
+      40,
+      28,
+      445,
+      65
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "tagline",
+     "box": [
+      40,
+      69,
+      445,
+      94
+     ],
+     "color": "rgb(207, 200, 186)"
+    },
+    {
+     "label": "nav",
+     "box": [
+      1148,
+      43,
+      1400,
+      64
+     ],
+     "color": "rgb(207, 200, 186)"
+    },
+    {
+     "label": "count",
+     "box": [
+      72,
+      303,
+      504,
+      322
+     ],
+     "color": "rgb(200, 162, 74)"
+    },
+    {
+     "label": "title",
+     "box": [
+      72,
+      334,
+      504,
+      395
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "line",
+     "box": [
+      72,
+      407,
+      504,
+      466
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "meta",
+     "box": [
+      72,
+      482,
+      504,
+      504
+     ],
+     "color": "rgb(207, 200, 186)"
+    },
+    {
+     "label": "links",
+     "box": [
+      239,
+      537,
+      286,
+      561
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "next",
+     "box": [
+      72,
+      610,
+      504,
+      629
+     ],
+     "color": "rgb(207, 200, 186)"
+    }
+   ]
+  },
+  {
+   "k": 7,
+   "file": "C:/Users/arins/Arin/School/Projects/Portfolio/output/fresco-intro/iterations/round-3/shots/bg-r3-stop7.png",
+   "items": [
+    {
+     "label": "name",
+     "box": [
+      40,
+      28,
+      445,
+      65
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "tagline",
+     "box": [
+      40,
+      69,
+      445,
+      94
+     ],
+     "color": "rgb(207, 200, 186)"
+    },
+    {
+     "label": "nav",
+     "box": [
+      1148,
+      43,
+      1400,
+      64
+     ],
+     "color": "rgb(207, 200, 186)"
+    },
+    {
+     "label": "count",
+     "box": [
+      72,
+      333,
+      504,
+      352
+     ],
+     "color": "rgb(200, 162, 74)"
+    },
+    {
+     "label": "title",
+     "box": [
+      72,
+      364,
+      504,
+      425
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "line",
+     "box": [
+      72,
+      437,
+      504,
+      495
+     ],
+     "color": "rgb(238, 233, 223)"
+    },
+    {
+     "label": "meta",
+     "box": [
+      72,
+      511,
+      504,
+      534
+     ],
+     "color": "rgb(207, 200, 186)"
+    },
+    {
+     "label": "links",
+     "box": [
+      239,
+      567,
+      286,
+      591
+     ],
+     "color": "rgb(238, 233, 223)"
+    }
+   ]
+  }
+ ],
+ "noWebGL": {
+  "cls": "revealed",
+  "on": "falling-constellations",
+  "done": true,
+  "errors": []
+ }
+}
