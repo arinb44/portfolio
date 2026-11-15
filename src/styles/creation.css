@@ -1,4 +1,5 @@
-/* The Creation home page: the design agent's final prototype layout (output/creation-redesign/final/prototype/shared/base.css). */
+/* The home page: the creation-redesign layout (output/creation-redesign/final/prototype/shared/base.css) with the fresco
+   window opening (output/fresco-intro/final/prototype/shared/intro.css). */
 * { box-sizing: border-box; }
 html { background: var(--bg); color: var(--text); font: 1rem/1.6 var(--font-body); overflow: hidden; }
 html.revealed { overflow-y: auto; scroll-snap-type: y mandatory; }
@@ -6,12 +7,26 @@ body { margin: 0; }
 a { color: inherit; }
 :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
 
-#scene { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; }
-/* A project's live piece behind the painting while its stop is current (home.js). Decoration: never takes clicks. */
-.backdrop { position: fixed; left: 0; top: 0; width: 100vw; height: 100vh; border: 0; pointer-events: none; opacity: 0; transition: opacity .8s ease-out; }
-html.backdrop-on .backdrop { opacity: .5; }
-.still { display: none; }
-html.static .still { display: block; position: fixed; right: 2vw; top: 50%; width: 62vw; max-height: 90vh; object-fit: contain; transform: translateY(-50%); }
+/* Each project's main image, full screen behind its card (fresco-intro #22, #23). Hidden during the opening. */
+.visuals { position: fixed; inset: 0; }
+.visuals img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .6s ease-out; }
+.visuals img.on { opacity: 1; }
+html.intro .visuals { visibility: hidden; }
+/* Gradients that keep the card (left) and the header (top) readable over any image. */
+.visuals::after { content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to right, color-mix(in srgb, var(--bg) 94%, transparent) 0 32%, color-mix(in srgb, var(--bg) 55%, transparent) 46%, transparent 64%),
+              linear-gradient(to bottom, color-mix(in srgb, var(--bg) 80%, transparent), transparent 9rem); }
+/* The fresco (intro.js): above the images, below the cards (main is z-index 1). */
+#intro { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; }
+/* The flash (fresco-intro #30): warm white over the whole screen, above everything; intro.js drives its opacity. */
+.flash { position: fixed; inset: 0; z-index: 9; background: #FFF6E6; opacity: 0; pointer-events: none; }
+
+/* Skip intro: a real button, first in the tab order. Solid backing so it reads over the plaster when zoomed in. */
+.skip-intro { position: fixed; right: 1.5rem; bottom: 1.25rem; z-index: 4; min-height: 24px; padding: .35rem .9rem; border: 0; border-radius: 999px;
+              background: color-mix(in srgb, var(--bg) 88%, transparent); color: var(--text); font: .875rem/1.5 var(--font-label); cursor: pointer; }
+.skip-intro:hover { text-decoration: underline; text-underline-offset: .25em; }
+html:not(.intro) .skip-intro { display: none; }
+html.intro .skip { padding: .35rem .9rem; margin: -.35rem -.9rem; border-radius: 999px; background: color-mix(in srgb, var(--bg) 88%, transparent); }
 
 .skip { position: fixed; left: 1.5rem; bottom: 1.5rem; z-index: 3; font: .875rem/1.5 var(--font-label); color: var(--muted); }
 html.revealed .skip { display: none; }
@@ -26,16 +41,16 @@ html.revealed .skip { display: none; }
 .site nav a { text-decoration: none; color: var(--muted); }
 .site nav a:hover { color: var(--text); }
 
-.hint { position: fixed; left: 50%; top: 50%; z-index: 1; pointer-events: none; }
-html.static .hint { display: none; }   /* nothing to reach for without the scene */
-.hint .ring { --near: 0; position: absolute; width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 50%;
-              border: calc(1px + var(--near) * 1.5px) solid var(--accent); scale: calc(1 - var(--near) * .18); }
-.hint .caption { position: absolute; top: 34px; left: 0; transform: translateX(-50%); white-space: nowrap;
-                 font: .875rem/1.5 var(--font-label); color: var(--muted); }
+/* The header is hidden during the opening (fresco-intro #32): still read by screen readers and in the tab order; if it
+   takes keyboard focus it shows, on a solid band. */
+html.intro .site { opacity: 0; }
+html.intro .site > * { pointer-events: none; }
+html.intro .site:focus-within { opacity: 1; background: var(--bg); }
+html.intro .site:focus-within > * { pointer-events: auto; }
 
 main { position: relative; z-index: 1; }   /* the landmark is always there; the stops appear with the reveal */
 .stops { visibility: hidden; opacity: 0; }
-html.revealed .stops { visibility: visible; opacity: 1; transition: opacity .6s ease-out; }
+html.revealed .stops { visibility: visible; opacity: 1; }   /* no fade-in: the projects appear at the flash's peak (fresco-intro #30) */
 .stop { min-height: 100vh; display: flex; align-items: center; padding: 6rem 0 4rem 5vw; scroll-snap-align: start; }
 .card { width: min(30vw, 30rem); }
 .card .count { margin: 0 0 .75rem; font: .8125rem/1.5 var(--font-label); letter-spacing: .06em; color: var(--accent-text, var(--accent)); }
@@ -54,7 +69,7 @@ html.revealed .stops { visibility: visible; opacity: 1; transition: opacity .6s 
 @media (hover: none), (pointer: coarse) { .computer-only { display: grid; } }
 
 @media (prefers-reduced-motion: reduce) {
-  html.revealed .stops { transition: none; }
+  .visuals img { transition: none; }
 }
 .visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 

@@ -35,7 +35,7 @@ Design the home page's opening and project showcase. The full original fresco (G
 
 ## Out of Scope
 - The project cards' design and content (kept as they are), and the site's header and footer design.
-- Changing `src/` (the port into the Astro site is separate work, by a program agent or a later amendment).
+- `src/` beyond the home page port listed in `plan.md` Amendment 3 (approved separately).
 - The other pages (project pages, projects index, About, 404).
 - Design tokens and fonts: no new tokens, no new fonts.
 - Figma files.
@@ -53,7 +53,7 @@ Check the ones this project needs:
 - **Existing brand assets:** Night Sky look and Atlas type (creation-redesign decisions #24, #25), in `src/styles/tokens.css`: ink `#1F1D1A` background, gesso `#EEE9DF` text, stone-200 `#CFC8BA` muted, stone-700 `#4A4740` hairlines only, gold `#C8A24A` accent, ochre `#C29545` focus. Fonts: Gloock (display), Newsreader (body), IBM Plex Mono (labels). No logo.
 - **Mood / keywords:** the spark of creation, awe, cinematic, quiet before the light.
 - **References / inspiration:** Michelangelo, *The Creation of Adam* (Sistine Chapel ceiling, c. 1508–1512). Source photo: Wikimedia Commons, *Michelangelo - Creation of Adam (cropped).jpg*, 3524 × 1599, marked public domain (git-ignored copy in the worktree's `art-src/creation-of-adam-3524.jpg`; 1920 px copy in `output/creation-redesign/source/`). The current home page's particle engine (`src/scripts/creation.js`).
-- **Things to avoid:** a full-screen white strobe or more than one flash; flicker; a cut-out fresco with the plaster removed (the user wants the original painting); an intro that can't be skipped; a visible jump between the intro and the current home page.
+- **Things to avoid:** flicker or more than one flash (a single full-screen warm-white flash is the user's choice, #30); an opening that can't be skipped; a visible jump into the projects.
 
 ## Constraints
 - **Accessibility:** WCAG 2.2 AA. A "Skip intro" control that is visible and reachable by keyboard from the start (Esc also skips); the existing "Skip to the projects" link keeps working during the intro. Reduced motion: the still fresco, no particles, zoom or flash. The flash is one soft bloom, which meets WCAG 2.3.1 (no more than three flashes in any one second). Text contrast reported every round. Without JavaScript or WebGL2 the page stays as it is today (still image and projects).

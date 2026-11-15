@@ -1,63 +1,25 @@
-// Home page layer (from the design prototype's page.js): the reach hint, the reveal, the skip links, the spark per stop.
-// The content is real HTML rendered by Astro; the canvas behind it is decoration. Scroll unlocks after the reveal.
-import { createCreation } from './creation.js';
+// Home page (design: output/fresco-intro/design-spec.md): the fresco opens into the project showcase. Each project's main image fills the
+// screen behind its card and cross-fades as the next project comes to rest; the skip links go straight to the projects.
+import { playIntro } from './intro.js';
 
 const html = document.documentElement;
 
-export async function startPage({ look }) {
+export function startPage() {
   if (matchMedia('(hover: none), (pointer: coarse)').matches) return;   // computer only: the CSS notice covers the page
-
   const main = document.querySelector('#projects');
-  const ring = document.querySelector('.hint .ring'), caption = document.querySelector('.hint .caption');
+  const scene = playIntro();
 
-  // Skip the intro (keyboard and anyone in a hurry): assemble quickly, then move focus to the first project.
-  // The skip link and the nav's Projects link both do this. Wired up before the scene loads, so an early press still counts.
-  let scene = null, skipped = false, current = null;
-
-  // A project's live piece plays behind the painting while its stop is current. It loads only once it is first needed,
-  // after the reveal, and never under reduced motion.
-  // shortcut: it keeps running at opacity 0 after you scroll past; unload it if it ever costs frames.
-  const frame = matchMedia('(prefers-reduced-motion: reduce)').matches ? null : document.querySelector('.backdrop');
-  // The piece draws its galaxy at the centre of its own frame, so the frame is centred on God's fingertip
-  // and made big enough to still cover the screen.
-  let placed = '';
-  const place = ([x, y]) => {
-    const key = [Math.round(x), Math.round(y), innerWidth, innerHeight].join();
-    if (!frame || key === placed) return;
-    placed = key;
-    const w = 2 * Math.max(x, innerWidth - x), h = 2 * Math.max(y, innerHeight - y);
-    Object.assign(frame.style, { width: `${w}px`, height: `${h}px`, left: `${x - w / 2}px`, top: `${y - h / 2}px` });
-  };
-  const backdrop = () => {
-    const on = !!placed && html.classList.contains('revealed') && current?.id === frame.dataset.for;
-    if (on && !frame.src) frame.src = frame.dataset.src;
-    html.classList.toggle('backdrop-on', on);
-  };
+  // "Skip to the projects" and the nav's Projects link: straight to the showcase, focus on the first project.
   for (const a of document.querySelectorAll('a[href="#projects"]')) a.addEventListener('click', e => {
-    e.preventDefault();
-    skipped = true; scene?.revealNow();
+    e.preventDefault(); scene.toShowcase();
     const go = () => html.classList.contains('revealed') ? main.querySelector('a.primary').focus({ preventScroll: true }) : requestAnimationFrame(go);
     go();
   });
 
-  scene = await createCreation(document.querySelector('#scene'), {
-    look,
-    onFrame(S) {
-      // The ring stays until the touch and warms as the cursor closes in (the spark itself is drawn by the engine).
-      ring.style.opacity = S.revealed ? 0 : 1;
-      ring.style.setProperty('--near', S.revealed ? 0 : Math.max(0, 1 - S.cursorDistance / 160).toFixed(2));
-      caption.style.opacity = S.revealed ? 0 : Math.max(0, 1 - Math.max(S.progress - .08, 0) * 6).toFixed(2);
-      place(S.rest);
-      if (S.reveal > .75 && !html.classList.contains('revealed')) { html.classList.add('revealed'); backdrop(); }   // the card appears once the camera has nearly settled
-    },
-  }).catch(() => null);
-  // No WebGL2, or the painting failed to load: the still painting in CSS.
-  if (!scene) { html.classList.add('static', 'revealed'); return; }
-  if (skipped) scene.revealNow();
-
-  // A spark at the fingertip each time a new project comes to rest.
+  // The current project's image is the one shown.
+  const images = new Map([...document.querySelectorAll('.visuals img')].map(img => [img.dataset.for, img]));
   const io = new IntersectionObserver(entries => {
-    for (const e of entries) if (e.isIntersecting && e.target !== current) { current = e.target; backdrop(); if (html.classList.contains('revealed')) scene.spark(); }
+    for (const e of entries) if (e.isIntersecting) for (const [id, img] of images) img.classList.toggle('on', id === e.target.id);
   }, { threshold: .6 });
   main.querySelectorAll('.stop').forEach(s => io.observe(s));
 }

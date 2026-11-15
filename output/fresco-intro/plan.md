@@ -186,3 +186,39 @@ The answers (decisions #20-#25): each project's main image, full screen behind i
 - **Placeholder images:** the showcase will look like placeholders until real screenshots exist.
 
 **Status:** Amendment 2 approved on 2026-11-15
+
+---
+
+## Amendment 3 (2026-11-15): port the window design into the Astro site
+
+**Asked by the user:** port the approved window design (round 3, decision #27) into the real site, here, on branch `fresco-intro` (decision #28).
+
+**Changes in the source tree**
+
+| File | Change |
+|---|---|
+| `src/scripts/intro.js` | **New:** the engine from `final/prototype/shared/intro.js`. The image path becomes `/creation/fresco.webp`; nothing else changes. |
+| `src/scripts/home.js` | **Rewritten** from `final/prototype/shared/page.js`: skip links, the current project's image. The cursor journey, the ring and the live backdrop go. |
+| `src/scripts/creation.js` | **Deleted** (the God particle engine; nothing else uses it). |
+| `src/pages/index.astro` | Skip intro button first; `.visuals` with each project's main image through Astro's `<Image>` (optimised WebP, `sizes="100vw"`, first eager, rest lazy, `alt=""` because the card carries the text); `canvas#intro`. Removed: the backdrop iframe, `canvas#scene`, the cut-out still, the ring and caption. |
+| `src/styles/creation.css` | The prototype's `intro.css` rules added; the ring, backdrop, still and `#scene` rules removed. |
+| `public/creation/whole-group-aa.webp`, `public/creation/particles.json` | **Deleted** (only the old scene used them). `public/creation/fresco.webp` stays. |
+| `scripts/painting.py` | **Deleted** (it only rebuilt `whole-group-aa.webp`; the design agent's source image stays in `output/creation-redesign/data/`). |
+| `tests/e2e/home.spec.ts` | **Rewritten** for the new behaviour (below). Other tests unchanged. |
+| `README.md` | The home page description, commands and file table updated. |
+
+**Home page tests after the port** (`npm test`: astro check, build, unit, Playwright on the real GPU):
+1. The intro plays: name and nav visible, Skip intro visible, projects hidden, axe clean.
+2. It ends in the showcase on its own: revealed within 6 s, first project image shown.
+3. The 7 stops come from the content collection, in order, with working links (unchanged).
+4. Keyboard: Tab order Skip intro, then Skip to the projects. Enter on the second reveals and focuses Falling Constellations; axe clean after.
+5. Skip intro (click) and Esc reveal; the nav's Projects link reveals.
+6. Scrolling to a project shows its image.
+7. Once per tab: a reload goes straight to the showcase.
+8. Reduced motion, 720 px wide (reading layout, no sideways scroll), no WebGL2: the showcase at once.
+9. Touch devices: the computer-only notice, scene not started.
+10. JavaScript off: all 7 projects and the first image.
+
+**Not changed:** the other pages, the content schema and files, the tokens and fonts, `Head.astro`, `Base.astro`, the other agents' `output/` folders. Nothing is merged into `main` or pushed without asking.
+
+**Status:** Amendment 3 approved on 2026-11-15

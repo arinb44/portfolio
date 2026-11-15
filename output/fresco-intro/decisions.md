@@ -29,3 +29,8 @@
 | 25 | 2026-11-15 | How the fresco first appears | On screen from the first frame; the camera starts moving in straight away |
 | 26 | 2026-11-15 | Approve Amendment 2 (the fresco is a window into the projects) | Approved as written |
 | 27 | 2026-11-15 | Approve round 3 (the window) | Approved as the final design |
+| 28 | 2026-11-15 | Port the window design into the Astro site | Yes, here, on `fresco-intro` (Amendment 3 written for approval) |
+| 29 | 2026-11-15 | Approve Amendment 3 (the port, including deleting creation.js, whole-group-aa.webp, particles.json, painting.py) | Approved as written |
+| 30 | 2026-11-15 | The flash (revises "no full-screen white" from setup) | The entire screen flashes, warm white; the projects simply appear at the flash, no fade-in |
+| 31 | 2026-11-15 | The window opening | Removed: the camera pushes into the gap and the flash does the work |
+| 32 | 2026-11-15 | Framing and header during the opening | The fresco covers the entire screen; the header is not shown (kept for screen readers; shows on a solid band if it takes keyboard focus). Skip intro and Skip to the projects stay |

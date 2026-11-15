@@ -1,7 +1,7 @@
 # Progress: Fresco Intro
 
 - **Current phase:** Phase 5 (final delivery, after Amendment 2)
-- **Status:** complete; committed and pushed on `fresco-intro` (see below); waiting for any revision requests
+- **Status:** round 4 committed and pushed on `fresco-intro`; waiting for any revision requests
 
 ## Completed milestones
 - 2026-11-14: Project root confirmed (`C:\Users\arins\Arin\School\Projects\Portfolio`); new project chosen over resuming `creation-redesign` (decisions #1, #2).
@@ -62,8 +62,17 @@
 
 - 2026-11-15: Committed rounds 2-3, the new final, the revised spec and notes on `fresco-intro` (approved; raw `bg-*` / `land-*` captures left out) and pushed to `origin` (approved).
 
+- 2026-11-15: Amendment 3 (port into the site) asked for and approved (#28, #29). Done on `fresco-intro`:
+  - New `src/scripts/intro.js` (= final prototype, image `/creation/fresco.webp`); `src/scripts/home.js` rewritten from `page.js`; `src/pages/index.astro` (Skip intro, `.visuals` with each project's first `varnish` image via `<Image>` widths 960/1600, sizes 100vw, `canvas#intro`; backdrop, `#scene`, still, ring removed); `src/styles/creation.css` (intro rules in, ring/backdrop/still/#scene out); `tests/e2e/home.spec.ts` rewritten (13 home tests); `README.md` updated.
+  - Deleted (`git rm`, approved): `src/scripts/creation.js`, `public/creation/whole-group-aa.webp`, `public/creation/particles.json`, `scripts/painting.py`.
+  - `npm test`: astro check 0 errors / 0 warnings, 11 pages built, unit 12/12, Playwright 40/40 (two full runs). Dev server (`npm run dev`, 4321): the opening plays into the showcase, images through Astro's image service, no console errors.
+
+- 2026-11-15: Round 4 asked for by the user and built directly in `src/` (decisions #30-#32): full-screen warm-white flash (`.flash` CSS layer, #FFF6E6), the projects appear at its peak with no fade-in; no window opening; the fresco covers the screen (start frame centred at x = 1530 so both heads show); header hidden during the opening (opacity 0, shows on a solid band when it holds focus). `tests/e2e/home.spec.ts` updated (+1 test). `npm test`: check 0 errors, 11 pages, unit 12/12, Playwright 41/41. 143.5 fps. Shots `iterations/round-4/shots/sheet-r4.png`. `design-spec.md` rewritten for round 4.
+
+- 2026-11-15: The port (Amendment 3) and round 4 committed on `fresco-intro` and pushed to `origin` (approved; raw `bg-*` / `land-*` captures left out).
+
 ## Next step
-Ask for revisions. Follow-ups (design-spec section 9): real screenshots for the 7 projects, then re-check contrast (nav 4.98:1 thinnest); port into `src/` (program agent or an amendment).
+Ask for revisions. Then: real screenshots for the 7 projects and a contrast re-check (nav 4.98:1 thinnest); merging `fresco-intro` into `main` only if the user asks.
 
 ## Open questions
 - **Repository:** `https://github.com/arinb44/portfolio` (decision #16), branch `fresco-intro`. Ask before every push.

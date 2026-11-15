@@ -1,6 +1,6 @@
 # Portfolio: The Creation
 
-A static Astro site. The home page rebuilds God's group from Michelangelo's *The Creation of Adam* out of particles as the cursor reaches for the centre of the screen. The design spec is `output/creation-redesign/design-spec.md`.
+A static Astro site. The home page opens on Michelangelo's full *The Creation of Adam*: the camera lands on the gap between God's and Adam's fingers, the gap opens like a window, and each project's own image fills the screen behind its card. The design spec is `output/fresco-intro/design-spec.md`.
 
 ## Commands
 
@@ -11,27 +11,26 @@ A static Astro site. The home page rebuilds God's group from Michelangelo's *The
 | `npm run build` | Build the static site into `dist/` (fails on invalid project content) |
 | `npm run preview` | Serve the built site |
 | `npm run placeholders` | Create labelled placeholder images for any project image that doesn't exist yet (never overwrites) |
-| `python -I scripts/painting.py` | Rebuild `public/creation/whole-group-aa.webp` from the design agent's image: closes the notch in the index finger and feathers the outer edge (needs numpy, Pillow, scipy; the feather widths are at the top of the script) |
 | `npm test` | Type check, build, unit tests, browser tests |
 | `npm run test:unit` | Unit tests only (Node's built-in runner) |
 | `npm run test:e2e` | Browser tests only (Playwright + axe, against the last build) |
 
-The browser tests run Chromium on the real GPU (`playwright.config.ts` passes `--use-angle=d3d11`, a Windows flag), because the home scene draws about 690,000 particles and software rendering is too slow for it. On another system, change or remove that flag.
+The browser tests run Chromium on the real GPU (`playwright.config.ts` passes `--use-angle=d3d11`, a Windows flag), so the home page's WebGL2 opening runs at full speed. On another system, change or remove that flag.
 
 ## Where things are
 
 | Path | What |
 |---|---|
-| `src/pages/index.astro` | Home page: name, nav, the scene's canvas and the 7 project stops |
-| `src/scripts/creation.js` | The WebGL2 scene (particles, painting layer, camera, spark), copied from the design prototype |
-| `src/scripts/home.js` | Home page behaviour: the ring, the reveal, the skip links, the spark on each project |
+| `src/pages/index.astro` | Home page: name, nav, Skip intro, each project's main image (the first `varnish` image), the opening's canvas and the 7 project cards |
+| `src/scripts/intro.js` | The opening (WebGL2): the fresco, the camera move to the gap, the window, the flash; once per tab |
+| `src/scripts/home.js` | Home page behaviour: the skip links and the current project's image |
 | `src/styles/creation.css` | Home page layout |
-| `public/creation/` | The painting (`whole-group-aa.webp`) and its crop data (`particles.json`) |
+| `public/creation/fresco.webp` | The full fresco (Wikimedia Commons, public domain), 3524 px |
 | `src/styles/tokens.css` | Fonts, colours and type tokens for every page |
 | `src/styles/global.css` | Styles for every page except the home page |
 | `src/layouts/Base.astro`, `src/components/` | Shared layout, header, footer and project page parts |
 
-The home page needs a mouse or trackpad: phones and tablets see a short notice instead. Without WebGL2 or JavaScript it shows the still painting with all 7 projects, and with reduced motion it shows the finished painting at once.
+The home page needs a mouse or trackpad: phones and tablets see a short notice instead. The opening plays once per browser tab and can be skipped (Skip intro or Esc). With reduced motion, at 200–400% zoom, on a repeat visit in the same tab, or without WebGL2 or JavaScript, the page opens on the projects straight away. Each project's image on the home page is the first image of its first layer, so replacing the placeholder `varnish` images changes it.
 
 ## Your details
 
