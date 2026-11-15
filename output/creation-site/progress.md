@@ -33,8 +33,10 @@
 
 - 2026-11-14: **M3 committed** ("Update the README and add the implementation summary") and pushed (approved; no AI markers).
 
+- 2026-11-14: GitHub's `main` (Initial commit: LICENSE, README) merged into the work branch with unrelated histories allowed, keeping the project README (`16b20fc`, decision #13). Tests on the merged tree: check 0 errors, unit 12/12, Playwright 36/36. Pushed as a fast-forward to `origin/main` and to the work branch (approved; no force-push).
+
 ## Next step
-Ask the user for revisions. Open follow-ups are in `summary.md` section 8 (remote `main` has unrelated history; placeholders; schema names).
+Ask the user for revisions. Open follow-ups are in `summary.md` section 8 (placeholders; schema names).
 
 ## Open questions
 - **Repository:** `https://github.com/arinb44/portfolio` (decision #12). It already has a `main` (f86fe95) that is not in the local history. Remote not added yet; ask before adding and before each push.

@@ -14,3 +14,4 @@
 | 10 | 2026-11-14 | D3 repository | A GitHub repository (URL not given yet; ask before the first commit) |
 | 11 | 2026-11-14 | Implementation notes (agent, within the plan; reported) | Shared `Head.astro` instead of a `home` flag on Base; home-only altarpiece components deleted in M1 instead of M2; Playwright uses the real GPU; skip link wired before the scene loads; no-JS shows the finished page |
 | 12 | 2026-11-14 | D3 repository URL | `https://github.com/arinb44/portfolio` |
+| 13 | 2026-11-14 | Getting the project onto GitHub's `main` | Merge GitHub's initial commit into the work (keep its LICENSE, keep the project README), then push to `main`; no force-push |
