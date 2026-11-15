@@ -1,7 +1,7 @@
 # Progress: Creation Site
 
-- **Current phase:** Phase 4, Milestone 2 (other pages and removal)
-- **Status:** waiting for user (commit M2)
+- **Current phase:** Phase 5 (summary)
+- **Status:** complete; waiting for any revision requests
 
 ## Completed milestones
 - 2026-11-14: Project root confirmed: this worktree (`.claude/worktrees/website-design-overhaul-45e304`, branch `claude/website-design-overhaul-45e304`). New project chosen over resuming `altarpiece-portfolio-site`.
@@ -28,8 +28,13 @@
   - Left as is: the content schema's `predella` image field and the layer names `varnish / paint / underpainting / underdrawing` (content files are out of scope); they are no longer shown anywhere.
   - `npm test`: check 0 errors, 11 pages built, unit 12/12, Playwright 36/36. Screenshots of project page (desktop + 390 px), index, About and 404 reviewed.
 
+- 2026-11-14: **M2 committed** as `7935ca7` and pushed (approved; no AI markers).
+- 2026-11-14: M3 done (not yet committed): `README.md` rewritten; Lighthouse: `/` desktop 83 / 100 (LCP 0.2 s, CLS 0, TBT 390 ms, 782 KiB), `/projects/nba-predictor/` mobile 100 / 100 (219 KiB); `summary.md` written. Final `npm test`: check 0 errors, 11 pages, unit 12/12, Playwright 36/36.
+
+- 2026-11-14: **M3 committed** ("Update the README and add the implementation summary") and pushed (approved; no AI markers).
+
 ## Next step
-Commit M2 with approval, ask before pushing. Then M3: update `README.md` (title, removed `scripts/art.mjs`, new structure), Lighthouse on `/` and `/projects/nba-predictor/` (report only), write `summary.md`, propose the last commit.
+Ask the user for revisions. Open follow-ups are in `summary.md` section 8 (remote `main` has unrelated history; placeholders; schema names).
 
 ## Open questions
 - **Repository:** `https://github.com/arinb44/portfolio` (decision #12). It already has a `main` (f86fe95) that is not in the local history. Remote not added yet; ask before adding and before each push.
