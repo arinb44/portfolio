@@ -1,0 +1,436 @@
+[
+ {
+  "dir": "a-starlight",
+  "t": 2.8,
+  "file": "C:/Users/arins/Arin/School/Projects/Portfolio/output/fresco-intro/directions/shots/bg-a-2_8.png",
+  "items": [
+   {
+    "label": "name",
+    "sel": ".site h1",
+    "box": [
+     40,
+     28,
+     445,
+     65
+    ],
+    "color": "rgb(238, 233, 223)"
+   },
+   {
+    "label": "tagline",
+    "sel": ".site .tagline",
+    "box": [
+     40,
+     69,
+     445,
+     94
+    ],
+    "color": "rgb(207, 200, 186)"
+   },
+   {
+    "label": "nav",
+    "sel": ".site nav ul",
+    "box": [
+     1148,
+     43,
+     1400,
+     64
+    ],
+    "color": "rgb(207, 200, 186)"
+   },
+   {
+    "label": "skip to projects",
+    "sel": "a.skip",
+    "box": [
+     24,
+     856,
+     192,
+     874
+    ],
+    "color": "rgb(207, 200, 186)"
+   },
+   {
+    "label": "skip intro",
+    "sel": ".skip-intro",
+    "box": [
+     1318,
+     854,
+     1402,
+     872
+    ],
+    "color": "rgb(238, 233, 223)"
+   }
+  ]
+ },
+ {
+  "dir": "a-starlight",
+  "t": 4.8,
+  "file": "C:/Users/arins/Arin/School/Projects/Portfolio/output/fresco-intro/directions/shots/bg-a-4_8.png",
+  "items": [
+   {
+    "label": "name",
+    "sel": ".site h1",
+    "box": [
+     40,
+     28,
+     445,
+     65
+    ],
+    "color": "rgb(238, 233, 223)"
+   },
+   {
+    "label": "tagline",
+    "sel": ".site .tagline",
+    "box": [
+     40,
+     69,
+     445,
+     94
+    ],
+    "color": "rgb(207, 200, 186)"
+   },
+   {
+    "label": "nav",
+    "sel": ".site nav ul",
+    "box": [
+     1148,
+     43,
+     1400,
+     64
+    ],
+    "color": "rgb(207, 200, 186)"
+   },
+   {
+    "label": "skip to projects",
+    "sel": "a.skip",
+    "box": [
+     24,
+     856,
+     192,
+     874
+    ],
+    "color": "rgb(207, 200, 186)"
+   },
+   {
+    "label": "skip intro",
+    "sel": ".skip-intro",
+    "box": [
+     1318,
+     854,
+     1402,
+     872
+    ],
+    "color": "rgb(238, 233, 223)"
+   }
+  ]
+ },
+ {
+  "dir": "a-starlight",
+  "t": 5.75,
+  "file": "C:/Users/arins/Arin/School/Projects/Portfolio/output/fresco-intro/directions/shots/bg-a-5_75.png",
+  "items": [
+   {
+    "label": "name",
+    "sel": ".site h1",
+    "box": [
+     40,
+     28,
+     445,
+     65
+    ],
+    "color": "rgb(238, 233, 223)"
+   },
+   {
+    "label": "tagline",
+    "sel": ".site .tagline",
+    "box": [
+     40,
+     69,
+     445,
+     94
+    ],
+    "color": "rgb(207, 200, 186)"
+   },
+   {
+    "label": "nav",
+    "sel": ".site nav ul",
+    "box": [
+     1148,
+     43,
+     1400,
+     64
+    ],
+    "color": "rgb(207, 200, 186)"
+   },
+   {
+    "label": "skip to projects",
+    "sel": "a.skip",
+    "box": [
+     24,
+     856,
+     192,
+     874
+    ],
+    "color": "rgb(207, 200, 186)"
+   },
+   {
+    "label": "skip intro",
+    "sel": ".skip-intro",
+    "box": [
+     1318,
+     854,
+     1402,
+     872
+    ],
+    "color": "rgb(238, 233, 223)"
+   }
+  ]
+ },
+ {
+  "dir": "b-pigment",
+  "t": 4.3,
+  "file": "C:/Users/arins/Arin/School/Projects/Portfolio/output/fresco-intro/directions/shots/bg-b-4_3.png",
+  "items": [
+   {
+    "label": "name",
+    "sel": ".site h1",
+    "box": [
+     40,
+     28,
+     445,
+     65
+    ],
+    "color": "rgb(238, 233, 223)"
+   },
+   {
+    "label": "tagline",
+    "sel": ".site .tagline",
+    "box": [
+     40,
+     69,
+     445,
+     94
+    ],
+    "color": "rgb(207, 200, 186)"
+   },
+   {
+    "label": "nav",
+    "sel": ".site nav ul",
+    "box": [
+     1148,
+     43,
+     1400,
+     64
+    ],
+    "color": "rgb(207, 200, 186)"
+   },
+   {
+    "label": "skip to projects",
+    "sel": "a.skip",
+    "box": [
+     24,
+     856,
+     192,
+     874
+    ],
+    "color": "rgb(207, 200, 186)"
+   },
+   {
+    "label": "skip intro",
+    "sel": ".skip-intro",
+    "box": [
+     1318,
+     854,
+     1402,
+     872
+    ],
+    "color": "rgb(238, 233, 223)"
+   }
+  ]
+ },
+ {
+  "dir": "b-pigment",
+  "t": 6.05,
+  "file": "C:/Users/arins/Arin/School/Projects/Portfolio/output/fresco-intro/directions/shots/bg-b-6_05.png",
+  "items": [
+   {
+    "label": "name",
+    "sel": ".site h1",
+    "box": [
+     40,
+     28,
+     445,
+     65
+    ],
+    "color": "rgb(238, 233, 223)"
+   },
+   {
+    "label": "tagline",
+    "sel": ".site .tagline",
+    "box": [
+     40,
+     69,
+     445,
+     94
+    ],
+    "color": "rgb(207, 200, 186)"
+   },
+   {
+    "label": "nav",
+    "sel": ".site nav ul",
+    "box": [
+     1148,
+     43,
+     1400,
+     64
+    ],
+    "color": "rgb(207, 200, 186)"
+   },
+   {
+    "label": "skip to projects",
+    "sel": "a.skip",
+    "box": [
+     24,
+     856,
+     192,
+     874
+    ],
+    "color": "rgb(207, 200, 186)"
+   },
+   {
+    "label": "skip intro",
+    "sel": ".skip-intro",
+    "box": [
+     1318,
+     854,
+     1402,
+     872
+    ],
+    "color": "rgb(238, 233, 223)"
+   }
+  ]
+ },
+ {
+  "dir": "c-looking-up",
+  "t": 5.95,
+  "file": "C:/Users/arins/Arin/School/Projects/Portfolio/output/fresco-intro/directions/shots/bg-c-5_95.png",
+  "items": [
+   {
+    "label": "name",
+    "sel": ".site h1",
+    "box": [
+     40,
+     28,
+     445,
+     65
+    ],
+    "color": "rgb(238, 233, 223)"
+   },
+   {
+    "label": "tagline",
+    "sel": ".site .tagline",
+    "box": [
+     40,
+     69,
+     445,
+     94
+    ],
+    "color": "rgb(207, 200, 186)"
+   },
+   {
+    "label": "nav",
+    "sel": ".site nav ul",
+    "box": [
+     1148,
+     43,
+     1400,
+     64
+    ],
+    "color": "rgb(207, 200, 186)"
+   },
+   {
+    "label": "skip to projects",
+    "sel": "a.skip",
+    "box": [
+     24,
+     856,
+     192,
+     874
+    ],
+    "color": "rgb(207, 200, 186)"
+   },
+   {
+    "label": "skip intro",
+    "sel": ".skip-intro",
+    "box": [
+     1318,
+     854,
+     1402,
+     872
+    ],
+    "color": "rgb(238, 233, 223)"
+   }
+  ]
+ },
+ {
+  "dir": "c-looking-up",
+  "t": 6.4,
+  "file": "C:/Users/arins/Arin/School/Projects/Portfolio/output/fresco-intro/directions/shots/bg-c-6_4.png",
+  "items": [
+   {
+    "label": "name",
+    "sel": ".site h1",
+    "box": [
+     40,
+     28,
+     445,
+     65
+    ],
+    "color": "rgb(238, 233, 223)"
+   },
+   {
+    "label": "tagline",
+    "sel": ".site .tagline",
+    "box": [
+     40,
+     69,
+     445,
+     94
+    ],
+    "color": "rgb(207, 200, 186)"
+   },
+   {
+    "label": "nav",
+    "sel": ".site nav ul",
+    "box": [
+     1148,
+     43,
+     1400,
+     64
+    ],
+    "color": "rgb(207, 200, 186)"
+   },
+   {
+    "label": "skip to projects",
+    "sel": "a.skip",
+    "box": [
+     24,
+     856,
+     192,
+     874
+    ],
+    "color": "rgb(207, 200, 186)"
+   },
+   {
+    "label": "skip intro",
+    "sel": ".skip-intro",
+    "box": [
+     1318,
+     854,
+     1402,
+     872
+    ],
+    "color": "rgb(238, 233, 223)"
+   }
+  ]
+ }
+]

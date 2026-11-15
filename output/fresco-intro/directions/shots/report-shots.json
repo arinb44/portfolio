@@ -1,0 +1,80 @@
+{
+ "a": {
+  "shotErrors": [],
+  "landing": {
+   "1280x800": {
+    "gapPx": [
+     640,
+     400
+    ],
+    "offCentre": 0
+   },
+   "1440x900": {
+    "gapPx": [
+     720,
+     450
+    ],
+    "offCentre": 0
+   },
+   "1920x1080": {
+    "gapPx": [
+     960,
+     540
+    ],
+    "offCentre": 0
+   }
+  }
+ },
+ "b": {
+  "shotErrors": [],
+  "landing": {
+   "1280x800": {
+    "gapPx": [
+     640,
+     400
+    ],
+    "offCentre": 0
+   },
+   "1440x900": {
+    "gapPx": [
+     720,
+     450
+    ],
+    "offCentre": 0
+   },
+   "1920x1080": {
+    "gapPx": [
+     960,
+     540
+    ],
+    "offCentre": 0
+   }
+  }
+ },
+ "c": {
+  "shotErrors": [],
+  "landing": {
+   "1280x800": {
+    "gapPx": [
+     640,
+     400
+    ],
+    "offCentre": 0
+   },
+   "1440x900": {
+    "gapPx": [
+     720,
+     450
+    ],
+    "offCentre": 0
+   },
+   "1920x1080": {
+    "gapPx": [
+     960,
+     540
+    ],
+    "offCentre": 0
+   }
+  }
+ }
+}

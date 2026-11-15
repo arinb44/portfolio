@@ -1,0 +1,155 @@
+{
+ "axe": {
+  "T1": [],
+  "T5": [],
+  "after": []
+ },
+ "tabOrder": [
+  "Skip intro",
+  "Skip to the projects",
+  "Projects",
+  "About",
+  "CV",
+  "Email",
+  "Skip introSkip to the projects"
+ ],
+ "axeErrors": [],
+ "flash": {},
+ "replay": {
+  "sameTabReload": {
+   "skipped": true,
+   "cls": "",
+   "introCanvas": "none",
+   "ring": "1"
+  },
+  "newTab": {
+   "skipped": false,
+   "T": 1.0406000000238425
+  },
+  "errors": []
+ },
+ "zoom": {
+  "200%": {
+   "skipped": true,
+   "cls": "",
+   "skipIntroShown": false,
+   "errors": []
+  },
+  "400%": {
+   "skipped": true,
+   "cls": "",
+   "skipIntroShown": false,
+   "errors": []
+  }
+ },
+ "sizes": {
+  "1280x800": {
+   "0.6": {
+    "header": 0.99,
+    "gapOff": 141.53
+   },
+   "2.8": {
+    "header": 0.96,
+    "gapOff": 140.52
+   },
+   "3.2": {
+    "header": 0.49,
+    "gapOff": 133.46
+   },
+   "5.7": {
+    "header": 0,
+    "gapOff": 0
+   },
+   "6.8": {
+    "header": 0.89,
+    "gapOff": 0
+   }
+  },
+  "1440x900": {
+   "0.6": {
+    "header": 1,
+    "gapOff": 159.22
+   },
+   "2.8": {
+    "header": 1,
+    "gapOff": 158.09
+   },
+   "3.2": {
+    "header": 0.88,
+    "gapOff": 150.15
+   },
+   "5.7": {
+    "header": 0,
+    "gapOff": 0
+   },
+   "6.8": {
+    "header": 0.89,
+    "gapOff": 0
+   }
+  },
+  "1920x1080": {
+   "0.6": {
+    "header": 1,
+    "gapOff": 212.3
+   },
+   "2.8": {
+    "header": 1,
+    "gapOff": 210.78
+   },
+   "3.2": {
+    "header": 0.65,
+    "gapOff": 200.2
+   },
+   "5.7": {
+    "header": 0,
+    "gapOff": 0
+   },
+   "6.8": {
+    "header": 0.89,
+    "gapOff": 0
+   }
+  }
+ },
+ "reduced": {
+  "axeDuringStill": [],
+  "holdMs": 2403,
+  "cls": "revealed",
+  "errors": []
+ },
+ "skip": "click and Esc both finish",
+ "runs": [
+  {
+   "avgFps": 143.4,
+   "p95ms": 7.1,
+   "worstMs": 34.6,
+   "worstAfterStartMs": 7.4,
+   "over20msAfterStart": 0,
+   "startMs": 423,
+   "errors": []
+  },
+  {
+   "avgFps": 143.6,
+   "p95ms": 7.1,
+   "worstMs": 27.8,
+   "worstAfterStartMs": 7.4,
+   "over20msAfterStart": 0,
+   "startMs": 429,
+   "errors": []
+  },
+  {
+   "avgFps": 143.6,
+   "p95ms": 7.2,
+   "worstMs": 27.7,
+   "worstAfterStartMs": 7.4,
+   "over20msAfterStart": 0,
+   "startMs": 446,
+   "errors": []
+  }
+ ],
+ "noWebGL": {
+  "cls": "static revealed",
+  "done": true,
+  "still": "block",
+  "errors": []
+ }
+}

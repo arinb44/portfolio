@@ -1,0 +1,74 @@
+{
+ "a": {
+  "run": {
+   "count": 625742,
+   "timeToStartMs": 1386,
+   "playMs": 7039,
+   "frames": 1014,
+   "avgFps": 141.5,
+   "p95ms": 7.1,
+   "worstMs": 132,
+   "longAtT": 0,
+   "over50ms": 1,
+   "loadEventMs": 653,
+   "htmlClass": "",
+   "ringOpacity": "1",
+   "introDisplay": "none",
+   "errors": []
+  }
+ },
+ "b": {
+  "run": {
+   "count": 625742,
+   "timeToStartMs": 736,
+   "playMs": 7306,
+   "frames": 1052,
+   "avgFps": 143.3,
+   "p95ms": 7.1,
+   "worstMs": 41.6,
+   "longAtT": 0,
+   "over50ms": 0,
+   "loadEventMs": 328,
+   "htmlClass": "",
+   "ringOpacity": "1",
+   "introDisplay": "none",
+   "errors": []
+  }
+ },
+ "c": {
+  "run": {
+   "count": 625742,
+   "timeToStartMs": 524,
+   "playMs": 7305,
+   "frames": 1052,
+   "avgFps": 143.3,
+   "p95ms": 7.1,
+   "worstMs": 41.6,
+   "longAtT": 0,
+   "over50ms": 0,
+   "loadEventMs": 128,
+   "htmlClass": "",
+   "ringOpacity": "1",
+   "introDisplay": "none",
+   "errors": []
+  }
+ },
+ "skip": {
+  "firstTabStop": "skip-intro:Skip intro",
+  "skipToDoneMs": 305,
+  "cls": ""
+ },
+ "esc": {
+  "escToDoneMs": 310
+ },
+ "skipToProjects": {
+  "cls": "revealed backdrop-on",
+  "focus": "View project: Falling Constellations",
+  "done": true
+ },
+ "reduced": {
+  "holdMs": 2405,
+  "cls": "revealed",
+  "errors": []
+ }
+}
