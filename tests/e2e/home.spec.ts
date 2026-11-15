@@ -4,7 +4,7 @@ import AxeBuilder from '@axe-core/playwright';
 // Featured first, then `order` (design decision #3).
 const SLUGS = ['falling-constellations', 'nfl-predictor', 'nba-predictor', 'mlb-predictor', 'hearth', 'juno', 'nightfall'];
 const html = 'html';
-// The opening (src/scripts/intro.js) runs 4.5 s once the fresco has loaded.
+// The opening (src/scripts/intro.js) runs 4.7 s once the fresco has loaded.
 const SHOWCASE = { timeout: 15_000 };
 
 const axe = async (page: import('@playwright/test').Page) => {

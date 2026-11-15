@@ -1,7 +1,7 @@
 # Progress: Fresco Intro
 
-- **Current phase:** Phase 5 (final delivery, after Amendment 2)
-- **Status:** round 4 committed and pushed on `fresco-intro`; waiting for any revision requests
+- **Current phase:** Phase 5 (delivery of round 5)
+- **Status:** round 5 committed and pushed on `fresco-intro`; waiting for any revision requests
 
 ## Completed milestones
 - 2026-11-14: Project root confirmed (`C:\Users\arins\Arin\School\Projects\Portfolio`); new project chosen over resuming `creation-redesign` (decisions #1, #2).
@@ -71,8 +71,20 @@
 
 - 2026-11-15: The port (Amendment 3) and round 4 committed on `fresco-intro` and pushed to `origin` (approved; raw `bg-*` / `land-*` captures left out).
 
+- 2026-11-15: Round 5 (decision #33: all four ideas) built as a prototype in `iterations/round-5/` (the site's round 4 page + `shared/intro.js` with `?fx=touch,light,depth,camera`, all on by default; the review bar has a switch per idea):
+  - camera: close on God's face (2029, 358) -> shoulder -> elbow -> wrist -> gap (creation-redesign's traced arm, God mask found at (1339, 43) in the full image), roll -3.4 deg settling.
+  - depth: `tools/make_depth.py` -> `data/fresco-depth.png` (881 x 399, smooth: God's traced mask + Adam/ground keyed from the plaster); figures lead the camera (6% of its offset) and swell (5%, +12% in the dive); focus pull (up to 2.6 mip levels at the screen edges).
+  - light: 420 dust motes with parallax, light running along the plaster's cracks to the gap (2.2-3.5 s), rays from the gap (3.3-3.95 s).
+  - touch: the fingertips warp across to meet at the midline (3.0-3.55 s), spark at contact; the seam was softened (2.5 px band, 8 px capsules).
+  - Timeline: land 3.0, touch 3.55, light gathers 3.55-3.95, dive 3.7-4.5, flash peak 4.15 (projects appear), end 4.7.
+  - Tests (scratchpad `r5.cjs`, `touch.cjs`): landing 0 px off-centre in every variant; 142.9 / 143.1 fps at pixel ratio 1 / 1.5, no frame over 7.5 ms after the start; no console errors. Shots `iterations/round-5/shots/` (`sheet-r5-*.png`, `touch-closeup.png`).
+
+- 2026-11-15: All four round 5 ideas go into the site (#34); depth map copied to `public/creation/fresco-depth.png` (#35, 29 KB). `src/scripts/intro.js` = round 5 engine with site paths. `npm test`: check 0 errors, 11 pages, unit 12/12, Playwright 41/41. Live site (`npm run dev`): 142.9 fps at pixel ratio 1.5, landing 0 px off-centre, no errors; shots `iterations/round-5/shots-site/sheet-site.png`. `design-spec.md` and `README.md` updated.
+
+- 2026-11-15: Round 5 committed on `fresco-intro` and pushed to `origin` (approved; raw `bg-*` / `land-*` captures left out).
+
 ## Next step
-Ask for revisions. Then: real screenshots for the 7 projects and a contrast re-check (nav 4.98:1 thinnest); merging `fresco-intro` into `main` only if the user asks.
+Ask for revisions. Then: real screenshots and a contrast re-check; check the opening on a weaker GPU / another browser; merging into `main` only if the user asks.
 
 ## Open questions
 - **Repository:** `https://github.com/arinb44/portfolio` (decision #16), branch `fresco-intro`. Ask before every push.

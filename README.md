@@ -1,6 +1,6 @@
 # Portfolio: The Creation
 
-A static Astro site. The home page opens on Michelangelo's full *The Creation of Adam*: the camera lands on the gap between God's and Adam's fingers, the gap opens like a window, and each project's own image fills the screen behind its card. The design spec is `output/fresco-intro/design-spec.md`.
+A static Astro site. The home page opens on Michelangelo's full *The Creation of Adam*: the camera sweeps from God's face along his arm to the gap between his and Adam's fingers, light gathers, the fingertips touch, the whole screen flashes, and the projects are there, each project's own image filling the screen behind its card. The design spec is `output/fresco-intro/design-spec.md`.
 
 ## Commands
 
@@ -22,10 +22,11 @@ The browser tests run Chromium on the real GPU (`playwright.config.ts` passes `-
 | Path | What |
 |---|---|
 | `src/pages/index.astro` | Home page: name, nav, Skip intro, each project's main image (the first `varnish` image), the opening's canvas and the 7 project cards |
-| `src/scripts/intro.js` | The opening (WebGL2): the fresco, the camera move to the gap, the window, the flash; once per tab |
+| `src/scripts/intro.js` | The opening (WebGL2): the camera along God's arm, depth and focus, dust and light, the touch, the flash; once per tab |
 | `src/scripts/home.js` | Home page behaviour: the skip links and the current project's image |
 | `src/styles/creation.css` | Home page layout |
 | `public/creation/fresco.webp` | The full fresco (Wikimedia Commons, public domain), 3524 px |
+| `public/creation/fresco-depth.png` | Its smooth depth map (figures vs plaster), made by `output/fresco-intro/tools/make_depth.py` |
 | `src/styles/tokens.css` | Fonts, colours and type tokens for every page |
 | `src/styles/global.css` | Styles for every page except the home page |
 | `src/layouts/Base.astro`, `src/components/` | Shared layout, header, footer and project page parts |

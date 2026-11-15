@@ -1,0 +1,39 @@
+{
+ "errors": [],
+ "landing": {
+  "all@3.25": [
+   720,
+   450
+  ],
+  "depth@3": [
+   720,
+   450
+  ],
+  "light@3": [
+   720,
+   450
+  ],
+  "touch@3": [
+   720,
+   450
+  ],
+  "none@3": [
+   720,
+   450
+  ]
+ },
+ "run_dpr1": {
+  "playMs": 4701,
+  "avgFps": 142.9,
+  "p95ms": 7.1,
+  "worstAfterStartMs": 7.5,
+  "over20": 0
+ },
+ "run_dpr1.5": {
+  "playMs": 4705,
+  "avgFps": 143.1,
+  "p95ms": 7.1,
+  "worstAfterStartMs": 7.3,
+  "over20": 0
+ }
+}

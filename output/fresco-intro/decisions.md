@@ -34,3 +34,6 @@
 | 30 | 2026-11-15 | The flash (revises "no full-screen white" from setup) | The entire screen flashes, warm white; the projects simply appear at the flash, no fade-in |
 | 31 | 2026-11-15 | The window opening | Removed: the camera pushes into the gap and the flash does the work |
 | 32 | 2026-11-15 | Framing and header during the opening | The fresco covers the entire screen; the header is not shown (kept for screen readers; shows on a solid band if it takes keyboard focus). Skip intro and Skip to the projects stay |
+| 33 | 2026-11-15 | Make the opening more animated: which ideas to prototype | All four: the touch, light builds, depth and focus, cinematic camera (round 5, switchable variants in output/ before the site changes) |
+| 34 | 2026-11-15 | Which round 5 ideas go into the site | All four: cinematic camera, depth and focus, light builds, the touch |
+| 35 | 2026-11-15 | Path for the depth map | `public/creation/fresco-depth.png` (copied from `data/fresco-depth.png`) |
