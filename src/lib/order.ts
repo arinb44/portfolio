@@ -19,7 +19,7 @@ export function sortProjects<T extends Entry>(entries: T[]): T[] {
   return sorted;
 }
 
-/** Previous and next project in predella order, wrapping at both ends (spec 3.2). */
+/** Previous and next project in `order`, wrapping at both ends. */
 export function neighbours<T extends Entry>(sorted: T[], id: string): { prev: T; next: T } {
   const i = sorted.findIndex((e) => e.id === id);
   if (i === -1) throw new Error(`Unknown project: ${id}`);

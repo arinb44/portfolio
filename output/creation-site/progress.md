@@ -1,7 +1,7 @@
 # Progress: Creation Site
 
-- **Current phase:** Phase 4, Milestone 1 (home page)
-- **Status:** waiting for user (approve `git remote add`, then commit M1)
+- **Current phase:** Phase 4, Milestone 2 (other pages and removal)
+- **Status:** waiting for user (commit M2)
 
 ## Completed milestones
 - 2026-11-14: Project root confirmed: this worktree (`.claude/worktrees/website-design-overhaul-45e304`, branch `claude/website-design-overhaul-45e304`). New project chosen over resuming `altarpiece-portfolio-site`.
@@ -20,8 +20,16 @@
   - `npm test`: check 0 errors, 11 pages built, unit 18/18, Playwright 37/37.
   - GPU cursor journey at 1440 x 900: reveal fires, 2 wheel steps reach project 3, no console errors; the revealed frame matches `final/shots/final-6-revealed.png`.
 
+- 2026-11-14: Repository `https://github.com/arinb44/portfolio` (decision #12); remote `origin` added with approval. **M1 committed** as `c615a41` and pushed to `origin/claude/website-design-overhaul-45e304` (approved; no AI markers). The remote's own `main` (f86fe95) is unrelated history and was not touched.
+- 2026-11-14: M2 built (not yet committed):
+  - `tokens.css` reduced to the Night Sky tokens; `global.css` rewritten for the other pages; `contrast-pairs.ts` now 5 pairs.
+  - Header (name + Projects, About, CV, Email), footer (GitHub, Credits), project page (plain headings, no layer labels, plain `<Picture>`), projects index ("Projects"), About (new credits), 404 ("Page not found"), new favicon (gold ring).
+  - Deleted: `SfumatoPicture.astro`, `src/assets/art/`, `scripts/art.mjs`, the image-load script and `edges` in `Base.astro`.
+  - Left as is: the content schema's `predella` image field and the layer names `varnish / paint / underpainting / underdrawing` (content files are out of scope); they are no longer shown anywhere.
+  - `npm test`: check 0 errors, 11 pages built, unit 12/12, Playwright 36/36. Screenshots of project page (desktop + 390 px), index, About and 404 reviewed.
+
 ## Next step
-Add the remote and commit M1, each with approval; ask before pushing. Then M2: rewrite `global.css` in Night Sky, restyle Header / Footer / project pages / index / About / 404 with plain headings, delete `SfumatoPicture.astro`, `src/assets/art/`, `scripts/art.mjs`, the image-load script in `Base.astro` and the old tokens; update `site.spec.ts` and `contrast-pairs.ts`.
+Commit M2 with approval, ask before pushing. Then M3: update `README.md` (title, removed `scripts/art.mjs`, new structure), Lighthouse on `/` and `/projects/nba-predictor/` (report only), write `summary.md`, propose the last commit.
 
 ## Open questions
 - **Repository:** `https://github.com/arinb44/portfolio` (decision #12). It already has a `main` (f86fe95) that is not in the local history. Remote not added yet; ask before adding and before each push.

@@ -7,25 +7,15 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
-  /** Project pages reserve room at the sides for the fixed prev/next edge wings. */
-  edges?: boolean;
 }
-const { title, description, edges = false } = Astro.props;
+const { title, description } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
   <head>
     <Head title={title} description={description} />
-    <script is:inline>
-      // M13: images fade in from their blurred placeholder once loaded (or failed). Without JS they simply show.
-      document.documentElement.classList.add('js');
-      // On document, not window: element load events never reach window.
-      for (const type of ['load', 'error']) {
-        document.addEventListener(type, (e) => e.target instanceof HTMLImageElement && e.target.classList.add('loaded'), true);
-      }
-    </script>
   </head>
-  <body class:list={{ 'has-edges': edges }}>
+  <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <Header />
     <main id="main" tabindex="-1"><slot /></main>

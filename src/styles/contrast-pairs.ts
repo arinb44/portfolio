@@ -1,15 +1,9 @@
-// Every foreground/background pair the CSS uses, with the WCAG AA minimum it must meet (spec 6.1).
+// Every foreground/background pair the CSS uses, with the WCAG AA minimum it must meet.
 // tests/unit/contrast.test.ts checks them against the real values in tokens.css. Add a row before using a new pair.
 export const PAIRS: [fg: string, bg: string, use: string, min: number][] = [
-  ['ink', 'gesso', 'body text', 4.5],
-  ['stone-700', 'gesso', 'captions, labels, stack line', 4.5],
-  ['ultramarine', 'gesso', 'links; focus ring on light (3:1 non-text)', 4.5],
-  ['gesso', 'ultramarine', 'primary button text', 4.5],
-  ['gesso', 'umber', 'secondary button text', 4.5],
-  ['gesso', 'verdigris', '"Finished" tag', 4.5],
-  ['gesso', 'vermilion', '"In progress" tag', 4.5],
-  ['ink', 'stone-200', 'prev/next edge wing text', 4.5],
-  ['gesso', 'ink', 'skip link text; arrival inscription', 4.5],
-  ['ochre', 'ink', 'arrival "Open ▸" hint text', 4.5],
-  ['ochre', 'ink', 'focus ring on dark (non-text)', 3],
+  ['gesso', 'ink', 'body text, titles', 4.5],
+  ['stone-200', 'ink', 'tagline, nav, meta, captions', 4.5],
+  ['gold', 'ink', 'labels and the project count', 4.5],
+  ['ink', 'gesso', 'pill button and skip link text', 4.5],
+  ['ochre', 'ink', 'focus ring (non-text)', 3],
 ];

@@ -1,7 +1,7 @@
 ---
 import type { GetStaticPaths } from 'astro';
 import Base from '../../layouts/Base.astro';
-import SfumatoPicture from '../../components/SfumatoPicture.astro';
+import { Picture } from 'astro:assets';
 import ProjectLayers from '../../components/ProjectLayers.astro';
 import ProjectNav from '../../components/ProjectNav.astro';
 import { getProjects } from '../../lib/projects';
@@ -17,15 +17,16 @@ export const getStaticPaths = (async () => {
 
 const { project, prev, next } = Astro.props;
 const { data } = project;
-const varnish = data.layers[0];
-const hero = varnish.images[0];
+const lead = data.layers[0];
+const hero = lead.images[0];
 const coldStart = data.demo.url && (data.demo.coldStartSeconds ?? 0) > 10 ? data.demo.coldStartSeconds : undefined;
 ---
-<Base title={data.title} description={data.oneLine} edges>
+<Base title={data.title} description={data.oneLine}>
   <article class="project">
-    <!-- Result first (spec 2.1): everything a reviewer needs is in this block. -->
+    <!-- Result first: everything a reviewer needs is in this block. -->
     <header class="project-hero">
       <div class="project-summary">
+        <p class="label">{data.year}{data.featured && ' · Featured'}</p>
         <h1>{data.title}</h1>
         <p class="one-line">{data.oneLine}</p>
         {data.metric && (
@@ -34,23 +35,21 @@ const coldStart = data.demo.url && (data.demo.coldStartSeconds ?? 0) > 10 ? data
             <span class="metric-context">{data.metric.baseline && `vs ${data.metric.baseline} · `}{data.metric.context}</span>
           </p>
         )}
-        <p><span class="label">Role</span> {data.role}</p>
-        <ul class="chips" aria-label="Stack">
-          {data.stack.map((s) => <li>{s}</li>)}
-        </ul>
+        <p class="meta">Role: {data.role}</p>
+        <p class="meta">{data.stack.join(', ')}</p>
         <p class="actions">
           {data.demo.url && <a class="button" href={data.demo.url}>Live demo<span aria-hidden="true"> ↗</span></a>}
-          <a class="button button-secondary" href={data.repo}>Code<span aria-hidden="true"> ↗</span></a>
+          <a href={data.repo}>Code<span aria-hidden="true"> ↗</span></a>
         </p>
         {coldStart && (
           <p class="note">The demo's server sleeps when idle, so its first load can take up to {coldStart} seconds.</p>
         )}
       </div>
-      <figure class="project-varnish">
-        <SfumatoPicture src={hero.src} alt={hero.alt} widths={[480, 800, 1200, 1600]} sizes="(min-width: 60rem) 55vw, 100vw" loading="eager" fetchpriority="high" />
-        <figcaption><span class="layer-label">Layer 1 of 4 · Varnish ({varnish.status === 'finished' ? 'finished' : 'in progress'})</span> {hero.caption}</figcaption>
+      <figure class="project-figure">
+        <Picture src={hero.src} alt={hero.alt} formats={['avif', 'webp']} widths={[480, 800, 1200, 1600]} sizes="(min-width: 48rem) 55vw, 100vw" loading="eager" fetchpriority="high" />
+        <figcaption>{hero.caption}</figcaption>
       </figure>
-      <p class="varnish-text">{varnish.text}</p>
+      <p class="lead-text">{lead.text}</p>
     </header>
     <ProjectLayers layers={data.layers} />
   </article>

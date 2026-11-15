@@ -1,20 +1,16 @@
+/* Every page except the home page (that one is creation.css): Night Sky colours, Atlas type, a plain reading layout. */
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-padding-top: calc(var(--header-h) + 1rem); } /* sticky header never covers focus (spec 8.1) */
+html { background: var(--bg); color: var(--text); font: 1.0625rem/1.6 var(--font-body); }
+body { margin: 0; }
 
-body {
-  margin: 0;
-  background: var(--gesso);
-  color: var(--ink);
-  font: 1.125rem/1.6 var(--font-body);
-}
-
-h1 { font: 600 clamp(2rem, 4vw, 3rem)/1.15 var(--font-display); }
-h2 { font: 600 clamp(1.5rem, 2.2vw, 1.75rem)/1.25 var(--font-body); }
+h1 { margin: 0 0 1rem; font: 400 clamp(2.5rem, 6vw, 3.75rem)/1.05 var(--font-display); text-wrap: balance; overflow-wrap: anywhere; }
+h2 { margin: 0 0 0.75rem; font: 400 clamp(1.5rem, 3vw, 2rem)/1.2 var(--font-display); text-wrap: balance; }
+p { text-wrap: pretty; }
 
 img { display: block; max-width: 100%; height: auto; }
-a { color: var(--ultramarine); text-underline-offset: 0.15em; }
-:focus-visible { outline: 3px solid var(--ultramarine); outline-offset: 2px; }
+a { color: inherit; text-underline-offset: 0.2em; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
 main:focus { outline: none; } /* focused only as the skip-link target */
 
 .visually-hidden {
@@ -26,161 +22,67 @@ main:focus { outline: none; } /* focused only as the skip-link target */
 
 .skip-link {
   position: absolute; left: 1rem; top: -100%; z-index: 100;
-  padding: 0.5rem 1rem;
-  background: var(--ink); color: var(--gesso);
+  padding: 0.5rem 1rem; border-radius: 999px;
+  background: var(--text); color: var(--bg); font: 0.875rem/1.5 var(--font-label);
 }
 .skip-link:focus { top: 0.5rem; }
-.skip-link:focus-visible { outline-color: var(--ochre); }
 
-/* Header and footer */
+/* Header and footer: the home page's name and nav, in the flow */
 .site-header {
-  position: sticky; top: 0; z-index: 10;
-  min-height: var(--header-h);
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
-  gap: 0.25rem 1.5rem;
-  padding: 0.5rem var(--gutter);
-  background: var(--gesso);
-  border-bottom: 1px solid var(--stone-200);
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.5rem 2rem;
+  padding: 1.75rem var(--gutter) 1.25rem;
 }
-.site-name { margin: 0; font: 600 1.25rem/1.3 var(--font-body); color: var(--ink); text-decoration: none; }
-.site-name a { color: inherit; text-decoration: none; }
-.site-header ul { display: flex; gap: 1.25rem; margin: 0; padding: 0; list-style: none; }
-.site-header nav a { color: var(--ink); }
-.site-header [aria-current='page'] { font-weight: 600; }
+.site-name { font: 400 1.5rem/1.15 var(--font-display); text-decoration: none; }
+.site-header ul { display: flex; flex-wrap: wrap; gap: 0 1.75rem; margin: 0; padding: 0; list-style: none; font: 0.875rem/1.5 var(--font-label); }
+.site-header nav a { display: inline-block; padding-block: 0.25rem; color: var(--muted); text-decoration: none; }
+.site-header nav a:hover, .site-header [aria-current='page'] { color: var(--text); }
 
-main { display: block; max-width: 80rem; margin-inline: auto; padding: 1.5rem var(--gutter) 4rem; }
-.site-footer { padding: 1.5rem var(--gutter); border-top: 1px solid var(--stone-200); }
-.site-footer p { margin: 0; }
+main { display: block; max-width: 72rem; margin-inline: auto; padding: 2.5rem var(--gutter) 5rem; }
+.site-footer { max-width: 72rem; margin-inline: auto; padding: 1.5rem var(--gutter) 2.5rem; border-top: 1px solid var(--line); color: var(--muted); font: 0.8125rem/1.5 var(--font-label); }
+.site-footer p { display: flex; gap: 1.5rem; margin: 0; }
+.site-footer a { display: inline-block; padding-block: 0.25rem; }
 
 /* Shared bits */
+.label { margin: 0 0 0.75rem; font: 0.8125rem/1.5 var(--font-label); letter-spacing: 0.06em; color: var(--accent); }
+.meta { margin: 0 0 0.5rem; font: 0.875rem/1.6 var(--font-label); color: var(--muted); }
 .link-list { margin: 0; padding: 0; list-style: none; }
 .link-list li + li { margin-top: 0.25rem; }
-.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.25rem; }
-.button {
-  display: inline-block; padding: 0.5rem 1rem;
-  background: var(--ultramarine); color: var(--gesso);
-  text-decoration: none; border-radius: 2px;
-}
-.button-secondary { background: var(--umber); }
-.eyebrow, .label, .layer-label {
-  font: 0.8125rem/1.4 var(--font-label);
-  letter-spacing: 0.08em; text-transform: uppercase; color: var(--stone-700);
-}
-.label { margin-right: 0.5rem; }
-.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0; padding: 0; list-style: none; }
-.chips li { padding: 0.125rem 0.625rem; border: 1px solid var(--stone-500); }
-.tag { display: inline-block; margin: 0; padding: 0.125rem 0.5rem; color: var(--gesso); font-size: 0.875rem; }
-.tag-finished { background: var(--verdigris); }
-.tag-in-progress { background: var(--vermilion); }
-.note { padding: 0.25rem 1rem; border-left: 3px solid var(--vermilion); }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.5rem; margin: 1.5rem 0 0; font: 0.9375rem/1.5 var(--font-label); }
+.actions a { display: inline-flex; align-items: center; min-height: 24px; }
+.button { padding: 0.6rem 1.1rem; border-radius: 999px; background: var(--text); color: var(--bg); text-decoration: none; }
+.note { margin: 1.25rem 0 0; padding-left: 1rem; border-left: 2px solid var(--accent); color: var(--muted); }
 .prose { max-width: 40rem; }
+.prose h2 { margin-top: 2.5rem; }
 figure { margin: 0; }
-figcaption { margin-top: 0.5rem; font-size: 0.9375rem; color: var(--stone-700); }
+figcaption { margin-top: 0.5rem; font: 0.8125rem/1.5 var(--font-label); color: var(--muted); }
 
-/* Home: the open altarpiece (wireframe 02: wings are half the main panel's width) */
-/* Gold-leaf frame: the tooled gold ground shows in the gaps between the panels (spec 6.3). */
-.altarpiece {
-  display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 6px; padding: 6px;
-  background: var(--gold) url('../assets/art/gold-ground.jpg') center / cover;
-}
-.main-panel, .wing-front { padding: 1.25rem 1.5rem; background: var(--gesso); }
-.wing h2 { margin-top: 0; }
-.emblem { max-width: 12rem; margin-top: 1.5rem; }
-.main-panel img { width: 100%; aspect-ratio: 2 / 1; object-fit: cover; } /* keeps the predella on the first screen */
-.main-panel h2 { margin: 0.25rem 0; }
-.main-panel p { margin: 0.5rem 0; }
-.stack { color: var(--stone-700); }
-
-.predella { margin-top: 1.5rem; }
-.predella ul { display: flex; gap: 1rem; margin: 0; padding: 0; list-style: none; }
-.predella > ul { flex-wrap: wrap; justify-content: center; }
-.series { display: flex; flex-direction: column; }
-.series > span { order: 1; margin-top: 0.5rem; padding-top: 0.25rem; border-top: 2px solid var(--gold); text-align: center; font-style: italic; }
-/* relative: keeps the visually hidden "(featured)" inside the phone scroll strip instead of widening the page */
-.scene {
-  position: relative; display: block; width: 8.5rem; color: var(--ink); text-decoration: none;
-  transition: translate var(--dur-glint) var(--ease-standard);
-}
-.scene-art { display: block; margin-bottom: 0.375rem; border: 3px solid var(--gold); }
-.scene-art img { width: 100%; aspect-ratio: 1; object-fit: cover; }
-.scene-title { text-decoration: underline; text-underline-offset: 0.15em; }
-
-/* M4 glint: the scene lifts 4 px and a gold sheen with a punchwork ring catches the light (100 ms). */
-.scene-art::before {
-  content: ''; position: absolute; inset: 4px; z-index: 1; pointer-events: none;
-  border: 3px dotted var(--gold);
-  background: linear-gradient(120deg, transparent 30%, rgb(200 162 74 / 0.45) 50%, transparent 70%);
-  opacity: 0; transition: opacity var(--dur-glint) var(--ease-standard);
-}
-.scene:hover, .scene:focus-visible { translate: 0 -4px; }
-.scene:hover .scene-art::before, .scene:focus-visible .scene-art::before { opacity: 1; }
-@media (prefers-reduced-motion: reduce) {
-  .scene:hover, .scene:focus-visible { translate: none; } /* sheen only, no lift */
-}
-
-/* Craquelure: straight Flemish cracks over painted panels only, never behind text (spec 6.3). */
-.crackle { position: relative; display: block; }
-.crackle::after {
-  content: ''; position: absolute; inset: 0; pointer-events: none;
-  background: url('../assets/art/craquelure.svg'); opacity: 0.06;
-}
-
-/* M13 sfumato load: the sharp image fades in over a statically blurred tiny copy. */
-.sfumato { position: relative; display: block; overflow: hidden; }
-.sfumato::before { content: ''; position: absolute; inset: 0; background: var(--lqip) center / cover; filter: blur(12px); scale: 1.1; }
-.sfumato img { position: relative; transition: opacity var(--dur-glaze) linear; }
-.js .sfumato img:not(.loaded) { opacity: 0; }
-
-/* About: the grisaille exterior flanks the text (spec 3.1) */
-.about { display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 40rem) minmax(0, 14rem); justify-content: center; align-items: start; gap: 2.5rem; }
-.about-wing { width: 100%; border: 4px solid var(--gold); }
-
-/* Index */
+/* Projects index */
 .table-scroll { overflow-x: auto; }
 .index-table { width: 100%; min-width: 40rem; border-collapse: collapse; }
-.index-table caption { text-align: left; margin-bottom: 0.5rem; font-weight: 600; }
-.index-table th, .index-table td { padding: 0.75rem 0.5rem; border-bottom: 1px solid var(--stone-200); text-align: left; vertical-align: top; }
+.index-table caption { text-align: left; margin-bottom: 0.5rem; }
+.index-table th, .index-table td { padding: 0.9rem 1rem 0.9rem 0; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; font-weight: 400; }
+.index-table thead th, .index-table caption { font: 0.8125rem/1.5 var(--font-label); letter-spacing: 0.06em; color: var(--muted); }
+.index-table tbody th { font: 400 1.25rem/1.3 var(--font-display); }
 
-/* Project page */
-.project-hero {
-  display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 1rem 2.5rem;
-  align-items: start;
-}
-.project-hero h1 { margin-top: 0; }
-.metric strong { font-size: 2rem; }
-.metric-context { display: block; color: var(--stone-700); }
-.varnish-text { grid-column: 2; margin: 0; }
-.layer { max-width: 48rem; margin-top: 3rem; }
-.layer h2 { margin-bottom: 0.5rem; }
-.layer figure { margin-top: 1rem; }
+/* Project page: the result first, then the three sections */
+.project-hero { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 1.5rem 3rem; align-items: start; }
+.one-line { margin: 0 0 1.25rem; font-size: 1.1875rem; line-height: 1.55; }
+.metric { margin: 0 0 1.25rem; }
+.metric strong { display: block; font: 400 2.5rem/1.1 var(--font-display); }
+.metric-context { display: block; color: var(--muted); }
+.project-summary { grid-row: span 2; } /* the image and its lead text sit beside the summary, no gap */
+.lead-text { grid-column: 2; margin: 0; }
+.section { max-width: 48rem; margin-top: 4rem; }
+.section figure { margin-top: 1.25rem; }
+.project-nav { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin: 4rem 0 0; padding-top: 1.25rem; border-top: 1px solid var(--line); font: 0.9375rem/1.5 var(--font-label); }
+.project-nav a { display: inline-block; padding-block: 0.25rem; }
 
-.project-nav-bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--stone-200); }
-.edge {
-  position: fixed; top: 50%; translate: 0 -50%; z-index: 5;
-  width: var(--edge-w); min-height: 12rem; padding: 0.75rem 0;
-  display: flex; align-items: center; justify-content: center;
-  writing-mode: vertical-rl;
-  background: var(--stone-200); color: var(--ink); text-decoration: none;
-}
-.edge-prev { left: 0; }
-.edge-next { right: 0; }
-.has-edges { padding-inline: var(--edge-w); } /* fixed wings never cover content or focus (spec 8.1) */
-
-/* Phones: wings stack, predella scrolls sideways, edge wings give way to the bottom bar (wireframe 04) */
 @media (max-width: 47.99rem) {
-  :root { --header-h: 5.5rem; } /* the header wraps to two lines here */
-  .altarpiece { grid-template-columns: 1fr; }
-  .about { grid-template-columns: 1fr; }
-  .about-wing { display: none; }
-  .predella > ul { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 0.5rem; }
-  .predella li { scroll-snap-align: start; flex-shrink: 0; }
   .project-hero { grid-template-columns: 1fr; }
-  .varnish-text { grid-column: auto; }
-  .edge { display: none; }
-  .has-edges { padding-inline: 0; }
+  .project-summary { grid-row: auto; }
+  .lead-text { grid-column: auto; }
 }
 
 @media print {
   .skip-link, .site-header nav, .site-footer, .project-nav { display: none; }
-  .site-header { position: static; }
 }

@@ -3,11 +3,11 @@ import Base from '../../layouts/Base.astro';
 import { getProjects } from '../../lib/projects';
 
 const projects = await getProjects();
-// Featured first, then predella order (wireframe 05).
+// Featured first, then `order`, as on the home page.
 const rows = [...projects.filter((p) => p.data.featured), ...projects.filter((p) => !p.data.featured)];
 ---
-<Base title="Index" description="Every project in one plain table.">
-  <h1>Index</h1>
+<Base title="Projects" description="Every project in one plain table.">
+  <h1>Projects</h1>
   <div class="table-scroll" role="region" aria-labelledby="index-caption" tabindex="0">
     <table class="index-table">
       <caption id="index-caption">All projects</caption>

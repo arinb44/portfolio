@@ -17,18 +17,13 @@
 }
 
 :root {
-  /* Palette: pigments from the Merode triptych (spec 6.1, decision #19). */
+  /* Pigment palette, kept from the first design (design decision #5). */
   --gesso: #EEE9DF;
   --stone-200: #CFC8BA;
-  --stone-500: #857F75; /* large text only */
-  --stone-700: #4A4740;
+  --stone-700: #4A4740; /* hairlines only, never text */
   --ink: #1F1D1A;
-  --ultramarine: #24407A;
-  --vermilion: #B03F2C;
-  --verdigris: #2F6A53;
-  --umber: #5A3E2B;
   --ochre: #C29545;
-  --gold: #C8A24A; /* decoration only on light backgrounds */
+  --gold: #C8A24A;
 
   /* Night Sky look (design decision #24) */
   --bg: var(--ink);
@@ -36,24 +31,11 @@
   --muted: var(--stone-200);
   --accent: var(--gold);
   --focus: var(--ochre);
+  --line: var(--stone-700);
 
   --font-display: 'Gloock', Georgia, serif;
   --font-body: 'Newsreader', Georgia, serif;
   --font-label: 'IBM Plex Mono', ui-monospace, monospace;
 
-  /* Motion (spec 5.1): one language for CSS and JS */
-  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
-  --ease-enter: cubic-bezier(0.05, 0.7, 0.1, 1);
-  --ease-exit: cubic-bezier(0.3, 0, 0.8, 0.15);
-  --dur-glint: 100ms;
-  --dur-fade: 150ms;
-  --dur-fold: 200ms;
-  --dur-glaze: 250ms;
-  --dur-page: 350ms;
-  --dur-wings: 900ms;
-
-  /* Layout */
-  --header-h: 4rem;
-  --gutter: clamp(1rem, 4vw, 2.5rem);
-  --edge-w: 3rem; /* prev/next edge wings, >= 44 px (spec 8.4) */
+  --gutter: clamp(1.25rem, 4vw, 2.5rem);
 }

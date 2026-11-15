@@ -1,26 +1,26 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import SfumatoPicture from './SfumatoPicture.astro';
+import { Picture } from 'astro:assets';
 
 interface Props {
-  /** All four layers; the varnish (layer 1) is shown in the page hero, so this renders layers 2–4. */
+  /** All four layers; the first is shown in the page hero, so this renders layers 2-4. */
   layers: CollectionEntry<'projects'>['data']['layers'];
 }
 const HEADING: Record<string, string> = {
-  paint: 'Paint: key features and results',
-  underpainting: 'Underpainting: architecture',
-  underdrawing: 'Underdrawing: origins',
+  paint: 'Key features and results',
+  underpainting: 'Architecture',
+  underdrawing: 'Origins',
 };
 const STATUS = { finished: 'Finished', 'in-progress': 'In progress' };
 ---
-{Astro.props.layers.slice(1).map((layer, i) => (
-  <section class="layer" aria-labelledby={`layer-${layer.name}`}>
-    <h2 id={`layer-${layer.name}`}><span class="layer-label">Layer {i + 2} ·</span> {HEADING[layer.name]}</h2>
-    <p class={`tag tag-${layer.status}`}>{STATUS[layer.status]}</p>
+{Astro.props.layers.slice(1).map((layer) => (
+  <section class="section" aria-labelledby={`section-${layer.name}`}>
+    <p class="label">{STATUS[layer.status]}</p>
+    <h2 id={`section-${layer.name}`}>{HEADING[layer.name]}</h2>
     <p>{layer.text}</p>
     {layer.images.map((img) => (
       <figure>
-        <SfumatoPicture src={img.src} alt={img.alt} widths={[480, 800, 1200]} sizes="(min-width: 60rem) 48rem, 100vw" />
+        <Picture src={img.src} alt={img.alt} formats={['avif', 'webp']} widths={[480, 800, 1200]} sizes="(min-width: 60rem) 48rem, 100vw" loading="lazy" />
         <figcaption>{img.caption}</figcaption>
       </figure>
     ))}

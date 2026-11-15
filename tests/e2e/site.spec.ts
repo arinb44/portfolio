@@ -2,6 +2,7 @@ import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 const GITHUB = 'https://github.com/arinb44';
+const HEADER = ['#main', '/', '/projects/', '/about/', '/cv.pdf', 'mailto:you@example.com']; // skip link, name, nav
 const SLUGS = ['nfl-predictor', 'nba-predictor', 'mlb-predictor', 'hearth', 'juno', 'nightfall', 'falling-constellations']; // spec 3.2
 const PAGES = ['/', '/projects/', '/about/', ...SLUGS.map((s) => `/projects/${s}/`)];
 
@@ -21,6 +22,7 @@ for (const path of [...PAGES, '/no-such-panel/']) {
     expect(res?.status()).toBe(path === '/no-such-panel/' ? 404 : 200);
     await expect(page.locator('h1')).toHaveCount(1);
     await expect(page.locator('img:not([alt])')).toHaveCount(0);
+    await expect(page.locator('.altarpiece, .predella, .wing, .sfumato, .edge, .crackle')).toHaveCount(0); // the old design is gone
     const { violations } = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
       .analyze();
@@ -39,7 +41,7 @@ test('every internal link resolves', async ({ page, request }) => {
   for (const href of hrefs) expect((await request.get(href)).status(), href).toBe(200);
 });
 
-test('prev/next follow the spec order and wrap', async ({ page }) => {
+test('prev/next follow the project order and wrap', async ({ page }) => {
   await page.goto('/projects/nba-predictor/');
   await expect(page.locator('a[rel=prev]').first()).toHaveAttribute('href', '/projects/nfl-predictor/');
   await expect(page.locator('a[rel=next]').first()).toHaveAttribute('href', '/projects/mlb-predictor/');
@@ -50,11 +52,10 @@ test('prev/next follow the spec order and wrap', async ({ page }) => {
 test('project page tab order: result first, prev/next after the content', async ({ page }) => {
   await page.goto('/projects/nba-predictor/');
   expect(await tabOrder(page, 12)).toEqual([
-    '#main', '/', '/projects/', '/about/', GITHUB,
+    ...HEADER,
     'https://machinelearningnba-p3cxa6nsk6hgcuclcwssdx.streamlit.app', 'https://github.com/arinb44/MachineLearningNBA',
-    '/projects/nfl-predictor/', '/projects/mlb-predictor/', // edge wings
-    '/projects/nfl-predictor/', '/projects/mlb-predictor/', // bottom bar
-    '/about/#credits',
+    '/projects/nfl-predictor/', '/projects/mlb-predictor/', // prev, next
+    GITHUB, '/about/#credits', // footer
   ]);
 });
 
@@ -69,28 +70,21 @@ test('fonts: Gloock and Newsreader are preloaded; all three Atlas faces are in u
   })).toEqual([true, true, true]);
 });
 
-test('M13 sfumato: the project hero ends fully opaque once loaded', async ({ page }) => {
-  await page.goto('/projects/nba-predictor/');
-  const hero = page.locator('.project-varnish img');
-  await expect(hero).toHaveClass(/loaded/);
-  await expect(hero).toHaveCSS('opacity', '1');
-});
-
 test.describe('with JavaScript off', () => {
   test.use({ javaScriptEnabled: false });
 
-  test('large images show at once (no fade waiting on JS)', async ({ page }) => {
+  test('the project image shows', async ({ page }) => {
     await page.goto('/projects/nba-predictor/');
-    await expect(page.locator('.project-varnish img')).toHaveCSS('opacity', '1');
+    await expect(page.locator('.project-figure img')).toBeVisible();
   });
 
-  test('home → project → next project → Index all work', async ({ page }) => {
+  test('home → project → next project → Projects all work', async ({ page }) => {
     await page.goto('/');
     await page.getByRole('link', { name: /View project.*NBA Game Predictor/ }).click();
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('NBA Game Predictor');
-    await page.getByRole('link', { name: 'Next: MLB Game Predictor' }).last().click();
+    await page.getByRole('link', { name: 'Next: MLB Game Predictor' }).click();
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('MLB Game Predictor');
-    await page.getByRole('link', { name: 'Index', exact: true }).click();
+    await page.getByRole('link', { name: 'Projects', exact: true }).click();
     await expect(page.getByRole('table', { name: 'All projects' }).getByRole('row')).toHaveCount(8); // header + 7
   });
 });
