@@ -5,3 +5,15 @@ test-results/
 playwright-report/
 art-src/
 .claude/launch.json
+
+# output/project-visuals: rebuildable renders and frame dumps (tools/render*.py), analysis contact sheets, and the
+# unpainted broadcast stills from M0. The site's copy of the final loop is in public/projects/nba-predictor/.
+output/project-visuals/**/*.webm
+output/project-visuals/**/*.mp4
+output/project-visuals/**/f[0-9]*.png
+output/project-visuals/**/still.png
+output/project-visuals/**/plaster.png
+output/project-visuals/**/nograin-*.png
+output/project-visuals/**/poster-*.png
+output/project-visuals/**/probe/contact-sheet.png
+output/project-visuals/directions/m0/*.png

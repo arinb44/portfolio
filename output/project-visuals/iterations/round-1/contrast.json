@@ -1,0 +1,845 @@
+{
+ "output/project-visuals/iterations/round-1/nba.webm": {
+  "1280x800": {
+   "card count": {
+    "min": 4.83,
+    "frame": 41,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card title": {
+    "min": 9.43,
+    "frame": 40,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card line": {
+    "min": 9.5,
+    "frame": 40,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card meta": {
+    "min": 7.04,
+    "frame": 40,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "Live demo": {
+    "min": 12.02,
+    "frame": 157,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "Code": {
+    "min": 12.17,
+    "frame": 128,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "scroll hint": {
+    "min": 7.22,
+    "frame": 115,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "header name": {
+    "min": 13.53,
+    "frame": 131,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "header tagline": {
+    "min": 9.61,
+    "frame": 136,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav Projects": {
+    "min": 7.73,
+    "frame": 109,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav About": {
+    "min": 8.08,
+    "frame": 109,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav CV": {
+    "min": 8.09,
+    "frame": 115,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav Email": {
+    "min": 8.0,
+    "frame": 115,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   }
+  },
+  "1440x900": {
+   "card count": {
+    "min": 4.9,
+    "frame": 142,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card title": {
+    "min": 9.41,
+    "frame": 40,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card line": {
+    "min": 9.49,
+    "frame": 40,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card meta": {
+    "min": 7.15,
+    "frame": 40,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "Live demo": {
+    "min": 11.98,
+    "frame": 43,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "Code": {
+    "min": 12.11,
+    "frame": 42,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "scroll hint": {
+    "min": 7.19,
+    "frame": 146,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "header name": {
+    "min": 13.72,
+    "frame": 135,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "header tagline": {
+    "min": 9.86,
+    "frame": 44,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav Projects": {
+    "min": 7.91,
+    "frame": 114,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav About": {
+    "min": 7.96,
+    "frame": 115,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav CV": {
+    "min": 8.07,
+    "frame": 110,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav Email": {
+    "min": 7.89,
+    "frame": 115,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   }
+  },
+  "1920x1080": {
+   "card count": {
+    "min": 5.96,
+    "frame": 43,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card title": {
+    "min": 11.93,
+    "frame": 43,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card line": {
+    "min": 11.88,
+    "frame": 43,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card meta": {
+    "min": 8.69,
+    "frame": 44,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "Live demo": {
+    "min": 12.07,
+    "frame": 44,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "Code": {
+    "min": 12.01,
+    "frame": 161,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "scroll hint": {
+    "min": 8.66,
+    "frame": 44,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "header name": {
+    "min": 13.71,
+    "frame": 115,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "header tagline": {
+    "min": 9.88,
+    "frame": 110,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav Projects": {
+    "min": 8.0,
+    "frame": 110,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav About": {
+    "min": 8.18,
+    "frame": 111,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav CV": {
+    "min": 8.3,
+    "frame": 114,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav Email": {
+    "min": 8.34,
+    "frame": 46,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   }
+  }
+ },
+ "output/project-visuals/iterations/round-1/nba-nograin.webm": {
+  "1280x800": {
+   "card count": {
+    "min": 4.94,
+    "frame": 41,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card title": {
+    "min": 9.78,
+    "frame": 40,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card line": {
+    "min": 9.89,
+    "frame": 40,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card meta": {
+    "min": 7.26,
+    "frame": 40,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "Live demo": {
+    "min": 12.15,
+    "frame": 157,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "Code": {
+    "min": 12.16,
+    "frame": 42,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "scroll hint": {
+    "min": 7.37,
+    "frame": 43,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "header name": {
+    "min": 13.53,
+    "frame": 136,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "header tagline": {
+    "min": 9.61,
+    "frame": 42,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav Projects": {
+    "min": 8.08,
+    "frame": 115,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav About": {
+    "min": 8.1,
+    "frame": 109,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav CV": {
+    "min": 8.17,
+    "frame": 115,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav Email": {
+    "min": 8.05,
+    "frame": 115,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   }
+  },
+  "1440x900": {
+   "card count": {
+    "min": 4.92,
+    "frame": 41,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card title": {
+    "min": 9.75,
+    "frame": 40,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card line": {
+    "min": 9.91,
+    "frame": 40,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card meta": {
+    "min": 7.31,
+    "frame": 42,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "Live demo": {
+    "min": 12.14,
+    "frame": 157,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "Code": {
+    "min": 12.17,
+    "frame": 130,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "scroll hint": {
+    "min": 7.24,
+    "frame": 146,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "header name": {
+    "min": 13.72,
+    "frame": 133,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "header tagline": {
+    "min": 9.89,
+    "frame": 113,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav Projects": {
+    "min": 8.1,
+    "frame": 113,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav About": {
+    "min": 8.14,
+    "frame": 110,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav CV": {
+    "min": 8.14,
+    "frame": 110,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav Email": {
+    "min": 8.09,
+    "frame": 115,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   }
+  },
+  "1920x1080": {
+   "card count": {
+    "min": 6.06,
+    "frame": 42,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card title": {
+    "min": 12.05,
+    "frame": 153,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card line": {
+    "min": 11.99,
+    "frame": 44,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card meta": {
+    "min": 8.82,
+    "frame": 161,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "Live demo": {
+    "min": 12.19,
+    "frame": 112,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "Code": {
+    "min": 12.09,
+    "frame": 161,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "scroll hint": {
+    "min": 8.77,
+    "frame": 110,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "header name": {
+    "min": 13.73,
+    "frame": 110,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "header tagline": {
+    "min": 9.89,
+    "frame": 47,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav Projects": {
+    "min": 8.14,
+    "frame": 115,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav About": {
+    "min": 8.16,
+    "frame": 111,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav CV": {
+    "min": 8.22,
+    "frame": 114,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav Email": {
+    "min": 8.38,
+    "frame": 45,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   }
+  }
+ },
+ "output/project-visuals/directions/a-buon-fresco/nba.webm": {
+  "1280x800": {
+   "card count": {
+    "min": 4.81,
+    "frame": 41,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card title": {
+    "min": 9.39,
+    "frame": 40,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card line": {
+    "min": 9.41,
+    "frame": 40,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card meta": {
+    "min": 7.03,
+    "frame": 144,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "Live demo": {
+    "min": 11.98,
+    "frame": 157,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "Code": {
+    "min": 12.12,
+    "frame": 156,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "scroll hint": {
+    "min": 7.23,
+    "frame": 144,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "header name": {
+    "min": 12.7,
+    "frame": 179,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "header tagline": {
+    "min": 8.42,
+    "frame": 178,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav Projects": {
+    "min": 4.19,
+    "frame": 109,
+    "needs": 4.5,
+    "pass": false,
+    "failing_frames": "6/202"
+   },
+   "nav About": {
+    "min": 4.7,
+    "frame": 109,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav CV": {
+    "min": 4.76,
+    "frame": 115,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav Email": {
+    "min": 4.65,
+    "frame": 115,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   }
+  },
+  "1440x900": {
+   "card count": {
+    "min": 4.85,
+    "frame": 142,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card title": {
+    "min": 9.4,
+    "frame": 40,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card line": {
+    "min": 9.41,
+    "frame": 40,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card meta": {
+    "min": 7.08,
+    "frame": 40,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "Live demo": {
+    "min": 11.94,
+    "frame": 157,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "Code": {
+    "min": 12.1,
+    "frame": 156,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "scroll hint": {
+    "min": 7.12,
+    "frame": 146,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "header name": {
+    "min": 13.35,
+    "frame": 134,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "header tagline": {
+    "min": 9.38,
+    "frame": 44,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav Projects": {
+    "min": 4.63,
+    "frame": 113,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav About": {
+    "min": 4.54,
+    "frame": 110,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav CV": {
+    "min": 4.68,
+    "frame": 115,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav Email": {
+    "min": 4.71,
+    "frame": 115,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   }
+  },
+  "1920x1080": {
+   "card count": {
+    "min": 5.94,
+    "frame": 43,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card title": {
+    "min": 11.87,
+    "frame": 43,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card line": {
+    "min": 11.84,
+    "frame": 43,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "card meta": {
+    "min": 8.65,
+    "frame": 43,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "Live demo": {
+    "min": 12.07,
+    "frame": 44,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "Code": {
+    "min": 12.01,
+    "frame": 156,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "scroll hint": {
+    "min": 8.66,
+    "frame": 44,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "header name": {
+    "min": 13.38,
+    "frame": 114,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "header tagline": {
+    "min": 9.46,
+    "frame": 46,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav Projects": {
+    "min": 4.62,
+    "frame": 114,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav About": {
+    "min": 5.09,
+    "frame": 114,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav CV": {
+    "min": 5.17,
+    "frame": 114,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   },
+   "nav Email": {
+    "min": 5.73,
+    "frame": 45,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/202"
+   }
+  }
+ }
+}

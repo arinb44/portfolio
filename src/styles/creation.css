@@ -11,6 +11,13 @@ a { color: inherit; }
 .visuals { position: fixed; inset: 0; }
 .visuals img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .6s ease-out; }
 .visuals img.on { opacity: 1; }
+/* Painted loops (project-visuals #21, #26): over the project's image, with the same fade. The fresco's plaster multiplies
+   on top once the video has played (the poster already has it baked in). */
+.visuals .loop { position: absolute; inset: 0; opacity: 0; transition: opacity .6s ease-out; isolation: isolate; }
+.visuals .loop.on { opacity: 1; }
+.visuals .loop video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.visuals .loop::after { content: ''; position: absolute; inset: 0; background: var(--plaster) center / cover; mix-blend-mode: multiply; opacity: 0; }
+.visuals .loop.started::after { opacity: 1; }
 html.intro .visuals { visibility: hidden; }
 /* Gradients that keep the card (left) and the header (top) readable over any image. */
 .visuals::after { content: ''; position: absolute; inset: 0;
@@ -26,6 +33,17 @@ html.intro .visuals { visibility: hidden; }
               background: color-mix(in srgb, var(--bg) 88%, transparent); color: var(--text); font: .875rem/1.5 var(--font-label); cursor: pointer; }
 .skip-intro:hover { text-decoration: underline; text-underline-offset: .25em; }
 html:not(.intro) .skip-intro { display: none; }
+
+/* Pause control for a painted loop (project-visuals #22, WCAG 2.2.2): an ink pill bottom-right, readable over any frame.
+   home.js shows it while a loop is on screen and keeps its label ("Pause" / "Play") in step with the video. */
+.pause-loop { position: fixed; right: 2.5rem; bottom: 2rem; z-index: 2; display: inline-flex; align-items: center; gap: .55rem;
+              min-height: 2.25rem; padding: 0 1rem; border: 1px solid var(--line); border-radius: 999px; background: var(--bg); color: var(--text);
+              font: .8125rem/1 var(--font-label); letter-spacing: .04em; cursor: pointer; }
+.pause-loop[hidden], html.intro .pause-loop { display: none; }
+.pause-loop:hover { border-color: var(--muted); }
+.pause-loop svg { flex: none; width: .75rem; height: .75rem; fill: currentColor; }
+.pause-loop .play, .pause-loop.paused .bars { display: none; }
+.pause-loop.paused .play { display: block; }
 html.intro .skip { padding: .35rem .9rem; margin: -.35rem -.9rem; border-radius: 999px; background: color-mix(in srgb, var(--bg) 88%, transparent); }
 
 .skip { position: fixed; left: 1.5rem; bottom: 1.5rem; z-index: 3; font: .875rem/1.5 var(--font-label); color: var(--muted); }
@@ -69,7 +87,7 @@ html.revealed .stops { visibility: visible; opacity: 1; }   /* no fade-in: the p
 @media (hover: none), (pointer: coarse) { .computer-only { display: grid; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .visuals img { transition: none; }
+  .visuals img, .visuals .loop { transition: none; }
 }
 .visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 

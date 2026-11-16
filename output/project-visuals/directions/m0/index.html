@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>M0 · NBA loop segments</title>
+<!-- Fonts and Night Sky tokens: the copy made for the fresco intro (absolute font URLs). -->
+<link rel="stylesheet" href="/output/fresco-intro/directions/shared/home/tokens.css">
+<style>
+  /* Card, gradients and stop: values copied from src/styles/creation.css. */
+  html { scroll-snap-type: y mandatory; background: var(--bg); color: var(--text); font-family: var(--font-body); }
+  body { margin: 0; }
+  .stop { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 6rem 0 4rem 5vw; box-sizing: border-box; scroll-snap-align: start; overflow: hidden; }
+  .stop video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 0 50%; transition: transform .4s ease-out; }
+  html.reframe .stop video { transform: scale(1.36); } /* moves the frame's centre to 68% of the width, clear of the card */
+  .stop::after { content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(to right, color-mix(in srgb, var(--bg) 94%, transparent) 0 32%, color-mix(in srgb, var(--bg) 55%, transparent) 46%, transparent 64%),
+                linear-gradient(to bottom, color-mix(in srgb, var(--bg) 80%, transparent), transparent 9rem); }
+  .card { position: relative; z-index: 1; width: min(30vw, 30rem); }
+  .card .count { margin: 0 0 .75rem; font: .8125rem/1.5 var(--font-label); letter-spacing: .06em; color: var(--accent); }
+  .card h3 { margin: 0 0 .75rem; font: 400 clamp(2.5rem, 4vw, 3.75rem)/1.05 var(--font-display); text-wrap: balance; }
+  .card .line { margin: 0 0 1rem; font-size: 1.125rem; line-height: 1.55; }
+  .card .meta { margin: 0 0 1.5rem; color: var(--muted); font: .875rem/1.6 var(--font-label); }
+  .card .links { display: flex; gap: .75rem 1.5rem; align-items: center; margin: 0; font: .9375rem/1.5 var(--font-label); }
+  .card .links span:first-child { padding: .6rem 1.1rem; border-radius: 999px; background: var(--text); color: var(--bg); }
+  /* Review bar: not part of the design. */
+  .bar { position: fixed; z-index: 2; right: 1rem; bottom: 1rem; display: flex; gap: .5rem; align-items: center; padding: .5rem .75rem;
+         background: #000c; border: 1px solid var(--line); border-radius: .5rem; font: .8125rem/1.4 var(--font-label); }
+  .bar button { font: inherit; color: var(--text); background: none; border: 1px solid var(--line); border-radius: .25rem; padding: .3rem .6rem; cursor: pointer; }
+  .bar button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+  .bar button:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .tag { position: absolute; z-index: 1; right: 1.25rem; top: 1.25rem; font: .8125rem/1.4 var(--font-label); background: #000a; padding: .35rem .6rem; border-radius: .25rem; }
+</style>
+</head>
+<body>
+<!-- Raw reference trims live in the git-ignored art-src/ and are only played here, never committed. -->
+<section class="stop" id="a">
+  <video src="/art-src/project-visuals/m0/seg-a.mp4" muted loop autoplay playsinline></video>
+  <p class="tag">A · Whole clip · 0.00–9.04 s (217 frames)</p>
+  <article class="card"><p class="count">02 / 07</p><h3>NBA Game Predictor</h3><p class="line">Predicts NBA winners, margins and calibrated win probabilities.</p><p class="meta">2026 · Python, scikit-learn, Docker, Streamlit</p><p class="links"><span>View project</span><span>Live demo ↗</span><span>Code ↗</span></p></article>
+</section>
+<section class="stop" id="b">
+  <video src="/art-src/project-visuals/m0/seg-b.mp4" muted loop autoplay playsinline></video>
+  <p class="tag">B · To the make · 0.00–8.42 s (202 frames)</p>
+  <article class="card"><p class="count">02 / 07</p><h3>NBA Game Predictor</h3><p class="line">Predicts NBA winners, margins and calibrated win probabilities.</p><p class="meta">2026 · Python, scikit-learn, Docker, Streamlit</p><p class="links"><span>View project</span><span>Live demo ↗</span><span>Code ↗</span></p></article>
+</section>
+<section class="stop" id="c">
+  <video src="/art-src/project-visuals/m0/seg-c.mp4" muted loop autoplay playsinline></video>
+  <p class="tag">C · Handles only · 0.00–6.54 s (157 frames)</p>
+  <article class="card"><p class="count">02 / 07</p><h3>NBA Game Predictor</h3><p class="line">Predicts NBA winners, margins and calibrated win probabilities.</p><p class="meta">2026 · Python, scikit-learn, Docker, Streamlit</p><p class="links"><span>View project</span><span>Live demo ↗</span><span>Code ↗</span></p></article>
+</section>
+<div class="bar">
+  <button type="button" id="reframe" aria-pressed="false">Reframe right</button>
+  <button type="button" id="seam">See the loop seam</button>
+</div>
+<script>
+  const html = document.documentElement, rf = document.getElementById('reframe');
+  rf.onclick = () => rf.setAttribute('aria-pressed', html.classList.toggle('reframe'));
+  if (location.search.includes('reframe')) rf.click();
+  // Jump each video to 1.5 s before its end, so the loop point comes up next.
+  document.getElementById('seam').onclick = () => document.querySelectorAll('video').forEach(v => { v.currentTime = Math.max(0, v.duration - 1.5); v.play(); });
+</script>
+</body>
+</html>

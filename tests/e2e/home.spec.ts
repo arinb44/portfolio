@@ -102,6 +102,37 @@ test('the image behind the cards follows the project in view', async ({ page }) 
   await expect(page.locator('.visuals img.on')).toHaveCount(1);
 });
 
+// Painted loops (output/project-visuals): public/projects/<slug>/loop.webm plays behind that project's card.
+test('the NBA stop plays its painted loop; the pause control shows with it and stops it', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('link', { name: 'Skip to the projects' }).click();
+  await expect(page.locator(html)).toHaveClass(/revealed/, SHOWCASE);
+  await expect(page.locator('.pause-loop')).toBeHidden(); // the first project has no loop
+  await page.locator('#nba-predictor').scrollIntoViewIfNeeded();
+  const loop = page.locator('.loop[data-loop="nba-predictor"]');
+  const video = loop.locator('video');
+  await expect(loop).toHaveClass(/\bon\b/);
+  await expect.poll(() => video.evaluate((v: HTMLVideoElement) => !v.paused && v.currentTime > 0), SHOWCASE).toBe(true);
+  await page.getByRole('button', { name: 'Pause the background video' }).click();
+  await expect(page.getByRole('button', { name: 'Play the background video' })).toBeVisible();
+  expect(await video.evaluate((v: HTMLVideoElement) => v.paused)).toBe(true);
+  expect(await axe(page)).toEqual([]);
+  await page.locator('#mlb-predictor').scrollIntoViewIfNeeded();
+  await expect(page.locator('.pause-loop')).toBeHidden();
+  await expect(loop).not.toHaveClass(/\bon\b/);
+});
+
+test('reduced motion: the NBA loop stays on its poster, with no pause control', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  await page.locator('#nba-predictor').scrollIntoViewIfNeeded();
+  const loop = page.locator('.loop[data-loop="nba-predictor"]');
+  await expect(loop).toHaveClass(/\bon\b/);
+  await page.waitForTimeout(500);
+  expect(await loop.locator('video').evaluate((v: HTMLVideoElement) => v.paused && v.currentTime === 0)).toBe(true);
+  await expect(page.locator('.pause-loop')).toBeHidden();
+});
+
 test('once per tab: after the opening, a reload goes straight to the projects', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator('#intro')).toBeHidden(SHOWCASE);

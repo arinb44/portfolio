@@ -1,0 +1,17 @@
+{
+  "a-buon-fresco": {
+    "webm_kb": 4252,
+    "mp4_kb": 7361,
+    "flicker_ratio": 0.95
+  },
+  "b-sinopia": {
+    "webm_kb": 9398,
+    "mp4_kb": 10339,
+    "flicker_ratio": 0.79
+  },
+  "c-grisaille": {
+    "webm_kb": 6505,
+    "mp4_kb": 8518,
+    "flicker_ratio": 1.53
+  }
+}

@@ -1,4 +1,5 @@
 ---
+import { existsSync } from 'node:fs';
 import { Image } from 'astro:assets';
 import Head from '../components/Head.astro';
 import { getProjects } from '../lib/projects';
@@ -9,6 +10,8 @@ import '../styles/creation.css';
 const sorted = await getProjects();
 const projects = [...sorted.filter((p) => p.data.featured), ...sorted.filter((p) => !p.data.featured)];
 const two = (n: number) => String(n).padStart(2, '0');
+// A painted loop plays behind a project's card when public/projects/<slug>/loop.webm exists (project-visuals #26).
+const loops = new Set(projects.filter(({ id }) => existsSync(`public/projects/${id}/loop.webm`)).map(({ id }) => id));
 ---
 <!doctype html>
 <!-- Without JavaScript the page stays in its finished state: the projects over the first project's image. -->
@@ -26,6 +29,16 @@ const two = (n: number) => String(n).padStart(2, '0');
       {projects.map(({ id, data }, i) => (
         <Image src={data.layers[0].images[0].src} alt="" widths={[960, 1600]} sizes="100vw" loading={i === 0 ? 'eager' : 'lazy'} data-for={id} class={i === 0 ? 'on' : undefined} />
       ))}
+      <!-- Painted loops (project-visuals): the video without grain, the fresco's plaster held still on top (multiply). The
+           poster (grain baked in) shows under reduced motion, in the reading layout and until the video plays. -->
+      {[...loops].map((id) => (
+        <div class="loop" data-loop={id} style={`--plaster: url(/projects/${id}/plaster.webp)`}>
+          <video muted loop playsinline preload="none" poster={`/projects/${id}/poster.webp`}>
+            <source src={`/projects/${id}/loop.webm`} type="video/webm" />
+            <source src={`/projects/${id}/loop.mp4`} type="video/mp4" />
+          </video>
+        </div>
+      ))}
     </div>
     <canvas id="intro" aria-hidden="true"></canvas>
     <div class="flash" aria-hidden="true"></div>
@@ -38,6 +51,14 @@ const two = (n: number) => String(n).padStart(2, '0');
         <li><a href={`mailto:${SITE.email}`}>Email</a></li>
       </ul></nav>
     </header>
+    <!-- Pause control for the moving background (WCAG 2.2.2, project-visuals #22): shown while a loop is on screen. -->
+    {loops.size > 0 && (
+      <button class="pause-loop" type="button" hidden>
+        <svg class="bars" viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" y="1" width="3" height="10" /><rect x="7.5" y="1" width="3" height="10" /></svg>
+        <svg class="play" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z" /></svg>
+        <span>Pause</span><span class="visually-hidden"> the background video</span>
+      </button>
+    )}
     <main id="projects" tabindex="-1">
       <h2 class="visually-hidden">Projects</h2>
       <div class="stops">
