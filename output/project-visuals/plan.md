@@ -109,3 +109,76 @@ The reference clip and all extracted frames stay in the git-ignored `art-src/` f
 - **Repository and branch:** asked before the first commit. The current checkout is on `fresco-intro` with untracked screenshots from that project.
 
 **Status:** Approved on 2026-11-15
+
+---
+
+## Amendment 1: M4, the other projects' visuals
+
+**Why:** the NBA loop is approved and live on `project-visuals` (#25–#31). M4 gives the other projects the same treatment, and the plan said to write this amendment first. The choices on references are decisions #32–#35.
+
+### What each project gets
+| Project (home stop) | Reference | Who supplies it | Becomes |
+|---|---|---|---|
+| Falling Constellations (01, featured) | A screen recording of its public live page (https://arinb44.github.io/Falling-Constellations/), about 20 s at 1600 × 900, captured with Playwright on the real GPU | the agent | a loop |
+| NFL Game Predictor (02) | A short game highlight clip | the user, into `art-src/` | a loop |
+| MLB Game Predictor (04) | A short game highlight clip | the user, into `art-src/` | a loop |
+| Hearth (05) | A screen recording of a building session (it needs someone playing) | the user, into `art-src/` | a loop |
+| Nightfall (07) | One gameplay frame (screenshot) | the user, into `art-src/` | a painted still |
+| Juno (06) | none: skipped for now (#34), its placeholder stays | none | nothing yet |
+
+All of them use the approved look and delivery from the NBA loop:
+- **Look:** A · Buon fresco, footage hue 1.1, ramp saturation ×1.45, the top shade, logos flattened
+- **Frames:** 1600 × 900 at 24 fps, reframed so the subject sits clear of the card
+- **Files:** the grain-free WebM + MP4, the plaster overlay, and the poster
+- **On the page:** the corner pause pill, and the poster under reduced motion and in the reading layout
+
+### Process
+Each source goes through the same steps:
+1. **Read the source.** Check its size and frame rate (and pulldown), make a contact sheet, find the cuts, mark any flashes and graphics. For a clip, propose 2–3 segments of 6–10 s. Falling Constellations is one continuous shot with no cuts, so its loop seam gets a short cross-fade, the technique the original plan named.
+2. **Paint it** with `tools/render.py`. The script will take the source, segment, crop and logo keyframes as per-project settings instead of the NBA constants; the NBA output must stay identical (checked by re-rendering one NBA frame).
+3. **Review it** behind its own card in a preview like round 2: the real header, card and gradients, plus that project's count and text.
+4. **Check it** the same way as the NBA loop:
+   - card and header contrast over every frame, at 1280, 1440 and 1920
+   - flashes and flicker
+   - file size against the 1–3 MB target
+   - the pause control and reduced motion
+
+Work goes in batches, as the sources arrive:
+- **Batch 1:** Falling Constellations, which I can start at once.
+- **Batch 2:** NFL and MLB, when the clips are in `art-src/`.
+- **Batch 3:** Hearth and the Nightfall still, when their sources are in.
+
+Each batch has one review round and more if you ask. Batches 2 and 3 are planned the same way, but each waits on your files. Outputs go in `iterations/m4-<batch>-round-<n>/`.
+
+### Into the site (after each batch is approved, with approval of the paths)
+- **Files:** the loop goes in `public/projects/<slug>/`, using the convention already in the code (#26).
+- **The Nightfall still:** where it goes is decided at that point. It can be the home backdrop only, or also the project page's gameplay image, which is currently a TODO placeholder.
+- **Two small tidy-ups, proposed with the first batch:**
+  - Share one `plaster.webp` across all loops instead of a copy per project. It's the same wall, and this saves about 109 KB per loop on page load.
+  - Show each loop project's poster as its home image in place of the placeholder underneath. This saves the hidden placeholder's download.
+- **Tests:** the home page tests cover every project with a loop.
+- **Release:** `npm test`, Figma frames on the Final page, then commit and push, each with approval.
+
+### Decision points
+- The segment, framing and graphics handling for each clip. NFL broadcasts usually carry a heavy score bug and ticker, so crop or paint over.
+- Falling Constellations' palette. The fresco ramp turns its night sky into umber, which may read as a painted vault of stars or may go muddy. The review shows it; a cooler variant is your call.
+- The Nightfall still's placement.
+- The two site tidy-ups.
+- Each commit and push.
+
+### Risks
+- **Rights:** NFL and MLB footage is broadcast material, published at your own risk (#32, as #6).
+- **Falling Constellations is the first stop,** on screen right after the opening's flash. Its 3 MB loop starts downloading when the opening ends, so on a slow connection the poster shows first.
+- **Waiting on files:** batches 2 and 3 can't start until the clips, the recording and the frame are in `art-src/`.
+- **Hearth's recording quality** decides how it paints. Low-poly flat colours should paint well.
+- **Download:** about 3 MB per loop, loaded only when its stop is reached. Five loops is about 15 MB for a visitor who scrolls through everything.
+- **Juno** keeps its placeholder until there is safe footage (#34).
+
+### Milestones (replacing M4 in the list above)
+- **M4a:** Falling Constellations, recorded, painted, reviewed, approved.
+- **M4b:** NFL and MLB, once the clips arrive.
+- **M4c:** Hearth and the Nightfall still, once the sources arrive.
+- **M4d:** into the site per batch, then Figma, tests, commits.
+- **M5** stays the same (design spec and delivery).
+
+**Amendment 1 status:** Approved on 2026-11-17

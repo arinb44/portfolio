@@ -16,7 +16,7 @@ a { color: inherit; }
 .visuals .loop { position: absolute; inset: 0; opacity: 0; transition: opacity .6s ease-out; isolation: isolate; }
 .visuals .loop.on { opacity: 1; }
 .visuals .loop video { display: block; width: 100%; height: 100%; object-fit: cover; }
-.visuals .loop::after { content: ''; position: absolute; inset: 0; background: var(--plaster) center / cover; mix-blend-mode: multiply; opacity: 0; }
+.visuals .loop::after { content: ''; position: absolute; inset: 0; background: url(/projects/plaster.webp) center / cover; mix-blend-mode: multiply; opacity: 0; }
 .visuals .loop.started::after { opacity: 1; }
 html.intro .visuals { visibility: hidden; }
 /* Gradients that keep the card (left) and the header (top) readable over any image. */

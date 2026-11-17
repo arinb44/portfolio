@@ -1,6 +1,6 @@
 """Text contrast over every frame of a project video, as the home page shows it (object-fit: cover + the two gradients).
 
-Run from the project root:  python -I output/project-visuals/tools/contrast.py <video> [<video> ...]
+Run from the project root:  python -I output/project-visuals/tools/contrast.py [--boxes <json>] <video> [<video> ...]
 For each breakpoint and each text element, the worst frame (header text also gets the header's own gradient): the brightest background pixel inside the element's box
 (after the gradients) against the element's colour. Text boxes measured on the live home page (NBA stop), 2026-11-16.
 """
@@ -29,8 +29,12 @@ def frames(path, w, h):
     raw = subprocess.run(['ffmpeg', '-v', 'error', '-i', path, '-vf', vf, '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-'], capture_output=True, check=True).stdout
     return np.frombuffer(raw, np.uint8).reshape(-1, h, w, 3)
 
+# --boxes <json> (from tools/boxes.cjs) replaces the NBA boxes with another card's: {"1280x800": [[x0, y0, x1, y1] x 13], ...}
+argv = sys.argv[1:]
+if argv[:1] == ['--boxes']:
+    BOX = {tuple(map(int, k.split('x'))): v for k, v in json.load(open(argv[1])).items()}; argv = argv[2:]
 report = {}
-for path in sys.argv[1:]:
+for path in argv:
     report[path] = {}
     for (w, h), boxes in BOX.items():
         # .visuals::after: the top gradient (bottom layer) then the left gradient (top layer), ink at the given alpha;

@@ -107,7 +107,8 @@ test('the NBA stop plays its painted loop; the pause control shows with it and s
   await page.goto('/');
   await page.getByRole('link', { name: 'Skip to the projects' }).click();
   await expect(page.locator(html)).toHaveClass(/revealed/, SHOWCASE);
-  await expect(page.locator('.pause-loop')).toBeHidden(); // the first project has no loop
+  await page.locator('#nfl-predictor').scrollIntoViewIfNeeded();
+  await expect(page.locator('.pause-loop')).toBeHidden(); // no loop at this stop
   await page.locator('#nba-predictor').scrollIntoViewIfNeeded();
   const loop = page.locator('.loop[data-loop="nba-predictor"]');
   const video = loop.locator('video');
@@ -120,6 +121,18 @@ test('the NBA stop plays its painted loop; the pause control shows with it and s
   await page.locator('#mlb-predictor').scrollIntoViewIfNeeded();
   await expect(page.locator('.pause-loop')).toBeHidden();
   await expect(loop).not.toHaveClass(/\bon\b/);
+});
+
+test('the first stop (Falling Constellations) plays its painted loop once the opening is over', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('.pause-loop')).toBeHidden(); // nothing to pause during the opening
+  await page.getByRole('link', { name: 'Skip to the projects' }).click();
+  await expect(page.locator(html)).toHaveClass(/revealed/, SHOWCASE);
+  const video = page.locator('.loop[data-loop="falling-constellations"] video');
+  await expect.poll(() => video.evaluate((v: HTMLVideoElement) => !v.paused && v.currentTime > 0), SHOWCASE).toBe(true);
+  await expect(page.getByRole('button', { name: 'Pause the background video' })).toBeVisible();
+  await expect(page.locator('.visuals img.on')).toHaveAttribute('src', '/projects/falling-constellations/poster.webp');
+  expect(await axe(page)).toEqual([]);
 });
 
 test('reduced motion: the NBA loop stays on its poster, with no pause control', async ({ page }) => {

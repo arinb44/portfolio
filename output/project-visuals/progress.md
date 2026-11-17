@@ -1,7 +1,7 @@
 # Progress: Project Visuals
 
-- **Current phase:** Phase 4, M3 (final NBA loop in the site)
-- **Status:** waiting for user (approve the commit; then the push)
+- **Current phase:** Phase 4, M4a done (Falling Constellations in the site); M4b and M4c wait on files
+- **Status:** waiting for user (commit approval; source files for batches 2 and 3)
 
 ## Completed milestones
 - 2026-11-15: Project root confirmed (`C:\Users\arins\Arin\School\Projects\Portfolio`); new project chosen over resuming `fresco-intro` or `creation-redesign` (decisions #1, #2).
@@ -84,10 +84,40 @@
   - Live dev site (Playwright, 1440 x 900): the loop plays at the NBA stop at 141.6 fps (display cap 144, 1 dropped of 64 frames); before the stop only the poster (83 KB) and plaster (109 KB) load, and the WebM (2.9 MB) loads on arrival. No console errors. Shot: `final/shots/live-site-1440.png`.
   - `design-spec.md` written (the NBA loop; M4 pending).
 
+- 2026-11-16: **Committed** on `project-visuals` as `46a2bd2` (#30; message checked, no AI markers). `.gitignore` now keeps the rebuildable renders, frame dumps, analysis contact sheets and unpainted M0 stills out of git.
+
+- 2026-11-16: **Pushed** `project-visuals` to origin (https://github.com/arinb44/portfolio, new branch, tracking `origin/project-visuals`; #31). No pull request opened.
+
+- 2026-11-16: M4 started. References chosen (#32-#35): NFL and MLB game clips from the user; Falling Constellations recorded by the agent from its public page; Hearth recorded by the user; Nightfall as a painted still from a user-supplied frame; Juno skipped for now. Plan Amendment 1 written (not yet approved).
+
+- 2026-11-17: Resumed from `output/handoff/handoff-2026-11-17-0001.md` (#36). **Plan Amendment 1 approved** (#37).
+- 2026-11-17: M4a round 1 built in `iterations/m4-1-round-1/` (preview: http://localhost:4410/output/project-visuals/iterations/m4-1-round-1/; waiting for the user's review):
+  - Recording: `tools/fc_record.cjs` (Playwright, Chromium on the RTX 4070 via D3D11, 1600 x 900, 24.8 s, 621 frames at 25 fps; five clicks on the right summon constellations; the hint text and cursor hidden) -> `art-src/project-visuals/fc/fc-raw.webm`. One console 404 on the page (not looked into; the piece renders).
+  - Master `art-src/project-visuals/fc-24.mp4`: recording frames 175-438 played at 24 fps (4% slower, no dropped frames), 240 frames = 10 s, the first second cross-faded from the 24 frames after the end so the loop has no jump.
+  - `tools/render.py` now takes `<round dir> [<project>] [still ...]` with a `PROJECTS` table (source, frames, crop, logos, posters). NBA frame 150 re-rendered before and after: identical file (md5 e799caa8...).
+  - FC settings: crop 1176 x 662 at 0,119 (x1.36 from the left, the galaxy right of the card); `soften` 2.5 (blur before the paint patches; the star field otherwise painted as square tiles); `stars` 2.2 (thin bright detail, i.e. stars and constellation lines, laid back over the paint in #E8D8B4, the page's own text colour; without it the patches erased them). No logos. Poster frame 120.
+  - The look: the fresco ramp plus the page's own blue gives a dark violet-umber vault with gilded stars. A cooler/bluer sky is the user's call (plan decision point).
+  - Checks:
+    - Size: `fc-nograin.webm` 1,958 KB + `plaster.webp` 83 KB (MP4 3,274 KB, not yet re-encoded at CRF 28); poster 108 KB.
+    - Flicker 0.7x the source; flashes 0 per second; no cuts. Seam step 1.43 against a 0.87 median and 1.43 maximum frame step.
+    - Contrast over every frame at 1280 / 1440 / 1920, boxes measured on the preview with `tools/boxes.cjs` (`contrast.py --boxes`): all pass, grain-free and baked. Lowest: nav Email 5.66 (1440), card count 6.37, meta 8.54.
+    - The preview plays in the browser pane, no console errors. Pause control and reduced motion are the round-2 code unchanged (not re-tested here).
+  - Not done yet: Figma frame, the MP4 at CRF 28, shots at each breakpoint.
+
+- 2026-11-17: **M4a approved** (#38). Into the site (#39, #40):
+  - `final/falling-constellations/`: `loop.webm` (2,005 KB), `loop.mp4` (1,700 KB, CRF 28), `poster.webp` (108 KB); copied to `public/projects/falling-constellations/`.
+  - Shared plaster: `public/projects/nba-predictor/plaster.webp` moved to `public/projects/plaster.webp`; `creation.css` points at it; the per-loop `--plaster` style is gone from `index.astro`.
+  - Poster as home image: `index.astro` renders `/projects/<slug>/poster.webp` instead of the placeholder for projects with a loop.
+  - `tests/e2e/home.spec.ts`: the NBA test no longer assumes the first project has no loop; one new test for the first stop.
+  - `npm test`: Playwright 44/44 passed.
+  - Figma: frame 4:98 and notes 4:132 on "Final · NBA loop" (the WebP upload rendered blank, so the backdrop is the PNG poster). Screenshot checked; fonts Gloock / Newsreader / IBM Plex Mono only.
+  - `design-spec.md` and `figma-links.md` updated.
+
 ## Next step
-Get the commit approved (what to include, the .gitignore lines for the rebuildable renders), commit on `project-visuals` with no AI markers, check the message, then ask before pushing to origin. After that: M4, a plan amendment for the other six projects (a reference for each, video or still).
+Ask the user to approve the commit (site change + FC loop + tools + documents + the handoff file) on `project-visuals`, then the push to origin (https://github.com/arinb44/portfolio; recorded repository, confirm it is still right). Then M4b / M4c when the user's files are in `art-src/`: NFL clip, MLB clip, Hearth recording, Nightfall frame. Start each with `tools/m0_probe.py` and a segment proposal.
 
 ## Open questions
-- The Figma file: a new file in the user's team, or a new page in the Creation redesign file (can wait until M1).
+- Commit and push: waiting for approval.
+- The NFL and MLB clips, the Hearth recording and the Nightfall frame are not in `art-src/` yet.
 
-**Last updated:** 2026-11-16
+**Last updated:** 2026-11-17

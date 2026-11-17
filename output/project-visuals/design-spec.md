@@ -45,8 +45,16 @@ The NBA Game Predictor's main visual on the portfolio home page is an 8.42 s sea
 - **No JavaScript:** the page as before (the first project's image); the NBA image underneath stays the placeholder `varnish.png`.
 - **Errors:** if `play()` fails, the poster stays.
 
+### Falling Constellations (home stop 01, approved 2026-11-17, #38)
+- **Source:** the public live page, recorded with `tools/fc_record.cjs` (1600 × 900, real GPU, five clicks summon constellations on the right).
+- **Loop:** 10 s, 240 frames at 24 fps, the first second cross-faded so the restart has no jump. Reframed ×1.36 from the left; the galaxy sits right of the card.
+- **Look:** the NBA settings unchanged (ramp ×1.45, hue 1.1), which make the sky a dark violet-umber vault. Two additions in `tools/render.py` (`PROJECTS['fc']`): the field is blurred (sigma 2.5) before the paint patches, and the stars and constellation lines are laid back on top as gilding in `#E8D8B4`.
+- **Files:** `public/projects/falling-constellations/`: `loop.webm` (2.0 MB), `loop.mp4` (1.7 MB), `poster.webp` (108 KB, frame 120).
+- **Checks:** every frame at 1280 / 1440 / 1920 passes (lowest: nav Email 5.66, card count 6.37); flicker 0.7× the source; 0 flashes per second; seam step inside the normal frame-step range. Preview: `iterations/m4-1-round-1/`.
+- **On the page:** as the first stop, it starts once the opening is over; the pause pill is hidden during the opening.
+
 ## 5. Components & Tokens
-- **A loop on any project:** put `loop.webm`, `loop.mp4`, `plaster.webp` and `poster.webp` in `public/projects/<slug>/`. `src/pages/index.astro` adds the loop for any project whose folder has `loop.webm`.
+- **A loop on any project:** put `loop.webm`, `loop.mp4` and `poster.webp` in `public/projects/<slug>/`. The plaster is shared: `public/projects/plaster.webp` (#40). The poster is also that project's still home image, in place of its placeholder (#40). `src/pages/index.astro` adds the loop for any project whose folder has `loop.webm`.
 - **Pause control:** `.pause-loop` in `src/styles/creation.css`; its behaviour is in `src/scripts/home.js`.
 - **Figma components:** "Site header", "Project card / NBA Game Predictor", "Pause control". **Variables:** "Night Sky" (ink, gesso, stone-200, gold).
 - **Renderer:** `output/project-visuals/tools/render.py` (A only; the colour settings `CHROMA, RAMP_SAT = 1.1, 1.45`; the logo keyframes in `LOGOS`). `tools/render_m1.py` is the three-way M1 version.

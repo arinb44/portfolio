@@ -1,9 +1,11 @@
-"""Repaint the NBA loop in the chosen direction, A · Buon fresco (decision #17). M1's three-way version: render_m1.py.
+"""Repaint a project's loop in the chosen direction, A · Buon fresco (decision #17). M1's three-way version: render_m1.py.
 
-Run from the project root:  python -I output/project-visuals/tools/render.py <round dir> [still <frame>]
+Run from the project root:  python -I output/project-visuals/tools/render.py <round dir> [<project>] [still <frame>]
   e.g. python -I output/project-visuals/tools/render.py output/project-visuals/iterations/round-1
+       python -I output/project-visuals/tools/render.py output/project-visuals/iterations/m4-1-round-1 fc
+<project> is a key of PROJECTS below (default nba); the file names below start with it.
 (`still <frame>[,<frame>...]` paints only those frames as <round dir>/still-<frame>.png and encodes nothing.)
-Reads  art-src/project-visuals/nba-24.mp4 (true 24 fps master, made in M0) and art-src/creation-of-adam-3524.jpg.
+Reads  the project's 24 fps master in art-src/project-visuals/ and art-src/creation-of-adam-3524.jpg.
 Writes to <round dir>:
   nba.{webm,mp4}           the loop with the plaster grain baked in
   nba-nograin.{webm,mp4}   the same loop without the grain, for the overlay option
@@ -20,17 +22,11 @@ import numpy as np
 from PIL import Image
 from scipy.ndimage import gaussian_filter, uniform_filter
 
-SRC, FRESCO = 'art-src/project-visuals/nba-24.mp4', 'art-src/creation-of-adam-3524.jpg'
-OUT = Path(sys.argv[1]); OUT.mkdir(parents=True, exist_ok=True)
-FRAMES = 202                                    # segment B: frames 0-201, the loop restarts on the cut after the make (#14)
+FRESCO = 'art-src/creation-of-adam-3524.jpg'
 W, H = 1600, 900
-CROP = 'crop=941:529:0:95'                      # x1.36 from the left edge, vertically centred (#15)
-TEST = sys.argv[2:3] == ['still']
-STILL = {int(f) for f in sys.argv[3].split(',')} if TEST else set()
-POSTERS = (150,)                                 # the step-back jumper (#23)
 
 def srgb(hexs): return np.array([int(hexs[i:i + 2], 16) for i in (1, 3, 5)], np.float32) / 255
-UMBER = srgb('#3A2A1E')
+UMBER = srgb('#3A2A1E'); GILT = srgb('#E8D8B4')
 CHROMA, RAMP_SAT = 1.1, 1.45                     # share of the footage's own hue kept; saturation of the fresco ramp
 def luma(a): return a @ np.array([.2126, .7152, .0722], np.float32)
 
@@ -60,7 +56,7 @@ def ramp(L, table): return table[np.clip((L * (len(table) - 1)).astype(int), 0, 
 # Each track: (blur sigma, detail kept, {frame: (centre x, centre y, half width, half height)}); no box outside a
 # track's first-last frame. Lettering keeps no detail (any share of white-on-dark text stays legible) and big
 # numerals need a strong blur. The arena stanchion's box is kept narrow (the logos only) because players cross in front of it.
-LOGOS = [
+NBA_LOGOS = [
     # the arena stanchion (Pechanga "P" twice and its name) sliding left during the drive
     (14, 0, {45: (1700, 480, 100, 400), 46: (1500, 480, 100, 400), 47: (1433, 480, 100, 400), 48: (1333, 480, 100, 400),
      52: (1110, 480, 100, 400), 56: (933, 480, 100, 400), 60: (725, 480, 100, 400), 64: (507, 480, 100, 400),
@@ -76,6 +72,26 @@ LOGOS = [
      196: (1333, 700, 110, 160), 198: (1217, 680, 110, 170), 199: (1033, 620, 120, 170), 200: (633, 540, 130, 170),
      201: (350, 500, 130, 170)}),
 ]
+
+# --- Per-project settings: master, frame count, reframing crop, logo tracks, poster frames ---------------------------
+PROJECTS = {
+    # segment B: frames 0-201, the loop restarts on the cut after the make (#14); x1.36 from the left edge (#15);
+    # poster: the step-back jumper (#23)
+    'nba': dict(src='art-src/project-visuals/nba-24.mp4', frames=202, crop='crop=941:529:0:95', logos=NBA_LOGOS, posters=(150,)),
+    # Falling Constellations: 10 s of the live page (tools/fc_record.cjs), seam cross-faded in the master; x1.36 from
+    # the left edge so the galaxy sits right of the card
+    'fc': dict(src='art-src/project-visuals/fc-24.mp4', frames=240, crop='crop=1176:662:0:119', logos=[], posters=(120,),
+               soften=2.5, stars=2.2),
+}
+# soften: blur before the paint patches (a field of point stars otherwise paints as square tiles).
+# stars: thin bright detail (stars, constellation lines) the patches erase, laid back on top as gilding, x this gain.
+args = sys.argv[2:]
+NAME = args.pop(0) if args and args[0] in PROJECTS else 'nba'
+P = PROJECTS[NAME]; SRC, FRAMES, CROP, LOGOS, POSTERS = P['src'], P['frames'], P['crop'], P['logos'], P['posters']
+SOFTEN, STARS = P.get('soften', 0), P.get('stars', 0)
+OUT = Path(sys.argv[1]); OUT.mkdir(parents=True, exist_ok=True)
+TEST = args[:1] == ['still']
+STILL = {int(f) for f in args[1].split(',')} if TEST else set()
 
 def flatten_logos(a, t):
     """Blur each active logo box (feathered) into plain paint, keeping the track's share of the detail."""
@@ -129,6 +145,21 @@ def buon_fresco(p, t):
     return top_shade(flatten_logos(a, t))                           # logos into plain paint (#18), then the top shade
 
 # --- Run ---------------------------------------------------------------------------------------------------------------
+def paint(f, prev=None):
+    """Source frame -> paint patches (held steady against the previous frame's, if given). Returns the patches."""
+    p = kuwahara(gaussian_filter(f, (SOFTEN, SOFTEN, 0)) if SOFTEN else f, 6)
+    if prev is not None:                                            # hold still areas steady; let motion through
+        w = .6 * np.exp(-(np.abs(luma(p) - luma(prev)) / .05) ** 2)[..., None]
+        p = w * prev + (1 - w) * p
+    return p
+
+def finish(f, p, t):
+    a = buon_fresco(p, t)
+    if STARS:                                                       # gilded stars and lines over the painted sky
+        L = luma(f); hi = np.clip(L - gaussian_filter(L, 3), 0, 1)
+        a = a + GILT * np.clip(STARS * gaussian_filter(hi, .7), 0, 1)[..., None]
+    return a
+
 def to8(a): return (np.clip(a, 0, 1) * 255 + .5).astype(np.uint8)
 TEX = np.minimum(GRAIN, 1)                                          # multiply overlay keeps only the darkening part
 
@@ -141,7 +172,7 @@ def frames():
 
 if TEST:
     for t, f in frames():
-        if t in STILL: Image.fromarray(to8(buon_fresco(kuwahara(f, 6), t) * GRAIN)).save(OUT / f'still-{t}.png')
+        if t in STILL: Image.fromarray(to8(finish(f, paint(f), t) * GRAIN)).save(OUT / f'still-{t}.png')
         if t >= max(STILL): break
     reader.kill(); sys.exit()
 
@@ -151,29 +182,25 @@ def encoders(name):
             subprocess.Popen(raw + ['-c:v', 'libvpx-vp9', '-crf', '36', '-b:v', '0', '-row-mt', '1', '-deadline', 'good', '-cpu-used', '2', '-pix_fmt', 'yuv420p', str(OUT / f'{name}.webm')], stdin=subprocess.PIPE)]
 
 Image.fromarray(to8(TEX)).save(OUT / 'plaster.png')
-pipes = {'nba': encoders('nba'), 'nba-nograin': encoders('nba-nograin')}
-prev, hist, energy = None, {'source': [], 'nba': []}, {'source': [], 'nba': []}
+pipes = {NAME: encoders(NAME), f'{NAME}-nograin': encoders(f'{NAME}-nograin')}
+prev, hist, energy = None, {'source': [], NAME: []}, {'source': [], NAME: []}
 for t, f in frames():
-    p = kuwahara(f, 6)
-    if prev is not None:                                            # hold still areas steady; let motion through
-        w = .6 * np.exp(-(np.abs(luma(p) - luma(prev)) / .05) ** 2)[..., None]
-        p = w * prev + (1 - w) * p
-    prev = p
-    a = buon_fresco(p, t)
-    outs = {'nba': a * GRAIN, 'nba-nograin': a}
-    for n, img in (('source', f), ('nba', outs['nba'])):            # flicker: 2nd temporal difference of a 400 x 225 luma
+    p = prev = paint(f, prev)
+    a = finish(f, p, t)
+    outs = {NAME: a * GRAIN, f'{NAME}-nograin': a}
+    for n, img in (('source', f), (NAME, outs[NAME])):            # flicker: 2nd temporal difference of a 400 x 225 luma
         s = luma(img[::4, ::4]); hist[n] = (hist[n] + [s])[-3:]
         if len(hist[n]) == 3: energy[n].append(float(np.abs(hist[n][2] - 2 * hist[n][1] + hist[n][0]).mean()))
     for n, img in outs.items():
         b = to8(img)
         for e in pipes[n]: e.stdin.write(b.tobytes())
-        if n == 'nba' and t in POSTERS: Image.fromarray(b).save(OUT / f'poster-{t}.png')
+        if n == NAME and t in POSTERS: Image.fromarray(b).save(OUT / f'poster-{t}.png')
     if t % 20 == 0: print('frame', t, flush=True)
 for ps in pipes.values():
     for e in ps: e.stdin.close(); e.wait()
 reader.wait()
 
 kb = lambda n: round((OUT / n).stat().st_size / 1024)
-stats = {n: kb(n) for n in ['nba.webm', 'nba.mp4', 'nba-nograin.webm', 'nba-nograin.mp4', 'plaster.png']}
-stats['flicker_ratio'] = round(float(np.median(np.array(energy['nba']) / np.maximum(np.array(energy['source']), 1e-4))), 2)
+stats = {n: kb(n) for n in [f'{NAME}.webm', f'{NAME}.mp4', f'{NAME}-nograin.webm', f'{NAME}-nograin.mp4', 'plaster.png']}
+stats['flicker_ratio'] = round(float(np.median(np.array(energy[NAME]) / np.maximum(np.array(energy['source']), 1e-4))), 2)
 (OUT / 'stats.json').write_text(json.dumps(stats, indent=2)); print(json.dumps(stats, indent=2))

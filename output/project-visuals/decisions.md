@@ -32,3 +32,14 @@
 | 28 | 2026-11-16 | GitHub repository for commits | origin: https://github.com/arinb44/portfolio; push only with approval |
 | 29 | 2026-11-16 | Branch | New branch `project-visuals` from `fresco-intro` (at 09732e8) |
 | 30 | 2026-11-16 | Commit the NBA loop | Commit as proposed on `project-visuals`; rebuildable renders, frame dumps, analysis contact sheets and unpainted footage stills stay out via .gitignore |
+| 31 | 2026-11-16 | Push `project-visuals` to origin | Push it |
+| 32 | 2026-11-16 | M4: NFL and MLB references | Game clips like NBA, supplied by the user to `art-src/`; same rights risk as NBA, the user's call again (extends #6) |
+| 33 | 2026-11-16 | M4: Falling Constellations and Hearth references | The agent records Falling Constellations from its public page; the user records a Hearth build session |
+| 34 | 2026-11-16 | M4: Juno | Skipped for now: its placeholder stays until there is safe footage (no real chats) |
+| 35 | 2026-11-16 | M4: Nightfall | A painted still only (no video), from a gameplay frame the user supplies |
+| 36 | 2026-11-17 | Resume from the handoff | Continue `project-visuals` at M4 |
+| 37 | 2026-11-17 | Plan Amendment 1 (M4) | Approved |
+| 38 | 2026-11-17 | M4a round 1 (Falling Constellations loop) | Approved as shown ("Approve it"); the violet-umber sky stays |
+| 39 | 2026-11-17 | Falling Constellations loop into the site | Yes: files in `public/projects/falling-constellations/`, home page only |
+| 40 | 2026-11-17 | Site tidy-ups | Both: one shared `public/projects/plaster.webp`; the poster is the home image of every project with a loop |
+| 41 | 2026-11-17 | Commit and push the Falling Constellations loop | Commit on `project-visuals` and push to origin (https://github.com/arinb44/portfolio) |
