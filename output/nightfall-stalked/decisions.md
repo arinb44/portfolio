@@ -17,3 +17,6 @@
 | 13 | 2026-11-17 | M1 blockout | Approved |
 | 14 | 2026-11-17 | Git: repository / branch / contents | `arinb44/portfolio` (origin) / new branch `nightfall-stalked` / scripts + docs only |
 | 15 | 2026-11-17 | M2 forest; hero trunks vs. the spruce model up close | Approved; keep the spruce model and give its trunk material the pine_bark texture in M3 |
+| 16 | 2026-11-17 | Ground and bark textures | Ground037 moss + rocky_gravel needle litter mixed by noise; pine_bark desaturated to spruce grey-brown; 4K/2K working copies made by `03a_textures.py` |
+| 17 | 2026-11-17 | Wendigo colours: keep game colours or grimy grade | **Grimy grade** (material only, textures untouched) |
+| 18 | 2026-11-17 | M3 materials | Approved |
