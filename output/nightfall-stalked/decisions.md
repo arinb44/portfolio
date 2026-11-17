@@ -16,3 +16,4 @@
 | 12 | 2026-11-17 | Wendigo pose (Scream f1 / Attack f12 / Run) | **Scream f1**: hunched, standing, arms hanging |
 | 13 | 2026-11-17 | M1 blockout | Approved |
 | 14 | 2026-11-17 | Git: repository / branch / contents | `arinb44/portfolio` (origin) / new branch `nightfall-stalked` / scripts + docs only |
+| 15 | 2026-11-17 | M2 forest; hero trunks vs. the spruce model up close | Approved; keep the spruce model and give its trunk material the pine_bark texture in M3 |
