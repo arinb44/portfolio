@@ -1,0 +1,18 @@
+# Decisions: nightfall-stalked
+
+| # | Date | Decision | Answer |
+|---|---|---|---|
+| 1 | 2026-11-17 | Project root | Portfolio (`C:\Users\arins\Arin\School\Projects\Portfolio`), not Game 2 |
+| 2 | 2026-11-17 | Run mode | Live via Blender MCP (user connected it) + background for final renders |
+| 3 | 2026-11-17 | What to make | A quick photoreal animation of a hunter being stalked by a wendigo; building and lighting only; effects later; any models may be used; finals in `art-src/` |
+| 4 | 2026-11-17 | Length | ~10 s seamless loop (240 frames, 24 fps) |
+| 5 | 2026-11-17 | Engine | Cycles on the GPU (OptiX only inside background runs) |
+| 6 | 2026-11-17 | How the wendigo is "not directly visible" | The beam just misses it; half-made-out at the edge of the light and fog |
+| 7 | 2026-11-17 | Hunter's view | Beam only, no hands or gun |
+| 8 | 2026-11-17 | Proposed specs (1600×900, AgX, 2.7 m wendigo, PNG + MP4, `art-src/project-visuals/nightfall/`, slug `nightfall-stalked`) | Approved |
+| 9 | 2026-11-17 | Agent definition | Approved |
+| 10 | 2026-11-17 | Plan | Approved |
+| 11 | 2026-11-17 | Wendigo spot (options A edge of beam 7.5 m / B deeper 11.5 m / C close 4.6 m) | **A**: 7.5 m at -54°, beside a trunk at 6.8 m, -49° |
+| 12 | 2026-11-17 | Wendigo pose (Scream f1 / Attack f12 / Run) | **Scream f1**: hunched, standing, arms hanging |
+| 13 | 2026-11-17 | M1 blockout | Approved |
+| 14 | 2026-11-17 | Git: repository / branch / contents | `arinb44/portfolio` (origin) / new branch `nightfall-stalked` / scripts + docs only |

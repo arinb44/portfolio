@@ -1,0 +1,5 @@
+# Only scripts and documents are committed (decision 13); the scripts rebuild everything else.
+blend/
+previews/
+logs/
+final/
