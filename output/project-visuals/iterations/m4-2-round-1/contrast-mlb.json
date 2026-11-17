@@ -1,0 +1,564 @@
+{
+ "output/project-visuals/iterations/m4-2-round-1/mlb-nograin.webm": {
+  "1280x800": {
+   "card count": {
+    "min": 4.55,
+    "frame": 188,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card title": {
+    "min": 9.04,
+    "frame": 204,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card line": {
+    "min": 9.04,
+    "frame": 201,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card meta": {
+    "min": 6.56,
+    "frame": 183,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "Live demo": {
+    "min": 12.4,
+    "frame": 192,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "Code": {
+    "min": 12.0,
+    "frame": 190,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "scroll hint": {
+    "min": 6.92,
+    "frame": 120,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "header name": {
+    "min": 13.59,
+    "frame": 194,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "header tagline": {
+    "min": 9.78,
+    "frame": 193,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav Projects": {
+    "min": 7.91,
+    "frame": 202,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav About": {
+    "min": 7.94,
+    "frame": 204,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav CV": {
+    "min": 7.97,
+    "frame": 205,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav Email": {
+    "min": 8.54,
+    "frame": 93,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   }
+  },
+  "1440x900": {
+   "card count": {
+    "min": 4.55,
+    "frame": 190,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card title": {
+    "min": 9.03,
+    "frame": 188,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card line": {
+    "min": 9.03,
+    "frame": 201,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card meta": {
+    "min": 6.56,
+    "frame": 197,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "Live demo": {
+    "min": 12.55,
+    "frame": 193,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "Code": {
+    "min": 12.07,
+    "frame": 191,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "scroll hint": {
+    "min": 6.97,
+    "frame": 120,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "header name": {
+    "min": 13.71,
+    "frame": 195,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "header tagline": {
+    "min": 9.9,
+    "frame": 199,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav Projects": {
+    "min": 7.87,
+    "frame": 207,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav About": {
+    "min": 7.92,
+    "frame": 206,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav CV": {
+    "min": 7.97,
+    "frame": 194,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav Email": {
+    "min": 8.53,
+    "frame": 92,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   }
+  },
+  "1920x1080": {
+   "card count": {
+    "min": 5.91,
+    "frame": 209,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card title": {
+    "min": 11.76,
+    "frame": 207,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card line": {
+    "min": 11.81,
+    "frame": 200,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card meta": {
+    "min": 8.69,
+    "frame": 195,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "Live demo": {
+    "min": 12.8,
+    "frame": 24,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "Code": {
+    "min": 12.54,
+    "frame": 195,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "scroll hint": {
+    "min": 9.02,
+    "frame": 190,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "header name": {
+    "min": 13.72,
+    "frame": 205,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "header tagline": {
+    "min": 9.91,
+    "frame": 205,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav Projects": {
+    "min": 7.91,
+    "frame": 206,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav About": {
+    "min": 8.47,
+    "frame": 94,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav CV": {
+    "min": 8.91,
+    "frame": 121,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav Email": {
+    "min": 8.85,
+    "frame": 94,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   }
+  }
+ },
+ "output/project-visuals/iterations/m4-2-round-1/mlb.webm": {
+  "1280x800": {
+   "card count": {
+    "min": 4.55,
+    "frame": 188,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card title": {
+    "min": 9.0,
+    "frame": 185,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card line": {
+    "min": 9.0,
+    "frame": 198,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card meta": {
+    "min": 6.56,
+    "frame": 183,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "Live demo": {
+    "min": 12.4,
+    "frame": 50,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "Code": {
+    "min": 11.91,
+    "frame": 190,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "scroll hint": {
+    "min": 6.86,
+    "frame": 120,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "header name": {
+    "min": 13.58,
+    "frame": 194,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "header tagline": {
+    "min": 9.75,
+    "frame": 194,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav Projects": {
+    "min": 7.53,
+    "frame": 191,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav About": {
+    "min": 7.87,
+    "frame": 204,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav CV": {
+    "min": 7.94,
+    "frame": 204,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav Email": {
+    "min": 8.42,
+    "frame": 93,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   }
+  },
+  "1440x900": {
+   "card count": {
+    "min": 4.55,
+    "frame": 235,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card title": {
+    "min": 9.0,
+    "frame": 185,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card line": {
+    "min": 8.99,
+    "frame": 198,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card meta": {
+    "min": 6.55,
+    "frame": 183,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "Live demo": {
+    "min": 12.42,
+    "frame": 23,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "Code": {
+    "min": 12.0,
+    "frame": 191,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "scroll hint": {
+    "min": 6.84,
+    "frame": 120,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "header name": {
+    "min": 13.67,
+    "frame": 194,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "header tagline": {
+    "min": 9.88,
+    "frame": 196,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav Projects": {
+    "min": 7.87,
+    "frame": 207,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav About": {
+    "min": 7.57,
+    "frame": 207,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav CV": {
+    "min": 7.87,
+    "frame": 194,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav Email": {
+    "min": 8.4,
+    "frame": 94,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   }
+  },
+  "1920x1080": {
+   "card count": {
+    "min": 5.91,
+    "frame": 209,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card title": {
+    "min": 11.75,
+    "frame": 203,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card line": {
+    "min": 11.77,
+    "frame": 199,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card meta": {
+    "min": 8.57,
+    "frame": 195,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "Live demo": {
+    "min": 12.7,
+    "frame": 1,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "Code": {
+    "min": 12.5,
+    "frame": 195,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "scroll hint": {
+    "min": 8.95,
+    "frame": 84,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "header name": {
+    "min": 13.72,
+    "frame": 205,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "header tagline": {
+    "min": 9.9,
+    "frame": 199,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav Projects": {
+    "min": 7.87,
+    "frame": 204,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav About": {
+    "min": 8.46,
+    "frame": 94,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav CV": {
+    "min": 8.87,
+    "frame": 121,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav Email": {
+    "min": 8.71,
+    "frame": 94,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   }
+  }
+ }
+}

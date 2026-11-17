@@ -53,6 +53,22 @@ The NBA Game Predictor's main visual on the portfolio home page is an 8.42 s sea
 - **Checks:** every frame at 1280 / 1440 / 1920 passes (lowest: nav Email 5.66, card count 6.37); flicker 0.7× the source; 0 flashes per second; seam step inside the normal frame-step range. Preview: `iterations/m4-1-round-1/`.
 - **On the page:** as the first stop, it starts once the opening is over; the pause pill is hidden during the opening.
 
+### NFL Game Predictor (home stop 02, approved 2026-11-17, #48)
+- **Source:** a broadcast highlight (David Montgomery's 40-yard run), 1280 x 720, true 30 fps. From ~2.3 s the broadcast squeezes the picture into a box above its score bar and ticker; only that picture is used, so the score bar, ticker and corner marks are cropped off.
+- **Loop:** source 4.55-14.50 s (#46: the hit at the 30 by the sideline, the contact pile, the break across the Lions logo, open field to the 30), every frame played at 24 fps (0.8x, #44): 12.4 s, 298 frames, over the 6-10 s target by choice. One continuous shot, so the restart is a visible jump.
+- **Framing:** a x1.36 window that follows the runner (#47): `tools/reframe.py` keeps him at 66% of the width and 55% of the height (the path in `tools/nfl-runner.json`, smoothed), inside the broadcast picture. The window is baked into `art-src/project-visuals/nfl-24-framed.mp4`.
+- **Look:** the NBA settings unchanged. The sideline "INTERCEPT CANCER" stencil is flattened (keyframed box); the Lions logo and yard numbers stay (field markings).
+- **Files:** `public/projects/nfl-predictor/`: `loop.webm` (3.6 MB), `loop.mp4` (3.4 MB), `poster.webp` (106 KB, frame 25, the hit).
+- **Checks:** every frame passes at 1280 / 1440 / 1920 (lowest: card count 4.57); flicker 0.67x the source; 0 flashes per second. Preview: `iterations/m4-2-round-2/nfl.html`.
+
+### MLB Game Predictor (home stop 04, approved 2026-11-17, #49)
+- **Source:** a broadcast highlight (an Ohtani home run), 1280 x 720, true 60 fps.
+- **Loop:** source 1.35-9.35 s (#43: the pitch and swing from center field, then the zoom toward the outfield scoreboard), every other frame played at 24 fps (0.8x): 10 s, 240 frames. Restarts on what reads as a cut back to the pitch.
+- **Framing:** x1.36 from the left (#45). Ohtani sits about half way across, at the edge of the card's gradient.
+- **Look:** the NBA settings. Sponsor and event marks are blurred into paint with boxes that follow the camera: `tools/track_zoom.py` estimates each shot's zoom and pan (`tools/mlb-pitch.json`, `tools/mlb-flight.json`), and `follow()` in `tools/render.py` moves and scales each box and its blur with the shot. Flattened: the score bug, Booking.com, the NLCS / loanDepot board and rail, the 76 ball, Michelob Ultra, Security Benefit, Coca-Cola, the lower sign row, the NLCS emblem, both YAAMAVA panels, the LED ribbon. Kept: the line score.
+- **Files:** `public/projects/mlb-predictor/`: `loop.webm` (1.9 MB), `loop.mp4` (1.7 MB), `poster.webp` (110 KB, frame 70, the swing).
+- **Checks:** every frame passes at 1280 / 1440 / 1920 (lowest: card count 4.55, little headroom); flicker 0.51x; max 1 flash per second. Preview: `iterations/m4-2-round-1/mlb.html`.
+
 ## 5. Components & Tokens
 - **A loop on any project:** put `loop.webm`, `loop.mp4` and `poster.webp` in `public/projects/<slug>/`. The plaster is shared: `public/projects/plaster.webp` (#40). The poster is also that project's still home image, in place of its placeholder (#40). `src/pages/index.astro` adds the loop for any project whose folder has `loop.webm`.
 - **Pause control:** `.pause-loop` in `src/styles/creation.css`; its behaviour is in `src/scripts/home.js`.

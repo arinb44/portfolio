@@ -1,0 +1,23 @@
+frame 0
+frame 20
+frame 40
+frame 60
+frame 80
+frame 100
+frame 120
+frame 140
+frame 160
+frame 180
+frame 200
+frame 220
+frame 240
+frame 260
+frame 280
+{
+  "nfl.webm": 5562,
+  "nfl.mp4": 8815,
+  "nfl-nograin.webm": 3550,
+  "nfl-nograin.mp4": 5970,
+  "plaster.png": 1471,
+  "flicker_ratio": 0.67
+}

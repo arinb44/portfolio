@@ -43,3 +43,14 @@
 | 39 | 2026-11-17 | Falling Constellations loop into the site | Yes: files in `public/projects/falling-constellations/`, home page only |
 | 40 | 2026-11-17 | Site tidy-ups | Both: one shared `public/projects/plaster.webp`; the poster is the home image of every project with a loop |
 | 41 | 2026-11-17 | Commit and push the Falling Constellations loop | Commit on `project-visuals` and push to origin (https://github.com/arinb44/portfolio) |
+| 42 | 2026-11-17 | M4b: NFL segment | B: source 6.50-14.50 s (the contact pile, the break across the Lions logo, open field to the 30) |
+| 43 | 2026-11-17 | M4b: MLB segment | A: source 1.35-9.35 s (pitch, swing, flight toward the scoreboard) |
+| 44 | 2026-11-17 | M4b: 30 / 60 fps to 24 fps | 0.8x speed: every real frame kept (60 fps MLB: every other frame), played at 24 fps |
+| 45 | 2026-11-17 | M4b: framing | Reframe x1.36 from the left edge (NFL: of the picture above the score bar) |
+| 46 | 2026-11-17 | M4b: NFL segment, revised (user: "include the initial big contact") | Source 4.55-14.50 s: the hit at the 30 by the sideline (4.97-5.5 s), the contact pile at the 40, the break across the Lions logo, open field to the 30. 298 frames, 12.4 s at 0.8x: over the 6-10 s target (#9), accepted; replaces #42 |
+| 47 | 2026-11-17 | NFL round 1 feedback | "the runner who gets contacted should be the focal point and hes offscreen for like half of the video": the crop follows the runner (a moving x1.36 window over the broadcast picture) instead of a fixed one |
+| 48 | 2026-11-17 | NFL round 2 (the window follows the runner) | Approved ("Yes, approve NFL") |
+| 49 | 2026-11-17 | MLB round 1 | Approved |
+| 50 | 2026-11-17 | M4b posters | NFL frame 25 (the hit); MLB frame 70 (the swing) |
+| 51 | 2026-11-17 | NFL and MLB loops into the site | Yes: public/projects/{nfl,mlb}-predictor/, home page only; the two tests that assumed no loop at NFL / MLB use Hearth |
+| 52 | 2026-11-17 | Commit and push the NFL and MLB loops | Commit on `project-visuals` and push to origin (https://github.com/arinb44/portfolio); .gitignore extended for test stills, contact sheets, footage sheets |

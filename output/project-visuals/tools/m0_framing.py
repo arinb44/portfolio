@@ -1,20 +1,26 @@
 """M0 framing sheet: key moments of the clip at 1440 x 900 under the home page's card gradients, full frame vs reframed right.
 
-Run from the project root:  python -I output/project-visuals/tools/m0_framing.py
-Writes output/project-visuals/directions/m0/framing.png (half size).
+Run from the project root:  python -I output/project-visuals/tools/m0_framing.py [<clip> <out png> <t>:<label> ...]
+With no arguments: the NBA master and moments, to output/project-visuals/directions/m0/framing.png (half size).
 """
-import subprocess
+import subprocess, sys
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 SRC, W, H, REFRAME = 'art-src/project-visuals/nba-24.mp4', 1440, 900, 1.36
 INK = np.array([0x1F, 0x1D, 0x1A], np.float32)
 moments = [(0.6, 'crossover'), (3.9, 'stumble'), (5.6, 'low dribble'), (7.6, 'step-back')]
+OUT = 'output/project-visuals/directions/m0/framing.png'
+if len(sys.argv) > 1:
+    SRC, OUT = sys.argv[1], sys.argv[2]
+    moments = [(float(m.split(':', 1)[0]), m.split(':', 1)[1]) for m in sys.argv[3:]]
 
 def frame(t):
     raw = subprocess.run(['ffmpeg', '-v', 'error', '-ss', str(t), '-i', SRC, '-frames:v', '1', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-'],
                          capture_output=True, check=True).stdout
-    return Image.frombuffer('RGB', (1280, 720), raw)
+    w, h = map(int, subprocess.run(['ffprobe', '-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=width,height', '-of', 'csv=p=0', SRC],
+                                   capture_output=True, text=True, check=True).stdout.strip().split(','))
+    return Image.frombuffer('RGB', (w, h), raw)
 
 def cover(im, s):
     # object-fit: cover, then CSS scale(s) about the left-centre (transform-origin: 0 50%).
@@ -45,5 +51,5 @@ for r, (t, name) in enumerate(moments):
         x0, y0 = c * (W + 20), r * (H + 40)
         sheet.paste(tile, (x0, y0 + 40))
         dr.text((x0 + 8, y0 + 8), f'{t:.1f}s {name} · ' + ('full frame' if s == 1 else f'reframed right (x{REFRAME})'), fill=(238, 233, 223), font=font)
-sheet.resize((sheet.width // 2, sheet.height // 2), Image.LANCZOS).save('output/project-visuals/directions/m0/framing.png')
+sheet.resize((sheet.width // 2, sheet.height // 2), Image.LANCZOS).save(OUT)
 print('ok')

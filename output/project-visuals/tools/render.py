@@ -73,6 +73,43 @@ NBA_LOGOS = [
      201: (350, 500, 130, 170)}),
 ]
 
+def follow(path, sigma, keep, box, ref=None, pad=40):
+    """A logo track that follows the camera: box (x0, y0, x1, y1) as measured on frame ref (default: the first frame of
+    tools/track_zoom.py's json), moved and scaled with the shot; the blur grows with the zoom. The box is padded by pad px
+    on screen, since flatten_logos' 25 px feather leaves only the middle of a small box at full strength."""
+    T = {int(t): v for t, v in json.load(open(path)).items()}
+    if ref is not None:
+        k, x, y = T[ref]; box = ((box[0] - x) / k, (box[1] - y) / k, (box[2] - x) / k, (box[3] - y) / k); sigma /= k
+    track = {}
+    for t, (k, x, y) in T.items():
+        x0, y0, x1, y1 = k * box[0] + x, k * box[1] + y, k * box[2] + x, k * box[3] + y
+        track[t] = ((x0 + x1) / 2, (y0 + y1) / 2, (x1 - x0) / 2 + pad, (y1 - y0) / 2 + pad, sigma * k)
+    return sigma, keep, track
+
+TRACKS = 'output/project-visuals/tools/'
+# NFL: the "INTERCEPT CANCER" stencil along the sideline (field lettering) in the opening, frames 0-110. Placed by hand on
+# the runner-following framing (track_zoom.py lost this pan: grass and repeating yard lines); it leaves the top by ~f85.
+NFL_LOGOS = [(10, 0, {0: (800, 230, 900, 70), 20: (800, 165, 900, 70), 40: (800, 115, 900, 60), 55: (800, 50, 900, 60),
+                      70: (800, 20, 900, 40), 85: (800, 30, 900, 40), 110: (800, 25, 900, 35)})]
+# MLB: the score bug (a fixed broadcast overlay, top left), then the pitch shot (frames 0-121, a slow zoom) and the
+# flight toward the scoreboard (122-239, zooming ~4x). Boxes measured on frame 0 / 122 (the LED ribbon on 230). The line
+# score's numbers stay (the game's score, not an ad); the event and sponsor marks go.
+MLB_LOGOS = [
+    (10, 0, {0: (232, 21, 218, 61), 239: (232, 21, 218, 61)}),            # (padded like follow())
+    follow(TRACKS + 'mlb-pitch.json', 26, 0, (90, 395, 645, 545)),        # Booking.com and its strapline
+    follow(TRACKS + 'mlb-pitch.json', 22, 0, (1420, 365, 1640, 515)),      # NLCS / loanDepot board
+    follow(TRACKS + 'mlb-pitch.json', 10, 0, (0, 40, 1600, 112)),          # the postseason / NLCS / loanDepot rail
+    follow(TRACKS + 'mlb-flight.json', 16, 0, (1045, 225, 1145, 330)),     # the 76 ball
+    follow(TRACKS + 'mlb-flight.json', 18, 0, (318, 565, 497, 650)),       # Michelob Ultra
+    follow(TRACKS + 'mlb-flight.json', 20, 0, (555, 562, 733, 650)),       # Security Benefit
+    follow(TRACKS + 'mlb-flight.json', 12, 0, (1485, 570, 1640, 665)),     # Coca-Cola
+    follow(TRACKS + 'mlb-flight.json', 16, 0, (380, 685, 1700, 745)),      # the lower sign row (Churu ... STARLUX, TEL)
+    follow(TRACKS + 'mlb-flight.json', 10, 0, (1030, 548, 1150, 592)),     # the NLCS emblem
+    follow(TRACKS + 'mlb-flight.json', 10, 0, (862, 612, 945, 658), pad=10),   # YAAMAVA, left of the line score (little pad: the score is next to it)
+    follow(TRACKS + 'mlb-flight.json', 10, 0, (1232, 612, 1318, 658), pad=10), # YAAMAVA, right of the line score
+    follow(TRACKS + 'mlb-flight.json', 40, 0, (-200, 754, 1800, 844), ref=230),   # the LED ribbon (HOME RUN!, Coca-Cola)
+]
+
 # --- Per-project settings: master, frame count, reframing crop, logo tracks, poster frames ---------------------------
 PROJECTS = {
     # segment B: frames 0-201, the loop restarts on the cut after the make (#14); x1.36 from the left edge (#15);
@@ -82,6 +119,13 @@ PROJECTS = {
     # the left edge so the galaxy sits right of the card
     'fc': dict(src='art-src/project-visuals/fc-24.mp4', frames=240, crop='crop=1176:662:0:119', logos=[], posters=(120,),
                soften=2.5, stars=2.2),
+    # NFL: source 4.55-14.50 s at 0.8x (every 30 fps frame played at 24, #44, #46): 298 frames, 12.4 s. The master is already
+    # framed: a 763 x 429 window (x1.36, #45) that follows the runner inside the broadcast's picture above its score bar
+    # (tools/reframe.py with tools/nfl-runner.json, #47), so the crop here is the whole frame.
+    'nfl': dict(src='art-src/project-visuals/nfl-24-framed.mp4', frames=298, crop='crop=763:429:0:0', logos=NFL_LOGOS, posters=(25, 230)),
+    # MLB: source 1.35-9.35 s at 0.8x (every other 60 fps frame played at 24, #43, #44); x1.36 from the left (#45).
+    # Master frames 0-121: the pitch and swing; 122-239: the flight toward the scoreboard.
+    'mlb': dict(src='art-src/project-visuals/mlb-24.mp4', frames=240, crop='crop=941:529:0:95', logos=MLB_LOGOS, posters=(70, 200)),
 }
 # soften: blur before the paint patches (a field of point stars otherwise paints as square tiles).
 # stars: thin bright detail (stars, constellation lines) the patches erase, laid back on top as gilding, x this gain.
@@ -99,11 +143,12 @@ def flatten_logos(a, t):
         ks = sorted(track)
         if not ks[0] <= t <= ks[-1]: continue
         k0 = max(k for k in ks if k <= t); k1 = min(k for k in ks if k >= t); f = 0 if k0 == k1 else (t - k0) / (k1 - k0)
-        cx, cy, hw, hh = (np.array(track[k0]) * (1 - f) + np.array(track[k1]) * f)
+        v = np.array(track[k0]) * (1 - f) + np.array(track[k1]) * f
+        cx, cy, hw, hh = v[:4]; s = v[4] if len(v) > 4 else sigma     # a followed box carries its own (zoomed) blur
         x0, x1, y0, y1 = int(max(cx - hw, 0)), int(min(cx + hw, W)), int(max(cy - hh, 0)), int(min(cy + hh, H))
         if x1 <= x0 or y1 <= y0: continue
         m = np.zeros((H, W), np.float32); m[y0:y1, x0:x1] = 1; m = gaussian_filter(m, 25)[..., None]
-        soft = gaussian_filter(a, (sigma, sigma, 0))
+        soft = gaussian_filter(a, (s, s, 0))
         a = a * (1 - m) + (soft + keep * (a - soft)) * m
     return a
 

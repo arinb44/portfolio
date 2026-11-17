@@ -107,7 +107,7 @@ test('the NBA stop plays its painted loop; the pause control shows with it and s
   await page.goto('/');
   await page.getByRole('link', { name: 'Skip to the projects' }).click();
   await expect(page.locator(html)).toHaveClass(/revealed/, SHOWCASE);
-  await page.locator('#nfl-predictor').scrollIntoViewIfNeeded();
+  await page.locator('#hearth').scrollIntoViewIfNeeded();
   await expect(page.locator('.pause-loop')).toBeHidden(); // no loop at this stop
   await page.locator('#nba-predictor').scrollIntoViewIfNeeded();
   const loop = page.locator('.loop[data-loop="nba-predictor"]');
@@ -118,8 +118,8 @@ test('the NBA stop plays its painted loop; the pause control shows with it and s
   await expect(page.getByRole('button', { name: 'Play the background video' })).toBeVisible();
   expect(await video.evaluate((v: HTMLVideoElement) => v.paused)).toBe(true);
   expect(await axe(page)).toEqual([]);
-  await page.locator('#mlb-predictor').scrollIntoViewIfNeeded();
-  await expect(page.locator('.pause-loop')).toBeHidden();
+  await page.locator('#hearth').scrollIntoViewIfNeeded();
+  await expect(page.locator('.pause-loop')).toBeHidden(); // no loop at this stop
   await expect(loop).not.toHaveClass(/\bon\b/);
 });
 

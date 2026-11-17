@@ -17,3 +17,7 @@ output/project-visuals/**/nograin-*.png
 output/project-visuals/**/poster-*.png
 output/project-visuals/**/probe/contact-sheet.png
 output/project-visuals/directions/m0/*.png
+output/project-visuals/**/contact-sheet.png
+output/project-visuals/iterations/m4-*-m0/**/*.png
+output/project-visuals/**/test/
+output/project-visuals/**/posters.png

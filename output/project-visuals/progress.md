@@ -1,7 +1,7 @@
 # Progress: Project Visuals
 
-- **Current phase:** Phase 4, M4a done (Falling Constellations in the site); M4b and M4c wait on files
-- **Status:** waiting for user (commit approval; source files for batches 2 and 3)
+- **Current phase:** Phase 4, M4b done (NFL and MLB in the site); M4c waits on files
+- **Status:** waiting for user (Hearth and Nightfall sources)
 
 ## Completed milestones
 - 2026-11-15: Project root confirmed (`C:\Users\arins\Arin\School\Projects\Portfolio`); new project chosen over resuming `fresco-intro` or `creation-redesign` (decisions #1, #2).
@@ -113,11 +113,59 @@
   - Figma: frame 4:98 and notes 4:132 on "Final · NBA loop" (the WebP upload rendered blank, so the backdrop is the PNG poster). Screenshot checked; fonts Gloock / Newsreader / IBM Plex Mono only.
   - `design-spec.md` and `figma-links.md` updated.
 
+- 2026-11-17: **Committed and pushed** as `e72ee73` on `project-visuals` to origin (#41; message checked, no AI markers).
+
+- 2026-11-17: **M4b started**: the user added the NFL and MLB clips to `art-src/` (originals untouched; copies `art-src/project-visuals/{nfl,mlb}/{nfl,mlb}-reference.mp4`).
+  - NFL: `[Highlight] David Montgomery absorbs contact, trucks defender and takes off for 40 yards.mp4`, 1280 x 720, true 29.97 fps (no pulldown, 0 duplicate frames), 18.05 s, one continuous high camera, no cuts, flashes max 1 per second.
+    - From ~2.3 s the broadcast squeezes the picture into a box: clean picture x 68-1212, y 4-588; ESPN MNF score bar y 590-635 and a two-row ticker y 648-720 below it. Inside the picture: a score box (x 98-297, y 26-78) and an "ESPN on abc" mark (x 1058-1218, y 20-70).
+    - Action: sideline start 4-6 s; contact pile at the 40 6.3-9; break across the Lions field logo to the 50 9-12; open field to the 30 12-15; into the sideline bench and crowd 15-18.
+  - MLB: `Shohei Ohtani's 3-homer + 10-strikeout game! ...mp4`, 1280 x 720, true 59.94 fps (no pulldown; 25 held frames from the source), 12.06 s, flashes max 1 per second.
+    - Shots: close-up stance 0-1.2 s (dissolve f72-80); center-field camera, pitch and swing 1.35-5.42; ball flight into the night toward the scoreboard 5.42-10.39; Ohtani rounding the bases 10.39-12.06.
+    - Graphics: score bug top left (x 30-243, y 18-130) from 1.35 s; ads everywhere (Booking.com, NLCS / loanDepot, postseason rail, HBO Max and LA on the mound; Syncron / Kou / Starlux in the close-up; the scoreboard, 76, Coca-Cola, TEL, UCLA Health, Starlux, "HOME RUN MAGIC" ribbon in the flight shot).
+  - Review page `iterations/m4-2-m0/index.html` (http://localhost:4410/output/project-visuals/iterations/m4-2-m0/): three segments each behind their real cards; buttons "Reframe right" (x1.36), "0.8x speed" and "See the loop seam". Trims in `art-src/project-visuals/{nfl,mlb}/m0/seg-{a,b,c}-{real,slow}.mp4` (git-ignored). All six play, no console errors.
+    - NFL (cropped 1038 x 584 at 121,4: above the score bar): A 4.20-12.20 s through the contact; B 6.50-14.50 contact to open field; C 10.00-18.03 the run to the sideline.
+    - MLB (full frame): A 1.35-9.35 pitch, swing, flight; B 5.43-12.06 flight and trot (restarts on a cut); C 0.00-8.00 stance to swing.
+    - Speed: real speed (frames dropped to 24 fps; 8.0 s, MLB B 6.6 s) or 0.8x (every real frame kept; 10.0 s, MLB B 8.3 s).
+  - Framing sheets `iterations/m4-2-m0/{nfl,mlb}/framing*.png` (`tools/m0_framing.py` now takes a clip, an output and moments; its NBA output is unchanged, checked with cmp). Seen: NFL at x1.36 sits clear of the card (1.9x upscale at 1440); MLB at x1.36 puts Ohtani at ~53% of the width, still in the gradient's fade, the pitcher at ~48%.
+  - The NFL loop has no cut to restart on (one continuous shot), so its restart is a jump; a cross-fade would ghost the moving camera.
+
+- 2026-11-17: M4b choices: NFL segment B (#42), MLB segment A (#43), 0.8x speed (#44), reframe x1.36 (#45). Then the user asked to "include the initial big contact": the NFL segment is now source 4.55-14.50 s (#46): the hit at the 30 by the sideline (4.97-5.5 s) through the open field to the 30; 298 frames, 12.4 s, over the 6-10 s target (accepted).
+- 2026-11-17: M4b round 1 in progress (`iterations/m4-2-round-1/`):
+  - Masters `art-src/project-visuals/nfl-24.mp4` (298 frames, 0 duplicates) and `mlb-24.mp4` (240 frames; 7 near-duplicates are the source's own still frames in the night-sky shot, checked against the 60 fps source).
+  - `tools/render.py`: `PROJECTS['nfl']` (crop 763 x 429 at 121, 82: x1.36 of the picture above the score bar; the score box and ESPN mark fall outside it) and `PROJECTS['mlb']` (crop 941 x 529 at 0, 95). NBA frame 150 still identical (md5 e799caa8...).
+  - New `tools/track_zoom.py`: estimates a shot's zoom and pan frame to frame (scale search + phase correlation) so a logo box measured once follows the camera. Tracks: `tools/nfl-open.json` (NFL frames 0-100), `tools/mlb-pitch.json` (0-121), `tools/mlb-flight.json` (122-239, the camera zooms ~4x). Checked by drawing the moved boxes on frames across each shot.
+  - `render.py`: `follow()` turns a box + track into a logo track (blur grows with the zoom; boxes padded 40 px, since the 25 px feather left the middle of small boxes only half blurred and "Booking.com" still read).
+  - Flattened: NFL the "INTERCEPT CANCER" sideline stencil; MLB the score bug, Booking.com, the NLCS / loanDepot board and rail, the 76 ball, Michelob Ultra, Security Benefit, Coca-Cola, the lower sign row (to STARLUX, TEL), the NLCS emblem, both YAAMAVA panels and the LED ribbon (HOME RUN!, Coca-Cola). Kept: the line score and "312" (the game's score), the Lions field logo and yard numbers (field markings, as the NBA court), jersey names and numbers.
+  - Review pages `iterations/m4-2-round-1/nfl.html` and `mlb.html` (the FC round page with each card).
+  - Built (waiting for the user's review): `nfl{,-nograin}.{webm,mp4}`, `mlb{,-nograin}.{webm,mp4}`, `plaster.webp`, posters `poster-25 / 230` (NFL) and `poster-70 / 200` (MLB) as PNG + WebP, `posters.png` (the four side by side). Preview: http://localhost:4410/output/project-visuals/iterations/m4-2-round-1/nfl.html and `/mlb.html`.
+  - Checks:
+    - Size (grain-free WebM + plaster 83 KB): NFL 3,013 KB (12.4 s; MP4 5,278 KB before the CRF 28 re-encode), MLB 1,892 KB (MP4 3,029 KB).
+    - Flicker vs the source: NFL 0.68x, MLB 0.51x. Flashes: NFL 0 per second, MLB max 1.
+    - Contrast over every frame at 1280 / 1440 / 1920, boxes measured on each page: all pass, grain-free and baked. Lowest is the gold card count: NFL 4.66, MLB 4.55 (needs 4.5; MLB has little headroom).
+    - Seam: NFL restarts with a visible jump (step 24 vs median 8.6, max 15; one continuous shot); MLB restarts on what reads as a cut (65, like its own cut at 71).
+    - Both pages load their loops with no console errors; the hidden browser pane suspends video, so playback was not watched there.
+
+- 2026-11-17: NFL round 1 feedback (#47): the runner should be the focal point; he was off screen for about half the loop (in the pile on the right of the broadcast picture, outside the fixed window).
+- 2026-11-17: NFL round 2 in `iterations/m4-2-round-2/` (preview: http://localhost:4410/output/project-visuals/iterations/m4-2-round-2/nfl.html):
+  - The runner's path (`tools/nfl-runner.json`, read by eye: #5 the ball carrier; the pile around him in frames ~60-216; #9 crossing the Lions logo on the left is a receiver, not the runner).
+  - New `tools/reframe.py`: a 763 x 429 window (x1.36) that keeps the runner at 66% of the width and 55% of the height, smoothed (Gaussian, 8 frames), inside the picture above the score bar; pan median 3 px, max 11 px per frame. Writes `art-src/project-visuals/nfl-24-framed.mp4` and the window per frame (`tools/nfl-window.json`). Checked by drawing the window on frames every 24.
+  - `render.py`: NFL reads the framed master; the sideline stencil box is keyframed by hand (track_zoom.py lost the combined pan on bare grass; that track file was deleted). Painted stills checked: no lettering, the runner right of the card throughout.
+  - Checks: WebM 3,550 KB (over the 3 MB target; the pan adds motion), MP4 5,970 KB before CRF 28; flicker 0.67x; flashes 0; contrast all pass at 1280 / 1440 / 1920 (lowest gold card count 4.57); restart still a jump (24 vs median 8.9). Plays in the browser pane, no errors.
+
+- 2026-11-17: **NFL round 2 approved** (#48).
+
+- 2026-11-17: **MLB round 1 approved** (#49); posters NFL frame 25, MLB frame 70 (#50). Into the site (#51):
+  - `final/nfl-predictor/` and `final/mlb-predictor/`: `loop.webm` (3,636 / 1,937 KB), `loop.mp4` (CRF 28: 3,363 / 1,702 KB; ~42.7 dB from the WebM), `poster.webp` (106 / 110 KB); copied to `public/projects/{nfl,mlb}-predictor/`. No `src/` changes (the existing loop convention, shared plaster and poster-as-home-image).
+  - `tests/e2e/home.spec.ts`: the NBA test's two "no loop here" checks use Hearth instead of NFL / MLB.
+  - `npm test`: Playwright 44/44 passed. Live dev site (the already-running server on :4321): both stops play their loops, the pause pill shows, the posters are the home images, no console errors.
+  - Figma: frames 5:125 (NFL) and 5:164 (MLB) with notes on "Final · NBA loop"; fonts Gloock / Newsreader / IBM Plex Mono only. `design-spec.md` and `figma-links.md` updated.
+
+- 2026-11-17: **Committed and pushed** the NFL and MLB loops on `project-visuals` to origin (#52; message checked, no AI markers). `.gitignore` now also keeps test stills, contact sheets, the M4b footage sheets and the poster review sheet out.
+
 ## Next step
-Ask the user to approve the commit (site change + FC loop + tools + documents + the handoff file) on `project-visuals`, then the push to origin (https://github.com/arinb44/portfolio; recorded repository, confirm it is still right). Then M4b / M4c when the user's files are in `art-src/`: NFL clip, MLB clip, Hearth recording, Nightfall frame. Start each with `tools/m0_probe.py` and a segment proposal.
+M4c (Hearth recording, Nightfall frame) when the user's files are in `art-src/`.
 
 ## Open questions
-- Commit and push: waiting for approval.
-- The NFL and MLB clips, the Hearth recording and the Nightfall frame are not in `art-src/` yet.
+- The Hearth recording and the Nightfall frame are not in `art-src/` yet.
 
 **Last updated:** 2026-11-17
