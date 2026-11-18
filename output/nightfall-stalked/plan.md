@@ -110,3 +110,6 @@ Each ends with a preview in `previews/<milestone>/` and waits for your approval.
 3. The `project-visuals` plan expects a Nightfall **still**. This loop could replace it, but changing that plan is that agent's work, not this one.
 
 **Status:** Approved on 2026-11-17
+
+## Amendment 1 (2026-11-17, user request)
+Faint red glowing eyes for the wendigo. New script `05b_eyes.py` on v005 -> `stalked_v006.blend`: two 2 cm emissive spheres (deep red, strength 0.9, no shadows) in the skull's orbit pits, parented to the head bone so they follow the breathing and head turn. Knock-on: `06_render_settings.py` now produces `stalked_v007.blend`. Render time unchanged (~16 s/frame measured with the eyes).

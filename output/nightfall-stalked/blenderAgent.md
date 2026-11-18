@@ -62,7 +62,8 @@ Make a short photoreal animation that feels like being hunted: a hunter's first-
 - **References:** the Nightfall game (Godot): flashlight, dark spruce forest, the wendigo. The portfolio's Nightfall card placeholders ("the creature in the flashlight beam").
 - **Mood / keywords:** hunted, watched, cold, quiet, claustrophobic; the dark between trees feels occupied.
 - **Color palette & materials:** cold blue-grey moonlight and fog; a warmer, slightly yellow flashlight beam; dark wet spruce bark, needle litter, mossy ground.
-- **Things to avoid:** showing the wendigo cleanly or in full light; jump scares; horror-game clichés like red eyes glowing on their own; a stable tripod-looking camera.
+- **Eyes:** faint red glowing eyes in the skull's orbits (user request, 2026-11-17); kept dim so they read as a pair of points in the dark, not a beacon.
+- **Things to avoid:** showing the wendigo cleanly or in full light; jump scares; bright, cartoonish glowing eyes; a stable tripod-looking camera.
 
 ## Asset Locations
 - **Final files go to:** `art-src/project-visuals/nightfall/` (git-ignored).

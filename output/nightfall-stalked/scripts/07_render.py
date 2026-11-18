@@ -21,7 +21,8 @@ ap.add_argument("--frames", default="150", help="e.g. 150 or 1,70,150 or 1-240")
 ap.add_argument("--pct", type=int, default=100)
 ap.add_argument("--samples", type=int)
 ap.add_argument("--name", default="f")
-ap.add_argument("--set", action="append", default=[], help="fog|moon|hot|spill|exposure=value")
+ap.add_argument("--set", action="append", default=[], help="fog|moon|hot|spill|exposure|eyes=value")
+ap.add_argument("--skip-existing", action="store_true", help="resume: skip frames whose PNG exists")
 a = ap.parse_args(argv)
 a.out = os.path.abspath(a.out)  # Blender reads relative render paths from the drive root
 
@@ -44,6 +45,7 @@ else:
 sc.cycles.device = "GPU"
 sc.cycles.denoiser = "OPTIX" if prefs.compute_device_type == "OPTIX" else "OPENIMAGEDENOISE"
 sc.render.resolution_percentage = a.pct
+sc.render.use_persistent_data = True  # keep the scene on the GPU between frames
 if a.samples:
     sc.cycles.samples = a.samples
 
@@ -55,6 +57,8 @@ SETTERS = {
     "hot": lambda v: setattr(bpy.data.lights["Flashlight"], "energy", v),
     "spill": lambda v: setattr(bpy.data.lights["FlashlightSpill"], "energy", v),
     "exposure": lambda v: setattr(sc.view_settings, "exposure", v),
+    "eyes": lambda v: setattr(next(n for n in bpy.data.materials["WendigoEyes"].node_tree.nodes
+                                   if n.type == "EMISSION").inputs["Strength"], "default_value", v),
 }
 for s in a.set:
     key, value = s.split("=")
@@ -70,8 +74,11 @@ sc.render.image_settings.file_format = "PNG"
 sc.render.image_settings.color_depth = "8"
 os.makedirs(a.out, exist_ok=True)
 for f in frames:
+    path = os.path.join(a.out, f"{a.name}_{f:04d}.png")
+    if a.skip_existing and os.path.exists(path):
+        continue  # the GPU can fault mid-run (seen once at frame 227); re-run to resume
     sc.frame_set(f)
-    sc.render.filepath = os.path.join(a.out, f"{a.name}_{f:04d}.png")
+    sc.render.filepath = path
     t = time.time()
     bpy.ops.render.render(write_still=True)
     print(f"FRAME {f} {time.time() - t:.1f}", flush=True)
