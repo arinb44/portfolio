@@ -1,7 +1,7 @@
 # Progress: Project Lineup
 
-- **Current phase:** Phase 4, M1 (lineup)
-- **Status:** waiting for user (approve the M1 commit)
+- **Current phase:** Phase 5 (summary)
+- **Status:** complete; waiting for any revision requests
 
 ## Completed milestones
 - 2026-11-17: Project root confirmed (`C:\Users\arins\Arin\School\Projects\Portfolio`); new project chosen over resuming `altarpiece-portfolio-site` / `creation-site`.
@@ -20,9 +20,11 @@
   - `npm test`: check 0 errors / 0 warnings, 9 pages built, unit 12/12, Playwright 40/40.
   - No `hearth` / `juno` left outside `output/` (`git grep`).
   - Browser (existing dev server on :4321): Home stops and `/projects/` rows read NFL, MLB, NBA, Nightfall, FC; NFL `01 / 05 · Featured` with its loop; `/projects/hearth/` and `/projects/juno/` 404.
+- 2026-11-18: M1 committed as `8a95d16` "Drop Hearth and Juno and lead with NFL" (no AI markers) and pushed to `origin/project-lineup` (approved).
+- 2026-11-18: Phase 5: `decisions.md` and `summary.md` written; committed with this file and pushed to `origin/project-lineup` (approved).
 
 ## Next step
-Ask to commit M1 on `project-lineup` ("Drop Hearth and Juno and lead with NFL"), then ask to push to `origin` (`arinb44/portfolio`), then write `summary.md` (Phase 5).
+Ask for any revisions. Open follow-ups are in `summary.md` section 8.
 
 ## Open questions
 None.
