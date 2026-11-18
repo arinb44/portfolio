@@ -31,7 +31,7 @@ for (const path of [...PAGES, '/no-such-panel/']) {
 }
 
 // Project pages whose info is real (output/project-info): no TODO or placeholder left in the text or any alt.
-const FINISHED: string[] = ['nfl-predictor', 'mlb-predictor'];
+const FINISHED: string[] = ['nfl-predictor', 'mlb-predictor', 'nba-predictor'];
 for (const slug of FINISHED) {
   test(`/projects/${slug}/: no TODO or placeholder left`, async ({ page }) => {
     await page.goto(`/projects/${slug}/`);

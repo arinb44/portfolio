@@ -1,0 +1,33 @@
+<!doctype html>
+<!-- Tip-Off (NBA Game Predictor) architecture. Source: README, scripts/train_model.py and .github/workflows/refresh-data.yml of github.com/arinb44/MachineLearningNBA. -->
+<html lang="en">
+<head><meta charset="utf-8"><link rel="stylesheet" href="diagram.css"></head>
+<body>
+  <h1>Who wins, by how much, how sure</h1>
+  <div class="flow">
+    <div class="step">
+      <h2>NBA API and ESPN</h2>
+      <ul><li>Game results and player stats</li><li>Rosters, schedule and injuries</li><li><code>fetch_game_results.py</code> <code>fetch_injuries.py</code></li></ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step">
+      <h2>Point in time</h2>
+      <ul><li>Season-to-date margin, last-10 form</li><li>Home and road splits</li><li>Rest days and back-to-backs</li><li>Only games played before</li><li><code>features.py</code></li></ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step key">
+      <h2>Margin, then odds</h2>
+      <ul><li>Random forest predicts the margin</li><li>Logistic calibrator turns it into a win probability</li><li>Walk-forward validation</li><li><code>train_model.py</code></li></ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step">
+      <h2>Streamlit demo</h2>
+      <ul><li>Daily slate with a pick per game</li><li>Any matchup, with an injury adjustment</li><li>Teams and players pages</li><li><code>streamlit_app.py</code></li></ul>
+    </div>
+  </div>
+  <div class="band">
+    <div><b>Refreshes itself.</b> Every Monday a GitHub Actions job pulls rosters, the schedule and injuries from ESPN and commits them.</div>
+    <div><b>Checked.</b> Tests cover the feature code, and every training run rebuilds the results table.</div>
+  </div>
+</body>
+</html>

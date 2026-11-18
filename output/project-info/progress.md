@@ -1,6 +1,6 @@
 # Progress: Project Info
 
-- **Current phase:** Phase 4, M4 (NBA, now Tip-Off)
+- **Current phase:** Phase 4, M5 (Falling Constellations)
 - **Status:** in progress (user away overnight; standing approval to commit and push, decision #11)
 
 ## Completed milestones
@@ -32,9 +32,11 @@
 - 2026-11-18: M2 committed `cf90a62` and pushed.
 - 2026-11-18: User asked to rename the bland titles first (decision #14): NFL → Fourth and Why, MLB → Full Count, NBA → Tip-Off; display titles only. Diagram kicker labels removed after a design-hook finding (#15). Committed `2a600cc` and pushed. `npm test` 41/41.
 - 2026-11-18: M3 Full Count (MLB) done: text from the README (results, pitcher-embedding lesson, pinned versions); metric 57.8% (#17); images: demo prediction card (JPEG), two SHAP charts, diagram `scripts/diagrams/mlb-predictor.html` (#18). Stack corrected (#16). `npm test`: check 0/0, 9 pages, unit 12/12, Playwright 42/42.
+- 2026-11-18: M3 committed `dde3955` and pushed.
+- 2026-11-18: M4 Tip-Off (NBA) done: text from the README, `train_model.py` and the refresh workflow; images: daily slate, Any matchup, diagram `scripts/diagrams/nba-predictor.html`, original tracker dashboard (#19). `npm test`: check 0/0, 9 pages, unit 12/12, Playwright 43/43.
 
 ## Next step
-M4 Tip-Off (NBA): capture the Streamlit demo (Predictions daily slate as hero; a two-team comparison as Key features), diagram `scripts/diagrams/nba-predictor.html`, Origins = `reports/historical_dashboard.png` (original tracker: 233 predictions, 70.0%) with the story of `beecc8c` (leakage fix, calibrated probabilities replacing a hand-tuned confidence formula). Check the 67.5% metric. Add `nba-predictor` to `FINISHED`, test, commit, push.
+M5 Falling Constellations: read `index.html`, `src/` and the repo's `output/` notes; capture the live page (https://arinb44.github.io/Falling-Constellations/) for the hero and key features (WebGL2: real GPU flags), diagram `scripts/diagrams/falling-constellations.html`, Origins from its research notes; add to `FINISHED`, test, commit, push. Then M6 Nightfall needs the user's video and answers.
 
 ## Open questions
 - Nightfall gameplay video: file path (user supplies).

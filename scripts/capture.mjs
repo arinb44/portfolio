@@ -8,6 +8,7 @@ import { pathToFileURL } from 'node:url';
 //           ready: selector to wait for, wait: extra ms, prep: async (page) => optional clip rect }.
 // Each entry's comment says where the image comes from.
 const NFL = 'https://arinb44.github.io/NFLGamePredictorModel/'; // Streamlit run in the browser (stlite): 10-30 s to load
+const NBA = 'https://machinelearningnba-p3cxa6nsk6hgcuclcwssdx.streamlit.app/~/+/';
 const SHOTS = {
   // The live dashboard's This Week view: game cards with model vs Vegas.
   'nfl-hero': { src: NFL, out: 'src/assets/projects/nfl-predictor/varnish.png', size: [1280, 800], scale: 1.25, ready: 'text=Full breakdown', wait: 3000 },
@@ -42,6 +43,21 @@ const SHOTS = {
   },
   // scripts/diagrams/mlb-predictor.html, from the repo README, config.yaml and render.yaml.
   'mlb-architecture': { src: 'mlb-predictor.html', out: 'src/assets/projects/mlb-predictor/underpainting.png', size: [1200, 800], wait: 500 },
+  // The live NBA demo on Streamlit Community Cloud, without its wrapper (/~/+/). Wake it first if it has gone to sleep.
+  'nba-hero': { src: NBA, out: 'src/assets/projects/nba-predictor/varnish.jpg', size: [1280, 800], scale: 1.25, ready: 'text=Daily slate', wait: 4000 },
+  // The same demo: the "Any matchup" block (default teams), from its heading down to "Tale of the tape".
+  'nba-matchup': {
+    src: NBA, out: 'src/assets/projects/nba-predictor/paint-1.jpg', size: [1280, 900], scale: 2, ready: 'text=Any matchup', wait: 4000,
+    prep: async (page) => {
+      const head = page.getByRole('heading', { name: 'Any matchup' });
+      await head.evaluate((h) => h.scrollIntoView({ block: 'start' }));
+      await page.waitForTimeout(1500);
+      const [a, b] = [await head.boundingBox(), await page.getByRole('heading', { name: 'Tale of the tape' }).boundingBox()];
+      return { x: a.x - 24, y: a.y - 16, width: a.width + 48, height: b.y - a.y };
+    },
+  },
+  // scripts/diagrams/nba-predictor.html, from the repo README and workflows.
+  'nba-architecture': { src: 'nba-predictor.html', out: 'src/assets/projects/nba-predictor/underpainting.png', size: [1200, 800], wait: 500 },
 };
 
 const names = process.argv.slice(2);
