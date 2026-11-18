@@ -1,0 +1,33 @@
+<!doctype html>
+<!-- Falling Constellations architecture. Source: HANDOFF.md and src/ of github.com/arinb44/Falling-Constellations. -->
+<html lang="en">
+<head><meta charset="utf-8"><link rel="stylesheet" href="diagram.css"></head>
+<body>
+  <h1>Two canvases, one sky</h1>
+  <div class="flow">
+    <div class="step">
+      <h2>Far field</h2>
+      <ul><li>Nebulae that form, hold and dissolve</li><li>Dark dust, distant galaxies, star clusters</li><li>WebGL2, back canvas</li><li><code>sky/field.js</code> <code>sky/clouds.js</code></li></ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step key">
+      <h2>Galaxy</h2>
+      <ul><li>60,000 stars on tilted-ellipse orbits, moved in the shader</li><li>Dust lanes, gas and star-forming knots</li><li>Arms that never wind up</li><li><code>galaxy/model.js</code> <code>galaxy/gl.js</code></li></ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step">
+      <h2>Light</h2>
+      <ul><li>Brighter-than-white HDR target</li><li>Bloom chain</li><li>ACES tone map and grade</li><li><code>galaxy/post.js</code></li></ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step">
+      <h2>Atlas layer</h2>
+      <ul><li>Constellations: stars first, then lines</li><li>Coordinate grid and shooting stars</li><li>Canvas 2D, front canvas</li><li><code>constellation.js</code> <code>grid.js</code></li></ul>
+    </div>
+  </div>
+  <div class="band">
+    <div><b>Holds its frame rate.</b> A seven-step quality ladder lowers resolution, star count and bloom when frames run long, and climbs back when they don't.</div>
+    <div><b>Degrades gracefully.</b> It recovers from a lost WebGL context, falls back to Canvas 2D without WebGL2, and Bun tests cover the pure logic.</div>
+  </div>
+</body>
+</html>

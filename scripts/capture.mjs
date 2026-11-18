@@ -9,6 +9,7 @@ import { pathToFileURL } from 'node:url';
 // Each entry's comment says where the image comes from.
 const NFL = 'https://arinb44.github.io/NFLGamePredictorModel/'; // Streamlit run in the browser (stlite): 10-30 s to load
 const NBA = 'https://machinelearningnba-p3cxa6nsk6hgcuclcwssdx.streamlit.app/~/+/';
+const FC = 'https://arinb44.github.io/Falling-Constellations/'; // WebGL2: needs the real-GPU launch flags below
 const SHOTS = {
   // The live dashboard's This Week view: game cards with model vs Vegas.
   'nfl-hero': { src: NFL, out: 'src/assets/projects/nfl-predictor/varnish.png', size: [1280, 800], scale: 1.25, ready: 'text=Full breakdown', wait: 3000 },
@@ -56,6 +57,28 @@ const SHOTS = {
       return { x: a.x - 24, y: a.y - 16, width: a.width + 48, height: b.y - a.y };
     },
   },
+  // The live Falling Constellations page: one constellation summoned off-centre, then the sky left to draw in.
+  'fc-hero': {
+    src: FC, out: 'src/assets/projects/falling-constellations/varnish.jpg', size: [1280, 800], scale: 1.25, ready: '#gl', wait: 2000,
+    prep: async (page) => { await page.mouse.click(330, 250); await page.waitForTimeout(9000); },
+  },
+  // The same page: a constellation summoned over the galaxy's core, close up.
+  'fc-closeup': {
+    src: FC, out: 'src/assets/projects/falling-constellations/paint-1.jpg', size: [1280, 800], scale: 2, ready: '#gl', wait: 2000,
+    prep: async (page) => {
+      await page.mouse.click(640, 380);
+      await page.waitForTimeout(5000);
+      return { x: 340, y: 180, width: 600, height: 400 };
+    },
+  },
+  // The Canvas 2D prototype at Falling-Constellations commit 528f5d5. Serve that commit's files first:
+  //   git archive 528f5d5 | tar -x -C <dir>;  python -m http.server 4417 --bind 127.0.0.1 --directory <dir>
+  'fc-prototype': {
+    src: 'http://127.0.0.1:4417/', out: 'src/assets/projects/falling-constellations/underdrawing-1.jpg', size: [1200, 800], ready: '#c', wait: 2000,
+    prep: async (page) => { await page.mouse.click(420, 300); await page.waitForTimeout(8000); },
+  },
+  // scripts/diagrams/falling-constellations.html, from the repo's HANDOFF.md and src/.
+  'fc-architecture': { src: 'falling-constellations.html', out: 'src/assets/projects/falling-constellations/underpainting.png', size: [1200, 800], wait: 500 },
   // scripts/diagrams/nba-predictor.html, from the repo README and workflows.
   'nba-architecture': { src: 'nba-predictor.html', out: 'src/assets/projects/nba-predictor/underpainting.png', size: [1200, 800], wait: 500 },
 };

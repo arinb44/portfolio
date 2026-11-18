@@ -1,7 +1,7 @@
 # Progress: Project Info
 
-- **Current phase:** Phase 4, M5 (Falling Constellations)
-- **Status:** in progress (user away overnight; standing approval to commit and push, decision #11)
+- **Current phase:** Phase 4, M6 (Nightfall)
+- **Status:** waiting for user (M6 needs the Nightfall video and answers about the game); standing approval to commit and push, decision #11
 
 ## Completed milestones
 - 2026-11-18: Project root confirmed earlier this session (`C:\Users\arins\Arin\School\Projects\Portfolio`). New project chosen over extending `project-lineup`.
@@ -34,11 +34,14 @@
 - 2026-11-18: M3 Full Count (MLB) done: text from the README (results, pitcher-embedding lesson, pinned versions); metric 57.8% (#17); images: demo prediction card (JPEG), two SHAP charts, diagram `scripts/diagrams/mlb-predictor.html` (#18). Stack corrected (#16). `npm test`: check 0/0, 9 pages, unit 12/12, Playwright 42/42.
 - 2026-11-18: M3 committed `dde3955` and pushed.
 - 2026-11-18: M4 Tip-Off (NBA) done: text from the README, `train_model.py` and the refresh workflow; images: daily slate, Any matchup, diagram `scripts/diagrams/nba-predictor.html`, original tracker dashboard (#19). `npm test`: check 0/0, 9 pages, unit 12/12, Playwright 43/43.
+- 2026-11-18: M4 committed `a5b5287` and pushed.
+- 2026-11-18: M5 Falling Constellations done: text from HANDOFF.md, `src/` and the research report; images: live piece, core close-up, diagram `scripts/diagrams/falling-constellations.html`, the 528f5d5 prototype rendered locally (#20, #21). `npm test`: check 0/0, 9 pages, unit 12/12, Playwright 44/44.
+- Noticed (out of scope, site styling): at ~800 px wide the project page h1 breaks "Falling Constellations" mid-word.
 
 ## Next step
-M5 Falling Constellations: read `index.html`, `src/` and the repo's `output/` notes; capture the live page (https://arinb44.github.io/Falling-Constellations/) for the hero and key features (WebGL2: real GPU flags), diagram `scripts/diagrams/falling-constellations.html`, Origins from its research notes; add to `FINISHED`, test, commit, push. Then M6 Nightfall needs the user's video and answers.
+M6 Nightfall, blocked on the user: (1) the gameplay video file (path), (2) what the player does and the goal, (3) what they built themselves vs. assets (models, textures, sounds), (4) the Godot version and when/why it was made. Then: ffmpeg to `public/projects/nightfall/gameplay.{webm,mp4}` + 4 stills + poster; video hero in `[slug].astro` (muted, loop, playsinline, controls, poster; no autoplay under reduced motion); text; tests; commit; push. Then Phase 5 `summary.md`.
 
 ## Open questions
-- Nightfall gameplay video: file path (user supplies).
+- Nightfall: video file path; gameplay, goal, what was self-made vs. assets, Godot version, when/why it was made.
 
 **Last updated:** 2026-11-18
