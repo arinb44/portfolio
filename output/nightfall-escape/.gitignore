@@ -1,0 +1,10 @@
+# Only scripts and documents are committed; the scripts rebuild everything else.
+blend/
+previews/
+logs/
+final/
+audio/
+# written by 01_path_forest.py and 04_animation.py
+path.json
+cues.json
+__pycache__/
