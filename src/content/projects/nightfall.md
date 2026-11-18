@@ -9,17 +9,18 @@ order: 4
 demo:
   kind: video
 repo: https://github.com/arinb44/Nightfall
+video: /projects/nightfall/escape
 predella:
   image: ../../assets/projects/nightfall/predella.png
   alt: "Placeholder: Nightfall predella scene"
 layers:
   - name: varnish
     status: finished
-    text: "TODO: a gameplay still. The models are free to use; a short video goes here."
+    text: "TODO: what the player does and what you built. The models are free to use."
     images:
-      - src: ../../assets/projects/nightfall/varnish.png
-        alt: "Placeholder: Nightfall gameplay still"
-        caption: "TODO: caption (the ~25 s video goes here too)"
+      - src: ../../assets/projects/nightfall/varnish.jpg
+        alt: "A dark spruce forest at night. A flashlight beam lights a young tree, and the wendigo's red eyes glow in the trees to the right."
+        caption: "Escape: a 25-second render made in Blender with the game's wendigo, forest and sounds. The sound is off until you unmute it."
   - name: paint
     status: finished
     text: A flashlight, a campfire and a creature with its own behaviour.

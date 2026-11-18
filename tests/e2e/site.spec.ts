@@ -40,6 +40,25 @@ for (const slug of FINISHED) {
   });
 }
 
+// Nightfall plays its video in the hero (output/project-info/plan.md, Req 7): muted, looping, controls, a poster, captions.
+test('/projects/nightfall/: hero video with poster, sources and captions', async ({ page, request }) => {
+  await page.goto('/projects/nightfall/');
+  const video = page.locator('.project-figure video');
+  await expect(video).toHaveAttribute('poster', /.+/);
+  for (const attr of ['controls', 'muted', 'loop', 'playsinline']) await expect(video).toHaveAttribute(attr, '');
+  const srcs = await video.locator('source, track').evaluateAll((els) => els.map((e) => e.getAttribute('src')!));
+  expect(srcs.map((s) => s.split('.').pop())).toEqual(['webm', 'mp4', 'vtt']);
+  for (const src of srcs) expect((await request.get(src)).status(), src).toBe(200);
+});
+
+test('/projects/nightfall/: reduced motion keeps the video on its poster', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/projects/nightfall/');
+  await page.waitForTimeout(500);
+  const video = page.locator('.project-figure video');
+  expect(await video.evaluate((v: HTMLVideoElement) => [v.paused, v.currentTime])).toEqual([true, 0]);
+});
+
 test('every internal link resolves', async ({ page, request }) => {
   const hrefs = new Set<string>();
   for (const path of PAGES) {

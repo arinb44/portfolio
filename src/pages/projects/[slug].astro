@@ -1,7 +1,7 @@
 ---
 import type { GetStaticPaths } from 'astro';
 import Base from '../../layouts/Base.astro';
-import { Picture } from 'astro:assets';
+import { Picture, getImage } from 'astro:assets';
 import ProjectLayers from '../../components/ProjectLayers.astro';
 import ProjectNav from '../../components/ProjectNav.astro';
 import { getProjects } from '../../lib/projects';
@@ -20,6 +20,8 @@ const { data } = project;
 const lead = data.layers[0];
 const hero = lead.images[0];
 const coldStart = data.demo.url && (data.demo.coldStartSeconds ?? 0) > 10 ? data.demo.coldStartSeconds : undefined;
+// A project with a video plays it in the hero, with the hero image as its poster (output/project-info/plan.md, Req 7).
+const poster = data.video ? await getImage({ src: hero.src, format: 'webp', width: 1600 }) : undefined;
 ---
 <Base title={data.title} description={data.oneLine}>
   <article class="project">
@@ -46,7 +48,15 @@ const coldStart = data.demo.url && (data.demo.coldStartSeconds ?? 0) > 10 ? data
         )}
       </div>
       <figure class="project-figure">
-        <Picture src={hero.src} alt={hero.alt} formats={['avif', 'webp']} widths={[480, 800, 1200, 1600]} sizes="(min-width: 48rem) 55vw, 100vw" loading="eager" fetchpriority="high" />
+        {poster ? (
+          <video muted loop playsinline controls preload="metadata" poster={poster.src} aria-label={hero.alt}>
+            <source src={`${data.video}.webm`} type="video/webm" />
+            <source src={`${data.video}.mp4`} type="video/mp4" />
+            <track kind="captions" src={`${data.video}.vtt`} srclang="en" label="English (sounds)" />
+          </video>
+        ) : (
+          <Picture src={hero.src} alt={hero.alt} formats={['avif', 'webp']} widths={[480, 800, 1200, 1600]} sizes="(min-width: 48rem) 55vw, 100vw" loading="eager" fetchpriority="high" />
+        )}
         <figcaption>{hero.caption}</figcaption>
       </figure>
       <p class="lead-text">{lead.text}</p>
@@ -55,3 +65,9 @@ const coldStart = data.demo.url && (data.demo.coldStartSeconds ?? 0) > 10 ? data
   </article>
   <ProjectNav prev={prev} next={next} />
 </Base>
+
+<script>
+  // The hero video starts on its own only when the visitor hasn't asked for reduced motion; otherwise the poster stays.
+  const video = document.querySelector<HTMLVideoElement>('.project-figure video');
+  if (video && !matchMedia('(prefers-reduced-motion: reduce)').matches) video.play().catch(() => {});
+</script>

@@ -8,7 +8,7 @@ h1 { margin: 0 0 1rem; font: 400 clamp(2.5rem, 6vw, 3.75rem)/1.05 var(--font-dis
 h2 { margin: 0 0 0.75rem; font: 400 clamp(1.5rem, 3vw, 2rem)/1.2 var(--font-display); text-wrap: balance; }
 p { text-wrap: pretty; }
 
-img { display: block; max-width: 100%; height: auto; }
+img, video { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-underline-offset: 0.2em; }
 :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
 main:focus { outline: none; } /* focused only as the skip-link target */
