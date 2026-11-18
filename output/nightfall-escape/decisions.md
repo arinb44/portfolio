@@ -20,3 +20,4 @@
 | 16 | 2026-11-18 | Spill at the start | 350 throughout / 120 until the turn | 120 until the turn, 350 from frame 60: the first full-quality frame showed 350 lighting the wendigo's ribcage at 7.5 m, against "glimpses only". The 27 frames rendered before the fix were deleted and re-rendered | agent (delegated) |
 | 17 | 2026-11-18 | M3 animation / M4 sound | | Accepted after the low-res full preview with sound (`previews/m3-animation/preview_with_sound.mp4`, contact sheets `sheet_every12_a/b.png`). Final render started: about 27 s a frame, about 4 h | agent (delegated) |
 | 18 | 2026-11-18 | Model licences | | `wendigo-col1.glb` and `spruce.glb` are free to use, like the sounds | user |
+| 19 | 2026-11-18 | Final clip | revise / approve | Approved ("Looks good") | user |

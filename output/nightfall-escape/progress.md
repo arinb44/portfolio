@@ -1,7 +1,7 @@
 # Progress: nightfall-escape
 
 - **Current phase:** Phase 5 complete (final delivered)
-- **Status:** complete; waiting for the user to watch, listen and give notes
+- **Status:** complete; final approved by the user on 2026-11-18
 
 ## Completed milestones
 - 2026-11-18: Root confirmed (Portfolio); new project (not resuming Stalked).
@@ -15,15 +15,15 @@
 
 ## State
 - **Latest .blend version:** `blend/escape_v005.blend`; packed final `final/escape_final.blend`
-- **Latest approved preview:** `final/escape.mp4` (agent-accepted; the user has not watched it yet)
+- **Latest approved preview:** `final/escape.mp4` (approved by the user, 2026-11-18)
 - **Mode used:** background only
 - **Scripts not yet re-run in background:** none
 
 ## Next step
-The user watches and listens to `art-src/project-visuals/nightfall/escape.mp4` and gives notes. For changes: edit the script for that step (timing in `scripts/config.py`) and re-run from it onward (see `summary.md` section 5).
+None; the clip is approved. For later changes: edit the script for that step (timing in `scripts/config.py`) and re-run from it onward (see `summary.md` section 5).
 
 ## Open questions
-- None. The sound was checked by levels and timing only; the user should listen.
+- None.
 
 ## Version control
 - Repository: https://github.com/arinb44/portfolio (origin); branch `nightfall-escape`, cut from `project-info`, built with a separate index so the user's checkout stays on `project-info`; scripts + docs only. The model-licence notes in `output/nightfall-stalked/` ride along on this branch.
