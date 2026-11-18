@@ -69,9 +69,9 @@ The user delegated decisions while asleep (2026-11-18): each milestone is review
 - Glimpse-only lighting could make the wendigo too dark to read. The red eyes and the backlit fog are the fallback, and the moon direction is kept behind it.
 - A larger scene could slow the render down. Instancing and the fog density are the levers.
 - The sound is judged by levels and timing, not by listening; the user should listen and give notes.
-- The model licences (wendigo and spruce) for a public clip are still unconfirmed, as they were for Stalked.
+- The model licences (wendigo and spruce): confirmed free to use by the user on 2026-11-18.
 
 ## Open Questions
-- The model licences (above).
+None.
 
 **Status:** Approved on 2026-11-18 under the user's delegation ("make any decisions you see fit", user asleep). The user can revise it on review.

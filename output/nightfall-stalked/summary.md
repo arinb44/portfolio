@@ -79,13 +79,13 @@ blender --background --factory-startup blend/stalked_v007.blend --python scripts
 - **Scene:** open `stalked_final.blend` in Blender 5.2; everything is packed. Press Numpad 0 for the hunter's view; render with Render > Render Animation (output goes to `output/nightfall-stalked/final/frames/` as set in the file; change it under Output Properties).
 
 ## 7. Assets & Licenses
-See `assets.md`. Summary: `wendigo-col1.glb` and `spruce.glb` from the user's Game 2 project (**licences unknown; the spruce is a Sketchfab model that may require a credit**); Poly Haven `pine_bark` and `rocky_gravel` (CC0); ambientCG `Ground037` (CC0). No downloads, no generated assets, no add-ons.
+See `assets.md`. Summary: `wendigo-col1.glb` and `spruce.glb` from the user's Game 2 project (free to use, confirmed by the user on 2026-11-18); Poly Haven `pine_bark` and `rocky_gravel` (CC0); ambientCG `Ground037` (CC0). No downloads, no generated assets, no add-ons.
 
 ## 8. Decision Log
 Full log in `decisions.md` (25 entries). Key choices: root Portfolio; 10 s seamless loop; Cycles GPU; beam-only view; wendigo spot A (7.5 m, edge of the beam) in the Scream frame 1 pose; keep the spruce model with 4K pine bark; moss + needle floor; grimy grade on the wendigo; lighting option D (half-seen silhouette); motion blur on; faint red eyes (strength 0.9) placed in the eye sockets after the first placement was corrected.
 
 ## 9. Known Issues & Next Steps
-- **Licences:** confirm the wendigo and spruce may appear in a public clip; credit the Sketchfab spruce if its licence asks. The Nightfall page currently says the models are withheld.
+- **Licences:** the user confirmed on 2026-11-18 that the wendigo and spruce are free to use. The Nightfall page currently says the models are withheld; that copy may need updating.
 - **Dead twig stubs** on the nearest trunks read as straight pale sticks up close (frames ~60–80, ~200).
 - **The spruce is a game model** (512–1024 px textures, alpha needle cards); close needles read slightly soft.
 - **Dark image by design** (exposure 0). If the site's backdrop needs more readable detail, raise exposure in the grade.

@@ -64,8 +64,8 @@ Each script runs on the previous version and saves the next one.
 ## Assets & Add-ons
 | Asset | Source | License | Use |
 |---|---|---|---|
-| `wendigo-col1.glb` + textures | the user's Game 2 `models/` | **unknown, please confirm** | the creature |
-| `spruce.glb` + 9 textures | the user's Game 2 `models/` (a Sketchfab model) | **unknown; Sketchfab models are often CC-BY and need credit, please confirm** | the trees |
+| `wendigo-col1.glb` + textures | the user's Game 2 `models/` | free to use (user, 2026-11-18) | the creature |
+| `spruce.glb` + 9 textures | the user's Game 2 `models/` (a Sketchfab model) | free to use (user, 2026-11-18) | the trees |
 | `pine_bark` (8K, diff/arm/nor/disp) | Game 2 `assests/textures/Tree Textures/` (Poly Haven) | CC0 | hero trunks, logs |
 | `rocky_gravel` (8K) | Game 2 `assests/textures/` (Poly Haven) | CC0 | ground (option) |
 | `ground037` | Game 2 `assests/textures/` (ambientCG) | CC0 | ground (option) |
@@ -105,7 +105,7 @@ Each ends with a preview in `previews/<milestone>/` and waits for your approval.
 - **Add-on version:** the MCP add-on is out of date (protocol 11 vs. 16); it works, but some tool features may fall back.
 
 ## Open Questions
-1. Can the wendigo and spruce models appear in a public portfolio clip, and does the spruce (Sketchfab) need a credit? The Nightfall page currently says the models are withheld.
+1. Can the wendigo and spruce models appear in a public portfolio clip, and does the spruce (Sketchfab) need a credit? The Nightfall page currently says the models are withheld. **Answered 2026-11-18: both are free to use.**
 2. Motion blur on (recommended) or off?
 3. The `project-visuals` plan expects a Nightfall **still**. This loop could replace it, but changing that plan is that agent's work, not this one.
 

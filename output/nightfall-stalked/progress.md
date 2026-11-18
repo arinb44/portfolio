@@ -30,9 +30,9 @@
 M6 final render (approved, running since 2026-11-17; if interrupted, re-run the same 07_render.py command with --skip-existing to resume): `06_render_settings.py` on v006 -> v007; `07_render.py` frames 1-240 -> `final/frames/`; `08_encode.py` -> `final/stalked.mp4`; packed final .blend; copy to `art-src/project-visuals/nightfall/` after the path is confirmed.
 
 ## Open questions
-- Licence of `wendigo-col1.glb` and `spruce.glb` (Sketchfab) for a public clip; credit needed?
+None. (2026-11-18: the user confirmed `wendigo-col1.glb` and `spruce.glb` are free to use.)
 
-**Last updated:** 2026-11-17
+**Last updated:** 2026-11-18
 
 
 

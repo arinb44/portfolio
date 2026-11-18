@@ -4,7 +4,7 @@ Nothing downloaded or generated. Sources are read in place and never changed; de
 
 | Asset | Source | License | Used for |
 |---|---|---|---|
-| Stalked's packed scene: `wendigo-col1.glb`, `spruce.glb` (+ their textures) | `output/nightfall-stalked/final/stalked_final.blend` (from Game 2 `models/`) | **unknown, to confirm** (spruce is likely a Sketchfab model; many need a credit) | the wendigo, every spruce and sapling |
+| Stalked's packed scene: `wendigo-col1.glb`, `spruce.glb` (+ their textures) | `output/nightfall-stalked/final/stalked_final.blend` (from Game 2 `models/`) | free to use (user, 2026-11-18) | the wendigo, every spruce and sapling |
 | `pine_bark`, `rocky_gravel` (Poly Haven), `Ground037` (ambientCG) | packed in Stalked's .blend | CC0 | bark, deadwood, forest floor |
 | `footsteps-dirt-gravel-6823-[AudioTrimmer.com].mp3` | Game 2 `audio/` | free for public use (user, 2026-11-18) | the hunter's footsteps (two slices, varied in pitch and level), the trip scuff |
 | `monster-footstep-162883.mp3` | Game 2 `audio/` | free for public use (user) | the wendigo's footsteps (11 slices, placed by distance and direction) |

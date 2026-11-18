@@ -28,3 +28,4 @@
 | 23 | 2026-11-17 | Add faint red glowing eyes (user request; overrides the 'no glowing eyes' line in Art Direction) | Done in `05b_eyes.py`; strength 0.9 chosen over 2.0 (2.0 flooded the skull with red) |
 | 24 | 2026-11-17 | Eye placement (user: 'should be in the eye sockets in the skull') | Moved: sockets found by ray-casting a pixel grid from orthographic probes on each side of the skull; each eye 3.5 cm inside its socket rim. Verified from both sides, the front and the hunter's view |
 | 25 | 2026-11-17 | Eye placement approved; start the final render | Yes. Finals to `art-src/project-visuals/nightfall/` (the path approved in setup, decision 8) |
+| 26 | 2026-11-18 | Model licences (user, while setting up nightfall-escape) | `wendigo-col1.glb` and `spruce.glb` are free to use; no open licence question left |
