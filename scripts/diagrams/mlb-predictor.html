@@ -1,0 +1,33 @@
+<!doctype html>
+<!-- Full Count (MLB Game Predictor) architecture. Source: README, config.yaml and render.yaml of github.com/arinb44/MLB-predictive-model. -->
+<html lang="en">
+<head><meta charset="utf-8"><link rel="stylesheet" href="diagram.css"></head>
+<body>
+  <h1>Four models, one honest probability</h1>
+  <div class="flow">
+    <div class="step">
+      <h2>2015–2024 games</h2>
+      <ul><li>pybaseball: schedules and results</li><li>Retrosheet: starting pitchers, 2015–2023</li><li><code>fetch.py</code> <code>fetch_pitchers.py</code></li></ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step">
+      <h2>Only the past</h2>
+      <ul><li>Rolling form over 10 and 30 games</li><li>Rest, bullpen fatigue, park factor</li><li>Starter's recent runs allowed</li><li>Elo, written from scratch</li><li><code>build_features.py</code> <code>elo.py</code></li></ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step key">
+      <h2>Walk-forward test</h2>
+      <ul><li>Elo, logistic regression, XGBoost, PyTorch embeddings</li><li>Judged on log loss, Brier score and accuracy</li><li>Logistic regression ships</li><li><code>backtest.py</code> <code>train.py</code></li></ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step">
+      <h2>FastAPI app</h2>
+      <ul><li>Predictions, Players and Teams tabs</li><li>Matchup card with both teams' logos</li><li>Docker on Render's free tier</li><li><code>api/main.py</code> <code>Dockerfile</code></li></ul>
+    </div>
+  </div>
+  <div class="band">
+    <div><b>Leakage-safe.</b> Splits are chronological, never shuffled, and <code>test_features.py</code> checks every feature uses only earlier games.</div>
+    <div><b>Expected ceiling.</b> All four models land between 56% and 58%; 65% or more would suggest a leak.</div>
+  </div>
+</body>
+</html>

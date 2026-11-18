@@ -1,6 +1,6 @@
 # Progress: Project Info
 
-- **Current phase:** Phase 4, M3 (MLB)
+- **Current phase:** Phase 4, M4 (NBA, now Tip-Off)
 - **Status:** in progress (user away overnight; standing approval to commit and push, decision #11)
 
 ## Completed milestones
@@ -29,9 +29,12 @@
   - Images: dashboard This Week (1600×1000, `nfl-hero`), Full breakdown waterfall (`nfl-waterfall`), diagram `scripts/diagrams/nfl-predictor.html` (`nfl-architecture`), first notebook plot on white (decision #13).
   - `capture.mjs` gained `scale` and `prep` options; `scripts/diagrams/diagram.css` is shared by all diagrams.
   - `npm test`: check 0/0, 9 pages, unit 12/12, Playwright 41/41 (NFL no-TODO check included).
+- 2026-11-18: M2 committed `cf90a62` and pushed.
+- 2026-11-18: User asked to rename the bland titles first (decision #14): NFL → Fourth and Why, MLB → Full Count, NBA → Tip-Off; display titles only. Diagram kicker labels removed after a design-hook finding (#15). Committed `2a600cc` and pushed. `npm test` 41/41.
+- 2026-11-18: M3 Full Count (MLB) done: text from the README (results, pitcher-embedding lesson, pinned versions); metric 57.8% (#17); images: demo prediction card (JPEG), two SHAP charts, diagram `scripts/diagrams/mlb-predictor.html` (#18). Stack corrected (#16). `npm test`: check 0/0, 9 pages, unit 12/12, Playwright 42/42.
 
 ## Next step
-M3 (MLB): capture the Render demo (wake it first; 30-60 s), put the two SHAP charts on white at 1200×800 (logistic = Key features, gradient boosting = Origins), build `scripts/diagrams/mlb-predictor.html`, write the text (metric 57.8% from the README results table), add `mlb-predictor` to `FINISHED`, test, commit and push.
+M4 Tip-Off (NBA): capture the Streamlit demo (Predictions daily slate as hero; a two-team comparison as Key features), diagram `scripts/diagrams/nba-predictor.html`, Origins = `reports/historical_dashboard.png` (original tracker: 233 predictions, 70.0%) with the story of `beecc8c` (leakage fix, calibrated probabilities replacing a hand-tuned confidence formula). Check the 67.5% metric. Add `nba-predictor` to `FINISHED`, test, commit, push.
 
 ## Open questions
 - Nightfall gameplay video: file path (user supplies).

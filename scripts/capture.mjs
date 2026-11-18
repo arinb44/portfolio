@@ -28,6 +28,20 @@ const SHOTS = {
   },
   // scripts/diagrams/nfl-predictor.html, from the repo README.
   'nfl-architecture': { src: 'nfl-predictor.html', out: 'src/assets/projects/nfl-predictor/underpainting.png', size: [1200, 800], wait: 500 },
+  // The live MLB demo (Render free tier: wake it first, 30-60 s): the default matchup's prediction card.
+  'mlb-hero': {
+    src: 'https://mlb-game-predictor-sdt8.onrender.com', out: 'src/assets/projects/mlb-predictor/varnish.jpg', size: [1024, 640], scale: 1.5625,
+    ready: '#tab-predict', wait: 1000,
+    prep: async (page) => {
+      await page.getByRole('button', { name: 'Predict', exact: true }).click();
+      await page.locator('#matchup-card').waitFor({ timeout: 60_000 });
+      await page.waitForTimeout(3000); // the card's calibrating animation
+      await page.locator('#results').evaluate((r) => window.scrollTo(0, r.getBoundingClientRect().top + scrollY - 90));
+      await page.waitForTimeout(500);
+    },
+  },
+  // scripts/diagrams/mlb-predictor.html, from the repo README, config.yaml and render.yaml.
+  'mlb-architecture': { src: 'mlb-predictor.html', out: 'src/assets/projects/mlb-predictor/underpainting.png', size: [1200, 800], wait: 500 },
 };
 
 const names = process.argv.slice(2);
@@ -48,7 +62,7 @@ try {
     if (ready) await page.locator(ready).first().waitFor({ timeout });
     await page.waitForTimeout(wait);
     const clip = prep ? await prep(page) : undefined;
-    await page.screenshot({ path: resolve(out), clip });
+    await page.screenshot({ path: resolve(out), clip, quality: out.endsWith('.jpg') ? 85 : undefined });
     await page.close();
     console.log(`${n} -> ${out}`);
   }
