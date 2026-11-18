@@ -47,11 +47,13 @@ for path in argv:
             count += 1
             a = f.astype(np.float32) / 255
             a = a * (1 - ay) + INK * ay; a = a * (1 - ax) + INK * ax; a = a * (1 - ah) + INK * ah
-            for (n, col, need), (x0, y0, x1, y1) in zip(EL, boxes):
+            for (n, col, need), box in zip(EL, boxes):
+                if box is None: continue                          # not on this page (boxes.cjs)
+                x0, y0, x1, y1 = box
                 bg = rel(a[y0:y1, x0:x1].reshape(-1, 3)).max()
                 c = (rel(col) + .05) / (bg + .05)
                 if c < worst[n][0]: worst[n] = (float(c), t)
                 fails[n] += c < need
         report[path][f'{w}x{h}'] = {n: {'min': round(worst[n][0], 2), 'frame': worst[n][1], 'needs': need, 'pass': worst[n][0] >= need, 'failing_frames': f'{fails[n]}/{count}'}
-                                    for n, _, need in EL}
+                                    for (n, _, need), box in zip(EL, boxes) if box is not None}
 print(json.dumps(report, indent=1))

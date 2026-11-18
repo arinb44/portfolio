@@ -126,13 +126,19 @@ PROJECTS = {
     # MLB: source 1.35-9.35 s at 0.8x (every other 60 fps frame played at 24, #43, #44); x1.36 from the left (#45).
     # Master frames 0-121: the pitch and swing; 122-239: the flight toward the scoreboard.
     'mlb': dict(src='art-src/project-visuals/mlb-24.mp4', frames=240, crop='crop=941:529:0:95', logos=MLB_LOGOS, posters=(70, 200)),
+    # Nightfall: the rendered 10 s seamless loop (output/nightfall-stalked, #53), already 1600 x 900 at 24 fps: full frame.
+    # Painted from the lossless PNG frames: the MP4's compression blocks in the near-black show once lifted.
+    'nightfall': dict(src='art-src/project-visuals/nightfall/frames/stalked_%04d.png', frames=240, crop='crop=1600:900:0:0', logos=[], posters=(150,),
+                     lift=.5, glints=2, seamless=True),
 }
 # soften: blur before the paint patches (a field of point stars otherwise paints as square tiles).
 # stars: thin bright detail (stars, constellation lines) the patches erase, laid back on top as gilding, x this gain.
+# lift: a gamma on the source before anything else (a night render too dark to paint). glints: like stars, but the
+# small bright detail keeps its own colour (the wendigo's red eyes), x this gain.
 args = sys.argv[2:]
 NAME = args.pop(0) if args and args[0] in PROJECTS else 'nba'
 P = PROJECTS[NAME]; SRC, FRAMES, CROP, LOGOS, POSTERS = P['src'], P['frames'], P['crop'], P['logos'], P['posters']
-SOFTEN, STARS = P.get('soften', 0), P.get('stars', 0)
+SOFTEN, STARS, LIFT, GLINTS = P.get('soften', 0), P.get('stars', 0), P.get('lift', 0), P.get('glints', 0)
 OUT = Path(sys.argv[1]); OUT.mkdir(parents=True, exist_ok=True)
 TEST = args[:1] == ['still']
 STILL = {int(f) for f in args[1].split(',')} if TEST else set()
@@ -203,17 +209,27 @@ def finish(f, p, t):
     if STARS:                                                       # gilded stars and lines over the painted sky
         L = luma(f); hi = np.clip(L - gaussian_filter(L, 3), 0, 1)
         a = a + GILT * np.clip(STARS * gaussian_filter(hi, .7), 0, 1)[..., None]
+    if GLINTS:                                                      # small bright detail, in its own colour
+        hi = np.clip(f - gaussian_filter(f, (3, 3, 0)), 0, 1)
+        a = a + np.clip(GLINTS * gaussian_filter(hi, (.7, .7, 0)), 0, 1)
     return a
 
 def to8(a): return (np.clip(a, 0, 1) * 255 + .5).astype(np.uint8)
 TEX = np.minimum(GRAIN, 1)                                          # multiply overlay keeps only the darkening part
 
-reader = subprocess.Popen(['ffmpeg', '-v', 'error', '-i', SRC, '-vf', f'trim=end_frame={FRAMES},{CROP},hqdn3d=1.5:1.5:3:3,scale={W}:{H}:flags=lanczos',
+WARM = 24 if P.get('seamless') and not TEST else 0
+# A seamless source is read as its last second, then the whole loop, in one stream: the denoiser (hqdn3d) and the
+# temporal smoothing below both come into frame 0 from the loop's end, so the restart has no pop. The first WARM frames
+# only prime them.
+trim = (f'split[a][b];[a]trim=start_frame={FRAMES - WARM}:end_frame={FRAMES},setpts=PTS-STARTPTS[w];'
+        f'[b]trim=end_frame={FRAMES},setpts=PTS-STARTPTS[m];[w][m]concat=n=2:v=1') if WARM else f'trim=end_frame={FRAMES}'
+reader = subprocess.Popen(['ffmpeg', '-v', 'error', '-i', SRC, '-filter_complex', f'{trim},{CROP},hqdn3d=1.5:1.5:3:3,scale={W}:{H}:flags=lanczos',
                            '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-'], stdout=subprocess.PIPE)
-def frames():
-    for t in range(FRAMES):
+def frames(ts=range(FRAMES)):
+    for t in ts:
         buf = reader.stdout.read(W * H * 3); assert len(buf) == W * H * 3, f'short read at frame {t}'
-        yield t, np.frombuffer(buf, np.uint8).reshape(H, W, 3).astype(np.float32) / 255
+        f = np.frombuffer(buf, np.uint8).reshape(H, W, 3).astype(np.float32) / 255
+        yield t, (f ** LIFT if LIFT else f)
 
 if TEST:
     for t, f in frames():
@@ -229,6 +245,7 @@ def encoders(name):
 Image.fromarray(to8(TEX)).save(OUT / 'plaster.png')
 pipes = {NAME: encoders(NAME), f'{NAME}-nograin': encoders(f'{NAME}-nograin')}
 prev, hist, energy = None, {'source': [], NAME: []}, {'source': [], NAME: []}
+for _, f in frames(ts=range(WARM)): prev = paint(f, prev)      # seamless sources only (WARM > 0)
 for t, f in frames():
     p = prev = paint(f, prev)
     a = finish(f, p, t)

@@ -1,0 +1,522 @@
+{
+ "output/project-visuals/iterations/m4-3-round-1/nightfall-nograin.webm": {
+  "1280x800": {
+   "card count": {
+    "min": 6.08,
+    "frame": 92,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card title": {
+    "min": 11.84,
+    "frame": 92,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card line": {
+    "min": 11.84,
+    "frame": 93,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card meta": {
+    "min": 8.52,
+    "frame": 91,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "Live demo": {
+    "min": 13.18,
+    "frame": 98,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "Code": {
+    "min": 13.1,
+    "frame": 94,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "header name": {
+    "min": 13.62,
+    "frame": 150,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "header tagline": {
+    "min": 9.91,
+    "frame": 174,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav Projects": {
+    "min": 7.84,
+    "frame": 108,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav About": {
+    "min": 8.29,
+    "frame": 111,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav CV": {
+    "min": 8.53,
+    "frame": 172,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav Email": {
+    "min": 8.41,
+    "frame": 126,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   }
+  },
+  "1440x900": {
+   "card count": {
+    "min": 6.08,
+    "frame": 92,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card title": {
+    "min": 11.83,
+    "frame": 92,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card line": {
+    "min": 11.87,
+    "frame": 93,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card meta": {
+    "min": 8.69,
+    "frame": 91,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "Live demo": {
+    "min": 13.35,
+    "frame": 100,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "Code": {
+    "min": 13.15,
+    "frame": 98,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "header name": {
+    "min": 13.75,
+    "frame": 112,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "header tagline": {
+    "min": 9.95,
+    "frame": 154,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav Projects": {
+    "min": 8.27,
+    "frame": 103,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav About": {
+    "min": 8.38,
+    "frame": 114,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav CV": {
+    "min": 8.49,
+    "frame": 175,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav Email": {
+    "min": 8.21,
+    "frame": 126,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   }
+  },
+  "1920x1080": {
+   "card count": {
+    "min": 6.62,
+    "frame": 97,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card title": {
+    "min": 13.17,
+    "frame": 97,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card line": {
+    "min": 13.19,
+    "frame": 97,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card meta": {
+    "min": 9.51,
+    "frame": 97,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "Live demo": {
+    "min": 13.67,
+    "frame": 47,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "Code": {
+    "min": 13.68,
+    "frame": 128,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "header name": {
+    "min": 13.75,
+    "frame": 115,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "header tagline": {
+    "min": 9.95,
+    "frame": 166,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav Projects": {
+    "min": 8.32,
+    "frame": 158,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav About": {
+    "min": 8.42,
+    "frame": 178,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav CV": {
+    "min": 8.27,
+    "frame": 176,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav Email": {
+    "min": 8.31,
+    "frame": 138,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   }
+  }
+ },
+ "output/project-visuals/iterations/m4-3-round-1/nightfall.webm": {
+  "1280x800": {
+   "card count": {
+    "min": 6.05,
+    "frame": 91,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card title": {
+    "min": 11.72,
+    "frame": 92,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card line": {
+    "min": 11.71,
+    "frame": 93,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card meta": {
+    "min": 8.41,
+    "frame": 91,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "Live demo": {
+    "min": 13.19,
+    "frame": 100,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "Code": {
+    "min": 13.07,
+    "frame": 94,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "header name": {
+    "min": 13.63,
+    "frame": 150,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "header tagline": {
+    "min": 9.88,
+    "frame": 175,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav Projects": {
+    "min": 7.84,
+    "frame": 108,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav About": {
+    "min": 8.14,
+    "frame": 112,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav CV": {
+    "min": 8.46,
+    "frame": 173,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav Email": {
+    "min": 8.43,
+    "frame": 147,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   }
+  },
+  "1440x900": {
+   "card count": {
+    "min": 5.89,
+    "frame": 91,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card title": {
+    "min": 11.76,
+    "frame": 92,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card line": {
+    "min": 11.74,
+    "frame": 93,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card meta": {
+    "min": 8.61,
+    "frame": 93,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "Live demo": {
+    "min": 13.33,
+    "frame": 102,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "Code": {
+    "min": 13.13,
+    "frame": 97,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "header name": {
+    "min": 13.74,
+    "frame": 174,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "header tagline": {
+    "min": 9.95,
+    "frame": 153,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav Projects": {
+    "min": 8.05,
+    "frame": 112,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav About": {
+    "min": 8.23,
+    "frame": 60,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav CV": {
+    "min": 8.48,
+    "frame": 174,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav Email": {
+    "min": 8.42,
+    "frame": 128,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   }
+  },
+  "1920x1080": {
+   "card count": {
+    "min": 6.64,
+    "frame": 98,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card title": {
+    "min": 13.09,
+    "frame": 97,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card line": {
+    "min": 13.16,
+    "frame": 100,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "card meta": {
+    "min": 9.47,
+    "frame": 97,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "Live demo": {
+    "min": 13.68,
+    "frame": 116,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "Code": {
+    "min": 13.63,
+    "frame": 176,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "header name": {
+    "min": 13.75,
+    "frame": 147,
+    "needs": 3,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "header tagline": {
+    "min": 9.94,
+    "frame": 175,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav Projects": {
+    "min": 8.41,
+    "frame": 166,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav About": {
+    "min": 8.59,
+    "frame": 14,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav CV": {
+    "min": 8.42,
+    "frame": 178,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   },
+   "nav Email": {
+    "min": 8.25,
+    "frame": 151,
+    "needs": 4.5,
+    "pass": true,
+    "failing_frames": "0/240"
+   }
+  }
+ }
+}

@@ -69,6 +69,14 @@ The NBA Game Predictor's main visual on the portfolio home page is an 8.42 s sea
 - **Files:** `public/projects/mlb-predictor/`: `loop.webm` (1.9 MB), `loop.mp4` (1.7 MB), `poster.webp` (110 KB, frame 70, the swing).
 - **Checks:** every frame passes at 1280 / 1440 / 1920 (lowest: card count 4.55, little headroom); flicker 0.51x; max 1 flash per second. Preview: `iterations/m4-2-round-1/mlb.html`.
 
+### Nightfall (home stop 07, approved 2026-11-17, #54)
+- **Source:** a rendered loop from the separate Blender project `output/nightfall-stalked/` (#53, replacing the planned still #35): a first-person flashlight search through a foggy spruce forest at night, a wendigo half-seen at the edge of the beam. 1600 x 900, 24 fps, 240 frames, seamless.
+- **Loop:** the whole render, 10 s, full frame. The wendigo stands about 72% across, clear of the card.
+- **Look:** the NBA settings plus three Nightfall settings in `PROJECTS['nightfall']`: `lift=.5` (a gamma on the very dark render, so the forest and the wendigo read), `glints=2` (small bright detail laid back in its own colour, so the red eyes survive), `seamless=True` (the reader feeds the loop's last second first, so the denoiser and the temporal smoothing carry across the restart). Painted from the lossless PNG frames. The lift reads more dusk than black night; faint maroon banding remains in the deepest shadows.
+- **Files:** `public/projects/nightfall/`: `loop.webm` (985 KB), `loop.mp4` (1.35 MB), `poster.webp` (61 KB, frame 150).
+- **Checks:** every frame passes at 1280 / 1440 / 1920 (lowest: card count 5.89); 0 flashes; restart step 1.5 = the median step. Preview: `iterations/m4-3-round-1/nightfall.html`.
+- **Licences:** the wendigo and the Sketchfab spruce are unconfirmed for a public clip (a credit may be due); published on the user's call (#55). The project page still says the models are withheld.
+
 ## 5. Components & Tokens
 - **A loop on any project:** put `loop.webm`, `loop.mp4` and `poster.webp` in `public/projects/<slug>/`. The plaster is shared: `public/projects/plaster.webp` (#40). The poster is also that project's still home image, in place of its placeholder (#40). `src/pages/index.astro` adds the loop for any project whose folder has `loop.webm`.
 - **Pause control:** `.pause-loop` in `src/styles/creation.css`; its behaviour is in `src/scripts/home.js`.

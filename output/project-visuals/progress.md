@@ -1,7 +1,7 @@
 # Progress: Project Visuals
 
-- **Current phase:** Phase 4, M4b done (NFL and MLB in the site); M4c waits on files
-- **Status:** waiting for user (Hearth and Nightfall sources)
+- **Current phase:** Phase 4, M4c: Nightfall in the site; Hearth waits on its recording
+- **Status:** waiting for user (Hearth recording)
 
 ## Completed milestones
 - 2026-11-15: Project root confirmed (`C:\Users\arins\Arin\School\Projects\Portfolio`); new project chosen over resuming `fresco-intro` or `creation-redesign` (decisions #1, #2).
@@ -162,8 +162,21 @@
 
 - 2026-11-17: **Committed and pushed** the NFL and MLB loops on `project-visuals` to origin (#52; message checked, no AI markers). `.gitignore` now also keeps test stills, contact sheets, the M4b footage sheets and the poster review sheet out.
 
+- 2026-11-17: **Nightfall source arrived** from the separate Blender project `output/nightfall-stalked/` (see its `summary.md`): `art-src/project-visuals/nightfall/stalked.mp4` (+ PNG frames), a rendered 10 s seamless loop, 1600 x 900, 24 fps, 240 frames, 2.4 MB: a first-person flashlight search through a foggy night forest, a wendigo half-seen at the edge of the beam. Plan Amendment 1 and #35 expected a painted *still* from a gameplay frame, so whether this becomes a loop (or a still from it) is the user's call. Its own notes: licences of the wendigo and spruce models unconfirmed; the image is dark by design.
+
+- 2026-11-17: Nightfall becomes a painted loop (#53). Round 1 in `iterations/m4-3-round-1/` (preview: http://localhost:4410/output/project-visuals/iterations/m4-3-round-1/nightfall.html; waiting for the user's review):
+  - Source read (`iterations/m4-3-m0/nightfall/`): 240 frames, 24 fps, no cuts, 0 flashes, mean luminance 0.002 (very dark), seam step 0.34 (seamless).
+  - `render.py` `PROJECTS['nightfall']`: full frame from the lossless PNG frames (the MP4's compression blocks showed in the near-black once lifted); `lift=.5` (a gamma on the source; without it the wendigo and its eyes vanished into flat umber); `glints=2` (small bright detail laid back in its own colour, so the red eyes survive the paint patches); `seamless=True` (the reader feeds the loop's last second, then the loop, so hqdn3d and the temporal smoothing come into frame 0 from frame 239; the first paint had a restart step of 4.0, priming the smoothing alone 3.3, both 1.5 = the median step). NBA frame 150 identical after each change.
+  - `tools/boxes.cjs` / `contrast.py`: an element a page lacks (the last stop has no scroll hint) is skipped.
+  - Checks: grain-free WebM 962 KB (MP4 3,387 KB before CRF 28); flicker 1.0x the source; 0 flashes; contrast all pass at 1280 / 1440 / 1920 (lowest card count 5.89); seam 1.5 (median 1.51). Plays in the browser pane, no console errors. Poster candidate: frame 150 (the hold beside the wendigo).
+  - Seen: the lift reads more dusk than black night; faint maroon banding in the deepest shadows; the wendigo is a dark silhouette with red eyes right of the beam (~72% across).
+
+- 2026-11-17: **Nightfall approved** (#54; poster frame 150). Into the site on the user's call about the model licences (#55): `final/nightfall/` (`loop.webm` 985 KB, `loop.mp4` 1,351 KB at CRF 28, 44.8 dB from the WebM, `poster.webp` 61 KB) copied to `public/projects/nightfall/`; no code or test changes. `npm test`: 44/44. Live dev site: the Nightfall stop plays its loop, the pause pill shows, the poster is the home image, no console errors. Figma frame 6:179 (notes 6:213). `design-spec.md`, `figma-links.md` updated.
+
+- 2026-11-17: **Committed and pushed** Nightfall on `project-visuals` to origin (#56; message checked, no AI markers).
+
 ## Next step
-M4c (Hearth recording, Nightfall frame) when the user's files are in `art-src/`.
+Hearth (the last of M4) when its recording is in `art-src/`; Juno stays skipped (#34). After that, M5 (final design spec pass and delivery).
 
 ## Open questions
 - The Hearth recording and the Nightfall frame are not in `art-src/` yet.

@@ -54,3 +54,7 @@
 | 50 | 2026-11-17 | M4b posters | NFL frame 25 (the hit); MLB frame 70 (the swing) |
 | 51 | 2026-11-17 | NFL and MLB loops into the site | Yes: public/projects/{nfl,mlb}-predictor/, home page only; the two tests that assumed no loop at NFL / MLB use Hearth |
 | 52 | 2026-11-17 | Commit and push the NFL and MLB loops | Commit on `project-visuals` and push to origin (https://github.com/arinb44/portfolio); .gitignore extended for test stills, contact sheets, footage sheets |
+| 53 | 2026-11-17 | M4c: Nightfall | A painted loop from the rendered `art-src/project-visuals/nightfall/stalked.mp4` (output/nightfall-stalked), replacing the painted still (#35) |
+| 54 | 2026-11-17 | Nightfall round 1 | Approved ("Approve Nightfall"); poster frame 150 (proposed with the round, accepted with the approval) |
+| 55 | 2026-11-17 | Nightfall loop into the site | Yes, the user's call on the model licences (wendigo, Sketchfab spruce; a credit may be due): public/projects/nightfall/, home page only; the project page text unchanged |
+| 56 | 2026-11-17 | Commit and push Nightfall | Commit on `project-visuals` and push to origin |

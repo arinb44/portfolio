@@ -1,0 +1,11 @@
+{
+  "frames": 240,
+  "fps": 24.0,
+  "seconds": 10.0,
+  "cuts_s": [],
+  "median_frame_step": 0.0001,
+  "flash_max_per_second": 0,
+  "flash_worst_at_s": 0.0,
+  "mean_luminance": 0.002,
+  "max_frame_luminance": 0.003
+}
