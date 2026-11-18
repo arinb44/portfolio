@@ -8,6 +8,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "placeholders": "node scripts/placeholders.mjs",
+    "capture": "node scripts/capture.mjs",
     "test:unit": "node --test tests/unit/*.test.ts",
     "test:e2e": "playwright test",
     "test": "astro check && astro build && npm run test:unit && npm run test:e2e"

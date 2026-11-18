@@ -30,6 +30,16 @@ for (const path of [...PAGES, '/no-such-panel/']) {
   });
 }
 
+// Project pages whose info is real (output/project-info): no TODO or placeholder left in the text or any alt.
+const FINISHED: string[] = [];
+for (const slug of FINISHED) {
+  test(`/projects/${slug}/: no TODO or placeholder left`, async ({ page }) => {
+    await page.goto(`/projects/${slug}/`);
+    const alts = await page.locator('img').evaluateAll((imgs) => imgs.map((i) => (i as HTMLImageElement).alt));
+    expect([await page.locator('body').innerText(), ...alts].join('\n')).not.toMatch(/TODO|placeholder/i);
+  });
+}
+
 test('every internal link resolves', async ({ page, request }) => {
   const hrefs = new Set<string>();
   for (const path of PAGES) {
