@@ -5,7 +5,7 @@ oneLine: Predicts NBA winners, margins and calibrated win probabilities.
 role: "TODO: your role (solo or team, and what you did)"
 stack: [Python, scikit-learn, Docker, Streamlit]
 year: 2026
-order: 2
+order: 3
 series: prediction
 demo:
   url: https://machinelearningnba-p3cxa6nsk6hgcuclcwssdx.streamlit.app

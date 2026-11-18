@@ -4,28 +4,26 @@ import { sortProjects, neighbours } from '../../src/lib/order.ts';
 
 const entry = (id: string, order: number, featured = false) => ({ id, data: { order, featured } });
 
-// The spec 3.2 order, deliberately shuffled.
+// The site's order (output/project-lineup), deliberately shuffled.
 const projects = [
-  entry('falling-constellations', 7, true),
-  entry('hearth', 4),
-  entry('nfl-predictor', 1),
-  entry('nightfall', 6),
-  entry('nba-predictor', 2),
-  entry('juno', 5),
-  entry('mlb-predictor', 3),
+  entry('falling-constellations', 5),
+  entry('nfl-predictor', 1, true),
+  entry('nightfall', 4),
+  entry('nba-predictor', 3),
+  entry('mlb-predictor', 2),
 ];
 
 test('sorts by order', () => {
   assert.deepEqual(
     sortProjects(projects).map((e) => e.id),
-    ['nfl-predictor', 'nba-predictor', 'mlb-predictor', 'hearth', 'juno', 'nightfall', 'falling-constellations'],
+    ['nfl-predictor', 'mlb-predictor', 'nba-predictor', 'nightfall', 'falling-constellations'],
   );
 });
 
-test('NBA sits between NFL and MLB (the corrected wireframe neighbours)', () => {
+test('NBA sits between MLB and Nightfall', () => {
   const { prev, next } = neighbours(sortProjects(projects), 'nba-predictor');
-  assert.equal(prev.id, 'nfl-predictor');
-  assert.equal(next.id, 'mlb-predictor');
+  assert.equal(prev.id, 'mlb-predictor');
+  assert.equal(next.id, 'nightfall');
 });
 
 test('wraps at both ends', () => {

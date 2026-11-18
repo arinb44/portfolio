@@ -6,6 +6,7 @@ role: "TODO: your role (solo or team, and what you did)"
 stack: [Python, pandas, scikit-learn, Streamlit]
 year: 2026
 order: 1
+featured: true
 series: prediction
 demo:
   url: https://arinb44.github.io/NFLGamePredictorModel/

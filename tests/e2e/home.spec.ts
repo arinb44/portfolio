@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 // Featured first, then `order` (design decision #3).
-const SLUGS = ['falling-constellations', 'nfl-predictor', 'nba-predictor', 'mlb-predictor', 'hearth', 'juno', 'nightfall'];
+const SLUGS = ['nfl-predictor', 'mlb-predictor', 'nba-predictor', 'nightfall', 'falling-constellations'];
 const html = 'html';
 // The opening (src/scripts/intro.js) runs 4.7 s once the fresco has loaded.
 const SHOWCASE = { timeout: 15_000 };
@@ -36,7 +36,7 @@ test('the opening ends on its own: name, nav and the first project appear at onc
   await expect(page.getByRole('navigation', { name: 'Site' }).getByRole('link')).toHaveText(['Projects', 'About', 'CV', 'Email']);
   await expect(page.locator('#intro')).toBeHidden(SHOWCASE); // removed once the projects are live
   await expect(page.getByRole('button', { name: 'Skip intro' })).toBeHidden();
-  await expect(page.locator('.visuals img.on')).toHaveAttribute('data-for', 'falling-constellations');
+  await expect(page.locator('.visuals img.on')).toHaveAttribute('data-for', 'nfl-predictor');
   await expect(page.locator('.flash')).toHaveCSS('opacity', '0'); // the flash has cleared, so axe measures the real colours
   expect(await axe(page)).toEqual([]);
 });
@@ -50,12 +50,12 @@ test('keyboard: tabbing into the nav during the opening shows the header on a so
   await expect(page.locator('header.site')).toHaveCSS('background-color', 'rgb(31, 29, 26)');
 });
 
-test('the 7 stops come from the content collection, featured first, with working links', async ({ page, request }) => {
+test('the 5 stops come from the content collection, featured first, with working links', async ({ page, request }) => {
   await page.goto('/');
   const stops = page.locator('.stop');
   expect(await stops.evaluateAll((els) => els.map((el) => el.id))).toEqual(SLUGS);
-  await expect(stops.first().locator('.count')).toHaveText('01 / 07 · Featured');
-  await expect(stops.last().locator('.count')).toHaveText('07 / 07');
+  await expect(stops.first().locator('.count')).toHaveText('01 / 05 · Featured');
+  await expect(stops.last().locator('.count')).toHaveText('05 / 05');
   const hrefs = await page.locator('a.primary').evaluateAll((as) => as.map((a) => a.getAttribute('href')!));
   expect(hrefs).toEqual(SLUGS.map((s) => `/projects/${s}/`));
   for (const href of hrefs) expect((await request.get(href)).status(), href).toBe(200);
@@ -71,7 +71,7 @@ test('keyboard: Skip intro is the first Tab stop; the second skips to the projec
   await expect(page.locator(':focus')).toHaveText('Skip to the projects');
   await page.keyboard.press('Enter');
   await expect(page.locator(html)).toHaveClass(/revealed/, SHOWCASE);
-  await expect(page.locator(':focus')).toHaveAttribute('href', '/projects/falling-constellations/');
+  await expect(page.locator(':focus')).toHaveAttribute('href', '/projects/nfl-predictor/');
   await expect(page.locator('.stops')).toHaveCSS('opacity', '1');
   expect(await axe(page)).toEqual([]);
 });
@@ -107,8 +107,6 @@ test('the NBA stop plays its painted loop; the pause control shows with it and s
   await page.goto('/');
   await page.getByRole('link', { name: 'Skip to the projects' }).click();
   await expect(page.locator(html)).toHaveClass(/revealed/, SHOWCASE);
-  await page.locator('#hearth').scrollIntoViewIfNeeded();
-  await expect(page.locator('.pause-loop')).toBeHidden(); // no loop at this stop
   await page.locator('#nba-predictor').scrollIntoViewIfNeeded();
   const loop = page.locator('.loop[data-loop="nba-predictor"]');
   const video = loop.locator('video');
@@ -118,20 +116,19 @@ test('the NBA stop plays its painted loop; the pause control shows with it and s
   await expect(page.getByRole('button', { name: 'Play the background video' })).toBeVisible();
   expect(await video.evaluate((v: HTMLVideoElement) => v.paused)).toBe(true);
   expect(await axe(page)).toEqual([]);
-  await page.locator('#hearth').scrollIntoViewIfNeeded();
-  await expect(page.locator('.pause-loop')).toBeHidden(); // no loop at this stop
+  await page.locator('#nightfall').scrollIntoViewIfNeeded();
   await expect(loop).not.toHaveClass(/\bon\b/);
 });
 
-test('the first stop (Falling Constellations) plays its painted loop once the opening is over', async ({ page }) => {
+test('the first stop (NFL) plays its painted loop once the opening is over', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator('.pause-loop')).toBeHidden(); // nothing to pause during the opening
   await page.getByRole('link', { name: 'Skip to the projects' }).click();
   await expect(page.locator(html)).toHaveClass(/revealed/, SHOWCASE);
-  const video = page.locator('.loop[data-loop="falling-constellations"] video');
+  const video = page.locator('.loop[data-loop="nfl-predictor"] video');
   await expect.poll(() => video.evaluate((v: HTMLVideoElement) => !v.paused && v.currentTime > 0), SHOWCASE).toBe(true);
   await expect(page.getByRole('button', { name: 'Pause the background video' })).toBeVisible();
-  await expect(page.locator('.visuals img.on')).toHaveAttribute('src', '/projects/falling-constellations/poster.webp');
+  await expect(page.locator('.visuals img.on')).toHaveAttribute('src', '/projects/nfl-predictor/poster.webp');
   expect(await axe(page)).toEqual([]);
 });
 
@@ -159,7 +156,7 @@ test('reduced motion: the projects at once, no opening', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator(html)).toHaveClass(/revealed/);
   await expect(page.locator(html)).not.toHaveClass(/intro/);
-  await expect(page.getByRole('heading', { level: 3, name: 'Falling Constellations' })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 3, name: 'NFL Game Predictor' })).toBeVisible();
 });
 
 test('no WebGL2: the projects at once over the first project\'s image', async ({ page }) => {
@@ -199,10 +196,10 @@ test.describe('on a touch device', () => {
 test.describe('with JavaScript off', () => {
   test.use({ javaScriptEnabled: false });
 
-  test('the finished page shows: all 7 projects over the first project\'s image', async ({ page }) => {
+  test('the finished page shows: all 5 projects over the first project\'s image', async ({ page }) => {
     await page.goto('/');
-    await expect(page.getByRole('link', { name: /^View project/ })).toHaveCount(7);
-    await expect(page.getByRole('heading', { level: 3, name: 'Falling Constellations' })).toBeVisible();
+    await expect(page.getByRole('link', { name: /^View project/ })).toHaveCount(5);
+    await expect(page.getByRole('heading', { level: 3, name: 'NFL Game Predictor' })).toBeVisible();
     await expect(page.locator('.visuals img').first()).toBeVisible();
   });
 });

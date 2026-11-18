@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 
 const GITHUB = 'https://github.com/arinb44';
 const HEADER = ['#main', '/', '/projects/', '/about/', '/cv.pdf', 'mailto:you@example.com']; // skip link, name, nav
-const SLUGS = ['nfl-predictor', 'nba-predictor', 'mlb-predictor', 'hearth', 'juno', 'nightfall', 'falling-constellations']; // spec 3.2
+const SLUGS = ['nfl-predictor', 'mlb-predictor', 'nba-predictor', 'nightfall', 'falling-constellations']; // output/project-lineup
 const PAGES = ['/', '/projects/', '/about/', ...SLUGS.map((s) => `/projects/${s}/`)];
 
 /** hrefs of the elements focused by pressing Tab `count` times from the top of the page. */
@@ -43,8 +43,8 @@ test('every internal link resolves', async ({ page, request }) => {
 
 test('prev/next follow the project order and wrap', async ({ page }) => {
   await page.goto('/projects/nba-predictor/');
-  await expect(page.locator('a[rel=prev]').first()).toHaveAttribute('href', '/projects/nfl-predictor/');
-  await expect(page.locator('a[rel=next]').first()).toHaveAttribute('href', '/projects/mlb-predictor/');
+  await expect(page.locator('a[rel=prev]').first()).toHaveAttribute('href', '/projects/mlb-predictor/');
+  await expect(page.locator('a[rel=next]').first()).toHaveAttribute('href', '/projects/nightfall/');
   await page.goto('/projects/falling-constellations/');
   await expect(page.locator('a[rel=next]').first()).toHaveAttribute('href', '/projects/nfl-predictor/');
 });
@@ -54,7 +54,7 @@ test('project page tab order: result first, prev/next after the content', async 
   expect(await tabOrder(page, 12)).toEqual([
     ...HEADER,
     'https://machinelearningnba-p3cxa6nsk6hgcuclcwssdx.streamlit.app', 'https://github.com/arinb44/MachineLearningNBA',
-    '/projects/nfl-predictor/', '/projects/mlb-predictor/', // prev, next
+    '/projects/mlb-predictor/', '/projects/nightfall/', // prev, next
     GITHUB, '/about/#credits', // footer
   ]);
 });
@@ -82,10 +82,10 @@ test.describe('with JavaScript off', () => {
     await page.goto('/');
     await page.getByRole('link', { name: /View project.*NBA Game Predictor/ }).click();
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('NBA Game Predictor');
-    await page.getByRole('link', { name: 'Next: MLB Game Predictor' }).click();
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText('MLB Game Predictor');
+    await page.getByRole('link', { name: 'Next: Nightfall' }).click();
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Nightfall');
     await page.getByRole('link', { name: 'Projects', exact: true }).click();
-    await expect(page.getByRole('table', { name: 'All projects' }).getByRole('row')).toHaveCount(8); // header + 7
+    await expect(page.getByRole('table', { name: 'All projects' }).getByRole('row')).toHaveCount(6); // header + 5
   });
 });
 

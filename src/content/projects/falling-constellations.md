@@ -5,8 +5,7 @@ oneLine: Antique star-atlas constellations fall over a slowly turning spiral gal
 role: "TODO: your role (solo or team, and what you did)"
 stack: [JavaScript, Canvas 2D, WebGL2, Bun]
 year: 2026
-order: 7
-featured: true
+order: 5
 demo:
   url: https://arinb44.github.io/Falling-Constellations/
   kind: live

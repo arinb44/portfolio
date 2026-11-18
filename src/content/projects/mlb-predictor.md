@@ -5,7 +5,7 @@ oneLine: Calibrated MLB home-win probabilities, honest about the ~55–58% accur
 role: "TODO: your role (solo or team, and what you did)"
 stack: [Python, PyTorch, XGBoost, LightGBM, pybaseball]
 year: 2026
-order: 3
+order: 2
 series: prediction
 demo:
   url: https://mlb-game-predictor-sdt8.onrender.com

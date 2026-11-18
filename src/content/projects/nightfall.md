@@ -5,7 +5,7 @@ oneLine: A 3D Godot game built around a flashlight, a campfire and a creature.
 role: "TODO: your role (solo or team, and what you did)"
 stack: [Godot, GDScript]
 year: 2024
-order: 6
+order: 4
 demo:
   kind: video
 repo: https://github.com/arinb44/Nightfall
