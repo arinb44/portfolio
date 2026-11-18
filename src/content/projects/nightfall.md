@@ -15,7 +15,7 @@ predella:
 layers:
   - name: varnish
     status: finished
-    text: "TODO: a gameplay still. The models are withheld, so there is no public build; a short video goes here."
+    text: "TODO: a gameplay still. The models are free to use; a short video goes here."
     images:
       - src: ../../assets/projects/nightfall/varnish.png
         alt: "Placeholder: Nightfall gameplay still"
