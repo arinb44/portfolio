@@ -1,0 +1,88 @@
+# 07_render.py
+# Purpose: Render chosen frames of a saved version in the background on the GPU (OptiX, CUDA
+#          fallback), timing each frame. Used for option previews, the timing test and the final.
+#          Overrides (--set) change a copy in memory only; the .blend is never saved.
+# Input:   any blend/escape_v###.blend (copied from Stalked's 07_render.py)
+# Output:  PNGs in --out, a "FRAME <n> <seconds>" line per frame on stdout
+# Run:     blender --background --factory-startup blend/escape_v004.blend --python scripts/07_render.py --
+#            --out previews/m4/x --frames 150 [--pct 50] [--samples 64] [--name f] [--set fog=0.05]
+import argparse
+import os
+import sys
+import time
+
+import bpy
+
+bpy.context.preferences.use_preferences_save = False  # never touch the user's saved preferences
+argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
+ap = argparse.ArgumentParser()
+ap.add_argument("--out", required=True)
+ap.add_argument("--frames", default="150", help="e.g. 150 or 1,70,150 or 1-560 or 1-560:4 (every 4th)")
+ap.add_argument("--pct", type=int, default=100)
+ap.add_argument("--samples", type=int)
+ap.add_argument("--name", default="f")
+ap.add_argument("--set", action="append", default=[], help="fog|moon|hot|spill|exposure|eyes=value")
+ap.add_argument("--skip-existing", action="store_true", help="resume: skip frames whose PNG exists")
+ap.add_argument("--no-blur", action="store_true")
+a = ap.parse_args(argv)
+a.out = os.path.abspath(a.out)  # Blender reads relative render paths from the drive root
+
+sc = bpy.context.scene
+prefs = bpy.context.preferences.addons["cycles"].preferences
+for kind in ("OPTIX", "CUDA"):
+    try:
+        prefs.compute_device_type = kind
+        prefs.get_devices()
+        gpus = [d for d in prefs.devices if d.type == kind]
+        if gpus:
+            for d in prefs.devices:
+                d.use = d.type == kind
+            print("DEVICE", kind, [d.name for d in gpus])
+            break
+    except TypeError:
+        continue
+else:
+    print("DEVICE CPU (no GPU found)")
+sc.cycles.device = "GPU"
+sc.cycles.denoiser = "OPTIX" if prefs.compute_device_type == "OPTIX" else "OPENIMAGEDENOISE"
+sc.render.resolution_percentage = a.pct
+sc.render.use_persistent_data = True  # keep the scene on the GPU between frames
+if a.samples:
+    sc.cycles.samples = a.samples
+if a.no_blur:
+    sc.render.use_motion_blur = False
+
+fog_vol = next((n for n in bpy.data.materials["Fog"].node_tree.nodes if n.type == "PRINCIPLED_VOLUME"), None) \
+    if "Fog" in bpy.data.materials else None
+SETTERS = {
+    "fog": lambda v: setattr(fog_vol.inputs["Density"], "default_value", v),
+    "moon": lambda v: setattr(bpy.data.lights["Moon"], "energy", v),
+    "hot": lambda v: setattr(bpy.data.lights["Flashlight"], "energy", v),
+    "spill": lambda v: setattr(bpy.data.lights["FlashlightSpill"], "energy", v),
+    "exposure": lambda v: setattr(sc.view_settings, "exposure", v),
+    "eyes": lambda v: setattr(next(n for n in bpy.data.materials["WendigoEyes"].node_tree.nodes
+                                   if n.type == "EMISSION").inputs["Strength"], "default_value", v),
+}
+for s in a.set:
+    key, value = s.split("=")
+    SETTERS[key](float(value))
+    print("SET", key, value)
+
+frames = []
+for part in a.frames.split(","):
+    part, _, step = part.partition(":")
+    lo, _, hi = part.partition("-")
+    frames += range(int(lo), int(hi or lo) + 1, int(step or 1))
+
+sc.render.image_settings.file_format = "PNG"
+sc.render.image_settings.color_depth = "8"
+os.makedirs(a.out, exist_ok=True)
+for f in frames:
+    path = os.path.join(a.out, f"{a.name}_{f:04d}.png")
+    if a.skip_existing and os.path.exists(path):
+        continue  # the GPU can fault mid-run (seen once at frame 227); re-run to resume
+    sc.frame_set(f)
+    sc.render.filepath = path
+    t = time.time()
+    bpy.ops.render.render(write_still=True)
+    print(f"FRAME {f} {time.time() - t:.1f}", flush=True)
