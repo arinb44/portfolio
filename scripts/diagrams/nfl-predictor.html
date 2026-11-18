@@ -1,0 +1,33 @@
+<!doctype html>
+<!-- NFL Game Predictor architecture. Source: the README of github.com/arinb44/NFLGamePredictorModel (project structure, automation). -->
+<html lang="en">
+<head><meta charset="utf-8"><link rel="stylesheet" href="diagram.css"></head>
+<body>
+  <div><p class="label">NFL Game Predictor · how it fits together</p><h1>From play-by-play to a weekly pick</h1></div>
+  <div class="flow">
+    <div class="step">
+      <p class="label">Data</p><h2>Public data</h2>
+      <ul><li>nflverse: play-by-play, schedules, rosters, injury reports, 2006–now</li><li>Open-Meteo: game-time weather</li><li><code>data_loader.py</code> <code>weather.py</code></li></ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step">
+      <p class="label">Features</p><h2>Home minus away</h2>
+      <ul><li>EPA, success rate, Elo, QB form</li><li>Missing players, travel, fatigue, weather matchups</li><li>Only pre-kickoff information</li><li><code>features.py</code> <code>elo.py</code> <code>players.py</code> <code>situational.py</code></li></ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step key">
+      <p class="label">Model</p><h2>Logistic regression</h2>
+      <ul><li>Walk-forward: train to season N, test N+1</li><li>Beat random forest and gradient boosting on log loss</li><li><code>train.py</code> <code>evaluate.py</code></li></ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step">
+      <p class="label">Output</p><h2>Picks with reasons</h2>
+      <ul><li>Win probability and spread per game</li><li>Exact factor waterfall from 50%</li><li>Streamlit dashboard, in the browser on GitHub Pages</li><li><code>explain.py</code> <code>predict.py</code> <code>dashboard.py</code></li></ul>
+    </div>
+  </div>
+  <div class="band">
+    <div><b>Runs itself.</b> A scheduled job refreshes the data and predicts on Thursday, Sunday and Monday, then commits the picks before kickoff.</div>
+    <div><b>Checked.</b> <code>test_leakage.py</code> proves no feature sees the game it predicts. Vegas lines are a benchmark only.</div>
+  </div>
+</body>
+</html>

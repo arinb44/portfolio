@@ -1,7 +1,7 @@
 # Progress: Project Info
 
-- **Current phase:** Phase 4, M1 (capture tooling)
-- **Status:** waiting for user (approve the M1 commit)
+- **Current phase:** Phase 4, M3 (MLB)
+- **Status:** in progress (user away overnight; standing approval to commit and push, decision #11)
 
 ## Completed milestones
 - 2026-11-18: Project root confirmed earlier this session (`C:\Users\arins\Arin\School\Projects\Portfolio`). New project chosen over extending `project-lineup`.
@@ -21,9 +21,17 @@
 - 2026-11-18: M2 research started (read-only):
   - NFL holdout 2019–25 (1,954 games): logistic (final) 65.5% accuracy; Vegas 66.4%; always-home 53.7% (README table, `reports/results.json`).
   - Origins candidate: `notebooks/01_data_exploration.ipynb` cell 3 plot (games and home-field advantage by season); first commits all 2026-09-21.
+- 2026-11-18: M1 committed `da64fd6` and pushed to `origin/project-info` (approved).
+- 2026-11-18: User gave standing approval to commit and push while away overnight (decision #11).
+- 2026-11-18: M2 NFL done:
+  - Text: role, hero, key features, architecture and origins rewritten from the README, `reports/results.json` and the notebooks.
+  - Metric: 65.5% vs 53.7% always-home; Vegas 66.4% named (decision #12).
+  - Images: dashboard This Week (1600×1000, `nfl-hero`), Full breakdown waterfall (`nfl-waterfall`), diagram `scripts/diagrams/nfl-predictor.html` (`nfl-architecture`), first notebook plot on white (decision #13).
+  - `capture.mjs` gained `scale` and `prep` options; `scripts/diagrams/diagram.css` is shared by all diagrams.
+  - `npm test`: check 0/0, 9 pages, unit 12/12, Playwright 41/41 (NFL no-TODO check included).
 
 ## Next step
-Commit M1 ("Add a capture script for project images") with approval and ask to push; then M2 (NFL): capture the live dashboard (This Week tab + a Full breakdown waterfall), build the architecture diagram, extract the notebook plot, write the text, and agree the metric framing with the user.
+M3 (MLB): capture the Render demo (wake it first; 30-60 s), put the two SHAP charts on white at 1200×800 (logistic = Key features, gradient boosting = Origins), build `scripts/diagrams/mlb-predictor.html`, write the text (metric 57.8% from the README results table), add `mlb-predictor` to `FINISHED`, test, commit and push.
 
 ## Open questions
 - Nightfall gameplay video: file path (user supplies).

@@ -2,7 +2,7 @@
 draft: true
 title: NFL Game Predictor
 oneLine: Predicts each NFL team's win probability and explains which factors drove each pick.
-role: "TODO: your role (solo or team, and what you did)"
+role: "Solo: data pipeline, features, model, dashboard and the weekly automation."
 stack: [Python, pandas, scikit-learn, Streamlit]
 year: 2026
 order: 1
@@ -13,38 +13,67 @@ demo:
   kind: live
   coldStartSeconds: 30
 repo: https://github.com/arinb44/NFLGamePredictorModel
+metric:
+  value: 65.5%
+  label: winner accuracy
+  baseline: 53.7% for always picking the home team
+  context: "held-out 2019–2025 seasons, 1,954 games; Vegas favourites: 66.4%"
 predella:
   image: ../../assets/projects/nfl-predictor/predella.png
   alt: "Placeholder: NFL Predictor predella scene"
 layers:
   - name: varnish
     status: finished
-    text: The finished dashboard shows every game of the week with a win probability for each team.
+    text: >-
+      The live dashboard shows each week's games with both teams' win probabilities, the Vegas line for comparison,
+      a predicted spread and the top reasons behind each pick. It runs Streamlit in the browser on GitHub Pages
+      and updates itself three times a week.
     images:
       - src: ../../assets/projects/nfl-predictor/varnish.png
-        alt: "Placeholder: NFL Predictor dashboard screenshot"
-        caption: The live dashboard, updated three times a week.
+        alt: >-
+          The NFL dashboard's This Week view for week 11 of 2026: game cards for Colts at Texans (25% to 75%) and
+          Cardinals at Chiefs (12% to 88%), each with a win-probability bar, the Vegas line and the predicted spread.
+        caption: The live dashboard's This Week view, captured on 18 November 2026.
   - name: paint
     status: finished
-    text: Each pick comes with the factors that drove it, so a reader can see why the model leans one way.
+    text: >-
+      Every pick breaks down exactly. The model adds up weighted home-minus-away differences, so a waterfall can start
+      at 50% for two evenly matched teams on neutral ground and add one factor at a time until it reaches the model's
+      probability. Related features are grouped (quarterback, defense, home field, fatigue) and the steps sum exactly,
+      which a test checks. A what-if option shows how much a backup quarterback would change a game.
     images:
       - src: ../../assets/projects/nfl-predictor/paint-1.png
-        alt: "Placeholder: one pick broken down into its factors"
-        caption: Per-pick factor explanations.
+        alt: >-
+          Waterfall chart for Colts at Texans, from 50% to 75.4% for Houston: home field +7.0, scoring and record +5.8,
+          defense +5.1, recent form +2.9, Elo +2.2, quarterback +1.8, divisional game -1.2, then smaller factors.
+        caption: The full breakdown for Colts at Texans, week 11 of 2026.
   - name: underpainting
     status: finished
     text: >-
-      Separate feature modules for weather, travel and matchups, built from nflverse and Open-Meteo data.
-      Every feature is leak-free and the model is validated walk-forward. Vegas lines are a benchmark only, never an input.
+      Each game is one row from the home team's side, and every feature is a home-minus-away difference built only from
+      information available before kickoff; a test proves no feature sees the game it predicts. Models are judged
+      walk-forward: train through one season, test on the next. Logistic regression beat random forest and gradient
+      boosting on log loss and is the easiest to explain, so it is the final model. Vegas lines are a benchmark only,
+      never an input. A scheduled job refreshes the data on Thursday, Sunday and Monday and commits each prediction
+      before kickoff, so the record is timestamped.
     images:
       - src: ../../assets/projects/nfl-predictor/underpainting.png
-        alt: "Placeholder: diagram of the feature modules and data sources"
-        caption: Feature modules and data sources.
+        alt: >-
+          Diagram in four steps: public data (nflverse play-by-play, schedules, rosters and injury reports since 2006;
+          Open-Meteo weather) to home-minus-away features, to a walk-forward logistic regression, to picks with reasons
+          on a Streamlit dashboard. Below: a scheduled job runs it three times a week, and a leakage test checks it.
+        caption: How the data, features, model and dashboard fit together.
   - name: underdrawing
     status: finished
-    text: "TODO: the first notebook or sketch, and what it tried."
+    text: >-
+      It started on 21 September 2026 with a data loader and an exploration notebook. The notebook's first chart asked
+      the simplest question: how often does the home team win? In most seasons since 2006 the answer was between 53%
+      and 60%, and lower since 2019. The next commits added team stats, Elo and leakage tests, then the logistic
+      regression, and then the dashboard and its factor explanations.
     images:
       - src: ../../assets/projects/nfl-predictor/underdrawing-1.png
-        alt: "Placeholder: first notebook or sketch"
-        caption: "TODO: caption"
+        alt: >-
+          Line chart of the home team's regular-season win rate by season, 2006 to 2026: mostly between 0.53 and 0.60,
+          down to about 0.50 in 2020 and between 0.50 and 0.56 since.
+        caption: The first chart in the first notebook, from September 2026 (the 2026 point covers its first games).
 ---
