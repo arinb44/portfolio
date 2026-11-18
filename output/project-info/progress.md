@@ -37,6 +37,7 @@
 - 2026-11-18: M4 committed `a5b5287` and pushed.
 - 2026-11-18: M5 Falling Constellations done: text from HANDOFF.md, `src/` and the research report; images: live piece, core close-up, diagram `scripts/diagrams/falling-constellations.html`, the 528f5d5 prototype rendered locally (#20, #21). `npm test`: check 0/0, 9 pages, unit 12/12, Playwright 44/44.
 - Noticed (out of scope, site styling): at ~800 px wide the project page h1 breaks "Falling Constellations" mid-word.
+- 2026-11-18: Nightfall facts from its repo (2 commits, 2024-08-25, by arinb45): Godot 4.2 (Forward+), addons proton_scatter and terrain_3d; a wendigo with a state machine (idle, run, attack, scream, death; 500 health; critical-hit areas) that stalks the player; a shack safe zone; a day-night cycle; random howls; deer that wander on a NavigationAgent3D; campfires; a readable book; an equippable flashlight; an ammo box and blood spray; the run ends on the wendigo's death or a death screen. 3D models are not in the repo ("to prevent the theft of my game").
 
 ## Next step
 M6 Nightfall, blocked on the user: (1) the gameplay video file (path), (2) what the player does and the goal, (3) what they built themselves vs. assets (models, textures, sounds), (4) the Godot version and when/why it was made. Then: ffmpeg to `public/projects/nightfall/gameplay.{webm,mp4}` + 4 stills + poster; video hero in `[slug].astro` (muted, loop, playsinline, controls, poster; no autoplay under reduced motion); text; tests; commit; push. Then Phase 5 `summary.md`.
