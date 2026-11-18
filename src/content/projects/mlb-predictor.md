@@ -1,6 +1,6 @@
 ---
 draft: true
-title: MLB Game Predictor
+title: Full Count
 oneLine: Calibrated MLB home-win probabilities, honest about the ~55–58% accuracy ceiling.
 role: "TODO: your role (solo or team, and what you did)"
 stack: [Python, PyTorch, XGBoost, LightGBM, pybaseball]

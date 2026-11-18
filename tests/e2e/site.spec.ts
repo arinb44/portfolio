@@ -90,8 +90,8 @@ test.describe('with JavaScript off', () => {
 
   test('home → project → next project → Projects all work', async ({ page }) => {
     await page.goto('/');
-    await page.getByRole('link', { name: /View project.*NBA Game Predictor/ }).click();
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText('NBA Game Predictor');
+    await page.getByRole('link', { name: /View project.*Tip-Off/ }).click();
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Tip-Off');
     await page.getByRole('link', { name: 'Next: Nightfall' }).click();
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Nightfall');
     await page.getByRole('link', { name: 'Projects', exact: true }).click();

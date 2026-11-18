@@ -156,7 +156,7 @@ test('reduced motion: the projects at once, no opening', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator(html)).toHaveClass(/revealed/);
   await expect(page.locator(html)).not.toHaveClass(/intro/);
-  await expect(page.getByRole('heading', { level: 3, name: 'NFL Game Predictor' })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 3, name: 'Fourth and Why' })).toBeVisible();
 });
 
 test('no WebGL2: the projects at once over the first project\'s image', async ({ page }) => {
@@ -199,7 +199,7 @@ test.describe('with JavaScript off', () => {
   test('the finished page shows: all 5 projects over the first project\'s image', async ({ page }) => {
     await page.goto('/');
     await expect(page.getByRole('link', { name: /^View project/ })).toHaveCount(5);
-    await expect(page.getByRole('heading', { level: 3, name: 'NFL Game Predictor' })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 3, name: 'Fourth and Why' })).toBeVisible();
     await expect(page.locator('.visuals img').first()).toBeVisible();
   });
 });

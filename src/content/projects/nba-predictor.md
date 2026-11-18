@@ -1,6 +1,6 @@
 ---
 draft: true
-title: NBA Game Predictor
+title: Tip-Off
 oneLine: Predicts NBA winners, margins and calibrated win probabilities.
 role: "TODO: your role (solo or team, and what you did)"
 stack: [Python, scikit-learn, Docker, Streamlit]
