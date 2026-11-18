@@ -29,7 +29,7 @@ pad = C.N - C.LAST_PICTURE
 os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True)
 cmd = ["ffmpeg", "-v", "error", "-y", "-framerate", str(C.FPS), "-start_number", "1",
        "-i", f"{src}/{a.name}_%04d.png", "-i", a.audio,
-       "-vf", f"tpad=stop={pad}:stop_mode=add:color=black,format=yuv420p",
+       "-vf", f"tpad=stop={pad}:stop_mode=add:color=black,scale=trunc(iw/2)*2:trunc(ih/2)*2,format=yuv420p",  # even size for yuv420p
        "-frames:v", str(C.N), "-c:v", "libx264", "-preset", "slow", "-crf", str(a.crf), "-movflags", "+faststart",
        "-c:a", "aac", "-b:a", "192k", "-t", f"{C.N / C.FPS:.3f}", a.out]
 subprocess.run(cmd, check=True)

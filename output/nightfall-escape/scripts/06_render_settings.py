@@ -14,7 +14,7 @@ import bpy
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import config as C  # noqa: E402
 
-SPILL = 350.0  # Stalked used 120; at a run the lane went black outside the hotspot (previews/m3-animation/sheet_spill.png)
+SPILL = 350.0  # while running; Stalked used 120; at a run the lane went black outside the hotspot (previews/m3-animation/sheet_spill.png)
 sc = bpy.context.scene
 r, cy = sc.render, sc.cycles
 
@@ -27,7 +27,14 @@ cy.device = "GPU"
 cy.samples, cy.adaptive_threshold, cy.use_denoising = 128, 0.03, True
 cy.volume_biased = True
 sc.view_settings.view_transform = "AgX"
-bpy.data.lights["FlashlightSpill"].energy = SPILL
+# Stalked's dim spill while the hunter faces the wendigo (350 lit its ribcage at 7.5 m, final frame 20),
+# the brighter spill only once the turn has swung the beam away from it
+spill = bpy.data.lights["FlashlightSpill"]
+if spill.animation_data:
+    spill.animation_data_clear()
+for frame, energy in ((C.TURN[0], 120.0), (C.TURN[1], SPILL)):
+    spill.energy = energy
+    spill.keyframe_insert("energy", frame=frame)
 r.image_settings.media_type = "IMAGE"
 r.image_settings.file_format = "PNG"
 r.image_settings.color_mode, r.image_settings.color_depth = "RGB", "8"
