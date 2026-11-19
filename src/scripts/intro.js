@@ -3,8 +3,8 @@
 // moving against the plaster and the focus pulling onto the fingers; dust drifts, light runs along the plaster's cracks to
 // the gap and rays fan out; the fingertips reach across and touch, with a spark (#33, #34). Then the camera dives into the
 // gap, the whole screen flashes warm white (#30), and at its peak the projects are simply there (#20, #22, #23). The header
-// is hidden during the opening (#32). Once per tab (#13); reduced motion, the reading layout (#14), a repeat visit and no
-// WebGL get the projects at once.
+// is hidden during the opening (#32). Once per tab (#13); reduced motion, the reading layout (#14), a repeat visit, no
+// WebGL and a fresco still loading after 4 s get the projects at once.
 // Review only: ?review (replay / scrub / speed, a switch per idea), ?t=3.6 (freeze at a time), ?fx=camera,depth,light,touch.
 
 const GAP = [1335, 728], ADAM_TIP = [1331, 733], GOD_TIP = [1339, 723];   // 3524 px image, measured on a 10x crop
@@ -132,7 +132,7 @@ export function playIntro() {
   let seen = false; try { seen = !!sessionStorage.getItem(SEEN); } catch {}
   const atOnce = reduced || matchMedia('(max-width: 900px), (max-height: 560px)').matches || (seen && !review && !q.has('t'));
   const reveal = TL.flash[1];
-  let T = q.has('t') ? +q.get('t') : atOnce ? TL.end : 0, paused = q.has('t'), speed = 1, fading = false, ended = false;
+  let T = q.has('t') ? +q.get('t') : atOnce ? TL.end : 0, paused = q.has('t'), speed = 1, fading = false, ended = false, started = false;
   window.__intro = { startAt: null, doneAt: null, atOnce, fx: [...FX], frames: [], Ts: [] };
   const end = () => {
     if (ended) return; ended = true;
@@ -140,11 +140,13 @@ export function playIntro() {
     window.__intro.doneAt = performance.now(); resolve();
   };
   const showcase = () => { html.classList.remove('intro'); html.classList.add('revealed'); canvas.style.display = 'none'; flash.style.opacity = 0; end(); };
-  const api = { done, toShowcase() { T = Math.max(T, TL.end); } };
+  // Before the first frame nothing moves the clock, so skipping goes straight to the projects.
+  const api = { done, toShowcase() { T = Math.max(T, TL.end); if (!started) showcase(); } };
   if (atOnce && !q.has('t')) { showcase(); return api; }
   html.classList.add('intro');
 
   const skip = () => {
+    if (!started) return showcase();
     if (T >= reveal || fading) return; fading = true;
     canvas.style.transition = 'opacity .25s'; canvas.style.opacity = 0;
     setTimeout(() => { T = TL.end; fading = false; }, 250);
@@ -154,8 +156,11 @@ export function playIntro() {
 
   const gl = canvas.getContext('webgl2', { antialias: false, premultipliedAlpha: true });
   if (!gl) { showcase(); return api; }
+  setTimeout(() => { if (!started) showcase(); }, 4000);   // the fresco hasn't arrived (slow or stalled connection)
   (async () => {
     const [bmp, depth] = await Promise.all([bitmap(SRC), FX.has('depth') ? bitmap(DEPTH) : null]);
+    if (ended) return;   // skipped or timed out while loading: the projects are already up
+    started = true;
     const W = bmp.width, H = bmp.height;
     const paint = compile(gl, PAINT_VS, PAINT_FS), light = compile(gl, FULL_VS, LIGHT_FS), dust = compile(gl, DUST_VS, DUST_FS);
     texture(gl, 0, bmp, true);

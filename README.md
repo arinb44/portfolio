@@ -31,7 +31,7 @@ The browser tests run Chromium on the real GPU (`playwright.config.ts` passes `-
 | `src/styles/global.css` | Styles for every page except the home page |
 | `src/layouts/Base.astro`, `src/components/` | Shared layout, header, footer and project page parts |
 
-The home page needs a mouse or trackpad: phones and tablets see a short notice instead. The opening plays once per browser tab and can be skipped (Skip intro or Esc). With reduced motion, at 200–400% zoom, on a repeat visit in the same tab, or without WebGL2 or JavaScript, the page opens on the projects straight away. Each project's image on the home page is the first image of its first layer, so replacing the placeholder `varnish` images changes it.
+The home page needs a mouse or trackpad: phones and tablets see a short notice instead. The opening plays once per browser tab and can be skipped (Skip intro or Esc). With reduced motion, at 200–400% zoom, on a repeat visit in the same tab, without WebGL2 or JavaScript, or when the painting hasn't loaded within 4 seconds, the page opens on the projects straight away. Each project's image on the home page is the first image of its first layer, so replacing the placeholder `varnish` images changes it.
 
 ## Your details
 

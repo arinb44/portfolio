@@ -87,6 +87,24 @@ test('Skip intro and Esc go straight to the projects', async ({ page, context })
   await expect(other.locator(html)).toHaveClass(/revealed/, { timeout: 3_000 });
 });
 
+// The fresco never arrives (a stalled connection): the skip controls still work, and the projects come up on their own.
+for (const control of ['Skip intro', 'Skip to the projects']) {
+  test(`stalled fresco: ${control} still reaches the projects`, async ({ page }) => {
+    await page.route('**/creation/fresco.webp', () => {}); // never answered
+    await page.goto('/');
+    await page.getByText(control, { exact: true }).click();
+    await expect(page.locator(html)).toHaveClass(/revealed/, { timeout: 1_000 });
+  });
+}
+
+test('stalled fresco: the projects appear on their own after 4 s', async ({ page }) => {
+  await page.route('**/creation/fresco.webp', () => {});
+  await page.goto('/');
+  await expect(page.locator(html)).toHaveClass(/intro/);
+  await expect(page.locator(html)).toHaveClass(/revealed/, { timeout: 6_000 });
+  await expect(page.locator('.stops')).toBeVisible();
+});
+
 test('the nav\'s Projects link reveals too', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('navigation', { name: 'Site' }).getByRole('link', { name: 'Projects' }).click();
