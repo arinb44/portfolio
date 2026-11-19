@@ -82,3 +82,14 @@ The work is done when:
 5. Propose each git commit (files + message) and commit only after the user approves.
 6. Code goes into the project's source tree; planning documents go in `<project-root>/output/<project-slug>/`, never in the template folder.
 7. Ask which GitHub repository to push to before the first commit; commit and push only after approval and only to that repository; never include Claude / AI markers (e.g. `Co-Authored-By: Claude`, "Generated with Claude Code") in commit messages or pull requests.
+
+## Scope change (2026-11-18, "finish the portfolio")
+Added at the user's request, pending approval of `plan.md` Part 2:
+- **Site identity:** `src/site.ts` name "Arin Barman", email `barmanar@umich.edu`, a tagline (drafted by the agent, edited by the user).
+- **About page:** a short bio (drafted from the resume and projects, edited by the user) and Education from the resume.
+- **CV:** `public/cv.pdf` replaced with `C:\Users\arins\Downloads\Arin_Barman_Resume.pdf`, published as is (user confirmed, including the phone number in it).
+- **Role lines:** the three predictors credit Michigan Edge (the University of Michigan sports analytics club), per the resume and the user.
+- **Nightfall:** finish the page: solo; all code and the level, free-to-use 3D models; goal: kill the wendigo.
+- **Publish:** `draft: false` on all five projects.
+- **Project page redesign:** now in scope (previously out of scope as "site-wide styling"): the project page template, its components and their CSS, plus the projects index. The home page, intro and loops stay out of scope.
+- **Not in scope:** deployment / hosting.

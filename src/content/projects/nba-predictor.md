@@ -1,8 +1,8 @@
 ---
-draft: true
+draft: false
 title: Tip-Off
 oneLine: Predicts NBA winners, margins and calibrated win probabilities.
-role: "Solo: data fetching, features, model and calibration, the Streamlit app and the weekly data job."
+role: "Solo project for Michigan Edge, the University of Michigan sports analytics club: data, features, model and calibration, the Streamlit app and the weekly data job."
 stack: [Python, scikit-learn, Streamlit, Plotly, Docker]
 year: 2026
 order: 3

@@ -2,7 +2,7 @@ import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 const GITHUB = 'https://github.com/arinb44';
-const HEADER = ['#main', '/', '/projects/', '/about/', '/cv.pdf', 'mailto:you@example.com']; // skip link, name, nav
+const HEADER = ['#main', '/', '/projects/', '/about/', '/cv.pdf', 'mailto:barmanar@umich.edu']; // skip link, name, nav
 const SLUGS = ['nfl-predictor', 'mlb-predictor', 'nba-predictor', 'nightfall', 'falling-constellations']; // output/project-lineup
 const PAGES = ['/', '/projects/', '/about/', ...SLUGS.map((s) => `/projects/${s}/`)];
 
@@ -30,13 +30,13 @@ for (const path of [...PAGES, '/no-such-panel/']) {
   });
 }
 
-// Project pages whose info is real (output/project-info): no TODO or placeholder left in the text or any alt.
+// Pages whose info is real (output/project-info): no TODO or placeholder left in the text or any alt.
 const FINISHED: string[] = ['nfl-predictor', 'mlb-predictor', 'nba-predictor', 'falling-constellations'];
-for (const slug of FINISHED) {
-  test(`/projects/${slug}/: no TODO or placeholder left`, async ({ page }) => {
-    await page.goto(`/projects/${slug}/`);
+for (const path of ['/', '/projects/', '/about/', ...FINISHED.map((s) => `/projects/${s}/`)]) {
+  test(`${path}: no TODO or placeholder left`, async ({ page }) => {
+    await page.goto(path);
     const alts = await page.locator('img').evaluateAll((imgs) => imgs.map((i) => (i as HTMLImageElement).alt));
-    expect([await page.locator('body').innerText(), ...alts].join('\n')).not.toMatch(/TODO|placeholder/i);
+    expect([await page.locator('body').innerText(), ...alts].join('\n')).not.toMatch(/TODO|placeholder|\[Your|you@example/i);
   });
 }
 

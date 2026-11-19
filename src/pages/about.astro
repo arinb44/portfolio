@@ -1,19 +1,35 @@
 ---
 import Base from '../layouts/Base.astro';
+import { SITE } from '../site';
 ---
 <Base title="About">
   <article class="prose">
     <h1>About</h1>
-    <!-- TODO: your own words. -->
-    <p>[Two or three short paragraphs: who you are, what you build, and what you want to do next.]</p>
+    <p>
+      I'm a computer science student at the University of Michigan. I like building things that run on their own and can
+      be checked: models that publish their picks before the game starts, and art that draws itself.
+    </p>
+    <p>
+      As an analyst for Michigan Edge, the university's sports analytics club, I built three game predictors on my own: <a href="/projects/nfl-predictor/">Fourth and Why</a> for the NFL, <a href="/projects/mlb-predictor/">Full Count</a> for baseball and <a href="/projects/nba-predictor/">Tip-Off</a> for the NBA.
+      Each is tested on games it never trained on and runs as a live app that keeps its own data current.
+    </p>
+    <p>
+      I also make games. <a href="/projects/nightfall/">Nightfall</a> is a Godot horror game I built alone, about hunting a wendigo through a forest at night. With a small team, I've led programming and design on seven indie games, shipped as
+      Windows releases.
+    </p>
+    <p><a href={SITE.cv}>Download my CV</a> (PDF) or email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
     <h2>Education</h2>
-    <p>[School, programme, expected graduation.]</p>
+    <p>
+      <strong>University of Michigan</strong>, Ann Arbor: BSE in Computer Science, expected May 2028.<br />
+      <strong>Michigan State University</strong>: BSE in Computer Science, 2025–2026.
+    </p>
     <h2 id="credits">Credits</h2>
     <p>
       The home page rebuilds God's group from Michelangelo's <cite>The Creation of Adam</cite> (Sistine Chapel ceiling, c. 1511),
-      using the public-domain photograph
-      <a href="https://commons.wikimedia.org/wiki/File:Michelangelo_-_Creation_of_Adam_(cropped).jpg">Michelangelo - Creation of Adam (cropped)<span aria-hidden="true"> ↗</span></a>
-      from Wikimedia Commons.
+      using the public-domain photograph <a href="https://commons.wikimedia.org/wiki/File:Michelangelo_-_Creation_of_Adam_(cropped).jpg">Michelangelo - Creation of Adam (cropped)<span aria-hidden="true"> ↗</span></a> from Wikimedia Commons.
+    </p>
+    <p>
+      The Nightfall renders use the game's own free-to-use models and sounds, with CC0 textures from Poly Haven and ambientCG.
     </p>
     <p>Typefaces: Gloock, Newsreader and IBM Plex Mono, under the SIL Open Font License.</p>
   </article>
