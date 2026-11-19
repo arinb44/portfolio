@@ -2,7 +2,7 @@
 
 **Prepared by:** Project Info Writer
 **Date:** 2026-11-18
-**Status:** Complete (deployment was out of scope)
+**Status:** Complete, and live at https://arin-barman.pages.dev/
 
 ## 1. Overview
 All five project pages now carry checked facts and real images: Fourth and Why (NFL), Full Count (MLB), Tip-Off (NBA), Nightfall and Falling Constellations. The three bland predictor names were replaced. The site shows Arin's name, tagline, email, About page and real CV. Every project is published (`draft: false`). The project pages and the projects index were redesigned as a "paired folio": on wide screens one plate holds still and swaps as the reader moves through each section, and a gold index step follows. The design was reviewed independently and documented in DESIGN.md.
@@ -85,8 +85,8 @@ See `decisions.md` (#1–#30). The key ones:
 - The Paired Folio was chosen, then rebuilt and fixed through two independent reviews (#29, #30).
 
 ## 8. Known Issues & Next Steps
-- **Not deployed.** Choosing a host (e.g. GitHub Pages or Netlify) and publishing is the next step.
-- **Branch `finish-portfolio`** holds Part 2 (M7–M9, DESIGN.md and this summary) on top of `main`, which already has the project-info work. It needs merging or a PR into `main`.
+- **Hosting:** Cloudflare Pages at https://arin-barman.pages.dev/, rebuilt on every push to `main` (decision #31). Checked live on 2026-11-19: every page 200, CV and videos served, 404 page, no console errors or broken images.
+- **Merged:** PR #1 (`finish-portfolio` into `main`) as `5cf5aee`.
 - **Reviewer's non-material ideas, not built:**
   - A clip-path wipe instead of the plain fade for the plate swap.
   - Bare ink below shorter plates on wide screens.

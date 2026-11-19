@@ -46,12 +46,14 @@
 - 2026-11-18: M9 project page redesign done (impeccable skill): PRODUCT.md; surface round, user chose The Paired Folio (#29); built code-led; finish review rebuild, then fix, then ship on the fixes (#30). New `src/components/Arrow.astro`; `[slug].astro`, `ProjectLayers.astro`, `ProjectNav.astro`, `Footer.astro`, `about.astro`, `projects/index.astro`, `global.css` rewritten; NFL waterfall re-cropped. Tests: `npm test` check 0/0, 9 pages, unit 12/12, Playwright 56/56 (new: stage swap at 1440, plate-above-text at 390, titles never break inside a word at 4 widths).
 - 2026-11-18: M9 committed `77c8023` and pushed.
 - 2026-11-18: DESIGN.md and `.impeccable/design.json` written by the impeccable documenter from the shipped pages; `summary.md` written (Phase 5).
+- 2026-11-19: PR #1 opened (https://github.com/arinb44/portfolio/pull/1) and merged into `main` as `5cf5aee` with approval; local `main` fast-forwarded.
+- 2026-11-19: Deployed to Cloudflare Pages by the user (#31): https://arin-barman.pages.dev/ . Live check: all 8 pages 200, CV, videos, captions and loops served, 404 page, trailing-slash redirect; no console errors, failed requests or broken images in headless Chromium.
 
 ## Next step
-Ask the user for revisions. Open follow-ups are in `summary.md` section 8: deploy, merge `finish-portfolio` into `main`, and the reviewer's non-material ideas.
+Nothing pending. Possible follow-ups: put the live URL on the resume and GitHub profile; a custom domain; the reviewer's non-material design ideas (summary section 8).
 
 ## Open questions
 - DESIGN.md names chosen by the documenter ("The Night Folio", "Leaf Gold", "Night Ink"): the user may rename them.
 - Nightfall: an early screenshot could replace the Origins diagram later.
 
-**Last updated:** 2026-11-18
+**Last updated:** 2026-11-19
