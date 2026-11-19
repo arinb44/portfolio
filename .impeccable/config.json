@@ -11,6 +11,12 @@
         ],
         "createdAt": "2026-11-19T00:42:35.904Z",
         "reason": "agent: the flagged leading is the 96px Gloock display title (line-height .95) in a decision sketch under .impeccable/mocks, not shipping body text"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "plex mono\",monospace",
+        "createdAt": "2026-11-19T04:26:45.981Z",
+        "reason": "agent: IBM Plex Mono is declared in DESIGN.md typography; the detector parsed the 'IBM Plex Mono',monospace shorthand in the three decision sketches (.impeccable/mocks/decision) as this token"
       }
     ]
   }
