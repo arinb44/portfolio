@@ -24,8 +24,8 @@ const SHOTS = {
       await head.evaluate((h) => h.scrollIntoView({ block: 'start' }));
       await page.waitForTimeout(1500);
       const [a, b] = [await head.boundingBox(), await chart.boundingBox()];
-      // Ends above the chart's own toolbar (bottom right).
-      return { x: a.x - 24, y: a.y - 16, width: b.width + 48, height: b.y + b.height - a.y - 12 };
+      // Ends under the tick labels, above the axis title (which shares its row with the chart's own toolbar).
+      return { x: a.x - 24, y: a.y - 16, width: b.width + 48, height: b.y + b.height - a.y - 22 };
     },
   },
   // scripts/diagrams/nfl-predictor.html, from the repo README.

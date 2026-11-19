@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "tight-leading",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/paired-folio.html"
+        ],
+        "createdAt": "2026-11-19T00:42:35.904Z",
+        "reason": "agent: the flagged leading is the 96px Gloock display title (line-height .95) in a decision sketch under .impeccable/mocks, not shipping body text"
+      }
+    ]
+  }
+}

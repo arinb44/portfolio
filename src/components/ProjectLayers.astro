@@ -3,25 +3,31 @@ import type { CollectionEntry } from 'astro:content';
 import { Picture } from 'astro:assets';
 
 interface Props {
-  /** All four layers; the first is shown in the page hero, so this renders layers 2-4. */
+  /** All four layers; the first is the page's opening leaf, so this renders layers 2-4, one leaf each (each plate framed at its image's own aspect ratio). */
   layers: CollectionEntry<'projects'>['data']['layers'];
+  /** In-page anchor ids for layers 2-4, in order; set on each rail, which keeps a box when the wide-screen stage flattens the section. */
+  ids: string[];
 }
 const HEADING: Record<string, string> = {
   paint: 'Key features and results',
   underpainting: 'Architecture',
   underdrawing: 'Origins',
 };
-const STATUS = { finished: 'Finished', 'in-progress': 'In progress' };
+const { layers, ids } = Astro.props;
 ---
-{Astro.props.layers.slice(1).map((layer) => (
-  <section class="section" aria-labelledby={`section-${layer.name}`}>
-    <p class="label">{STATUS[layer.status]}</p>
-    <h2 id={`section-${layer.name}`}>{HEADING[layer.name]}</h2>
-    <p>{layer.text}</p>
-    {layer.images.map((img) => (
-      <figure>
-        <Picture src={img.src} alt={img.alt} formats={['avif', 'webp']} widths={[480, 800, 1200]} sizes="(min-width: 60rem) 48rem, 100vw" loading="lazy" />
-        <figcaption>{img.caption}</figcaption>
+{layers.slice(1).map((layer, i) => (
+  <section class="leaf" aria-labelledby={`section-${layer.name}`}>
+    <div class="rail" id={ids[i]}>
+      <h2 id={`section-${layer.name}`}>{HEADING[layer.name]}</h2>
+      <p>{layer.text}</p>
+    </div>
+    {/* shortcut: one plate per leaf; a layer's extra images are not shown. Add them to the rail if a layer ever has more than one. */}
+    {[layer.images[0]].map((img) => (
+      <figure class="plate" style={`--ar: ${img.src.width} / ${img.src.height}`}>
+        <div class="plate-field">
+          <Picture src={img.src} alt={img.alt} formats={['avif', 'webp']} widths={[800, 1200, 1600]} sizes="(min-width: 64rem) 58vw, 100vw" loading="lazy" />
+        </div>
+        <figcaption><span>{img.caption}</span><span class="plate-count" aria-hidden="true">{i + 2} / 4</span></figcaption>
       </figure>
     ))}
   </section>

@@ -1,40 +1,39 @@
 ---
+import Arrow from '../../components/Arrow.astro';
 import Base from '../../layouts/Base.astro';
+import { Image } from 'astro:assets';
 import { getProjects } from '../../lib/projects';
 
 const projects = await getProjects();
 // Featured first, then `order`, as on the home page.
 const rows = [...projects.filter((p) => p.data.featured), ...projects.filter((p) => !p.data.featured)];
 ---
-<Base title="Projects" description="Every project in one plain table.">
-  <h1>Projects</h1>
-  <div class="table-scroll" role="region" aria-labelledby="index-caption" tabindex="0">
-    <table class="index-table">
-      <caption id="index-caption">All projects</caption>
-      <thead>
-        <tr><th scope="col">Project</th><th scope="col">What it is</th><th scope="col">Stack</th><th scope="col">Links</th></tr>
-      </thead>
-      <tbody>
-        {rows.map(({ id, data }) => (
-          <tr>
-            <th scope="row"><a href={`/projects/${id}/`}>{data.title}</a></th>
-            <td>{data.oneLine}</td>
-            <td>{data.stack.join(' · ')}</td>
-            <td>
-              <ul class="link-list">
-                {data.demo.url && (
-                  <li>
-                    <a href={data.demo.url}>Demo<span aria-hidden="true"> ↗</span></a>
-                    {(data.demo.coldStartSeconds ?? 0) > 10 && ' (slow start)'}
-                  </li>
-                )}
-                {data.demo.kind === 'video' && <li>Video on its page</li>}
-                <li><a href={data.repo}>Code<span aria-hidden="true"> ↗</span></a></li>
-              </ul>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+<Base title="Projects" description="Five projects: three game predictors, a horror game and a generative art piece.">
+  <div class="folio-index">
+    <h1>Projects</h1>
+    <ul class="index-list" aria-label="All projects">
+      {rows.map(({ id, data }) => (
+        <li class="index-row">
+          <div class="index-plate">
+            <Image src={data.layers[0].images[0].src} alt="" widths={[400, 800]} sizes="(min-width: 48rem) 20rem, 100vw" loading="lazy" />
+          </div>
+          <div class="index-text">
+            <h2><a href={`/projects/${id}/`}>{data.title}</a></h2>
+            <p>{data.oneLine}</p>
+            {data.metric && (
+              <p class="index-result"><strong>{data.metric.value}</strong> {data.metric.label}{data.metric.baseline && <>, against {data.metric.baseline}</>}</p>
+            )}
+            <p class="meta">{data.year} · {data.stack.join(', ')}</p>
+            <p class="actions">
+              {data.demo.url && (
+                <span><a href={data.demo.url}>Live demo<Arrow /></a>{(data.demo.coldStartSeconds ?? 0) > 10 && <span class="slow">(slow start)</span>}</span>
+              )}
+              {data.demo.kind === 'video' && <a href={`/projects/${id}/`}>Video on its page</a>}
+              <a href={data.repo}>Code<Arrow /></a>
+            </p>
+          </div>
+        </li>
+      ))}
+    </ul>
   </div>
 </Base>

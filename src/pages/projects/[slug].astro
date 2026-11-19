@@ -1,4 +1,5 @@
 ---
+import Arrow from '../../components/Arrow.astro';
 import type { GetStaticPaths } from 'astro';
 import Base from '../../layouts/Base.astro';
 import { Picture, getImage } from 'astro:assets';
@@ -22,52 +23,96 @@ const hero = lead.images[0];
 const coldStart = data.demo.url && (data.demo.coldStartSeconds ?? 0) > 10 ? data.demo.coldStartSeconds : undefined;
 // A project with a video plays it in the hero, with the hero image as its poster (output/project-info/plan.md, Req 7).
 const poster = data.video ? await getImage({ src: hero.src, format: 'webp', width: 1600 }) : undefined;
+// The title is sized from its longest word so it fills the column without ever breaking inside a word.
+const words = data.title.split(' ');
+const fit = Math.max(...words.map((w) => w.length));
+const sections = [
+  { id: 'key-features', label: 'Key features' },
+  { id: 'architecture', label: 'Architecture' },
+  { id: 'origins', label: 'Origins' },
+];
 ---
 <Base title={data.title} description={data.oneLine}>
-  <article class="project">
-    <!-- Result first: everything a reviewer needs is in this block. -->
-    <header class="project-hero">
-      <div class="project-summary">
-        <p class="label">{data.year}{data.featured && ' · Featured'}</p>
-        <h1>{data.title}</h1>
+  <article class="folio">
+    <!-- Leaf 1: everything a reviewer needs, paired with the work. Wide screens with JS share one plate stage across all leaves. -->
+    <header class="leaf">
+      <div class="rail" id="overview">
+        <h1 class="folio-title" style={`--fit: ${fit}`}>{words.map((w, i) => <>{i > 0 && ' '}<span>{w}</span></>)}</h1>
         <p class="one-line">{data.oneLine}</p>
         {data.metric && (
-          <p class="metric">
-            <strong>{data.metric.value}</strong> {data.metric.label}
-            <span class="metric-context">{data.metric.baseline && `vs ${data.metric.baseline} · `}{data.metric.context}</span>
+          <p class="result">
+            <strong>{data.metric.value}</strong> {data.metric.label}{data.metric.baseline && <>, against {data.metric.baseline}</>}. <span>{data.metric.context.charAt(0).toUpperCase() + data.metric.context.slice(1)}.</span>
           </p>
         )}
-        <p class="meta">Role: {data.role}</p>
-        <p class="meta">{data.stack.join(', ')}</p>
+        <dl class="facts">
+          <div><dt>Role</dt><dd>{data.role}</dd></div>
+          <div><dt>Stack</dt><dd>{data.stack.join(', ')}</dd></div>
+          <div><dt>Year</dt><dd>{data.year}{data.featured && ', featured project'}</dd></div>
+        </dl>
         <p class="actions">
-          {data.demo.url && <a class="button" href={data.demo.url}>Live demo<span aria-hidden="true"> ↗</span></a>}
-          <a href={data.repo}>Code<span aria-hidden="true"> ↗</span></a>
+          {data.demo.url && <a class="button" href={data.demo.url}>Live demo<Arrow /></a>}
+          <a href={data.repo}>Code<Arrow /></a>
         </p>
-        {coldStart && (
-          <p class="note">The demo's server sleeps when idle, so its first load can take up to {coldStart} seconds.</p>
-        )}
+        {coldStart && <p class="note">The demo's server sleeps when idle, so its first load can take up to {coldStart} seconds.</p>}
+        <p class="lead-text">{lead.text}</p>
       </div>
-      <figure class="project-figure">
-        {poster ? (
-          <video muted loop playsinline controls preload="metadata" poster={poster.src} aria-label={hero.alt}>
-            <source src={`${data.video}.webm`} type="video/webm" />
-            <source src={`${data.video}.mp4`} type="video/mp4" />
-            <track kind="captions" src={`${data.video}.vtt`} srclang="en" label="English (sounds)" />
-          </video>
-        ) : (
-          <Picture src={hero.src} alt={hero.alt} formats={['avif', 'webp']} widths={[480, 800, 1200, 1600]} sizes="(min-width: 48rem) 55vw, 100vw" loading="eager" fetchpriority="high" />
-        )}
-        <figcaption>{hero.caption}</figcaption>
+      <figure class="plate project-figure" style={`--ar: ${hero.src.width} / ${hero.src.height}`}>
+        <div class="plate-field">
+          {poster ? (
+            <video muted loop playsinline controls preload="metadata" poster={poster.src} aria-label={hero.alt}>
+              <source src={`${data.video}.webm`} type="video/webm" />
+              <source src={`${data.video}.mp4`} type="video/mp4" />
+              <track kind="captions" src={`${data.video}.vtt`} srclang="en" label="English (sounds)" />
+            </video>
+          ) : (
+            <Picture src={hero.src} alt={hero.alt} formats={['avif', 'webp']} widths={[800, 1200, 1600]} sizes="(min-width: 64rem) 58vw, 100vw" loading="eager" fetchpriority="high" />
+          )}
+        </div>
+        <figcaption><span>{hero.caption}</span><span class="plate-count" aria-hidden="true">1 / 4</span></figcaption>
       </figure>
-      <p class="lead-text">{lead.text}</p>
     </header>
-    <ProjectLayers layers={data.layers} />
+    <nav class="on-page" aria-label="On this page">
+      <ul>
+        <li><a href="#overview">Finished work</a></li>
+        {sections.map(({ id, label }) => <li><a href={`#${id}`}>{label}</a></li>)}
+      </ul>
+    </nav>
+    <ProjectLayers layers={data.layers} ids={sections.map((s) => s.id)} />
   </article>
   <ProjectNav prev={prev} next={next} />
 </Base>
 
 <script>
-  // The hero video starts on its own only when the visitor hasn't asked for reduced motion; otherwise the poster stays.
-  const video = document.querySelector<HTMLVideoElement>('.project-figure video');
-  if (video && !matchMedia('(prefers-reduced-motion: reduce)').matches) video.play().catch(() => {});
+  // Wide screens: one sticky stage shows the plate whose text crosses the middle of the viewport, and the on-page
+  // index follows it. Narrow screens and no-JS keep each plate with its own leaf (output/project-info, plan Part 2, M9).
+  const folio = document.querySelector<HTMLElement>('.folio')!;
+  const plates = [...folio.querySelectorAll<HTMLElement>('.leaf > .plate')];
+  const rails = [...folio.querySelectorAll<HTMLElement>('.leaf > .rail')];
+  const steps = [...folio.querySelectorAll<HTMLAnchorElement>('.on-page a')];
+  const video = folio.querySelector<HTMLVideoElement>('.project-figure video');
+  const still = matchMedia('(prefers-reduced-motion: reduce)');
+  const wide = matchMedia('(min-width: 64rem)');
+  let active = 0;
+
+  // The hero video plays on its own only when the visitor hasn't asked for reduced motion, and only while it is on stage.
+  const playIfShown = () => { if (video && !still.matches && (!wide.matches || active === 0)) video.play().catch(() => {}); };
+
+  function activate(i: number) {
+    active = i;
+    plates.forEach((p, j) => p.toggleAttribute('data-active', j === i));
+    steps.forEach((a, j) => (j === i ? a.setAttribute('aria-current', 'location') : a.removeAttribute('aria-current')));
+    if (video && i !== 0) video.pause();
+    else playIfShown();
+  }
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) if (e.isIntersecting) activate(rails.indexOf(e.target as HTMLElement));
+  }, { rootMargin: '-50% 0px -50% 0px' });
+
+  function stage() {
+    folio.classList.toggle('is-staged', wide.matches);
+    if (wide.matches) { rails.forEach((r) => io.observe(r)); activate(active); }
+    else { io.disconnect(); plates.forEach((p) => p.removeAttribute('data-active')); steps.forEach((a) => a.removeAttribute('aria-current')); playIfShown(); }
+  }
+  wide.addEventListener('change', stage);
+  stage();
 </script>

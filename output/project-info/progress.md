@@ -1,6 +1,6 @@
 # Progress: Project Info
 
-- **Current phase:** Phase 4, Part 2: M9 (project page redesign)
+- **Current phase:** Phase 4, Part 2: M9 done; DESIGN.md and Phase 5 next
 - **Status:** in progress; auto-commit and push on `finish-portfolio` (decision #23)
 
 ## Completed milestones
@@ -42,9 +42,11 @@
 - 2026-11-18: M7 done: `src/site.ts` (name, tagline, email), About (bio, Education, CV link, a Nightfall render credit), `public/cv.pdf` = the resume, Michigan Edge role lines, `draft: false` on four projects, the no-TODO test now also covers `/`, `/projects/`, `/about/` and catches "[Your" and "you@example". Found and fixed: Astro drops the space at a line break next to a link, so links in About are kept mid-line. `npm test`: check 0/0, 9 pages, unit 12/12, Playwright 49/49.
 - 2026-11-18: M7 committed and pushed (`origin/finish-portfolio`).
 - 2026-11-18: M8 Nightfall done: role, one-liner, all four layers from the repo scripts and the user's answers; images: render frame (wendigo), systems diagram, wendigo state diagram (#28); `draft: false`; in `FINISHED`. `npm test`: check 0/0, 9 pages, unit 12/12, Playwright 50/50.
+- 2026-11-18: M8 committed `f49e433` and pushed.
+- 2026-11-18: M9 project page redesign done (impeccable skill): PRODUCT.md; surface round, user chose The Paired Folio (#29); built code-led; finish review rebuild, then fix, then ship on the fixes (#30). New `src/components/Arrow.astro`; `[slug].astro`, `ProjectLayers.astro`, `ProjectNav.astro`, `Footer.astro`, `about.astro`, `projects/index.astro`, `global.css` rewritten; NFL waterfall re-cropped. Tests: `npm test` check 0/0, 9 pages, unit 12/12, Playwright 56/56 (new: stage swap at 1440, plate-above-text at 390, titles never break inside a word at 4 widths).
 
 ## Next step
-M9 project page redesign: load the impeccable skill; read `src/pages/projects/[slug].astro`, `src/components/ProjectLayers.astro`, `ProjectNav.astro`, `src/styles/global.css` and the projects index; propose 2-3 directions as mock captures of a real project page; the user picks; implement; tests + screenshots at desktop and 390 px; fix the h1 mid-word break; commit; push. Then Phase 5 `summary.md`.
+Spawn the impeccable documenter to write DESIGN.md and `.impeccable/design.json` from the built project pages; commit and push. Then Phase 5: `output/project-info/summary.md`; commit and push.
 
 ## Open questions
 - None blocking. (Nightfall: an early screenshot could replace the Origins diagram later.)

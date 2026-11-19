@@ -21,3 +21,9 @@ output/project-visuals/**/contact-sheet.png
 output/project-visuals/iterations/m4-*-m0/**/*.png
 output/project-visuals/**/test/
 output/project-visuals/**/posters.png
+
+# Impeccable design-skill scratch: decision-page state, review captures, hook cache. The surface brief, config and
+# decision sketches are kept.
+.impeccable/questions/
+.impeccable/review/
+.impeccable/hook.cache.json
