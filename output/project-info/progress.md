@@ -1,7 +1,7 @@
 # Progress: Project Info
 
-- **Current phase:** Phase 4, M6 (Nightfall)
-- **Status:** waiting for user (M6 needs the Nightfall video and answers about the game); standing approval to commit and push, decision #11
+- **Current phase:** Phase 5 (summary)
+- **Status:** complete; waiting for any revision requests
 
 ## Completed milestones
 - 2026-11-18: Project root confirmed earlier this session (`C:\Users\arins\Arin\School\Projects\Portfolio`). New project chosen over extending `project-lineup`.
@@ -38,11 +38,20 @@
 - 2026-11-18: M5 Falling Constellations done: text from HANDOFF.md, `src/` and the research report; images: live piece, core close-up, diagram `scripts/diagrams/falling-constellations.html`, the 528f5d5 prototype rendered locally (#20, #21). `npm test`: check 0/0, 9 pages, unit 12/12, Playwright 44/44.
 - Noticed (out of scope, site styling): at ~800 px wide the project page h1 breaks "Falling Constellations" mid-word.
 - 2026-11-18: Nightfall facts from its repo (2 commits, 2024-08-25, by arinb45): Godot 4.2 (Forward+), addons proton_scatter and terrain_3d; a wendigo with a state machine (idle, run, attack, scream, death; 500 health; critical-hit areas) that stalks the player; a shack safe zone; a day-night cycle; random howls; deer that wander on a NavigationAgent3D; campfires; a readable book; an equippable flashlight; an ammo box and blood spray; the run ends on the wendigo's death or a death screen. 3D models are not in the repo ("to prevent the theft of my game").
+- 2026-11-18: User asked to "finish the portfolio". Part 2 of `plan.md` (M7 identity/About/CV/publish, M8 Nightfall, M9 project-page redesign) and the scope change in `programAgent.md` approved (#23-#27). Branch `finish-portfolio` from `main` (65f845d, which already holds the project-info work and the Nightfall escape clip).
+- 2026-11-18: M7 done: `src/site.ts` (name, tagline, email), About (bio, Education, CV link, a Nightfall render credit), `public/cv.pdf` = the resume, Michigan Edge role lines, `draft: false` on four projects, the no-TODO test now also covers `/`, `/projects/`, `/about/` and catches "[Your" and "you@example". Found and fixed: Astro drops the space at a line break next to a link, so links in About are kept mid-line. `npm test`: check 0/0, 9 pages, unit 12/12, Playwright 49/49.
+- 2026-11-18: M7 committed and pushed (`origin/finish-portfolio`).
+- 2026-11-18: M8 Nightfall done: role, one-liner, all four layers from the repo scripts and the user's answers; images: render frame (wendigo), systems diagram, wendigo state diagram (#28); `draft: false`; in `FINISHED`. `npm test`: check 0/0, 9 pages, unit 12/12, Playwright 50/50.
+- 2026-11-18: M8 committed `f49e433` and pushed.
+- 2026-11-18: M9 project page redesign done (impeccable skill): PRODUCT.md; surface round, user chose The Paired Folio (#29); built code-led; finish review rebuild, then fix, then ship on the fixes (#30). New `src/components/Arrow.astro`; `[slug].astro`, `ProjectLayers.astro`, `ProjectNav.astro`, `Footer.astro`, `about.astro`, `projects/index.astro`, `global.css` rewritten; NFL waterfall re-cropped. Tests: `npm test` check 0/0, 9 pages, unit 12/12, Playwright 56/56 (new: stage swap at 1440, plate-above-text at 390, titles never break inside a word at 4 widths).
+- 2026-11-18: M9 committed `77c8023` and pushed.
+- 2026-11-18: DESIGN.md and `.impeccable/design.json` written by the impeccable documenter from the shipped pages; `summary.md` written (Phase 5).
 
 ## Next step
-M6 Nightfall, partly done. On 2026-11-18 the user had the Blender clip `escape.mp4` (output/nightfall-escape) put on the page, so the video part is in: `public/projects/nightfall/escape.{webm,mp4}` (1280 px, with its sound track, muted by default), `escape.vtt` sound captions, the hero frame as `src/assets/projects/nightfall/varnish.jpg` (poster, from render frame 20), the video hero in `[slug].astro` (muted, loop, playsinline, controls, poster, captions; no autoplay under reduced motion), `video: /projects/nightfall/escape` in `nightfall.md`, and two e2e checks; `npm test` passed (46). Encoding: `ffmpeg -i output/nightfall-escape/final/escape.mp4 -vf scale=1280:-2` with `libx264 -crf 23 -preset slow -c:a aac -b:a 128k -movflags +faststart` and `libvpx-vp9 -b:v 0 -crf 30 -c:a libopus -b:a 96k`. Still blocked on the user for the rest: (2) what the player does and the goal, (3) what they built vs. assets, (4) the Godot version and when/why it was made; then the other 3 stills, the text (the lead text and role are still TODO), adding `nightfall` to `FINISHED`, commit, push. Then Phase 5 `summary.md`.
+Ask the user for revisions. Open follow-ups are in `summary.md` section 8: deploy, merge `finish-portfolio` into `main`, and the reviewer's non-material ideas.
 
 ## Open questions
-- Nightfall: gameplay, goal, what was self-made vs. assets, Godot version, when/why it was made.
+- DESIGN.md names chosen by the documenter ("The Night Folio", "Leaf Gold", "Night Ink"): the user may rename them.
+- Nightfall: an early screenshot could replace the Origins diagram later.
 
 **Last updated:** 2026-11-18

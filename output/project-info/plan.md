@@ -114,3 +114,50 @@ Each milestone ends with: `npm test` green, a browser check, your review of the 
 - Nightfall video: where is the file, and roughly when does it show the best moments?
 
 **Status:** Approved on 2026-11-18
+
+---
+
+# Part 2: Finish the portfolio (proposed 2026-11-18)
+
+## Objective
+Replace every remaining placeholder on the site, finish the Nightfall page, mark the projects published, and redesign the plain project pages now that their content is real. Deployment stays out of scope.
+
+## Requirements
+10. `src/site.ts`: name "Arin Barman", email `barmanar@umich.edu`, an approved tagline; the "TODO (decision D3)" comment removed.
+11. About page: an approved bio and an Education section (University of Michigan, BSE Computer Science, expected May 2028; Michigan State University, 2025–2026); no bracketed text or TODO.
+12. `public/cv.pdf` is the user's resume (the real file, 179 KB).
+13. The three predictor role lines credit Michigan Edge.
+14. Nightfall: role, lead text and all captions/alts real; 3 more real images; added to `FINISHED`.
+15. `draft: false` on all five projects.
+16. Project pages and the projects index redesigned to an approved direction; the h1 never breaks mid-word; axe, 320 px and keyboard tests still pass.
+17. A site-wide test that no page contains "TODO", "[Your", "you@example" or "placeholder" in text or alt.
+
+## Milestones
+7. **M7: Identity, About, CV, role lines, publish.** Commit: "Fill in the site's name, About page and CV".
+8. **M8: Nightfall page.**
+   - Text from the repo code and the user's answers.
+   - Key features: a still from the escape render, labelled as a render.
+   - Architecture: an HTML diagram of the game's systems (wendigo state machine, safe zone, day–night cycle, flashlight, deer).
+   - Origins: an early screenshot if the user has one; otherwise a diagram of the wendigo's states.
+   - Commit: "Fill in the Nightfall project page".
+9. **M9: Project page redesign.**
+   - Load the `impeccable` skill.
+   - Propose 2–3 directions as quick mock captures of a real project page; the user picks one.
+   - Implement it in the template, components and CSS, then run tests and screenshots at desktop and 390 px.
+   - Commit: "Redesign the project pages".
+10. **Phase 5:** `summary.md`.
+
+## Drafts for the user to edit
+- **Tagline:** "Computer science student at the University of Michigan, building sports prediction models, games and generative art."
+- **About:**
+  > I'm a computer science student at the University of Michigan. I like building things that run on their own and can be checked: models that publish their picks before the game starts, and art that draws itself.
+  >
+  > As an analyst for Michigan Edge, the university's sports analytics club, I built three game predictors on my own: Fourth and Why for the NFL, Full Count for baseball and Tip-Off for the NBA. Each is tested on games it never trained on and runs as a live app that keeps its own data current.
+  >
+  > I also make games. Nightfall is a Godot horror game I built alone, about hunting a wendigo through a forest at night. With a small team, I've led programming and design on seven indie games, shipped as Windows releases.
+
+## Risks
+- The resume (with phone number) becomes public in the repo history; the user confirmed.
+- The redesign touches the shared project template: every project page changes at once.
+
+**Status (Part 2):** Approved on 2026-11-18 (drafts used as written; auto-commit and push on branch `finish-portfolio`)

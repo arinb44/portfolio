@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Mono&display=swap">
+<style>
+*{box-sizing:border-box;margin:0}
+html,body{width:1440px;height:900px;overflow:hidden;background:#1F1D1A;color:#EEE9DF;font:18px/1.45 Newsreader,Georgia,serif}
+.mono{font:13px/1.4 'IBM Plex Mono',monospace;letter-spacing:.04em;color:#CFC8BA}
+header{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;border-bottom:1px solid #4A4740}
+header b{font:24px Gloock,serif;font-weight:400}
+header nav{display:flex;gap:28px}
+main{display:grid;grid-template-columns:60% 40%;height:836px}
+.plate{position:relative;border-right:1px solid #4A4740;padding:28px 28px 20px 48px;display:flex;flex-direction:column;gap:12px}
+.shot{flex:1;background:#0E0E10;border:1px solid #4A4740;display:grid;place-items:center;color:#A9A294;font:15px 'IBM Plex Mono',monospace}
+.shot span{border:1px dashed #4A4740;padding:10px 16px}
+.cap{display:flex;justify-content:space-between}
+.rail{padding:48px 56px 32px 48px;display:flex;flex-direction:column;gap:18px}
+h1{font:96px/.95 Gloock,serif;font-weight:400;letter-spacing:-.01em}
+.line{font-size:21px;max-width:30ch}
+.metric{border-top:1px solid #4A4740;border-bottom:1px solid #4A4740;padding:16px 0;display:grid;grid-template-columns:auto 1fr;gap:4px 20px;align-items:baseline}
+.metric strong{font:64px/1 Gloock,serif;font-weight:400;color:#C8A24A;grid-row:span 2}
+.metric .vs{font-size:16px;color:#CFC8BA}
+.facts{display:grid;grid-template-columns:72px 1fr;gap:6px 14px;font-size:16px}
+.facts dt{font:12px/1.9 'IBM Plex Mono',monospace;color:#CFC8BA;letter-spacing:.06em}
+.acts{display:flex;gap:14px;align-items:center}
+.btn{background:#EEE9DF;color:#1F1D1A;padding:10px 20px;border-radius:999px;font:14px 'IBM Plex Mono',monospace}
+.link{font:14px 'IBM Plex Mono',monospace;text-decoration:underline;text-underline-offset:4px}
+.index{margin-top:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.index div{border-top:2px solid #4A4740;padding-top:8px}
+.index .on{border-color:#C8A24A;color:#EEE9DF}
+</style></head><body>
+<header><b>Arin Barman</b><nav class="mono"><span>Projects</span><span>About</span><span>CV</span><span>Email</span></nav></header>
+<main>
+  <section class="plate">
+    <div class="shot"><span>PLATE · live dashboard, This Week view (swaps as you read)</span></div>
+    <div class="cap mono"><span>The live dashboard's This Week view, captured 18 Nov 2026.</span><span>1 / 4</span></div>
+  </section>
+  <section class="rail">
+    <p class="mono">01 / 05 · FEATURED · 2026</p>
+    <h1>Fourth and Why</h1>
+    <p class="line">Predicts each NFL team's win probability and explains which factors drove each pick.</p>
+    <div class="metric"><strong>65.5%</strong><span>winner accuracy on 1,954 held-out games, 2019–2025</span><span class="vs">vs 53.7% always picking the home team · Vegas favourites 66.4%</span></div>
+    <dl class="facts"><dt>ROLE</dt><dd>Solo project for Michigan Edge: data pipeline, features, model, dashboard, weekly automation.</dd><dt>STACK</dt><dd>Python, pandas, scikit-learn, Streamlit</dd></dl>
+    <div class="acts"><span class="btn">Live demo ↗</span><span class="link">Code ↗</span><span class="mono">first load up to 30 s</span></div>
+    <div class="index mono"><div class="on">Finished work</div><div>Key features</div><div>Architecture</div><div>Origins</div></div>
+  </section>
+</main>
+</body></html>

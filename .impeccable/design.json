@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-18T00:00:00Z",
+  "title": "Design System: Arin Barman, Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "ink": { "role": "neutral", "displayName": "Night Ink", "canonical": "#1F1D1A", "tonalRamp": ["#141311", "#1F1D1A", "#2E2B27", "#4A4740", "#6E6A61", "#9A958A", "#CFC8BA", "#EEE9DF"] },
+      "gesso": { "role": "neutral", "displayName": "Gesso", "canonical": "#EEE9DF", "tonalRamp": ["#272625", "#464542", "#65635F", "#85827C", "#A4A099", "#C3BFB7", "#E0DBD2", "#F5F2EC"] },
+      "stone-200": { "role": "neutral", "displayName": "Pale Stone", "canonical": "#CFC8BA", "tonalRamp": ["#272623", "#474540", "#67635C", "#868279", "#A6A095", "#C5BFB1", "#E0DBD2", "#F4F2EF"] },
+      "stone-700": { "role": "neutral", "displayName": "Dark Stone", "canonical": "#4A4740", "tonalRamp": ["#1A1916", "#2A2824", "#3A3832", "#4A4740", "#66635D", "#84827D", "#A2A19D", "#DCDBDA"] },
+      "plate-well": { "role": "neutral", "displayName": "Plate Well", "canonical": "#161513", "tonalRamp": ["#0E0D0C", "#161513", "#1F1D1A", "#2E2C29", "#464543", "#646362", "#A1A1A0", "#DBDBDB"] },
+      "gold": { "role": "primary", "displayName": "Leaf Gold", "canonical": "#C8A24A", "tonalRamp": ["#2F2611", "#54441F", "#79622D", "#9F813B", "#C49F49", "#D9BE81", "#E9DBB8", "#F7F2E6"] },
+      "ochre": { "role": "secondary", "displayName": "Ochre Focus", "canonical": "#C29545", "tonalRamp": ["#302511", "#57431F", "#7E602D", "#A47E3A", "#C69C52", "#D9BC8A", "#EADABD", "#F7F2E8"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Project title, fitted from the longest word to fill the rail; never breaks inside a word." },
+      "headline": { "displayName": "Headline", "purpose": "Page h1 and the home page's project names." },
+      "headline-section": { "displayName": "Headline Section", "purpose": "Section headings in project-page rails." },
+      "title": { "displayName": "Title", "purpose": "Default h2; projects index row titles at a slightly larger clamp." },
+      "title-nav": { "displayName": "Title Nav", "purpose": "Previous / next project links." },
+      "numeral": { "displayName": "Numeral", "purpose": "Gold drop-numeral leading the result sentence." },
+      "lede": { "displayName": "Lede", "purpose": "One-line description under the project title." },
+      "body": { "displayName": "Body", "purpose": "Prose; rails at 1.125rem with a 34em measure." },
+      "label": { "displayName": "Label", "purpose": "Navigation, metadata lines and actions." },
+      "caption": { "displayName": "Caption", "purpose": "Figure captions, plate counters, footer, on-page index." },
+      "label-caps": { "displayName": "Label Caps", "purpose": "Definition-list terms in the facts block only." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "ease-out-expo", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "The project pages' only curve: plate cross-fade and index step colour." },
+      { "name": "duration-stage", "value": "260ms", "purpose": "Plate stage cross-fade and index step transition; none under reduced motion." },
+      { "name": "fade-home", "value": "opacity 0.6s ease-out", "purpose": "Home page swap between full-bleed project images and loops." }
+    ],
+    "breakpoints": [
+      { "name": "index-stack", "value": "max-width: 47.99rem", "purpose": "Projects index rows go to one column." },
+      { "name": "folio-stack", "value": "max-width: 63.99rem", "purpose": "Project leaves stack plate over text; the sticky stage turns off (min-width: 64rem enables it)." },
+      { "name": "home-reading", "value": "max-width: 900px or max-height: 560px", "purpose": "Home page becomes a plain stacked reading layout." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Pill",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one filled action in a group (Live demo, View project), with the drawn out-arrow.",
+      "html": "<a class=\"ds-button\" href=\"#\">Live demo<svg class=\"ds-arrow\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M4.5 11.5 11.5 4.5M6 4.5h5.5V10\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a>",
+      "css": ".ds-button { display: inline-flex; align-items: center; min-height: 24px; padding: 0.6rem 1.1rem; border-radius: 999px; background: var(--text, #EEE9DF); color: var(--bg, #1F1D1A); font: 0.9375rem/1.5 var(--font-label, 'IBM Plex Mono', monospace); text-decoration: none; } .ds-button:hover { background: var(--accent, #C8A24A); } .ds-button:focus-visible { outline: 2px solid var(--focus, #C29545); outline-offset: 3px; } .ds-arrow { width: 0.75em; height: 0.75em; margin-left: 0.35em; }"
+    },
+    {
+      "name": "Text Action",
+      "kind": "button",
+      "refersTo": "link-action",
+      "description": "Secondary action as an underlined mono link with the drawn arrow.",
+      "html": "<a class=\"ds-action\" href=\"#\">Code<svg class=\"ds-arrow\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M4.5 11.5 11.5 4.5M6 4.5h5.5V10\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a>",
+      "css": ".ds-action { display: inline-flex; align-items: center; min-height: 24px; color: var(--text, #EEE9DF); font: 0.9375rem/1.5 var(--font-label, 'IBM Plex Mono', monospace); text-underline-offset: 0.2em; } .ds-action:focus-visible { outline: 2px solid var(--focus, #C29545); outline-offset: 3px; border-radius: 2px; } .ds-arrow { width: 0.75em; height: 0.75em; margin-left: 0.35em; }"
+    },
+    {
+      "name": "Site Header",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Gloock site name with a muted mono nav; current page and hover in gesso.",
+      "html": "<header class=\"ds-header\"><a class=\"ds-name\" href=\"#\">Arin Barman</a><nav><a href=\"#\" aria-current=\"page\">Projects</a><a href=\"#\">About</a><a href=\"#\">CV</a><a href=\"#\">Email</a></nav></header>",
+      "css": ".ds-header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.5rem 2rem; padding: 1.75rem 2.5rem 1.25rem; background: var(--bg, #1F1D1A); } .ds-name { font: 400 1.5rem/1.15 var(--font-display, Gloock, serif); color: var(--text, #EEE9DF); text-decoration: none; } .ds-header nav { display: flex; gap: 0 1.75rem; font: 0.875rem/1.5 var(--font-label, 'IBM Plex Mono', monospace); } .ds-header nav a { padding-block: 0.25rem; color: var(--muted, #CFC8BA); text-decoration: none; } .ds-header nav a:hover, .ds-header nav a[aria-current] { color: var(--text, #EEE9DF); } .ds-header a:focus-visible { outline: 2px solid var(--focus, #C29545); outline-offset: 3px; border-radius: 2px; }"
+    },
+    {
+      "name": "On-Page Index",
+      "kind": "nav",
+      "refersTo": "index-step",
+      "description": "Four-step segmented index; the current step is ruled in gold and follows the reader.",
+      "html": "<ul class=\"ds-index\"><li><a href=\"#\">Finished work</a></li><li><a href=\"#\" aria-current=\"location\">Key features</a></li><li><a href=\"#\">Architecture</a></li><li><a href=\"#\">Origins</a></li></ul>",
+      "css": ".ds-index { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem; margin: 0; padding: 0; list-style: none; font: 0.8125rem/1.4 var(--font-label, 'IBM Plex Mono', monospace); } .ds-index a { display: block; padding-top: 0.6rem; border-top: 2px solid var(--line, #4A4740); color: var(--muted, #CFC8BA); text-decoration: none; transition: border-color 260ms cubic-bezier(0.16, 1, 0.3, 1), color 260ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-index a:hover { color: var(--text, #EEE9DF); } .ds-index a[aria-current] { border-color: var(--accent, #C8A24A); color: var(--text, #EEE9DF); } .ds-index a:focus-visible { outline: 2px solid var(--focus, #C29545); outline-offset: 3px; }"
+    },
+    {
+      "name": "Plate",
+      "kind": "card",
+      "refersTo": "plate-field",
+      "description": "The work framed by a hairline on a darker well, contained at its own ratio, with a mono caption and n / 4 counter.",
+      "html": "<figure class=\"ds-plate\"><div class=\"ds-plate-field\"><div class=\"ds-plate-work\"></div></div><figcaption><span>Live demo, week 12 predictions</span><span aria-hidden=\"true\">1 / 4</span></figcaption></figure>",
+      "css": ".ds-plate { margin: 0; } .ds-plate-field { position: relative; aspect-ratio: 16 / 10; background: #161513; border: 1px solid var(--line, #4A4740); } .ds-plate-work { position: absolute; inset: clamp(0.5rem, 1vw, 1rem); background: #3A3A44; } .ds-plate figcaption { display: flex; justify-content: space-between; gap: 1.5rem; margin-top: 0.6rem; font: 0.8125rem/1.5 var(--font-label, 'IBM Plex Mono', monospace); color: var(--muted, #CFC8BA); }"
+    },
+    {
+      "name": "Result Sentence",
+      "kind": "custom",
+      "refersTo": "result-numeral",
+      "description": "A metric as a sentence with its baseline, led by a gold Gloock drop-numeral.",
+      "html": "<p class=\"ds-result\"><strong>65.5%</strong> accuracy, against 53.7% always-home. <span>On 1,954 holdout games.</span></p>",
+      "css": ".ds-result { display: flow-root; max-width: 34em; color: var(--text, #EEE9DF); font: 1.125rem/1.6 var(--font-body, Newsreader, serif); } .ds-result strong { float: left; margin: 0.15rem 0.7rem 0 0; font: 400 3.5rem/0.85 var(--font-display, Gloock, serif); color: var(--accent, #C8A24A); } .ds-result span { color: var(--muted, #CFC8BA); }"
+    },
+    {
+      "name": "Facts List",
+      "kind": "custom",
+      "refersTo": "facts",
+      "description": "Role, stack and year between two hairlines; uppercase mono terms.",
+      "html": "<dl class=\"ds-facts\"><div><dt>Role</dt><dd>Solo, end to end</dd></div><div><dt>Stack</dt><dd>Python, Astro</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl>",
+      "css": ".ds-facts { display: grid; gap: 0.6rem; margin: 0; padding-block: 1rem; border-block: 1px solid var(--line, #4A4740); color: var(--text, #EEE9DF); font: 1.0625rem/1.6 var(--font-body, Newsreader, serif); } .ds-facts div { display: grid; grid-template-columns: 4.5rem 1fr; gap: 1rem; } .ds-facts dt { font: 0.75rem/1.9 var(--font-label, 'IBM Plex Mono', monospace); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted, #CFC8BA); } .ds-facts dd { margin: 0; }"
+    },
+    {
+      "name": "Previous / Next Project",
+      "kind": "nav",
+      "refersTo": "project-nav-link",
+      "description": "Gloock links under a hairline, gold on hover, drawn arrows.",
+      "html": "<nav class=\"ds-pnav\"><a href=\"#\"><svg class=\"ds-arrow\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M12.5 8h-9m4-4-4 4 4 4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>Full Count</a><a href=\"#\">Next: Tip-Off<svg class=\"ds-arrow ds-r\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M3.5 8h9m-4-4 4 4-4 4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a></nav>",
+      "css": ".ds-pnav { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding-top: 1.25rem; border-top: 1px solid var(--line, #4A4740); font: 400 1.375rem/1.3 var(--font-display, Gloock, serif); } .ds-pnav a { padding-block: 0.25rem; color: var(--text, #EEE9DF); text-decoration: none; } .ds-pnav a:hover { color: var(--accent, #C8A24A); } .ds-pnav a:focus-visible { outline: 2px solid var(--focus, #C29545); outline-offset: 3px; border-radius: 2px; } .ds-arrow { width: 0.75em; height: 0.75em; margin-right: 0.35em; } .ds-r { margin: 0 0 0 0.35em; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Night Folio",
+    "overview": "A dark gallery at night. The ground is warm ink, the text is gesso, and the work itself (screenshots, charts, diagrams, renders, painted loops) is the only bright thing in the room. The home page shows each project's image full-bleed behind its text; every other page sets the work as a plate, framed by a single stone hairline on a slightly darker well, and pairs it with a text rail. Gold is spent only where the eye should land: a result numeral, the current step, a hover.\n\nThe pages are calm and fairly dense: one serif display face at large sizes for names and titles, a reading serif for prose, and a monospace for everything that is metadata (navigation, captions, facts, actions, counters). Structure comes from hairline rules and grid alignment rather than containers. Nothing floats on a shadow and nothing is boxed into a card on the reading pages.\n\nOn the project pages the work never leaves the screen: on wide screens with JavaScript one sticky plate stage holds while the text rails pass, cross-fading to the plate whose text crosses the middle of the viewport, and a pinned segmented index follows the reader in gold. Below 64rem, or without JavaScript, each plate sits with its own text.",
+    "keyCharacteristics": [
+      "Warm ink ground, gesso text, one gold accent used sparingly.",
+      "Gloock for display, Newsreader for prose, IBM Plex Mono for every label.",
+      "Work framed as plates: hairline border on a darker well, image fitted at its own aspect ratio.",
+      "Hairline rules for structure; no shadows, no cards on reading pages.",
+      "Motion is a single 260 ms ease-out cross-fade, removed under reduced motion."
+    ],
+    "rules": [
+      { "name": "The Spent Gold Rule", "body": "Gold marks a result, the current place, or a hover, and nothing else. If a screen has more than a few gold marks at rest, one of them is wrong.", "section": "colors" },
+      { "name": "The Hairline-Only Stone Rule", "body": "Dark Stone draws lines; it is never used for text or fills.", "section": "colors" },
+      { "name": "The Mono-Means-Metadata Rule", "body": "Anything that is not a name or prose (nav, captions, facts, counters, actions) is set in IBM Plex Mono. Names and titles are Gloock; sentences are Newsreader.", "section": "typography" },
+      { "name": "The Unbroken Title Rule", "body": "A display title never breaks inside a word; size it down from the longest word rather than hyphenate or wrap mid-word.", "section": "typography" },
+      { "name": "The Sentence Result Rule", "body": "A metric is written as a sentence with its baseline, led by a gold Gloock numeral; the context follows in muted text. Never a bare number.", "section": "typography" },
+      { "name": "The No-Lift Rule", "body": "Nothing casts a shadow. Separate with a hairline or a tonal well, not elevation.", "section": "elevation" },
+      { "name": "The Scrim-Not-Gradient Rule", "body": "Gradients exist only as legibility scrims of ink over full-bleed imagery (the home page's left and top scrims, the home header's fade). Never as decoration on a surface.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do set every page on Night Ink with Gesso text, and keep Gold to results, the current state and hover.",
+      "Do frame work as a plate: 1px Dark Stone hairline, Plate Well field, the image contained at its own aspect ratio.",
+      "Do put names in Gloock, sentences in Newsreader and all metadata in IBM Plex Mono.",
+      "Do write a metric as a sentence with its baseline, led by a gold Gloock numeral.",
+      "Do use the drawn SVG arrow for link marks (out, left, right).",
+      "Do keep motion to the 260ms cubic-bezier(0.16, 1, 0.3, 1) fade and remove it under `prefers-reduced-motion: reduce`.",
+      "Do keep text first in DOM order and let plates move visually above or beside it.",
+      "Do use the 2px ochre outline, offset 3px, for every focus state."
+    ],
+    "donts": [
+      "Don't add box-shadows, raised cards or decorative gradients; separate with hairlines and tonal wells.",
+      "Don't use Dark Stone for text, or Gold for body text or large fills.",
+      "Don't let a display title break inside a word.",
+      "Don't put a label line (kicker or eyebrow) above a title; the title leads.",
+      "Don't crop the work to fit a frame; change the frame's ratio instead.",
+      "Don't round anything except pills (999px) and focus outlines (2px).",
+      "Don't autoplay video under reduced motion."
+    ]
+  }
+}

@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 title: Falling Constellations
 oneLine: Antique star-atlas constellations fall over a slowly turning spiral galaxy.
 role: "Solo: the constellation generator, the WebGL2 galaxy and sky, the Canvas 2D atlas layer and the tests."

@@ -1,0 +1,33 @@
+<!doctype html>
+<!-- Nightfall architecture. Source: world.gd, wendigo_col_1.gd, flashlight.gd, book.gd, deer_col.gd, safeZone.gd and project.godot of github.com/arinb44/Nightfall. -->
+<html lang="en">
+<head><meta charset="utf-8"><link rel="stylesheet" href="diagram.css"></head>
+<body>
+  <h1>One forest, one hunter, one wendigo</h1>
+  <div class="flow">
+    <div class="step">
+      <h2>The forest</h2>
+      <ul><li>Terrain3D ground and Proton Scatter</li><li>Day–night cycle</li><li>Campfires and the odd howl</li><li><code>world.gd</code> <code>campfire.gd</code></li></ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step">
+      <h2>Your tools</h2>
+      <ul><li>A flashlight to equip and switch on</li><li>A book to read</li><li>The shack, the one safe place</li><li><code>flashlight.gd</code> <code>book.gd</code> <code>safeZone.gd</code></li></ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step key">
+      <h2>The wendigo</h2>
+      <ul><li>A state machine: chase, attack, stun, scream, death</li><li>Chases on a navigation mesh</li><li>Hit zones pass damage to it</li><li><code>wendigo_col_1.gd</code> <code>Crit.gd</code></li></ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step">
+      <h2>The ending</h2>
+      <ul><li>The wendigo dies: the ending plays</li><li>You die: the death screen</li><li><code>world.gd</code></li></ul>
+    </div>
+  </div>
+  <div class="band">
+    <div><b>Wildlife.</b> Deer pick a spot, walk there on their own navigation paths, then pick another.</div>
+    <div><b>Godot 4.2.</b> Every piece is its own scene with a short GDScript; the world script watches both sides for the end.</div>
+  </div>
+</body>
+</html>

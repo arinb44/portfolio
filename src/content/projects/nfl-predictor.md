@@ -1,8 +1,8 @@
 ---
-draft: true
+draft: false
 title: Fourth and Why
 oneLine: Predicts each NFL team's win probability and explains which factors drove each pick.
-role: "Solo: data pipeline, features, model, dashboard and the weekly automation."
+role: "Solo project for Michigan Edge, the University of Michigan sports analytics club: data pipeline, features, model, dashboard and the weekly automation."
 stack: [Python, pandas, scikit-learn, Streamlit]
 year: 2026
 order: 1

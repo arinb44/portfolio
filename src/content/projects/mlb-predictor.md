@@ -1,8 +1,8 @@
 ---
-draft: true
+draft: false
 title: Full Count
 oneLine: Calibrated MLB home-win probabilities, honest about the ~55–58% accuracy ceiling.
-role: "Solo: data pipeline, features, four models, the API and web app, and deployment."
+role: "Solo project for Michigan Edge, the University of Michigan sports analytics club: data pipeline, features, four models, the API and web app, and deployment."
 stack: [Python, scikit-learn, XGBoost, PyTorch, FastAPI, Docker]
 year: 2026
 order: 2

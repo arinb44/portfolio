@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Mono&display=swap">
+<style>
+*{box-sizing:border-box;margin:0}
+html,body{width:1440px;height:900px;overflow:hidden;background:#1F1D1A;color:#EEE9DF;font:18px/1.45 Newsreader,Georgia,serif}
+.mono{font:13px/1.4 'IBM Plex Mono',monospace;letter-spacing:.05em;color:#CFC8BA}
+header{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 48px}
+header b{font:24px Gloock,serif;font-weight:400}
+header nav{display:flex;gap:28px}
+.wall{height:836px;display:grid;grid-template-columns:1fr 400px;gap:56px;align-items:center;padding:0 64px 40px 64px}
+.hang{display:flex;flex-direction:column;gap:14px}
+.frame{padding:14px;background:#2a2723;border:1px solid #C8A24A;box-shadow:0 30px 60px rgba(0,0,0,.45)}
+.shot{height:540px;background:#0E0E10;display:grid;place-items:center;color:#A9A294;font:15px 'IBM Plex Mono',monospace}
+.shot span{border:1px dashed #4A4740;padding:10px 16px}
+.label{background:#EEE9DF;color:#1F1D1A;padding:32px 30px 28px;display:flex;flex-direction:column;gap:14px}
+.label .mono{color:#4A4740}
+.label h1{font:60px/.95 Gloock,serif;font-weight:400}
+.label .line{font-size:18px}
+.label hr{border:0;border-top:1px solid #CFC8BA}
+.res strong{font:52px/1 Gloock,serif;font-weight:400;display:block}
+.res p{font-size:15px;color:#4A4740}
+.label dl{display:grid;grid-template-columns:64px 1fr;gap:4px 12px;font-size:15px}
+.label dt{font:11px/1.9 'IBM Plex Mono',monospace;letter-spacing:.06em;color:#4A4740}
+.acts{display:flex;gap:18px;font:14px 'IBM Plex Mono',monospace}
+.acts span{text-decoration:underline;text-underline-offset:4px}
+</style></head><body>
+<header><b>Arin Barman</b><nav class="mono"><span>Projects</span><span>About</span><span>CV</span><span>Email</span></nav></header>
+<div class="wall">
+  <div class="hang">
+    <div class="frame"><div class="shot"><span>PLATE I · live dashboard, This Week view</span></div></div>
+    <p class="mono">Plate I of IV · The live dashboard's This Week view, captured 18 November 2026</p>
+  </div>
+  <aside class="label">
+    <p class="mono">01 / 05 · FEATURED</p>
+    <h1>Fourth and Why</h1>
+    <p class="line">Predicts each NFL team's win probability and explains which factors drove each pick.</p>
+    <hr>
+    <div class="res"><strong>65.5%</strong><p>winner accuracy on 1,954 held-out games (2019–2025), against 53.7% for always picking the home team; Vegas favourites 66.4%.</p></div>
+    <hr>
+    <dl><dt>YEAR</dt><dd>2026</dd><dt>MEDIUM</dt><dd>Python, pandas, scikit-learn, Streamlit</dd><dt>ROLE</dt><dd>Solo project for Michigan Edge</dd></dl>
+    <div class="acts"><span>Live demo ↗</span><span>Code ↗</span></div>
+  </aside>
+</div>
+</body></html>
