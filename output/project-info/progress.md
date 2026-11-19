@@ -1,7 +1,7 @@
 # Progress: Project Info
 
-- **Current phase:** Phase 4, Part 2: M9 done; DESIGN.md and Phase 5 next
-- **Status:** in progress; auto-commit and push on `finish-portfolio` (decision #23)
+- **Current phase:** Phase 5 (summary)
+- **Status:** complete; waiting for any revision requests
 
 ## Completed milestones
 - 2026-11-18: Project root confirmed earlier this session (`C:\Users\arins\Arin\School\Projects\Portfolio`). New project chosen over extending `project-lineup`.
@@ -44,11 +44,14 @@
 - 2026-11-18: M8 Nightfall done: role, one-liner, all four layers from the repo scripts and the user's answers; images: render frame (wendigo), systems diagram, wendigo state diagram (#28); `draft: false`; in `FINISHED`. `npm test`: check 0/0, 9 pages, unit 12/12, Playwright 50/50.
 - 2026-11-18: M8 committed `f49e433` and pushed.
 - 2026-11-18: M9 project page redesign done (impeccable skill): PRODUCT.md; surface round, user chose The Paired Folio (#29); built code-led; finish review rebuild, then fix, then ship on the fixes (#30). New `src/components/Arrow.astro`; `[slug].astro`, `ProjectLayers.astro`, `ProjectNav.astro`, `Footer.astro`, `about.astro`, `projects/index.astro`, `global.css` rewritten; NFL waterfall re-cropped. Tests: `npm test` check 0/0, 9 pages, unit 12/12, Playwright 56/56 (new: stage swap at 1440, plate-above-text at 390, titles never break inside a word at 4 widths).
+- 2026-11-18: M9 committed `77c8023` and pushed.
+- 2026-11-18: DESIGN.md and `.impeccable/design.json` written by the impeccable documenter from the shipped pages; `summary.md` written (Phase 5).
 
 ## Next step
-Spawn the impeccable documenter to write DESIGN.md and `.impeccable/design.json` from the built project pages; commit and push. Then Phase 5: `output/project-info/summary.md`; commit and push.
+Ask the user for revisions. Open follow-ups are in `summary.md` section 8: deploy, merge `finish-portfolio` into `main`, and the reviewer's non-material ideas.
 
 ## Open questions
-- None blocking. (Nightfall: an early screenshot could replace the Origins diagram later.)
+- DESIGN.md names chosen by the documenter ("The Night Folio", "Leaf Gold", "Night Ink"): the user may rename them.
+- Nightfall: an early screenshot could replace the Origins diagram later.
 
 **Last updated:** 2026-11-18
