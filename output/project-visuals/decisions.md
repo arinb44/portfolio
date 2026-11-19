@@ -58,3 +58,4 @@
 | 54 | 2026-11-17 | Nightfall round 1 | Approved ("Approve Nightfall"); poster frame 150 (proposed with the round, accepted with the approval) |
 | 55 | 2026-11-17 | Nightfall loop into the site | Yes, the user's call on the model licences (wendigo, Sketchfab spruce; a credit may be due): public/projects/nightfall/, home page only; the project page text unchanged |
 | 56 | 2026-11-17 | Commit and push Nightfall | Commit on `project-visuals` and push to origin |
+| 57 | 2026-11-17 | The Nightfall commit landed on `nightfall-stalked` (the checkout had been switched for the Blender work) | Fast-forward `project-visuals` to it (243ef82, also carrying the 5 Blender commits) and push `project-visuals`; the checkout stays on `nightfall-stalked` |
