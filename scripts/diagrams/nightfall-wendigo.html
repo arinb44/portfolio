@@ -1,0 +1,33 @@
+<!doctype html>
+<!-- The Nightfall wendigo's states. Source: wendigo_col_1.gd of github.com/arinb44/Nightfall (2024). -->
+<html lang="en">
+<head><meta charset="utf-8"><link rel="stylesheet" href="diagram.css"></head>
+<body>
+  <h1>How the wendigo hunts</h1>
+  <div class="flow">
+    <div class="step key">
+      <h2>Chase</h2>
+      <ul><li>Runs at you along the navigation mesh, speed 6</li><li>Gives up while you are inside the shack</li><li>Within 7 units: attack</li></ul>
+    </div>
+    <div class="arrow">⇄</div>
+    <div class="step">
+      <h2>Attack</h2>
+      <ul><li>Swings after a one-second wind-up</li><li>25 damage if you are still within 8 units</li><li>Then back to the chase</li></ul>
+    </div>
+    <div class="arrow"></div>
+    <div class="step">
+      <h2>Stun</h2>
+      <ul><li>One hit in ten staggers it backwards</li><li>Then back to the chase</li></ul>
+    </div>
+    <div class="arrow"></div>
+    <div class="step">
+      <h2>Second wind</h2>
+      <ul><li>The first time its health falls to 60, it screams for three seconds</li><li>Health back to 600, speed up to 8</li></ul>
+    </div>
+  </div>
+  <div class="band">
+    <div><b>Starts with 500 health.</b> Every hit sprays blood and takes health off.</div>
+    <div><b>Death at zero.</b> The death animation plays and the world script starts the ending.</div>
+  </div>
+</body>
+</html>

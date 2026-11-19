@@ -79,6 +79,9 @@ const SHOTS = {
   },
   // scripts/diagrams/falling-constellations.html, from the repo's HANDOFF.md and src/.
   'fc-architecture': { src: 'falling-constellations.html', out: 'src/assets/projects/falling-constellations/underpainting.png', size: [1200, 800], wait: 500 },
+  // scripts/diagrams/nightfall.html and nightfall-wendigo.html, from the Nightfall repo's GDScript files.
+  'nightfall-architecture': { src: 'nightfall.html', out: 'src/assets/projects/nightfall/underpainting.png', size: [1200, 800], wait: 500 },
+  'nightfall-wendigo': { src: 'nightfall-wendigo.html', out: 'src/assets/projects/nightfall/underdrawing-1.png', size: [1200, 800], wait: 500 },
   // scripts/diagrams/nba-predictor.html, from the repo README and workflows.
   'nba-architecture': { src: 'nba-predictor.html', out: 'src/assets/projects/nba-predictor/underpainting.png', size: [1200, 800], wait: 500 },
 };

@@ -1,7 +1,7 @@
 # Progress: Project Info
 
-- **Current phase:** Phase 4, Part 2: M8 (Nightfall)
-- **Status:** waiting for user (M6 needs the Nightfall video and answers about the game); standing approval to commit and push, decision #11
+- **Current phase:** Phase 4, Part 2: M9 (project page redesign)
+- **Status:** in progress; auto-commit and push on `finish-portfolio` (decision #23)
 
 ## Completed milestones
 - 2026-11-18: Project root confirmed earlier this session (`C:\Users\arins\Arin\School\Projects\Portfolio`). New project chosen over extending `project-lineup`.
@@ -40,11 +40,13 @@
 - 2026-11-18: Nightfall facts from its repo (2 commits, 2024-08-25, by arinb45): Godot 4.2 (Forward+), addons proton_scatter and terrain_3d; a wendigo with a state machine (idle, run, attack, scream, death; 500 health; critical-hit areas) that stalks the player; a shack safe zone; a day-night cycle; random howls; deer that wander on a NavigationAgent3D; campfires; a readable book; an equippable flashlight; an ammo box and blood spray; the run ends on the wendigo's death or a death screen. 3D models are not in the repo ("to prevent the theft of my game").
 - 2026-11-18: User asked to "finish the portfolio". Part 2 of `plan.md` (M7 identity/About/CV/publish, M8 Nightfall, M9 project-page redesign) and the scope change in `programAgent.md` approved (#23-#27). Branch `finish-portfolio` from `main` (65f845d, which already holds the project-info work and the Nightfall escape clip).
 - 2026-11-18: M7 done: `src/site.ts` (name, tagline, email), About (bio, Education, CV link, a Nightfall render credit), `public/cv.pdf` = the resume, Michigan Edge role lines, `draft: false` on four projects, the no-TODO test now also covers `/`, `/projects/`, `/about/` and catches "[Your" and "you@example". Found and fixed: Astro drops the space at a line break next to a link, so links in About are kept mid-line. `npm test`: check 0/0, 9 pages, unit 12/12, Playwright 49/49.
+- 2026-11-18: M7 committed and pushed (`origin/finish-portfolio`).
+- 2026-11-18: M8 Nightfall done: role, one-liner, all four layers from the repo scripts and the user's answers; images: render frame (wendigo), systems diagram, wendigo state diagram (#28); `draft: false`; in `FINISHED`. `npm test`: check 0/0, 9 pages, unit 12/12, Playwright 50/50.
 
 ## Next step
-M8 Nightfall: role (solo; code and level; free models), lead text (goal: kill the wendigo) and the other layers from the repo facts above; Key features = a still from `public/projects/nightfall/escape.mp4` (labelled as a render); Architecture = `scripts/diagrams/nightfall.html` (game systems); Origins = a wendigo state-machine diagram unless the user has an early screenshot; `draft: false`; add to `FINISHED`; test; commit; push. Then M9 redesign (load the impeccable skill; 2-3 directions for the user to pick).
+M9 project page redesign: load the impeccable skill; read `src/pages/projects/[slug].astro`, `src/components/ProjectLayers.astro`, `ProjectNav.astro`, `src/styles/global.css` and the projects index; propose 2-3 directions as mock captures of a real project page; the user picks; implement; tests + screenshots at desktop and 390 px; fix the h1 mid-word break; commit; push. Then Phase 5 `summary.md`.
 
 ## Open questions
-- Nightfall: an early screenshot, if one exists (optional).
+- None blocking. (Nightfall: an early screenshot could replace the Origins diagram later.)
 
 **Last updated:** 2026-11-18
